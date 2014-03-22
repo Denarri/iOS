@@ -1,9 +1,8 @@
 //
-//  DefaultSettingsViewController.m
 //  Parse+Storyboard
 //
-//  Created by Juan Figuera on 9/23/12.
-//  Copyright (c) 2012 Juan Figuera. All rights reserved.
+//  Created by Andrew Ghobrial and Chris Meseha on 03/01/14.
+//  Copyright (c) 2014 Denarri. All rights reserved.
 //
 
 #import "DefaultSettingsViewController.h"
