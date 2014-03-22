@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		49593EAE18DCDD02004CA20C /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49593EAD18DCDD02004CA20C /* SearchViewController.m */; };
+		49593EB118DCDD0E004CA20C /* CriteriaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49593EB018DCDD0E004CA20C /* CriteriaViewController.m */; };
+		49593EB418DCDD5A004CA20C /* MatchCenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49593EB318DCDD5A004CA20C /* MatchCenterViewController.m */; };
+		49593EB618DCE956004CA20C /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49593EB518DCE956004CA20C /* Default-568h@2x.png */; };
 		4AC77FF6160F93500024E877 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AC77FF5160F93500024E877 /* UIKit.framework */; };
 		4AC77FF8160F93500024E877 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AC77FF7160F93500024E877 /* Foundation.framework */; };
 		4AC77FFA160F93500024E877 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AC77FF9160F93500024E877 /* CoreGraphics.framework */; };
@@ -28,6 +32,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		49593EAC18DCDD02004CA20C /* SearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchViewController.h; sourceTree = "<group>"; };
+		49593EAD18DCDD02004CA20C /* SearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchViewController.m; sourceTree = "<group>"; };
+		49593EAF18DCDD0E004CA20C /* CriteriaViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CriteriaViewController.h; sourceTree = "<group>"; };
+		49593EB018DCDD0E004CA20C /* CriteriaViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CriteriaViewController.m; sourceTree = "<group>"; };
+		49593EB218DCDD5A004CA20C /* MatchCenterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MatchCenterViewController.h; sourceTree = "<group>"; };
+		49593EB318DCDD5A004CA20C /* MatchCenterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MatchCenterViewController.m; sourceTree = "<group>"; };
+		49593EB518DCE956004CA20C /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		4AC77FF1160F93500024E877 /* Parse+Storyboard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Parse+Storyboard.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4AC77FF5160F93500024E877 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		4AC77FF7160F93500024E877 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -80,6 +91,7 @@
 		4AC77FE6160F934F0024E877 = {
 			isa = PBXGroup;
 			children = (
+				49593EB518DCE956004CA20C /* Default-568h@2x.png */,
 				4AC77FFB160F93500024E877 /* Parse+Storyboard */,
 				4AC77FF4160F93500024E877 /* Frameworks */,
 				4AC77FF2160F93500024E877 /* Products */,
@@ -117,9 +129,15 @@
 		4AC77FFB160F93500024E877 /* Parse+Storyboard */ = {
 			isa = PBXGroup;
 			children = (
+				4AC78007160F93500024E877 /* MainStoryboard.storyboard */,
 				4AC78004160F93500024E877 /* AppDelegate.h */,
 				4AC78005160F93500024E877 /* AppDelegate.m */,
-				4AC78007160F93500024E877 /* MainStoryboard.storyboard */,
+				49593EB218DCDD5A004CA20C /* MatchCenterViewController.h */,
+				49593EB318DCDD5A004CA20C /* MatchCenterViewController.m */,
+				49593EAC18DCDD02004CA20C /* SearchViewController.h */,
+				49593EAD18DCDD02004CA20C /* SearchViewController.m */,
+				49593EAF18DCDD0E004CA20C /* CriteriaViewController.h */,
+				49593EB018DCDD0E004CA20C /* CriteriaViewController.m */,
 				4AC78026160FA9B10024E877 /* DefaultSettingsViewController.h */,
 				4AC78027160FA9B10024E877 /* DefaultSettingsViewController.m */,
 				4AC77FFC160F93500024E877 /* Supporting Files */,
@@ -191,6 +209,7 @@
 			files = (
 				4AC78000160F93500024E877 /* InfoPlist.strings in Resources */,
 				4AC78009160F93500024E877 /* MainStoryboard.storyboard in Resources */,
+				49593EB618DCE956004CA20C /* Default-568h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -203,6 +222,9 @@
 			files = (
 				4AC78002160F93500024E877 /* main.m in Sources */,
 				4AC78006160F93500024E877 /* AppDelegate.m in Sources */,
+				49593EAE18DCDD02004CA20C /* SearchViewController.m in Sources */,
+				49593EB418DCDD5A004CA20C /* MatchCenterViewController.m in Sources */,
+				49593EB118DCDD0E004CA20C /* CriteriaViewController.m in Sources */,
 				4AC78028160FA9B10024E877 /* DefaultSettingsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -251,7 +273,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -271,7 +293,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -327,6 +349,7 @@
 				4AC78011160F93500024E877 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

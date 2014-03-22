@@ -17,7 +17,7 @@
     // ****************************************************************************
     // Parse initialization
     // [Parse setApplicationId:@"APPLICATION_ID" clientKey:@"CLIENT_KEY"];
-    [Parse setApplicationId:@"wAtYiP6NjcLhgJpy3xaRVWcvEzuUFZI3pWgDgojb" clientKey:@"9jyqc3o9DHTdwvBCPXjvIbH68q4h2xd3Tijx56Ns"];
+    [Parse setApplicationId:@"VWUSifMqZ7BHMfHo3XqG3C47Uo8Jl88aLa1aKocs" clientKey:@"N57phGN9jrqkdUifkyiZxvDOeMlRHVaeIgdZT6Tp"];
     // ****************************************************************************
     
     // Override point for customization after application launch.

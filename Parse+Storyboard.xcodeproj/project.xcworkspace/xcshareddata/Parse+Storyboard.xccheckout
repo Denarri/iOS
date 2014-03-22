@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>9A0F5816-E110-4D38-9C1F-126FC04FF29C</string>
+	<key>IDESourceControlProjectName</key>
+	<string>Parse+Storyboard</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>46AD5EDE-87F8-4F14-887F-B442452B3CB1</key>
+		<string>https://github.com/juanfiguera/Parse---Storyboard.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>Parse+Storyboard.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>46AD5EDE-87F8-4F14-887F-B442452B3CB1</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/juanfiguera/Parse---Storyboard.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>46AD5EDE-87F8-4F14-887F-B442452B3CB1</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>46AD5EDE-87F8-4F14-887F-B442452B3CB1</string>
+			<key>IDESourceControlWCCName</key>
+			<string>Parse---Storyboard</string>
+		</dict>
+	</array>
+</dict>
+</plist>
