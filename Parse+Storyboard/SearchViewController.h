@@ -6,6 +6,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <Parse/Parse.h>
+#import <Parse/PFCloud.h>
+
 
 @interface SearchViewController : UIViewController
 

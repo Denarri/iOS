@@ -42,9 +42,22 @@
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
+    if (sender != self.nextButton) return;
+    if (self.itemSearch.text.length > 0) {
+        
+        [PFCloud callFunctionInBackground:@"averageStars"
+                           withParameters:@{@"item": self.itemSearch.text}
+                                    block:^(NSNumber *ratings, NSError *error) {
+                                        if (!error) {
+                                        }
+                                    }];
+    
+    
+    }
     
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    
 }
 
 

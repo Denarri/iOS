@@ -7,10 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		491790EF18DFC03A001B64E3 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 491790EE18DFC03A001B64E3 /* CoreLocation.framework */; };
 		49593EAE18DCDD02004CA20C /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49593EAD18DCDD02004CA20C /* SearchViewController.m */; };
 		49593EB118DCDD0E004CA20C /* CriteriaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49593EB018DCDD0E004CA20C /* CriteriaViewController.m */; };
 		49593EB418DCDD5A004CA20C /* MatchCenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49593EB318DCDD5A004CA20C /* MatchCenterViewController.m */; };
 		49593EB618DCE956004CA20C /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49593EB518DCE956004CA20C /* Default-568h@2x.png */; };
+		49BD4AC018DFBE0B000F5BCC /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49BD4ABF18DFBE0B000F5BCC /* Parse.framework */; };
 		4AC77FF6160F93500024E877 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AC77FF5160F93500024E877 /* UIKit.framework */; };
 		4AC77FF8160F93500024E877 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AC77FF7160F93500024E877 /* Foundation.framework */; };
 		4AC77FFA160F93500024E877 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AC77FF9160F93500024E877 /* CoreGraphics.framework */; };
@@ -18,7 +20,6 @@
 		4AC78002160F93500024E877 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AC78001160F93500024E877 /* main.m */; };
 		4AC78006160F93500024E877 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AC78005160F93500024E877 /* AppDelegate.m */; };
 		4AC78009160F93500024E877 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4AC78007160F93500024E877 /* MainStoryboard.storyboard */; };
-		4AC78013160FA5CA0024E877 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AC78012160FA5CA0024E877 /* Parse.framework */; };
 		4AC78015160FA6660024E877 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AC78014160FA6660024E877 /* SystemConfiguration.framework */; };
 		4AC78017160FA6780024E877 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AC78016160FA6780024E877 /* CFNetwork.framework */; };
 		4AC78019160FA68C0024E877 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AC78018160FA68C0024E877 /* StoreKit.framework */; };
@@ -32,6 +33,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		491790EE18DFC03A001B64E3 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		49593EAC18DCDD02004CA20C /* SearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchViewController.h; sourceTree = "<group>"; };
 		49593EAD18DCDD02004CA20C /* SearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchViewController.m; sourceTree = "<group>"; };
 		49593EAF18DCDD0E004CA20C /* CriteriaViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CriteriaViewController.h; sourceTree = "<group>"; };
@@ -39,6 +41,7 @@
 		49593EB218DCDD5A004CA20C /* MatchCenterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MatchCenterViewController.h; sourceTree = "<group>"; };
 		49593EB318DCDD5A004CA20C /* MatchCenterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MatchCenterViewController.m; sourceTree = "<group>"; };
 		49593EB518DCE956004CA20C /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		49BD4ABF18DFBE0B000F5BCC /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 		4AC77FF1160F93500024E877 /* Parse+Storyboard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Parse+Storyboard.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4AC77FF5160F93500024E877 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		4AC77FF7160F93500024E877 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -50,7 +53,6 @@
 		4AC78004160F93500024E877 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		4AC78005160F93500024E877 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		4AC78008160F93500024E877 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
-		4AC78012160FA5CA0024E877 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 		4AC78014160FA6660024E877 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		4AC78016160FA6780024E877 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		4AC78018160FA68C0024E877 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
@@ -69,19 +71,20 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				491790EF18DFC03A001B64E3 /* CoreLocation.framework in Frameworks */,
 				4AC78025160FA72B0024E877 /* MobileCoreServices.framework in Frameworks */,
 				4AC78023160FA71C0024E877 /* AudioToolbox.framework in Frameworks */,
 				4AC78021160FA6E10024E877 /* libz.dylib in Frameworks */,
 				4AC7801F160FA6D50024E877 /* libsqlite3.dylib in Frameworks */,
 				4AC7801D160FA6A60024E877 /* QuartzCore.framework in Frameworks */,
 				4AC7801B160FA6960024E877 /* Security.framework in Frameworks */,
+				49BD4AC018DFBE0B000F5BCC /* Parse.framework in Frameworks */,
 				4AC78019160FA68C0024E877 /* StoreKit.framework in Frameworks */,
 				4AC78017160FA6780024E877 /* CFNetwork.framework in Frameworks */,
 				4AC78015160FA6660024E877 /* SystemConfiguration.framework in Frameworks */,
 				4AC77FF6160F93500024E877 /* UIKit.framework in Frameworks */,
 				4AC77FF8160F93500024E877 /* Foundation.framework in Frameworks */,
 				4AC77FFA160F93500024E877 /* CoreGraphics.framework in Frameworks */,
-				4AC78013160FA5CA0024E877 /* Parse.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -109,6 +112,8 @@
 		4AC77FF4160F93500024E877 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				491790EE18DFC03A001B64E3 /* CoreLocation.framework */,
+				49BD4ABF18DFBE0B000F5BCC /* Parse.framework */,
 				4AC78024160FA72B0024E877 /* MobileCoreServices.framework */,
 				4AC78022160FA71C0024E877 /* AudioToolbox.framework */,
 				4AC78020160FA6E10024E877 /* libz.dylib */,
@@ -118,7 +123,6 @@
 				4AC78018160FA68C0024E877 /* StoreKit.framework */,
 				4AC78016160FA6780024E877 /* CFNetwork.framework */,
 				4AC78014160FA6660024E877 /* SystemConfiguration.framework */,
-				4AC78012160FA5CA0024E877 /* Parse.framework */,
 				4AC77FF5160F93500024E877 /* UIKit.framework */,
 				4AC77FF7160F93500024E877 /* Foundation.framework */,
 				4AC77FF9160F93500024E877 /* CoreGraphics.framework */,
@@ -182,7 +186,7 @@
 		4AC77FE8160F934F0024E877 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0440;
+				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = "Juan Figuera";
 			};
 			buildConfigurationList = 4AC77FEB160F934F0024E877 /* Build configuration list for PBXProject "Parse+Storyboard" */;
@@ -255,9 +259,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
@@ -270,10 +278,14 @@
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -282,16 +294,23 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
@@ -305,7 +324,8 @@
 			buildSettings = {
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)\"",
+					"$(SRCROOT)",
+					"$(PROJECT_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Parse+Storyboard/Parse+Storyboard-Prefix.pch";
@@ -320,7 +340,8 @@
 			buildSettings = {
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)\"",
+					"$(SRCROOT)",
+					"$(PROJECT_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Parse+Storyboard/Parse+Storyboard-Prefix.pch";
