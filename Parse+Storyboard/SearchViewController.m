@@ -45,11 +45,12 @@
     if (sender != self.nextButton) return;
     if (self.itemSearch.text.length > 0) {
         
-        [PFCloud callFunctionInBackground:@"averageStars"
+        [PFCloud callFunctionInBackground:@"eBayCategorySearch"
                            withParameters:@{@"item": self.itemSearch.text}
-                                    block:^(NSNumber *ratings, NSError *error) {
-                                        if (!error) {
+                                    block:^(NSNumber *category, NSError *error) {
+                                        if (!error) {NSLog(@"Successfully pinged eBay!");
                                         }
+                                        
                                     }];
     
     

@@ -13,6 +13,9 @@
 		49593EB418DCDD5A004CA20C /* MatchCenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49593EB318DCDD5A004CA20C /* MatchCenterViewController.m */; };
 		49593EB618DCE956004CA20C /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49593EB518DCE956004CA20C /* Default-568h@2x.png */; };
 		49BD4AC018DFBE0B000F5BCC /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49BD4ABF18DFBE0B000F5BCC /* Parse.framework */; };
+		49EE475418E11D9500DFFA24 /* denarri_ios_retina.png in Resources */ = {isa = PBXBuildFile; fileRef = 49EE475318E11D9500DFFA24 /* denarri_ios_retina.png */; };
+		49EE475718E11DFC00DFFA24 /* denarri_ios_spotlight.png in Resources */ = {isa = PBXBuildFile; fileRef = 49EE475518E11DFC00DFFA24 /* denarri_ios_spotlight.png */; };
+		49EE475818E11DFC00DFFA24 /* denarri_ios_settings.png in Resources */ = {isa = PBXBuildFile; fileRef = 49EE475618E11DFC00DFFA24 /* denarri_ios_settings.png */; };
 		4AC77FF6160F93500024E877 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AC77FF5160F93500024E877 /* UIKit.framework */; };
 		4AC77FF8160F93500024E877 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AC77FF7160F93500024E877 /* Foundation.framework */; };
 		4AC77FFA160F93500024E877 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AC77FF9160F93500024E877 /* CoreGraphics.framework */; };
@@ -42,6 +45,9 @@
 		49593EB318DCDD5A004CA20C /* MatchCenterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MatchCenterViewController.m; sourceTree = "<group>"; };
 		49593EB518DCE956004CA20C /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		49BD4ABF18DFBE0B000F5BCC /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
+		49EE475318E11D9500DFFA24 /* denarri_ios_retina.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = denarri_ios_retina.png; sourceTree = "<group>"; };
+		49EE475518E11DFC00DFFA24 /* denarri_ios_spotlight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = denarri_ios_spotlight.png; sourceTree = "<group>"; };
+		49EE475618E11DFC00DFFA24 /* denarri_ios_settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = denarri_ios_settings.png; sourceTree = "<group>"; };
 		4AC77FF1160F93500024E877 /* Parse+Storyboard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Parse+Storyboard.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4AC77FF5160F93500024E877 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		4AC77FF7160F93500024E877 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -94,6 +100,9 @@
 		4AC77FE6160F934F0024E877 = {
 			isa = PBXGroup;
 			children = (
+				49EE475518E11DFC00DFFA24 /* denarri_ios_spotlight.png */,
+				49EE475618E11DFC00DFFA24 /* denarri_ios_settings.png */,
+				49EE475318E11D9500DFFA24 /* denarri_ios_retina.png */,
 				49593EB518DCE956004CA20C /* Default-568h@2x.png */,
 				4AC77FFB160F93500024E877 /* Parse+Storyboard */,
 				4AC77FF4160F93500024E877 /* Frameworks */,
@@ -211,8 +220,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				49EE475718E11DFC00DFFA24 /* denarri_ios_spotlight.png in Resources */,
 				4AC78000160F93500024E877 /* InfoPlist.strings in Resources */,
 				4AC78009160F93500024E877 /* MainStoryboard.storyboard in Resources */,
+				49EE475418E11D9500DFFA24 /* denarri_ios_retina.png in Resources */,
+				49EE475818E11DFC00DFFA24 /* denarri_ios_settings.png in Resources */,
 				49593EB618DCE956004CA20C /* Default-568h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -322,6 +334,7 @@
 		4AC78010160F93500024E877 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)",
@@ -338,6 +351,7 @@
 		4AC78011160F93500024E877 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)",
