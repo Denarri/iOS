@@ -11,5 +11,6 @@
 
 
 @interface SearchViewController : UIViewController
+@property (weak, nonatomic) IBOutlet UIButton *nextButtonOutlet;
 
 @end

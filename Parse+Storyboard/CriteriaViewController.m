@@ -31,8 +31,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
 }
+
+
 
 - (void)didReceiveMemoryWarning
 {
@@ -40,15 +42,37 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
+// Grabs previously searched item, sends criteria over to ebay
+
+
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
+    if (sender != self.submitButton) return;
+    if ((self.minPrice.text.length > 0) && (self.maxPrice.text.length > 0)) {
+        
+        // Every userCategory object associated with a particular user
+        PFObject *userCategory= [PFObject objectWithClassName:@"userCategory"];
+        [userCategory setObject:[PFUser currentUser] forKey:@"createdBy"];
+        
+        
+        // Every price/condition/location object associated with a particular user
+        
+        
+        userCategory[@"categoryId"] = @1234567;
+        userCategory[@"minPrice"] = @200;
+        userCategory[@"maxPrice"] = @250;
+        userCategory[@"itemCondition"] = @"Any";
+        userCategory[@"itemLocation"] = @"Worldwide";
+        [userCategory saveInBackground];
+        
+        
+    }
+    
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    
 }
-*/
+
 
 @end
