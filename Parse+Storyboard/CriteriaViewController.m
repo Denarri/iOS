@@ -1,5 +1,5 @@
 //
-//  Parse+Storyboard
+//  Denarri iOS App
 //
 //  Created by Andrew Ghobrial and Chris Meseha on 03/01/14.
 //  Copyright (c) 2014 Denarri. All rights reserved.
@@ -43,34 +43,76 @@
 }
 
 
-// Grabs previously searched item, sends criteria over to ebay
+- (IBAction)itemCondition:(id)sender{
+    
+    switch (self.itemCondition.selectedSegmentIndex) {
+            
+        default:
+        case 0:
+            self.itemCondition = @"new";
+            break;
+            
+        case 1:
+            self.itemCondition = @"any";
+            break;
+    }
+
+}
+
+- (IBAction)itemLocation:(id)sender {
+    
+    switch (self.itemLocation.selectedSegmentIndex) {
+            
+        default:
+        case 0:
+            self.itemLocation = @"US";
+            break;
+            
+        case 1:
+            self.itemLocation = @"Worldwide";
+            break;
+    }
+    
+}
+
+- (IBAction)submitButton:(id)sender
+{
+    if (self.itemSearch.text.length > 0) {
+        
+        //add all the info to users respective category object
+        
+        
+        
+    }
+}
+
 
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if (sender != self.submitButton) return;
-    if ((self.minPrice.text.length > 0) && (self.maxPrice.text.length > 0)) {
-        
-        // Every userCategory object associated with a particular user
-        PFObject *userCategory= [PFObject objectWithClassName:@"userCategory"];
-        [userCategory setObject:[PFUser currentUser] forKey:@"createdBy"];
-        
-        
-        // Every price/condition/location object associated with a particular user
-        
-        
-        userCategory[@"categoryId"] = @1234567;
-        userCategory[@"minPrice"] = @200;
-        userCategory[@"maxPrice"] = @250;
-        userCategory[@"itemCondition"] = @"Any";
-        userCategory[@"itemLocation"] = @"Worldwide";
-        [userCategory saveInBackground];
-        
-        
-    }
-    
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+//    if (sender != self.submitButton) return;
+//    if ((self.minPrice.text.length > 0) && (self.maxPrice.text.length > 0)) {
+//        
+//        // Every userCategory object associated with a particular user
+//        PFObject *userCategory= [PFObject objectWithClassName:@"userCategory"];
+//        [userCategory setObject:[PFUser currentUser] forKey:@"createdBy"];
+//        
+//        
+//        // Every price/condition/location object associated with a particular user
+//        
+//        
+//        userCategory[@"categoryId"] = @1234567;
+//        userCategory[@"minPrice"] = @200;
+//        userCategory[@"maxPrice"] = @250;
+//        userCategory[@"itemCondition"] = @"Any";
+//        userCategory[@"itemLocation"] = @"Worldwide";
+//        [userCategory saveInBackground];
+//        
+//        
+//    }
+//    
+//    // Get the new view controller using [segue destinationViewController].
+//    // Pass the selected object to the new view controller.
     
 }
 

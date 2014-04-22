@@ -1,5 +1,5 @@
 //
-//  Parse+Storyboard
+//  Denarri iOS App
 //
 //  Created by Andrew Ghobrial and Chris Meseha on 03/01/14.
 //  Copyright (c) 2014 Denarri. All rights reserved.
@@ -27,10 +27,29 @@
 
 - (void)viewDidLoad
 {
+
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
     
-    
+    //perform search with criteria just submitted
+//    [PFCloud callFunctionInBackground:@"eBayMatchCenterSearch"
+//                       withParameters:@{@"item": self.itemSearch.text,
+//                                        @"minPrice": self.minPrice.text,
+//                                        @"maxPrice": self.maxPrice.text,
+//                                        @"itemCondition": self.itemCondition,
+//                                        @"itemLocation": self.itemLocation,}
+//                                block:^(NSString *result, NSError *error) {
+//                                    
+//                                    if (!error) {
+//                                        NSLog(@"The result is '%@'", result);
+//                                        
+//                                        if ([result intValue] == 1) {
+//                                            [self performSegueWithIdentifier:@"ShowMatchCenterSegue" sender:self];
+//                                        } else {
+//                                            [self performSegueWithIdentifier:@"ShowCriteriaSegue" sender:self];
+//                                        }
+//                                        
+//                                    }
+//                                }];
 }
 
 - (void)didReceiveMemoryWarning
