@@ -28,6 +28,8 @@
 		49A20F3C1900524200E9B8A1 /* MainBG.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 49A20F3B1900524200E9B8A1 /* MainBG.jpg */; };
 		49ACF3D21900380900506502 /* MyLogInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49ACF3D11900380900506502 /* MyLogInViewController.m */; };
 		49ACF3D51900428100506502 /* SubclassConfigViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49ACF3D41900428100506502 /* SubclassConfigViewController.m */; };
+		49B0390D1911894B00D82877 /* SearchCategoryChooserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49B0390C1911894B00D82877 /* SearchCategoryChooserViewController.m */; };
+		49B03910191189C100D82877 /* UserCategoryChooserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49B0390F191189C100D82877 /* UserCategoryChooserViewController.m */; };
 		49EE475418E11D9500DFFA24 /* denarri_ios_retina.png in Resources */ = {isa = PBXBuildFile; fileRef = 49EE475318E11D9500DFFA24 /* denarri_ios_retina.png */; };
 		49EE475718E11DFC00DFFA24 /* denarri_ios_spotlight.png in Resources */ = {isa = PBXBuildFile; fileRef = 49EE475518E11DFC00DFFA24 /* denarri_ios_spotlight.png */; };
 		49EE475818E11DFC00DFFA24 /* denarri_ios_settings.png in Resources */ = {isa = PBXBuildFile; fileRef = 49EE475618E11DFC00DFFA24 /* denarri_ios_settings.png */; };
@@ -59,6 +61,10 @@
 		49ACF3D11900380900506502 /* MyLogInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyLogInViewController.m; sourceTree = "<group>"; };
 		49ACF3D31900428100506502 /* SubclassConfigViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubclassConfigViewController.h; sourceTree = "<group>"; };
 		49ACF3D41900428100506502 /* SubclassConfigViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubclassConfigViewController.m; sourceTree = "<group>"; };
+		49B0390B1911894B00D82877 /* SearchCategoryChooserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchCategoryChooserViewController.h; sourceTree = "<group>"; };
+		49B0390C1911894B00D82877 /* SearchCategoryChooserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchCategoryChooserViewController.m; sourceTree = "<group>"; };
+		49B0390E191189C100D82877 /* UserCategoryChooserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserCategoryChooserViewController.h; sourceTree = "<group>"; };
+		49B0390F191189C100D82877 /* UserCategoryChooserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserCategoryChooserViewController.m; sourceTree = "<group>"; };
 		49EE475318E11D9500DFFA24 /* denarri_ios_retina.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = denarri_ios_retina.png; sourceTree = "<group>"; };
 		49EE475518E11DFC00DFFA24 /* denarri_ios_spotlight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = denarri_ios_spotlight.png; sourceTree = "<group>"; };
 		49EE475618E11DFC00DFFA24 /* denarri_ios_settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = denarri_ios_settings.png; sourceTree = "<group>"; };
@@ -174,6 +180,10 @@
 				49ACF3D11900380900506502 /* MyLogInViewController.m */,
 				49593EAC18DCDD02004CA20C /* SearchViewController.h */,
 				49593EAD18DCDD02004CA20C /* SearchViewController.m */,
+				49B0390B1911894B00D82877 /* SearchCategoryChooserViewController.h */,
+				49B0390C1911894B00D82877 /* SearchCategoryChooserViewController.m */,
+				49B0390E191189C100D82877 /* UserCategoryChooserViewController.h */,
+				49B0390F191189C100D82877 /* UserCategoryChooserViewController.m */,
 				49593EAF18DCDD0E004CA20C /* CriteriaViewController.h */,
 				49593EB018DCDD0E004CA20C /* CriteriaViewController.m */,
 				49593EB218DCDD5A004CA20C /* MatchCenterViewController.h */,
@@ -265,10 +275,12 @@
 				4AC78002160F93500024E877 /* main.m in Sources */,
 				4AC78006160F93500024E877 /* AppDelegate.m in Sources */,
 				49593EAE18DCDD02004CA20C /* SearchViewController.m in Sources */,
+				49B03910191189C100D82877 /* UserCategoryChooserViewController.m in Sources */,
 				49593EB418DCDD5A004CA20C /* MatchCenterViewController.m in Sources */,
 				49ACF3D21900380900506502 /* MyLogInViewController.m in Sources */,
 				49593EB118DCDD0E004CA20C /* CriteriaViewController.m in Sources */,
 				49ACF3D51900428100506502 /* SubclassConfigViewController.m in Sources */,
+				49B0390D1911894B00D82877 /* SearchCategoryChooserViewController.m in Sources */,
 				4AC78028160FA9B10024E877 /* DefaultSettingsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -75,21 +75,35 @@
     
 }
 
+
+
+//add all the info to users respective new category object
 - (IBAction)submitButton:(id)sender
 {
     if (self.itemSearch.text.length > 0) {
         
-        //add all the info to users respective category object
-        
-        
-        
-    }
+        [PFCloud callFunctionInBackground:@"newUserCategory"
+                           withParameters:@{@"categoryId": @"categoryId goes here",
+                                              @"minPrice": self.minPrice.text,
+                                              @"maxPrice": self.maxPrice.text,
+                                         @"itemCondition": self.itemCondition,
+                                          @"itemLocation": self.itemLocation,}
+                                         block:^(NSString *result, NSError *error) {
+         
+                                             if (!error) {
+                                                 NSLog(@"Criteria successfuly saved.");
+                        
+                                                     [self performSegueWithIdentifier:@"ShowMatchCenterSegue" sender:self];
+                                                 
+                                             }
+                                         }];
+    
 }
 
 
 
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
+//- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+//{
 //    if (sender != self.submitButton) return;
 //    if ((self.minPrice.text.length > 0) && (self.maxPrice.text.length > 0)) {
 //        

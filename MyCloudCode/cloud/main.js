@@ -1,8 +1,43 @@
+// Creation of initial userCategory object upon user signup
+
+Parse.Cloud.define("userCategoryCreate", function(request, response) {
+    var userCategory = Parse.Object.extend("userCategory");
+    var newUserCategory = new userCategory();
+    newUserCategory.set("categoryId", "");
+    newUserCategory.set("minPrice");
+    newUserCategory.set("maxPrice");
+    newUserCategory.set("itemCondition");
+    newUserCategory.set("itemLocation");
+    newUserCategory.set("parent", Parse.User.current());
+    newUserCategory.save({ 
+
+      success: function (){
+        console.log ('userCategory successfully created!');
+        response.success('Request successful');
+      },
+
+      error: function (){
+        console.log('error!!!');
+      response.error('Request failed');
+      }
+
+    });
+});
 
 
 
 
-// Initial query sent from search bar
+
+
+
+
+
+
+
+
+
+
+// Query sent from search bar
 
 Parse.Cloud.define("eBayCategorySearch", function(request, response) {
           url = 'http://svcs.ebay.com/services/search/FindingService/v1';
@@ -22,7 +57,7 @@ Parse.Cloud.define("eBayCategorySearch", function(request, response) {
       success: function (httpResponse) {
 
 
-// parses results
+  // parses results
 
           var httpresponse = JSON.parse(httpResponse.text);
           var items = [];
@@ -36,7 +71,7 @@ Parse.Cloud.define("eBayCategorySearch", function(request, response) {
           });
 
 
-// count number of times each unique primaryCategory shows up (based on categoryId), return top two
+  // count number of times each unique primaryCategory shows up (based on categoryId), returns top two
 
 
           var categoryResults = {};
@@ -53,35 +88,50 @@ Parse.Cloud.define("eBayCategorySearch", function(request, response) {
 
 
 
-// compare categoryResults to userCategory object
+  // compare categoryResults to userCategory object
 
-          var userCategory = ['9355']; 
+          //Extend the Parse.Object class to make the ListItem class
+          var userCategory = Parse.Object.extend("userCategory");
+ 
+          //Use Parse.Query to generate a new query, specifically querying the userCategory object.
+          query = new Parse.Query(userCategory);
+           
+          //Set constraints on the query.
+          query.containedIn('categoryId', top2);
+          query.equalTo("User", Parse.User.current())
 
-          var AnyItemsOfCategoryResultsInUserCategory = Object.keys(categoryResults).some(function(item) {
-            return userCategory.indexOf(item) > -1;
+          //Submit the query and pass in callback functions.
+          var isMatching = false;
+          query.find({
+            success: function(results) {
+              var userCategoriesMatchingTop2 = results;
+              console.log("userCategory comparison success!");
+              console.log(results);
+              if (userCategoriesMatchingTop2 && userCategoriesMatchingTop2.length > 0) {
+                isMatching = true;
+              }
+
+              response.success({
+                "results": [
+                  { "Number of top categories": top2.length },
+                            { "Top categories": top2 },  
+                         { "Number of matches": userCategoriesMatchingTop2.length }, 
+         { "User categories that match search": userCategoriesMatchingTop2 }
+                ]
+              }
+
+                //'Number of top categories: ' + top2.length + 'Number of matches: ' + userCategoriesMatchingTop2.length + ' User categories that match search: ' + userCategoriesMatchingTop2
+
+              );
+
+              console.log('User categories that match search: ' + results)
+            },
+            error: function(error) {
+              //Error Callback
+              console.log("An error has occurred");
+              console.log(error);
+            }
           });
-          console.log('Matches found: ' + AnyItemsOfCategoryResultsInUserCategory);
-
-          var ItemsOfCategoryResultsInUserCategory = Object.keys(categoryResults).filter(function(item) {
-            return userCategory.indexOf(item) > -1;
-          });
-          console.log('User categories that match search: ' + ItemsOfCategoryResultsInUserCategory)
-
-
-
-// if 1 match found -> default to those criteria -> send straight to matchcenter -> clear categoryResults and top2 array
-          //ie. if ItemsOfCategoryResultsInUserCategory.length=1, send search query with that categories saved info to ebay, display results in mc
-
-// if >1 matches found -> ask which one  -> default to selected categories criteria  -> send to matchcenter -> clear categoryResults and top2 array
-          //ie. if ItemsOfCategoryResultsInUserCategory.length=2, send to intermed. page displaying ItemsOfCategoryResultsInUserCategory, search query with selected categories saved info to ebay, display results in mc
-
-// if no matches found -> ask which category to use -> redirect to criteriaViewController  -> save the criteria user inputs  -> send to matchcenter -> cclear categoryResults and top2 array
-          //ie. if ItemsOfCategoryResultsInUserCategory.length=0, send to intermed. page displaying ItemsOfCategoryResultsInUserCategory, send selected category to CriteriaViewController, search query with selected categories saved info to ebay, display results in m
-
-
-
-          response.success(AnyItemsOfCategoryResultsInUserCategory);
-
   },
           error: function (httpResponse) {
               console.log('error!!!');
@@ -98,9 +148,45 @@ Parse.Cloud.define("eBayCategorySearch", function(request, response) {
 
 
 
-// query sent from CriteriaViewController
 
-Parse.Cloud.define("eBayCriteriaSearch", function(request, response) {
+
+
+
+
+
+
+
+
+
+
+// Adds criteria info to userCategory object
+
+// Parse.Cloud.define("userCategorySave", function(request, response) {
+
+
+
+// }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// query sent from MatchCenterViewController
+
+Parse.Cloud.define("eBayMatchCenterSearch", function(request, response) {
           url = 'http://svcs.ebay.com/services/search/FindingService/v1';
 
   Parse.Cloud.httpRequest({
@@ -122,13 +208,6 @@ Parse.Cloud.define("eBayCriteriaSearch", function(request, response) {
        'keywords' : request.params.item,
 
 
-
-http://svcs.ebay.com/services/search/FindingService/v1?SECURITY-APPNAME=AndrewGh-2d30-4c8d-a9cd-248083bc4d0f&OPERATION-NAME=findItemsByKeywords&SERVICE-VERSION=1.12.0&RESPONSE-DATA-FORMAT=JSON&callback=_cb_findItemsByKeywords&REST-PAYLOAD&sortOrder=PricePlusShippingLowest&paginationInput.entriesPerPage=7&outputSelector=AspectHistogram&itemFilter(0).name=Condition&itemFilter(0).value(0)=New&itemFilter(1).name=MaxPrice&itemFilter(1).value=450.00&itemFilter(1).paramName=Currency&itemFilter(1).paramValue=USD&itemFilter(2).name=MinPrice&itemFilter(2).value=350.00&itemFilter(2).paramName=Currency&itemFilter(2).paramValue=USD&itemFilter(3).name=ListingType&itemFilter(3).value=FixedPrice&keywords=Moto+x+16gb+unlocked
-
-
-
-
-
      },
       success: function (httpResponse) {
 
@@ -136,53 +215,7 @@ http://svcs.ebay.com/services/search/FindingService/v1?SECURITY-APPNAME=AndrewGh
 // parses results
 
           var httpresponse = JSON.parse(httpResponse.text);
-          var items = [];
           
-          
-
-// count number of times each unique primaryCategory shows up (based on categoryId), return top two
-
-
-          var categoryResults = {};
-
-          items.forEach(function(item) {
-            var id = item.primaryCategory[0].categoryId;
-            if (categoryResults[id]) categoryResults[id]++;
-            else categoryResults[id] = 1;
-          });
-
-          var top2 = Object.keys(categoryResults).sort(function(a, b) 
-            {return categoryResults[b]-categoryResults[a]; }).slice(0, 2);
-          console.log('Top categories: ' + top2.join(', '));
-
-
-
-// compare categoryResults to userCategory object
-
-          var userCategory = ['9355']; 
-
-          var AnyItemsOfCategoryResultsInUserCategory = Object.keys(categoryResults).some(function(item) {
-            return userCategory.indexOf(item) > -1;
-          });
-          console.log('Matches found: ' + AnyItemsOfCategoryResultsInUserCategory);
-
-          var ItemsOfCategoryResultsInUserCategory = Object.keys(categoryResults).filter(function(item) {
-            return userCategory.indexOf(item) > -1;
-          });
-          console.log('User categories that match search: ' + ItemsOfCategoryResultsInUserCategory)
-
-
-
-// if 1 match found -> default to those criteria -> send straight to matchcenter -> clear categoryResults and top2 array
-          //ie. if ItemsOfCategoryResultsInUserCategory.length=1, send search query with that categories saved info to ebay, display results in mc
-
-// if >1 matches found -> ask which one  -> default to selected categories criteria  -> send to matchcenter -> clear categoryResults and top2 array
-          //ie. if ItemsOfCategoryResultsInUserCategory.length=2, send to intermed. page displaying ItemsOfCategoryResultsInUserCategory, search query with selected categories saved info to ebay, display results in mc
-
-// if no matches found -> ask which category to use -> redirect to criteriaViewController  -> save the criteria user inputs  -> send to matchcenter -> cclear categoryResults and top2 array
-          //ie. if ItemsOfCategoryResultsInUserCategory.length=0, send to intermed. page displaying ItemsOfCategoryResultsInUserCategory, send selected category to CriteriaViewController, search query with selected categories saved info to ebay, display results in m
-
-
 
           response.success(AnyItemsOfCategoryResultsInUserCategory);
 
@@ -194,27 +227,4 @@ http://svcs.ebay.com/services/search/FindingService/v1?SECURITY-APPNAME=AndrewGh
      });
 });
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// Parse.Cloud.define("userCategoryCriteria", function(request, response) {
-
-// }
 

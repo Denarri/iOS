@@ -47,13 +47,29 @@
         [PFCloud callFunctionInBackground:@"eBayCategorySearch"
                            withParameters:@{@"item": self.itemSearch.text}
                                     block:^(NSString *result, NSError *error) {
+                                        NSLog(@"'%@'", result);
                                         if (!error) {
-                                            NSLog(@"The result is '%@'", result);
                                             
-                                            if ([result intValue] == 1) {
+                                            // if 1 match found clear categoryResults and top2 array
+                                            if ([result intValue] == 1){
                                                 [self performSegueWithIdentifier:@"ShowMatchCenterSegue" sender:self];
-                                            } else {
-                                                [self performSegueWithIdentifier:@"ShowCriteriaSegue" sender:self];
+                                            }
+                                            
+                                            // if 2 matches found
+                                            else if ([result intValue] == 2){
+                                                [self performSegueWithIdentifier:@"ShowUserCategoryChooserSegue" sender:self];
+                                                //default to selected categories criteria  -> send to matchcenter -> clear categoryResults and top2 array
+                                            }
+                                            
+                                            // if no matches found, and 1 top category is found
+                                            else if ([result intValue] == 2) {
+                                                // redirect to page asking which category to use
+                                                [self performSegueWithIdentifier:@"ShowSearchCategoryChooserSegue" sender:self];
+                                            }
+                                            
+                                            else if ([result intValue] == 2) {
+                                                // redirect to page asking which category to use
+                                                [self performSegueWithIdentifier:@"ShowSearchCategoryChooserSegue" sender:self];
                                             }
                                             
                                         }
@@ -73,7 +89,7 @@
 {
     if([segue.identifier isEqualToString:@"ShowCriteriaSegue"]){
         CriteriaViewController *controller = (CriteriaViewController *) segue.destinationViewController;
-        controller.itemSearch = self.itemSearch.text;
+        controller.itemSearch.text = self.itemSearch.text;
         }
 
     

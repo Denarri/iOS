@@ -114,6 +114,14 @@
 // Sent to the delegate when a PFUser is signed up.
 - (void)signUpViewController:(PFSignUpViewController *)signUpController didSignUpUser:(PFUser *)user {
     [self dismissViewControllerAnimated:YES completion:NULL];
+    
+    [PFCloud callFunctionInBackground:@"userCategoryCreate"
+                       withParameters:@{}
+                                block:^(NSNumber *ratings, NSError *error) {
+                                    if (!error) {
+                                        //userCategory created
+                                    }
+                                }];
 }
 
 // Sent to the delegate when the sign up attempt fails.

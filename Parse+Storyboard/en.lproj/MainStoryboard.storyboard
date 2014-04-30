@@ -22,6 +22,79 @@
             </objects>
             <point key="canvasLocation" x="275" y="142"/>
         </scene>
+        <!--Search Category Chooser View Controller-->
+        <scene sceneID="YZB-0d-ZNX">
+            <objects>
+                <viewController id="VVp-gr-Il1" customClass="SearchCategoryChooserViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Iow-gQ-h32">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Category 1" borderStyle="roundedRect" minimumFontSize="17" id="hJy-jK-XGK">
+                                <rect key="frame" x="112" y="152" width="97" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Category 1" borderStyle="roundedRect" minimumFontSize="17" id="LP0-5s-aad">
+                                <rect key="frame" x="112" y="209" width="97" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Which category are you looking for?" minimumFontSize="17" id="KPY-jW-zJl">
+                                <rect key="frame" x="40" y="75" width="240" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="PBy-zS-KG4"/>
+                    <connections>
+                        <segue destination="NyJ-xs-7Ut" kind="push" identifier="CategoryChooserToCriteriaSegue" id="bso-zB-LfR"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bFh-08-QOA" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2416" y="-282"/>
+        </scene>
+        <!--User Category Chooser View Controller-->
+        <scene sceneID="cZN-iF-voh">
+            <objects>
+                <viewController id="EJR-8m-fBh" customClass="UserCategoryChooserViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="yUe-P5-MmN">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Category 1" borderStyle="roundedRect" minimumFontSize="17" id="EnS-pU-Sau">
+                                <rect key="frame" x="112" y="157" width="97" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Category 1" borderStyle="roundedRect" minimumFontSize="17" id="HR2-oa-DOx">
+                                <rect key="frame" x="112" y="214" width="97" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Which category are you looking for?" minimumFontSize="17" id="arb-PU-3N1">
+                                <rect key="frame" x="40" y="80" width="240" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="Xrj-Mu-RTN"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6Jv-yg-5pD" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2406" y="465"/>
+        </scene>
         <!--Match Center View Controller - MatchCenter-->
         <scene sceneID="xLZ-Hg-zp9">
             <objects>
@@ -44,7 +117,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="g6R-A0-hP2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1392" y="415"/>
+            <point key="canvasLocation" x="2893" y="535"/>
         </scene>
         <!--Search View Controller-->
         <scene sceneID="NWw-CT-AgB">
@@ -83,6 +156,8 @@
                         <outlet property="nextButtonOutlet" destination="bIT-gz-gT8" id="vQI-cd-3C7"/>
                         <segue destination="NyJ-xs-7Ut" kind="push" identifier="ShowCriteriaSegue" id="31y-Ae-iMh"/>
                         <segue destination="DNb-te-ggn" kind="push" identifier="ShowMatchCenterSegue" id="f7J-JZ-mSA"/>
+                        <segue destination="VVp-gr-Il1" kind="push" identifier="ShowSearchCategoryChooserSegue" id="2iw-RD-0Ug"/>
+                        <segue destination="EJR-8m-fBh" kind="push" identifier="ShowUserCategoryChooserSegue" id="LSE-SS-YPH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="alB-IP-YhU" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -175,7 +250,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jOI-QL-Ko7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2327" y="-149"/>
+            <point key="canvasLocation" x="2893" y="-149"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="QW7-AJ-Ihq">
@@ -223,5 +298,6 @@
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="f7J-JZ-mSA"/>
+        <segue reference="bso-zB-LfR"/>
     </inferredMetricsTieBreakers>
 </document>
