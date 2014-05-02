@@ -54,45 +54,45 @@
                                             NSError *jsonerror = nil;
                                         
                                             NSDictionary *categoryData = [NSJSONSerialization
-                                                                     JSONObjectWithData:returnedJSONData
-                                                                     options:0
-                                                                     error:&jsonerror];
-//                                            
-//                                            if(error) { NSLog(@"JSON was malformed."); }
-//                                            
-//                                            // validation that it's a dictionary:
-//                                            if([categoryData isKindOfClass:[NSDictionary class]])
-//                                            {
-//                                                NSDictionary *jsonresults = categoryData;
-//                                                /* proceed with jsonresults */
-//                                            }
-//                                            else
-//                                            {
-//                                                NSLog(@"JSON dictionary wasn't returned.");
-//                                            }
+                                                                          JSONObjectWithData:returnedJSONData
+                                                                          options:0
+                                                                          error:&jsonerror];
                                         
-         
+                                            NSArray *resultArray = [categoryData objectForKey:@"results"];
                                         
+                                            NSDictionary *dictionary1 = [resultArray objectAtIndex:1];
+                                            NSNumber *numberOfTopCategories = [dictionary1 objectForKey:@"Number of top categories"];
+                                        
+                                            NSDictionary *dictionary2 = [resultArray objectAtIndex:2];
+                                            NSNumber *topCategories = [dictionary2 objectForKey:@"Top categories"];
+                                        
+                                            NSDictionary *dictionary3 = [resultArray objectAtIndex:3];
+                                            NSNumber *numberOfMatches = [dictionary3 objectForKey:@"Number of matches"];
+                                        
+                                            NSDictionary *dictionary4 = [resultArray objectAtIndex:4];
+                                            NSNumber *userCategoriesThatMatchSearch = [dictionary4 objectForKey:@"User categories that match search"];
+                                        
+                                       
                                         if (!error) {
                                             
                                             
                                             // if 1 match found clear categoryResults and top2 array
-                                            if ([[categoryData objectForKey:@"Number of matches"]  isEqual: @"1"]){
+                                            if ([numberOfMatches intValue] == 1 ){
                                                 [self performSegueWithIdentifier:@"ShowMatchCenterSegue" sender:self];
                                             }
                                             
                                             // if 2 matches found
-                                            else if ([[categoryData objectForKey:@"Number of matches"]  isEqual: @"2"]){
+                                            else if ([numberOfMatches intValue] == 2){
                                                 [self performSegueWithIdentifier:@"ShowUserCategoryChooserSegue" sender:self];
                                                 //default to selected categories criteria  -> send to matchcenter -> clear categoryResults and top2 array
                                             }
                                             
                                             // if no matches found, and 1 top category is returned
-                                            else if ([[categoryData objectForKey:@"Number of matches"]  isEqual: @"0"] && [[categoryData objectForKey:@"Number of top categories"]  isEqual: @"1"]) {
+                                            else if ([numberOfMatches intValue] == 0 && [numberOfTopCategories intValue] == 1) {
                                                 [self performSegueWithIdentifier:@"ShowCriteriaSegue" sender:self];
                                             }
                                             // if no matches are found, and 2 top categories are returned
-                                            else if ([[categoryData objectForKey:@"Number of matches"]  isEqual: @"0"] && [[categoryData objectForKey:@"Number of top categories"]  isEqual: @"2"]) {
+                                            else if ([numberOfMatches intValue] == 0 && [numberOfTopCategories intValue] == 2) {
                                                 [self performSegueWithIdentifier:@"ShowSearchCategoryChooserSegue" sender:self];
                                             }
                                             
