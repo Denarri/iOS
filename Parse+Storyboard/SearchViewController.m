@@ -46,31 +46,23 @@
     if (self.itemSearch.text.length > 0) {
         [PFCloud callFunctionInBackground:@"eBayCategorySearch"
                            withParameters:@{@"item": self.itemSearch.text}
-                                    block:^(NSString *result, NSError *error) {
+                                    block:^(NSDictionary *result, NSError *error) {
                                         NSLog(@"'%@'", result);
                                         
-                                        NSData *returnedJSONData = result;
                                         
-                                            NSError *jsonerror = nil;
+                                            NSArray *resultArray = [result objectForKey:@"results"];
                                         
-                                            NSDictionary *categoryData = [NSJSONSerialization
-                                                                          JSONObjectWithData:returnedJSONData
-                                                                          options:0
-                                                                          error:&jsonerror];
+                                                NSDictionary *dictionary0 = [resultArray objectAtIndex:0];
+                                                NSNumber *numberOfTopCategories = [dictionary0 objectForKey:@"Number of top categories"];
                                         
-                                            NSArray *resultArray = [categoryData objectForKey:@"results"];
+//                                              NSDictionary *dictionary1 = [resultArray objectAtIndex:1];
+//                                              NSNumber *topCategories = [dictionary1 objectForKey:@"Top categories"];
                                         
-                                            NSDictionary *dictionary1 = [resultArray objectAtIndex:1];
-                                            NSNumber *numberOfTopCategories = [dictionary1 objectForKey:@"Number of top categories"];
+                                                NSDictionary *dictionary2 = [resultArray objectAtIndex:2];
+                                                NSNumber *numberOfMatches = [dictionary2 objectForKey:@"Number of matches"];
                                         
-                                            NSDictionary *dictionary2 = [resultArray objectAtIndex:2];
-                                            NSNumber *topCategories = [dictionary2 objectForKey:@"Top categories"];
-                                        
-                                            NSDictionary *dictionary3 = [resultArray objectAtIndex:3];
-                                            NSNumber *numberOfMatches = [dictionary3 objectForKey:@"Number of matches"];
-                                        
-                                            NSDictionary *dictionary4 = [resultArray objectAtIndex:4];
-                                            NSNumber *userCategoriesThatMatchSearch = [dictionary4 objectForKey:@"User categories that match search"];
+//                                              NSDictionary *dictionary3 = [resultArray objectAtIndex:3];
+//                                              NSNumber *userCategoriesThatMatchSearch = [dictionary3 objectForKey:@"User categories that match search"];
                                         
                                        
                                         if (!error) {
