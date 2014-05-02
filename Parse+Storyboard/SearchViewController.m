@@ -48,27 +48,51 @@
                            withParameters:@{@"item": self.itemSearch.text}
                                     block:^(NSString *result, NSError *error) {
                                         NSLog(@"'%@'", result);
+                                        
+                                        NSData *returnedJSONData = result;
+                                        
+                                            NSError *jsonerror = nil;
+                                        
+                                            NSDictionary *categoryData = [NSJSONSerialization
+                                                                     JSONObjectWithData:returnedJSONData
+                                                                     options:0
+                                                                     error:&jsonerror];
+//                                            
+//                                            if(error) { NSLog(@"JSON was malformed."); }
+//                                            
+//                                            // validation that it's a dictionary:
+//                                            if([categoryData isKindOfClass:[NSDictionary class]])
+//                                            {
+//                                                NSDictionary *jsonresults = categoryData;
+//                                                /* proceed with jsonresults */
+//                                            }
+//                                            else
+//                                            {
+//                                                NSLog(@"JSON dictionary wasn't returned.");
+//                                            }
+                                        
+         
+                                        
                                         if (!error) {
                                             
+                                            
                                             // if 1 match found clear categoryResults and top2 array
-                                            if ([result intValue] == 1){
+                                            if ([[categoryData objectForKey:@"Number of matches"]  isEqual: @"1"]){
                                                 [self performSegueWithIdentifier:@"ShowMatchCenterSegue" sender:self];
                                             }
                                             
                                             // if 2 matches found
-                                            else if ([result intValue] == 2){
+                                            else if ([[categoryData objectForKey:@"Number of matches"]  isEqual: @"2"]){
                                                 [self performSegueWithIdentifier:@"ShowUserCategoryChooserSegue" sender:self];
                                                 //default to selected categories criteria  -> send to matchcenter -> clear categoryResults and top2 array
                                             }
                                             
-                                            // if no matches found, and 1 top category is found
-                                            else if ([result intValue] == 2) {
-                                                // redirect to page asking which category to use
-                                                [self performSegueWithIdentifier:@"ShowSearchCategoryChooserSegue" sender:self];
+                                            // if no matches found, and 1 top category is returned
+                                            else if ([[categoryData objectForKey:@"Number of matches"]  isEqual: @"0"] && [[categoryData objectForKey:@"Number of top categories"]  isEqual: @"1"]) {
+                                                [self performSegueWithIdentifier:@"ShowCriteriaSegue" sender:self];
                                             }
-                                            
-                                            else if ([result intValue] == 2) {
-                                                // redirect to page asking which category to use
+                                            // if no matches are found, and 2 top categories are returned
+                                            else if ([[categoryData objectForKey:@"Number of matches"]  isEqual: @"0"] && [[categoryData objectForKey:@"Number of top categories"]  isEqual: @"2"]) {
                                                 [self performSegueWithIdentifier:@"ShowSearchCategoryChooserSegue" sender:self];
                                             }
                                             
