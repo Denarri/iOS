@@ -9,6 +9,9 @@
 #import <Parse/Parse.h>
 #import <Parse/PFCloud.h>
 #import "CriteriaViewController.h"
+#import "SearchCategoryChooserViewController.h"
+
+
 
 
 @interface SearchViewController : UIViewController

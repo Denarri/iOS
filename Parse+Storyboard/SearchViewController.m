@@ -10,7 +10,8 @@
 @interface SearchViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *itemSearch;
 @property (weak, nonatomic) IBOutlet UIButton *nextButton;
-
+@property (weak, nonatomic) NSString *topCategory1;
+@property (weak, nonatomic) NSString *topCategory2;
 
 @end
 
@@ -52,17 +53,22 @@
                                         
                                             NSArray *resultArray = [result objectForKey:@"results"];
                                         
+                                        
                                                 NSDictionary *dictionary0 = [resultArray objectAtIndex:0];
                                                 NSNumber *numberOfTopCategories = [dictionary0 objectForKey:@"Number of top categories"];
                                         
-//                                              NSDictionary *dictionary1 = [resultArray objectAtIndex:1];
-//                                              NSNumber *topCategories = [dictionary1 objectForKey:@"Top categories"];
+                                                NSDictionary *dictionary1 = [resultArray objectAtIndex:1];
+                                                NSNumber *topCategories = [dictionary1 objectForKey:@"Top categories"];
                                         
                                                 NSDictionary *dictionary2 = [resultArray objectAtIndex:2];
                                                 NSNumber *numberOfMatches = [dictionary2 objectForKey:@"Number of matches"];
                                         
-//                                              NSDictionary *dictionary3 = [resultArray objectAtIndex:3];
-//                                              NSNumber *userCategoriesThatMatchSearch = [dictionary3 objectForKey:@"User categories that match search"];
+                                                NSDictionary *dictionary3 = [resultArray objectAtIndex:3];
+                                                NSNumber *userCategoriesThatMatchSearch = [dictionary3 objectForKey:@"User categories that match search"];
+                                        
+                                            NSArray *topCategoriesArray = [dictionary1 objectForKey:@"Top categories"];
+                                                NSString *topCategory1 = [topCategoriesArray objectAtIndex:0];
+                                                NSString *topCategory2 = [topCategoriesArray objectAtIndex:1];
                                         
                                        
                                         if (!error) {
@@ -103,10 +109,10 @@
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if([segue.identifier isEqualToString:@"ShowCriteriaSegue"]){
-        CriteriaViewController *controller = (CriteriaViewController *) segue.destinationViewController;
-        controller.itemSearch.text = self.itemSearch.text;
-        }
+//    if([segue.identifier isEqualToString:@"ShowSearchCategoryChooserSegue"]){
+//        SearchCategoryChooserViewController *controller = (SearchCategoryChooserViewController *) segue.destinationViewController;
+//        controller.itemSearch.text = self.itemSearch.text;
+//        }
 
     
 }

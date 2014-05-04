@@ -1,9 +1,8 @@
 //
-//  UserCategoryChooserViewController.m
-//  Parse+Storyboard
+//  Denarri iOS App
 //
-//  Created by Andrew Ghobrial on 4/30/14.
-//  Copyright (c) 2014 Juan Figuera. All rights reserved.
+//  Created by Andrew Ghobrial and Chris Meseha on 03/01/14.
+//  Copyright (c) 2014 Denarri. All rights reserved.
 //
 
 #import "UserCategoryChooserViewController.h"

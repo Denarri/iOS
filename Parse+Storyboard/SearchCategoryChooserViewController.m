@@ -1,12 +1,12 @@
 //
-//  SearchCategoryChooserViewController.m
-//  Parse+Storyboard
+//  Denarri iOS App
 //
-//  Created by Andrew Ghobrial on 4/30/14.
-//  Copyright (c) 2014 Juan Figuera. All rights reserved.
+//  Created by Andrew Ghobrial and Chris Meseha on 03/01/14.
+//  Copyright (c) 2014 Denarri. All rights reserved.
 //
 
 #import "SearchCategoryChooserViewController.h"
+#import "SearchViewController.m"
 
 @interface SearchCategoryChooserViewController ()
 
@@ -26,6 +26,24 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    
+    
+    
+    UIButton *category1 = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    category1.frame = CGRectMake(10, 120, 300, 35);
+    [category1 setTitle: [NSString stringWithFormat:@"%@", topCategory1] forState:UIControlStateNormal];
+    [category1 addTarget:self action:@selector(myButtonClick:)    forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview: category1];
+    
+    
+    UIButton *category2 = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    category2.frame = CGRectMake(10, 180, 300, 35);
+    [category2 setTitle: [NSString stringWithFormat:@"%@", topCategory2] forState:UIControlStateNormal];
+    [category2 addTarget:self action:@selector(myButtonClick:)    forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview: category2];
+    
+    
     // Do any additional setup after loading the view.
 }
 
