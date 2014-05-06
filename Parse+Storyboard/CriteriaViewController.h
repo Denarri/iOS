@@ -18,5 +18,6 @@ IBOutlet UISegmentedControl *Segment;
 -(IBAction)itemLocationToggle;
 
 @property (nonatomic) IBOutlet UITextField *itemSearch;
+@property (nonatomic, copy) NSString *topCategory1;
 
 @end

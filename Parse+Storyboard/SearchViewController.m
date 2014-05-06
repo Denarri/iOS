@@ -67,12 +67,13 @@
                                         
                                                 // Names of Top Categories matching User Categories
                                                 NSDictionary *dictionary3 = [resultArray objectAtIndex:3];
-                                                NSNumber *userCategoriesThatMatchSearch = [dictionary3 objectForKey:@"User categories that match search"];
+                                                NSArray *userCategoriesThatMatchSearch = [dictionary3 objectForKey:@"User categories that match search"];
                                         
                                                 // Defines where each topCategory ID will come from
                                                 self.topCategory1 = [topCategoriesArray objectAtIndex:0];
+                                            if ([numberOfTopCategories intValue] == 2) {
                                                 self.topCategory2 = [topCategoriesArray objectAtIndex:1];
-                                        
+                                            }
                                        
                                         if (!error) {
                                             
@@ -92,6 +93,7 @@
                                             else if ([numberOfMatches intValue] == 0 && [numberOfTopCategories intValue] == 1) {
                                                 [self performSegueWithIdentifier:@"ShowCriteriaSegue" sender:self];
                                             }
+                                            
                                             // if no matches are found, and 2 top categories are returned
                                             else if ([numberOfMatches intValue] == 0 && [numberOfTopCategories intValue] == 2) {
                                                 [self performSegueWithIdentifier:@"ShowSearchCategoryChooserSegue" sender:self];
@@ -116,10 +118,22 @@
     if([segue.identifier isEqualToString:@"ShowSearchCategoryChooserSegue"]){
         
         SearchCategoryChooserViewController *controller = (SearchCategoryChooserViewController *) segue.destinationViewController;
+        
+        // Send over the search query as well as both categories to the Category Chooser VC
         controller.itemSearch.text = self.itemSearch.text;
         controller.topCategory1=self.topCategory1;
         controller.topCategory2=self.topCategory2;
     }
+    
+    if([segue.identifier isEqualToString:@"ShowCriteriaSegue"]){
+        
+        CriteriaViewController *controller = (CriteriaViewController *) segue.destinationViewController;
+        
+        // Send over the search query as well as the specific category to CriteriaVC to use
+        controller.itemSearch.text = self.itemSearch.text;
+        controller.topCategory1=self.topCategory1;
+    }
+    
 
     
 }
