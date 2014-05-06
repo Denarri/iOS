@@ -6,6 +6,7 @@
 //
 
 #import "SearchViewController.h"
+#import "MatchCenterViewController.h"
 #import "SearchCategoryChooserViewController.h"
 
 @interface SearchViewController ()
@@ -115,7 +116,15 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     
-    if([segue.identifier isEqualToString:@"ShowSearchCategoryChooserSegue"]){
+    if ([segue.identifier isEqualToString:@"ShowMatchCenterSegue"]) {
+        MatchCenterViewController *controller = (MatchCenterViewController *) segue.destinationViewController;
+        
+        // Send over the search query
+        controller.itemSearch.text = self.itemSearch.text;
+    }
+    
+    
+    else if([segue.identifier isEqualToString:@"ShowSearchCategoryChooserSegue"]){
         
         SearchCategoryChooserViewController *controller = (SearchCategoryChooserViewController *) segue.destinationViewController;
         
@@ -125,7 +134,7 @@
         controller.topCategory2=self.topCategory2;
     }
     
-    if([segue.identifier isEqualToString:@"ShowCriteriaSegue"]){
+    else if([segue.identifier isEqualToString:@"ShowCriteriaSegue"]){
         
         CriteriaViewController *controller = (CriteriaViewController *) segue.destinationViewController;
         

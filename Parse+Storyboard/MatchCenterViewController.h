@@ -10,4 +10,6 @@
 
 @interface MatchCenterViewController : UIViewController
 
+@property (nonatomic) IBOutlet UITextField *itemSearch;
+
 @end
