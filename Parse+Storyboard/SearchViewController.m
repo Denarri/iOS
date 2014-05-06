@@ -53,20 +53,23 @@
                                         
                                             NSArray *resultArray = [result objectForKey:@"results"];
                                         
-                                        
+                                                // Number of Top Categories
                                                 NSDictionary *dictionary0 = [resultArray objectAtIndex:0];
                                                 NSNumber *numberOfTopCategories = [dictionary0 objectForKey:@"Number of top categories"];
                                         
+                                                // Names of the Top Categories
                                                 NSDictionary *dictionary1 = [resultArray objectAtIndex:1];
-                                                NSNumber *topCategories = [dictionary1 objectForKey:@"Top categories"];
+                                                NSArray *topCategoriesArray = [dictionary1 objectForKey:@"Top categories"];
                                         
+                                                // Number of Top Categories matching User Categories
                                                 NSDictionary *dictionary2 = [resultArray objectAtIndex:2];
                                                 NSNumber *numberOfMatches = [dictionary2 objectForKey:@"Number of matches"];
                                         
+                                                // Names of Top Categories matching User Categories
                                                 NSDictionary *dictionary3 = [resultArray objectAtIndex:3];
                                                 NSNumber *userCategoriesThatMatchSearch = [dictionary3 objectForKey:@"User categories that match search"];
                                         
-                                            NSArray *topCategoriesArray = [dictionary1 objectForKey:@"Top categories"];
+                                                // Defines where each topCategory ID will come from
                                                 self.topCategory1 = [topCategoriesArray objectAtIndex:0];
                                                 self.topCategory2 = [topCategoriesArray objectAtIndex:1];
                                         
