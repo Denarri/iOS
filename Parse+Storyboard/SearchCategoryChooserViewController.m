@@ -6,7 +6,7 @@
 //
 
 #import "SearchCategoryChooserViewController.h"
-#import "SearchViewController.m"
+#import "SearchViewController.h"
 
 @interface SearchCategoryChooserViewController ()
 
@@ -32,14 +32,14 @@
     
     UIButton *category1 = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     category1.frame = CGRectMake(10, 120, 300, 35);
-    [category1 setTitle: [NSString stringWithFormat:@"%@", topCategory1] forState:UIControlStateNormal];
+    [category1 setTitle: [NSString stringWithFormat:@"%@", self.topCategory1] forState:UIControlStateNormal];
     [category1 addTarget:self action:@selector(myButtonClick:)    forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview: category1];
     
     
     UIButton *category2 = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     category2.frame = CGRectMake(10, 180, 300, 35);
-    [category2 setTitle: [NSString stringWithFormat:@"%@", topCategory2] forState:UIControlStateNormal];
+    [category2 setTitle: [NSString stringWithFormat:@"%@", self.topCategory2] forState:UIControlStateNormal];
     [category2 addTarget:self action:@selector(myButtonClick:)    forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview: category2];
     

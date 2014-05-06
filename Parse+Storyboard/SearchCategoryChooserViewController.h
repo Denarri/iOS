@@ -7,8 +7,7 @@
 
 #import <UIKit/UIKit.h>
 #import "SearchViewController.h"
-#import "SearchViewController.m"
 
-@interface SearchCategoryChooserViewController : UIViewController
+@interface SearchCategoryChooserViewController : SearchViewController
 
 @end

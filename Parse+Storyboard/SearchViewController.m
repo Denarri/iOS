@@ -6,12 +6,12 @@
 //
 
 #import "SearchViewController.h"
+#import "SearchCategoryChooserViewController.h"
 
 @interface SearchViewController ()
+
 @property (weak, nonatomic) IBOutlet UITextField *itemSearch;
 @property (weak, nonatomic) IBOutlet UIButton *nextButton;
-@property (weak, nonatomic) NSString *topCategory1;
-@property (weak, nonatomic) NSString *topCategory2;
 
 @end
 
@@ -67,8 +67,8 @@
                                                 NSNumber *userCategoriesThatMatchSearch = [dictionary3 objectForKey:@"User categories that match search"];
                                         
                                             NSArray *topCategoriesArray = [dictionary1 objectForKey:@"Top categories"];
-                                                NSString *topCategory1 = [topCategoriesArray objectAtIndex:0];
-                                                NSString *topCategory2 = [topCategoriesArray objectAtIndex:1];
+                                                self.topCategory1 = [topCategoriesArray objectAtIndex:0];
+                                                self.topCategory2 = [topCategoriesArray objectAtIndex:1];
                                         
                                        
                                         if (!error) {
@@ -109,10 +109,14 @@
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-//    if([segue.identifier isEqualToString:@"ShowSearchCategoryChooserSegue"]){
-//        SearchCategoryChooserViewController *controller = (SearchCategoryChooserViewController *) segue.destinationViewController;
-//        controller.itemSearch.text = self.itemSearch.text;
-//        }
+    
+    if([segue.identifier isEqualToString:@"ShowSearchCategoryChooserSegue"]){
+        
+        SearchCategoryChooserViewController *controller = (SearchCategoryChooserViewController *) segue.destinationViewController;
+        controller.itemSearch.text = self.itemSearch.text;
+        controller.topCategory1=self.topCategory1;
+        controller.topCategory2=self.topCategory2;
+    }
 
     
 }

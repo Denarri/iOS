@@ -25,7 +25,7 @@
         <!--Search Category Chooser View Controller-->
         <scene sceneID="YZB-0d-ZNX">
             <objects>
-                <viewController id="VVp-gr-Il1" customClass="SearchCategoryChooserViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SearchCategoryChooserViewController" id="VVp-gr-Il1" customClass="SearchCategoryChooserViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Iow-gQ-h32">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>

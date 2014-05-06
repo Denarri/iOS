@@ -9,13 +9,13 @@
 #import <Parse/Parse.h>
 #import <Parse/PFCloud.h>
 #import "CriteriaViewController.h"
-#import "SearchCategoryChooserViewController.h"
-
 
 
 
 @interface SearchViewController : UIViewController
 
 @property (weak, nonatomic) IBOutlet UIButton *nextButtonOutlet;
+@property (nonatomic, copy) NSString *topCategory1;
+@property (nonatomic, copy) NSString *topCategory2;
 
 @end
