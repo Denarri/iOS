@@ -51,6 +51,7 @@
                                     block:^(NSDictionary *result, NSError *error) {
                                         NSLog(@"'%@'", result);
                                         
+                                       // Parses results
                                         
                                             NSArray *resultArray = [result objectForKey:@"results"];
                                         
@@ -77,7 +78,8 @@
                                             }
                                        
                                         if (!error) {
-                                            
+                                        
+                                        // Decides which segue is taken based on results
                                             
                                             // if 1 match found clear categoryResults and top2 array
                                             if ([numberOfMatches intValue] == 1 ){
