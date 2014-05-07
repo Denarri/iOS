@@ -71,24 +71,40 @@ Parse.Cloud.define("eBayCategorySearch", function(request, response) {
           });
 
 
-  // count number of times each unique primaryCategory shows up (based on categoryId), returns top two
+  // count number of times each unique primaryCategory shows up (based on categoryId), returns top two IDs and their respective names
 
 
-          var categoryResults = {};
+          var categoryIdResults = {};
 
+          // Collect two most frequent categoryIds
           items.forEach(function(item) {
             var id = item.primaryCategory[0].categoryId;
-            if (categoryResults[id]) categoryResults[id]++;
-            else categoryResults[id] = 1;
+            if (categoryIdResults[id]) categoryIdResults[id]++;
+            else categoryIdResults[id] = 1;
           });
 
-          var top2 = Object.keys(categoryResults).sort(function(a, b) 
-            {return categoryResults[b]-categoryResults[a]; }).slice(0, 2);
-          console.log('Top categories: ' + top2.join(', '));
+          var top2 = Object.keys(categoryIdResults).sort(function(a, b) 
+            {return categoryIdResults[b]-categoryIdResults[a]; }).slice(0, 2);
+          console.log('Top category Ids: ' + top2.join(', '));
+
+
+          var categoryNameResults = {};
+
+          // Collect two most frequent categoryNames  
+          items.forEach(function(item) {
+            var categoryName = item.primaryCategory[0].categoryName;
+            if (categoryNameResults[categoryName]) categoryNameResults[categoryName]++;
+            else categoryNameResults[categoryName] = 1;
+          });  
+
+
+          var top2Names = Object.keys(categoryNameResults).sort(function(a, b) 
+            {return categoryNameResults[b]-categoryNameResults[a]; }).slice(0, 2);
+          console.log('Top category Names: ' + top2Names.join(', '));
 
 
 
-  // compare categoryResults to userCategory object
+  // compare categoryIdResults to userCategory object
 
           //Extend the Parse.Object class to make the ListItem class
           var userCategory = Parse.Object.extend("userCategory");
@@ -114,7 +130,8 @@ Parse.Cloud.define("eBayCategorySearch", function(request, response) {
               response.success({
                 "results": [
                   { "Number of top categories": top2.length },
-                            { "Top categories": top2 },  
+                            { "Top category Ids": top2 },
+                            { "Top category names": top2Names },   
                          { "Number of matches": userCategoriesMatchingTop2.length }, 
          { "User categories that match search": userCategoriesMatchingTop2 }
                 ]

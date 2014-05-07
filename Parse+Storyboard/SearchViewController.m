@@ -59,22 +59,26 @@
                                                 NSDictionary *dictionary0 = [resultArray objectAtIndex:0];
                                                 NSNumber *numberOfTopCategories = [dictionary0 objectForKey:@"Number of top categories"];
                                         
-                                                // Names of the Top Categories
+                                                // Ids of the Top Categories
                                                 NSDictionary *dictionary1 = [resultArray objectAtIndex:1];
-                                                NSArray *topCategoriesArray = [dictionary1 objectForKey:@"Top categories"];
+                                                NSArray *topCategoryIdsArray = [dictionary1 objectForKey:@"Top category Ids"];
+                                        
+                                                // Names of the Top Categories
+                                                NSDictionary *dictionary2 = [resultArray objectAtIndex:2];
+                                                NSArray *topCategoryNamesArray = [dictionary2 objectForKey:@"Top category names"];
                                         
                                                 // Number of Top Categories matching User Categories
-                                                NSDictionary *dictionary2 = [resultArray objectAtIndex:2];
-                                                NSNumber *numberOfMatches = [dictionary2 objectForKey:@"Number of matches"];
+                                                NSDictionary *dictionary3 = [resultArray objectAtIndex:3];
+                                                NSNumber *numberOfMatches = [dictionary3 objectForKey:@"Number of matches"];
                                         
                                                 // Names of Top Categories matching User Categories
-                                                NSDictionary *dictionary3 = [resultArray objectAtIndex:3];
-                                                NSArray *userCategoriesThatMatchSearch = [dictionary3 objectForKey:@"User categories that match search"];
+                                                NSDictionary *dictionary4 = [resultArray objectAtIndex:4];
+                                                NSArray *userCategoriesThatMatchSearch = [dictionary4 objectForKey:@"User categories that match search"];
                                         
                                                 // Defines where each topCategory ID will come from
-                                                self.topCategory1 = [topCategoriesArray objectAtIndex:0];
+                                                self.topCategory1 = [topCategoryNamesArray objectAtIndex:0];
                                             if ([numberOfTopCategories intValue] == 2) {
-                                                self.topCategory2 = [topCategoriesArray objectAtIndex:1];
+                                                self.topCategory2 = [topCategoryNamesArray objectAtIndex:1];
                                             }
                                        
                                         if (!error) {
