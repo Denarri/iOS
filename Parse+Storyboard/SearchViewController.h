@@ -17,5 +17,9 @@
 @property (weak, nonatomic) IBOutlet UIButton *nextButtonOutlet;
 @property (nonatomic, copy) NSString *topCategory1;
 @property (nonatomic, copy) NSString *topCategory2;
+@property (nonatomic, copy) NSNumber *topCategoryId1;
+@property (nonatomic, copy) NSNumber *topCategoryId2;
+
+
 
 @end

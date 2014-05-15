@@ -10,4 +10,7 @@
 
 @interface SearchCategoryChooserViewController : SearchViewController
 
+@property (nonatomic, copy) NSNumber *chosenCategory;
+
+
 @end

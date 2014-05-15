@@ -7,17 +7,20 @@
 
 #import <UIKit/UIKit.h>
 #import <Parse/Parse.h>
+#import "SearchViewController.h"
 
 @interface CriteriaViewController : UIViewController{
 
 IBOutlet UISegmentedControl *Segment;
 }
 
--(IBAction)conditionToggle;
 
--(IBAction)itemLocationToggle;
-
-@property (nonatomic) IBOutlet UITextField *itemSearch;
-@property (nonatomic, copy) NSString *topCategory1;
+//@property (nonatomic) IBOutlet UITextField *itemSearch;
+@property (weak, nonatomic) IBOutlet UITextField *minPrice;
+@property (weak, nonatomic) IBOutlet UITextField *maxPrice;
+@property (nonatomic, copy) NSNumber *chosenCategory;
+@property (weak, nonatomic) NSString *itemCondition;
+@property (weak, nonatomic) NSString *itemLocation;
+@property (weak, nonatomic) NSString *itemSearch;
 
 @end

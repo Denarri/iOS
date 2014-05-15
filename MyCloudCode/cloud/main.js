@@ -106,7 +106,7 @@ Parse.Cloud.define("eBayCategorySearch", function(request, response) {
 
   // compare categoryIdResults to userCategory object
 
-          //Extend the Parse.Object class to make the ListItem class
+          //Extend the Parse.Object class to make the userCategory class
           var userCategory = Parse.Object.extend("userCategory");
  
           //Use Parse.Query to generate a new query, specifically querying the userCategory object.
@@ -114,7 +114,8 @@ Parse.Cloud.define("eBayCategorySearch", function(request, response) {
            
           //Set constraints on the query.
           query.containedIn('categoryId', top2);
-          query.equalTo("User", Parse.User.current())
+          query.equalTo('User', Parse.User.current())
+          //query.equalTo('parent', Parse.User.current())
 
           //Submit the query and pass in callback functions.
           var isMatching = false;
@@ -135,11 +136,7 @@ Parse.Cloud.define("eBayCategorySearch", function(request, response) {
                          { "Number of matches": userCategoriesMatchingTop2.length }, 
          { "User categories that match search": userCategoriesMatchingTop2 }
                 ]
-              }
-
-                //'Number of top categories: ' + top2.length + 'Number of matches: ' + userCategoriesMatchingTop2.length + ' User categories that match search: ' + userCategoriesMatchingTop2
-
-              );
+              });
 
               console.log('User categories that match search: ' + results)
             },
@@ -177,12 +174,42 @@ Parse.Cloud.define("eBayCategorySearch", function(request, response) {
 
 
 // Adds criteria info to userCategory object
-
-// Parse.Cloud.define("userCategorySave", function(request, response) {
-
+Parse.Cloud.define("userCategorySave", function(request, response) {
 
 
-// }
+
+
+
+
+  var userCategory = Parse.Object.extend("userCategory");
+  var newUserCategory = new userCategory();
+      newUserCategory.set("categoryId", request.params.categoryId);
+      newUserCategory.set("minPrice", request.params.minPrice);
+      newUserCategory.set("maxPrice", request.params.maxPrice);
+      newUserCategory.set("itemCondition", request.params.itemCondition);
+      newUserCategory.set("itemLocation", request.params.itemLocation);
+      newUserCategory.set("parent", Parse.User.current());
+      
+      newUserCategory.save({ 
+
+        success: function (){
+          console.log ('userCategory successfully created!');
+          response.success('Request successful');
+        },
+
+        error: function (){
+          console.log('error!!!');
+        response.error('Request failed');
+        }
+
+      });
+
+
+
+
+
+});
+
 
 
 
@@ -203,45 +230,48 @@ Parse.Cloud.define("eBayCategorySearch", function(request, response) {
 
 // query sent from MatchCenterViewController
 
-Parse.Cloud.define("eBayMatchCenterSearch", function(request, response) {
-          url = 'http://svcs.ebay.com/services/search/FindingService/v1';
+// Parse.Cloud.define("eBayMatchCenterSearch", function(request, response) {
+//           url = 'http://svcs.ebay.com/services/search/FindingService/v1';
 
-  Parse.Cloud.httpRequest({
-      url: url,
-      params: {   
-       'OPERATION-NAME' : 'findItemsByKeywords', 
-       'SERVICE-VERSION' : '1.12.0',
-       'SECURITY-APPNAME' : 'AndrewGh-2d30-4c8d-a9cd-248083bc4d0f',
-       'GLOBAL-ID' : 'EBAY-US',
-       'RESPONSE-DATA-FORMAT' : 'JSON',
-       'itemFilter(0).name=ListingType' : 'itemFilter(0).value=FixedPrice',
-       'sortOrder' : 'PricePlusShippingLowest',
-       'paginationInput.entriesPerPage' : '3',
-       'outputSelector=AspectHistogram&itemFilter(0).name=Condition&itemFilter(0).value(0)' : request.params.itemCondition,
-       'itemFilter(1).name=MaxPrice&itemFilter(1).value' : request.params.maxPrice,
-       'itemFilter(1).paramName=Currency&itemFilter(1).paramValue' : 'USD',
-       'itemFilter(2).name=MinPrice&itemFilter(2).value' : request.params.minPrice,
-       'itemFilter(2).paramName=Currency&itemFilter(2).paramValue' : 'USD',
-       'keywords' : request.params.item,
+//   Parse.Cloud.httpRequest({
+//       url: url,
+//       params: {   
+//        'OPERATION-NAME' : 'findItemsByKeywords', 
+//        'SERVICE-VERSION' : '1.12.0',
+//        'SECURITY-APPNAME' : 'AndrewGh-2d30-4c8d-a9cd-248083bc4d0f',
+//        'GLOBAL-ID' : 'EBAY-US',
+//        'RESPONSE-DATA-FORMAT' : 'JSON',
+//        'itemFilter(0).name=ListingType' : 'itemFilter(0).value=FixedPrice',
+//        'sortOrder' : 'PricePlusShippingLowest',
+//        'paginationInput.entriesPerPage' : '3',
+//        'outputSelector=AspectHistogram&itemFilter(0).name=Condition&itemFilter(0).value(0)' : request.params.itemCondition,
+//        'itemFilter(1).name=MaxPrice&itemFilter(1).value' : request.params.maxPrice,
+//        'itemFilter(1).paramName=Currency&itemFilter(1).paramValue' : 'USD',
+//        'itemFilter(2).name=MinPrice&itemFilter(2).value' : request.params.minPrice,
+//        'itemFilter(2).paramName=Currency&itemFilter(2).paramValue' : 'USD',
+//        if (request.params.itemLocation = 'US') {
+//        'itemFilter(3).name=LocatedIn&itemFilter(3).Value' : request.params.itemLocation
+//        },
+//        'keywords' : request.params.item,
 
 
-     },
-      success: function (httpResponse) {
+//      },
+//       success: function (httpResponse) {
 
 
-// parses results
+// // parses results
 
-          var httpresponse = JSON.parse(httpResponse.text);
+//           var httpresponse = JSON.parse(httpResponse.text);
           
 
-          response.success(AnyItemsOfCategoryResultsInUserCategory);
+//           response.success(AnyItemsOfCategoryResultsInUserCategory);
 
-  },
-          error: function (httpResponse) {
-              console.log('error!!!');
-              response.error('Request failed with response code ' + httpResponse.status);
-          }
-     });
-});
+//   },
+//           error: function (httpResponse) {
+//               console.log('error!!!');
+//               response.error('Request failed with response code ' + httpResponse.status);
+//           }
+//      });
+// });
 
 

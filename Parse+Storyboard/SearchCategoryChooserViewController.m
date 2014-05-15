@@ -7,6 +7,7 @@
 
 #import "SearchCategoryChooserViewController.h"
 #import "SearchViewController.h"
+#import "CriteriaViewController.h"
 
 @interface SearchCategoryChooserViewController ()
 
@@ -33,19 +34,40 @@
     UIButton *category1 = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     category1.frame = CGRectMake(10, 120, 300, 35);
     [category1 setTitle: [NSString stringWithFormat:@"%@", self.topCategory1] forState:UIControlStateNormal];
-    [category1 addTarget:self action:@selector(myButtonClick:)    forControlEvents:UIControlEventTouchUpInside];
+    [category1 addTarget:self action:@selector(category1ButtonClick:)    forControlEvents:UIControlEventTouchUpInside];
+    category1.tag = 1;
     [self.view addSubview: category1];
     
     
     UIButton *category2 = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     category2.frame = CGRectMake(10, 180, 300, 35);
     [category2 setTitle: [NSString stringWithFormat:@"%@", self.topCategory2] forState:UIControlStateNormal];
-    [category2 addTarget:self action:@selector(myButtonClick:)    forControlEvents:UIControlEventTouchUpInside];
+    [category2 addTarget:self action:@selector(category2ButtonClick:)    forControlEvents:UIControlEventTouchUpInside];
+    category1.tag = 2;
     [self.view addSubview: category2];
     
     
-    // Do any additional setup after loading the view.
 }
+
+
+
+
+- (IBAction)category1ButtonClick:(id)sender
+
+{
+    self.chosenCategory = self.topCategoryId1;
+    [self performSegueWithIdentifier:@"CategoryChooserToCriteriaSegue" sender:nil];
+    
+}
+
+- (IBAction)category2ButtonClick:(id)sender
+
+{
+    self.chosenCategory = self.topCategoryId2;
+    [self performSegueWithIdentifier:@"CategoryChooserToCriteriaSegue" sender:nil];
+    
+}
+
 
 - (void)didReceiveMemoryWarning
 {
@@ -53,15 +75,21 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
+
 #pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
+// Send the Category Id over to CriteriaViewController
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+ 
+ CriteriaViewController *controller = (CriteriaViewController *) segue.destinationViewController;
+ 
+ // Send over the search query as well as the specific category to CriteriaVC to use
+ controller.chosenCategory = self.chosenCategory;
+    
+    
+    
 }
-*/
+
 
 @end
