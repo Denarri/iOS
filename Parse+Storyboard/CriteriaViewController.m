@@ -141,12 +141,12 @@
 //add all the info to users respective new category object
 - (IBAction)submitButton:(id)sender
 {
-    //if (self.minPrice.text.length > 0 && self.maxPrice.text.length > 0) {
+    if (self.minPrice.text.length > 0 && self.maxPrice.text.length > 0) {
     
         [PFCloud callFunctionInBackground:@"userCategorySave"
                            withParameters:@{@"categoryId": self.chosenCategory,
-                                              @"minPrice": @"220",
-                                              @"maxPrice": @"356",
+                                              @"minPrice": self.minPrice,
+                                              @"maxPrice": self.maxPrice,
                                          @"itemCondition": self.itemCondition,
                                           @"itemLocation": self.itemLocation}
                                          block:^(NSString *result, NSError *error) {
@@ -159,7 +159,7 @@
                                              }
                                          }];
     
-    //}
+    }
 
 }
 

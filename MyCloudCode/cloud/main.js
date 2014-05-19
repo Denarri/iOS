@@ -114,8 +114,7 @@ Parse.Cloud.define("eBayCategorySearch", function(request, response) {
            
           //Set constraints on the query.
           query.containedIn('categoryId', top2);
-          query.equalTo('User', Parse.User.current())
-          //query.equalTo('parent', Parse.User.current())
+          query.equalTo('parent', Parse.User.current())
 
           //Submit the query and pass in callback functions.
           var isMatching = false;

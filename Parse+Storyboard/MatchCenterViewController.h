@@ -8,7 +8,7 @@
 #import <UIKit/UIKit.h>
 #import <Parse/Parse.h>
 
-@interface MatchCenterViewController : UIViewController
+@interface MatchCenterViewController : UIViewController <UITableViewDataSource>
 
 @property (nonatomic) IBOutlet UITextField *itemSearch;
 

@@ -6,14 +6,17 @@
 //
 
 #import "MatchCenterViewController.h"
+#import <UIKit/UIKit.h>
 
-@interface MatchCenterViewController ()
+@interface MatchCenterViewController () <UITableViewDataSource, UITableViewDelegate>
+
+
+@property (weak, nonatomic) IBOutlet UITableView *matchCenter;
+@property (strong, nonatomic) NSArray *itemsArray;
 
 @end
 
 @implementation MatchCenterViewController
-
-
 
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -29,6 +32,8 @@
 {
 
     [super viewDidLoad];
+
+
     
     //perform search with criteria just submitted
 //    [PFCloud callFunctionInBackground:@"eBayMatchCenterSearch"
@@ -50,6 +55,22 @@
 //                                        
 //                                    }
 //                                }];
+    
+    
+    
+    
+    //1
+    self.matchCenter.dataSource = self;
+    //2
+    self.itemsArray = [[NSArray alloc] initWithObjects:
+                       @"iPhone 5 16GB",
+                       @"iPhone 5 16GB",
+                       @"iPhone 5 16GB",
+                       nil];
+
+    
+    
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -68,5 +89,71 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+
+
+
+
+
+
+
+
+
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return [self.itemsArray count];
+}
+
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    //5
+    static NSString *cellIdentifier = @"SettingsCell";
+    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    
+    //5.1 you do not need this if you have set SettingsCell as identifier in the storyboard (else you can remove the comments on this code)
+//    if (cell == nil)
+//        {
+//            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier];
+//       }
+    
+    //6
+    NSString *item = [self.itemsArray objectAtIndex:indexPath.row];
+    //7
+    [cell.textLabel setText:item];
+    [cell.detailTextLabel setText:@"$350"];
+    cell.imageView.image = [UIImage imageNamed:@"iPhone 5.jpg"];
+    
+    
+    
+    
+    
+    
+        
+    NSURL *url=[NSURL URLWithString:[self.aryImageUrl objectAtIndex:[indexPath row]]];
+    NSURLRequest *req=[NSURLRequest requestWithURL:url];
+    [NSURLConnection sendAsynchronousRequest:req queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *err) {
+        celltbl.imageView.image=[UIImage imageWithData:data];
+    }];
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    return cell;
+}
+
+
+
+
+
+
+
+
+
+
+
 
 @end
