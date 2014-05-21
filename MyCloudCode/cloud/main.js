@@ -223,54 +223,52 @@ Parse.Cloud.define("userCategorySave", function(request, response) {
 
 
 
-
+//        'http://svcs.ebay.com/services/search/FindingService/v1?SECURITY-APPNAME=AndrewGh-2d30-4c8d-a9cd-248083bc4d0f&OPERATION-NAME=findItemsByKeywords&SERVICE-VERSION=1.12.0&RESPONSE-DATA-FORMAT=JSON&callback=_cb_findItemsByKeywords&REST-PAYLOAD&sortOrder=PricePlusShippingLowest&paginationInput.entriesPerPage=7&outputSelector=AspectHistogram&itemFilter(0).name=Condition&itemFilter(0).value(0)=New&itemFilter(1).name=MaxPrice&itemFilter(1).value=450.00&itemFilter(1).paramName=Currency&itemFilter(1).paramValue=USD&itemFilter(2).name=MinPrice&itemFilter(2).value=350.00&itemFilter(2).paramName=Currency&itemFilter(2).paramValue=USD&itemFilter(3).name=ListingType&itemFilter(3).value=FixedPrice&keywords=Moto+x+16gb+unlocked'
 
 
 
 // query sent from MatchCenterViewController
 
-// Parse.Cloud.define("eBayMatchCenterSearch", function(request, response) {
-//           url = 'http://svcs.ebay.com/services/search/FindingService/v1';
+Parse.Cloud.define("eBayMatchCenterSearch", function(request, response) {
+          url = 'http://svcs.ebay.com/services/search/FindingService/v1';
 
-//   Parse.Cloud.httpRequest({
-//       url: url,
-//       params: {   
-//        'OPERATION-NAME' : 'findItemsByKeywords', 
-//        'SERVICE-VERSION' : '1.12.0',
-//        'SECURITY-APPNAME' : 'AndrewGh-2d30-4c8d-a9cd-248083bc4d0f',
-//        'GLOBAL-ID' : 'EBAY-US',
-//        'RESPONSE-DATA-FORMAT' : 'JSON',
-//        'itemFilter(0).name=ListingType' : 'itemFilter(0).value=FixedPrice',
-//        'sortOrder' : 'PricePlusShippingLowest',
-//        'paginationInput.entriesPerPage' : '3',
-//        'outputSelector=AspectHistogram&itemFilter(0).name=Condition&itemFilter(0).value(0)' : request.params.itemCondition,
-//        'itemFilter(1).name=MaxPrice&itemFilter(1).value' : request.params.maxPrice,
-//        'itemFilter(1).paramName=Currency&itemFilter(1).paramValue' : 'USD',
-//        'itemFilter(2).name=MinPrice&itemFilter(2).value' : request.params.minPrice,
-//        'itemFilter(2).paramName=Currency&itemFilter(2).paramValue' : 'USD',
-//        if (request.params.itemLocation = 'US') {
-//        'itemFilter(3).name=LocatedIn&itemFilter(3).Value' : request.params.itemLocation
-//        },
-//        'keywords' : request.params.item,
+  Parse.Cloud.httpRequest({
+      url: url,
+      params: {   
+       'OPERATION-NAME' : 'findItemsByKeywords', 
+       'SERVICE-VERSION' : '1.12.0',
+       'SECURITY-APPNAME' : 'AndrewGh-2d30-4c8d-a9cd-248083bc4d0f',
+       'GLOBAL-ID' : 'EBAY-US',
+       'RESPONSE-DATA-FORMAT' : 'JSON',
+       'REST-PAYLOAD&sortOrder' : 'BestMatch',
+       'paginationInput.entriesPerPage' : '3',
+       'outputSelector=AspectHistogram&itemFilter(0).name=Condition&itemFilter(0).value(0)' : request.params.itemCondition,
+       'itemFilter(1).name=MaxPrice&itemFilter(1).value' : request.params.maxPrice,
+       'itemFilter(1).paramName=Currency&itemFilter(1).paramValue' : 'USD',
+       'itemFilter(2).name=MinPrice&itemFilter(2).value' : request.params.minPrice,
+       'itemFilter(2).paramName=Currency&itemFilter(2).paramValue' : 'USD',
+       //'itemFilter(3).name=LocatedIn&itemFilter(3).Value' : request.params.itemLocation,
+       'itemFilter(3).name=ListingType&itemFilter(3).value' : 'FixedPrice',
+       'keywords' : request.params.item,
 
 
-//      },
-//       success: function (httpResponse) {
+     },
+      success: function (httpResponse) {
 
 
-// // parses results
+// parses results
 
-//           var httpresponse = JSON.parse(httpResponse.text);
-          
+          var httpresponse = JSON.parse(httpResponse.text);
 
-//           response.success(AnyItemsOfCategoryResultsInUserCategory);
+          response.success(httpresponse);
+          console.log('MatchCenter Pinged eBay dude!');
 
-//   },
-//           error: function (httpResponse) {
-//               console.log('error!!!');
-//               response.error('Request failed with response code ' + httpResponse.status);
-//           }
-//      });
-// });
+  },
+          error: function (httpResponse) {
+              console.log('error!!!');
+              response.error('Request failed with response code ' + httpResponse.status);
+          }
+     });
+});
 
 

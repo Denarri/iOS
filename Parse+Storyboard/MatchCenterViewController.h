@@ -7,9 +7,11 @@
 
 #import <UIKit/UIKit.h>
 #import <Parse/Parse.h>
+#import "AsyncImageView.h"
 
 @interface MatchCenterViewController : UIViewController <UITableViewDataSource>
 
 @property (nonatomic) IBOutlet UITextField *itemSearch;
+@property (nonatomic, strong) NSArray *imageURLs;
 
 @end

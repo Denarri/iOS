@@ -21,6 +21,7 @@
 		4909B56B18FB9DFA00EBF204 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4909B56A18FB9DFA00EBF204 /* Social.framework */; };
 		4909B56D18FB9E0400EBF204 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4909B56C18FB9E0400EBF204 /* Accounts.framework */; };
 		4909B56F18FB9E1600EBF204 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4909B56E18FB9E1600EBF204 /* AdSupport.framework */; };
+		493B58EC192AEFEC006C895C /* ImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 493B58EB192AEFEC006C895C /* ImageViewController.m */; };
 		49593EAE18DCDD02004CA20C /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49593EAD18DCDD02004CA20C /* SearchViewController.m */; };
 		49593EB118DCDD0E004CA20C /* CriteriaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49593EB018DCDD0E004CA20C /* CriteriaViewController.m */; };
 		49593EB418DCDD5A004CA20C /* MatchCenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49593EB318DCDD5A004CA20C /* MatchCenterViewController.m */; };
@@ -31,6 +32,7 @@
 		49B0390D1911894B00D82877 /* SearchCategoryChooserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49B0390C1911894B00D82877 /* SearchCategoryChooserViewController.m */; };
 		49B03910191189C100D82877 /* UserCategoryChooserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49B0390F191189C100D82877 /* UserCategoryChooserViewController.m */; };
 		49BF26BF192954C400E546E7 /* iPhone 5.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 49BF26BE192954C400E546E7 /* iPhone 5.jpg */; };
+		49BF26C2192A618900E546E7 /* AsyncImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 49BF26C1192A618900E546E7 /* AsyncImageView.m */; };
 		49EE475418E11D9500DFFA24 /* denarri_ios_retina.png in Resources */ = {isa = PBXBuildFile; fileRef = 49EE475318E11D9500DFFA24 /* denarri_ios_retina.png */; };
 		49EE475718E11DFC00DFFA24 /* denarri_ios_spotlight.png in Resources */ = {isa = PBXBuildFile; fileRef = 49EE475518E11DFC00DFFA24 /* denarri_ios_spotlight.png */; };
 		49EE475818E11DFC00DFFA24 /* denarri_ios_settings.png in Resources */ = {isa = PBXBuildFile; fileRef = 49EE475618E11DFC00DFFA24 /* denarri_ios_settings.png */; };
@@ -50,6 +52,8 @@
 		4909B56C18FB9E0400EBF204 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
 		4909B56E18FB9E1600EBF204 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		491790EE18DFC03A001B64E3 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		493B58EA192AEFEC006C895C /* ImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageViewController.h; sourceTree = "<group>"; };
+		493B58EB192AEFEC006C895C /* ImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageViewController.m; sourceTree = "<group>"; };
 		49593EAC18DCDD02004CA20C /* SearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchViewController.h; sourceTree = "<group>"; };
 		49593EAD18DCDD02004CA20C /* SearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchViewController.m; sourceTree = "<group>"; };
 		49593EAF18DCDD0E004CA20C /* CriteriaViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CriteriaViewController.h; sourceTree = "<group>"; };
@@ -67,6 +71,8 @@
 		49B0390E191189C100D82877 /* UserCategoryChooserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserCategoryChooserViewController.h; sourceTree = "<group>"; };
 		49B0390F191189C100D82877 /* UserCategoryChooserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserCategoryChooserViewController.m; sourceTree = "<group>"; };
 		49BF26BE192954C400E546E7 /* iPhone 5.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "iPhone 5.jpg"; sourceTree = "<group>"; };
+		49BF26C0192A618900E546E7 /* AsyncImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AsyncImageView.h; sourceTree = "<group>"; };
+		49BF26C1192A618900E546E7 /* AsyncImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AsyncImageView.m; sourceTree = "<group>"; };
 		49EE475318E11D9500DFFA24 /* denarri_ios_retina.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = denarri_ios_retina.png; sourceTree = "<group>"; };
 		49EE475518E11DFC00DFFA24 /* denarri_ios_spotlight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = denarri_ios_spotlight.png; sourceTree = "<group>"; };
 		49EE475618E11DFC00DFFA24 /* denarri_ios_settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = denarri_ios_settings.png; sourceTree = "<group>"; };
@@ -175,6 +181,10 @@
 				4AC78007160F93500024E877 /* MainStoryboard.storyboard */,
 				4AC78004160F93500024E877 /* AppDelegate.h */,
 				4AC78005160F93500024E877 /* AppDelegate.m */,
+				49BF26C0192A618900E546E7 /* AsyncImageView.h */,
+				49BF26C1192A618900E546E7 /* AsyncImageView.m */,
+				493B58EA192AEFEC006C895C /* ImageViewController.h */,
+				493B58EB192AEFEC006C895C /* ImageViewController.m */,
 				4AC78026160FA9B10024E877 /* DefaultSettingsViewController.h */,
 				4AC78027160FA9B10024E877 /* DefaultSettingsViewController.m */,
 				49ACF3D31900428100506502 /* SubclassConfigViewController.h */,
@@ -281,6 +291,8 @@
 				49593EAE18DCDD02004CA20C /* SearchViewController.m in Sources */,
 				49B03910191189C100D82877 /* UserCategoryChooserViewController.m in Sources */,
 				49593EB418DCDD5A004CA20C /* MatchCenterViewController.m in Sources */,
+				49BF26C2192A618900E546E7 /* AsyncImageView.m in Sources */,
+				493B58EC192AEFEC006C895C /* ImageViewController.m in Sources */,
 				49ACF3D21900380900506502 /* MyLogInViewController.m in Sources */,
 				49593EB118DCDD0E004CA20C /* CriteriaViewController.m in Sources */,
 				49ACF3D51900428100506502 /* SubclassConfigViewController.m in Sources */,
