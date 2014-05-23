@@ -33,11 +33,9 @@
     
     [super viewDidLoad];
     
-    
-    
     //perform search with criteria just submitted
         [PFCloud callFunctionInBackground:@"eBayMatchCenterSearch"
-                           withParameters:@{@"item": @"iPhone 5 16gb",
+                           withParameters:@{@"item": self.itemSearch,
                                             @"minPrice": @"250",
                                             @"maxPrice": @"400",
                                             @"itemCondition": @"New",

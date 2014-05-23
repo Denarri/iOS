@@ -31,9 +31,11 @@ Parse.Cloud.define("userCategoryCreate", function(request, response) {
 
 
 
-
-
-
+var itemSearch;
+var itemCondition;
+var itemLocation;
+var minPrice;
+var maxPrice;
 
 
 
@@ -123,6 +125,28 @@ Parse.Cloud.define("eBayCategorySearch", function(request, response) {
               var userCategoriesMatchingTop2 = results;
               console.log("userCategory comparison success!");
               console.log(results);
+
+
+              for (var i = 0; i < results.length; i++) 
+              {
+                itemCondition = results[i].get("itemCondition");
+                console.log(itemCondition);
+
+                itemLocation = results[i].get("itemLocation");
+                console.log(itemLocation);
+
+                minPrice = results[i].get("minPrice");
+                console.log(minPrice);
+
+                maxPrice = results[i].get("maxPrice");
+                console.log(maxPrice);
+
+                itemSearch = request.params.item;
+                console.log(itemSearch);
+               }
+
+
+
               if (userCategoriesMatchingTop2 && userCategoriesMatchingTop2.length > 0) {
                 isMatching = true;
               }
@@ -130,14 +154,20 @@ Parse.Cloud.define("eBayCategorySearch", function(request, response) {
               response.success({
                 "results": [
                   { "Number of top categories": top2.length },
-                            { "Top category Ids": top2 },
-                            { "Top category names": top2Names },   
+                          { "Top category Ids": top2 },
+                        { "Top category names": top2Names },   
                          { "Number of matches": userCategoriesMatchingTop2.length }, 
-         { "User categories that match search": userCategoriesMatchingTop2 }
+         { "User categories that match search": userCategoriesMatchingTop2 }, 
+               { "Matching Category Condition": itemCondition }, 
+                { "Matching Category Location": itemLocation }, 
+                { "Matching Category MaxPrice": maxPrice }, 
+                { "Matching Category MinPrice": minPrice }, 
+                { "Search Term": itemSearch }, 
+
                 ]
               });
 
-              console.log('User categories that match search: ' + results)
+              console.log('User categories that match search: ', results);
             },
             error: function(error) {
               //Error Callback
@@ -156,9 +186,10 @@ Parse.Cloud.define("eBayCategorySearch", function(request, response) {
 
 
 
-
-
-
+console.log('ohshit');
+console.log(itemLocation);
+console.log(minPrice);
+console.log('whew');
 
 
 

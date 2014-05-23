@@ -11,7 +11,7 @@
 
 @interface SearchViewController ()
 
-@property (weak, nonatomic) IBOutlet UITextField *itemSearch;
+
 @property (weak, nonatomic) IBOutlet UIButton *nextButton;
 
 @end
@@ -75,6 +75,31 @@
                                                 NSDictionary *dictionary4 = [resultArray objectAtIndex:4];
                                                 NSArray *userCategoriesThatMatchSearch = [dictionary4 objectForKey:@"User categories that match search"];
                                         
+                                        
+                                        
+                                        
+                                        
+                                        
+                                        
+//                                                // Condition of Matching Category
+//                                                NSDictionary *dictionary5 = [userCategoriesThatMatchSearch objectAtIndex:1];
+//                                                NSString *matchingUserCategoryCondition = [dictionary5 objectForKey:@"itemCondition"];
+//                                        
+//                                                // Location of Matching Category
+//                                                NSDictionary *dictionary6 = [userCategoriesThatMatchSearch objectAtIndex:2];
+//                                                NSString *matchingUserCategoryLocation = [dictionary6 objectForKey:@"itemLocation"];
+//                                        
+//                                                // Max price of Matching Category
+//                                                NSDictionary *dictionary7 = [userCategoriesThatMatchSearch objectAtIndex:3];
+//                                                NSString *matchingUserCategoryMaxPrice = [dictionary5 objectForKey:@"maxPrice"];
+//                                        
+//                                                // Min price of Matching Category
+//                                                NSDictionary *dictionary8 = [userCategoriesThatMatchSearch objectAtIndex:4];
+//                                                NSString *matchingUserCategoryMinPrice = [dictionary5 objectForKey:@"minPrice"];
+                                        
+                                        
+                                        
+                                        
                                                 // Defines where each topCategory name will come from
                                                 self.topCategory1 = [topCategoryNamesArray objectAtIndex:0];
                                             if ([numberOfTopCategories intValue] == 2) {
@@ -129,11 +154,13 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     
+    
     if ([segue.identifier isEqualToString:@"ShowMatchCenterSegue"]) {
         MatchCenterViewController *controller = (MatchCenterViewController *) segue.destinationViewController;
         
         // Send over the search query
-        controller.itemSearch.text = self.itemSearch.text;
+        controller.itemSearch = self.itemSearch.text;
+        //controller.minPrice = self.matchingUser;
     }
     
     
@@ -161,10 +188,7 @@
         controller.chosenCategory = self.topCategoryId1;
     }
     
-
-    
-    
-    
+  
     
     
 }
