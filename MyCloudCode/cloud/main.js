@@ -30,13 +30,8 @@ Parse.Cloud.define("userCategoryCreate", function(request, response) {
 
 
 
-
-var itemSearch;
-var itemCondition;
 var itemLocation;
-var minPrice;
-var maxPrice;
-
+var promise; // variable holding the promise
 
 
 // Query sent from search bar
@@ -44,7 +39,7 @@ var maxPrice;
 Parse.Cloud.define("eBayCategorySearch", function(request, response) {
           url = 'http://svcs.ebay.com/services/search/FindingService/v1';
 
-  Parse.Cloud.httpRequest({
+  promise = Parse.Cloud.httpRequest({
       url: url,
       params: { 	
        'OPERATION-NAME' : 'findItemsByKeywords', 
@@ -185,16 +180,9 @@ Parse.Cloud.define("eBayCategorySearch", function(request, response) {
 
 
 
-
-console.log('ohshit');
-console.log(itemLocation);
-console.log(minPrice);
-console.log('whew');
-
-
-
-
-
+//promise.then(function(resp){
+//    console.log(itemLocation);
+//});
 
 
 
@@ -205,10 +193,6 @@ console.log('whew');
 
 // Adds criteria info to userCategory object
 Parse.Cloud.define("userCategorySave", function(request, response) {
-
-
-
-
 
 
   var userCategory = Parse.Object.extend("userCategory");
@@ -233,12 +217,55 @@ Parse.Cloud.define("userCategorySave", function(request, response) {
         }
 
       });
+});
 
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+// Add new item to MatchCenter Array with the criteria from userCategory instance, plus the search term
+Parse.Cloud.define("addToMatchCenter", function(request, response) {
+
+
+var matchCenterItem = Parse.Object.extend("matchCenterItem");
+    var newMatchCenterItem = new matchCenterItem();
+
+    newUserCategory.set("searchTerm");
+    newUserCategory.set("categoryId");
+    newUserCategory.set("minPrice");
+    newUserCategory.set("maxPrice");
+    newUserCategory.set("itemCondition");
+    newUserCategory.set("itemLocation");
+    newUserCategory.set("parent", Parse.User.current());
+    newUserCategory.save({ 
+
+      success: function (){
+        console.log ('userCategory successfully created!');
+        response.success('Request successful');
+      },
+
+      error: function (){
+        console.log('error!!!');
+      response.error('Request failed');
+      }
+
+    });
 
 });
+
+
+
 
 
 
@@ -258,9 +285,14 @@ Parse.Cloud.define("userCategorySave", function(request, response) {
 
 
 
-// query sent from MatchCenterViewController
 
-Parse.Cloud.define("eBayMatchCenterSearch", function(request, response) {
+
+
+
+//forEach item in MatchCenter Array, do the stuff below
+Parse.Cloud.define("MatchCenter", function(request, response) {
+
+
           url = 'http://svcs.ebay.com/services/search/FindingService/v1';
 
   Parse.Cloud.httpRequest({

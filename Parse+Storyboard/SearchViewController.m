@@ -158,6 +158,21 @@
     if ([segue.identifier isEqualToString:@"ShowMatchCenterSegue"]) {
         MatchCenterViewController *controller = (MatchCenterViewController *) segue.destinationViewController;
         
+        
+        
+        // Add new item to MatchCenter Array with the criteria from userCategory instance, plus the search term
+//        [PFCloud callFunctionInBackground:@"addToMatchCenter"
+//                           withParameters:@{newlyAddedUserCategoryCriteria+itemSearch
+//                                            }
+//                                    block:^(NSString *result, NSError *error) {
+//                                        
+//                                        if (!error) {
+//                                            NSLog(@"The result is '%@'", result);
+//                                        }
+//                                    }];
+        
+        
+        
         // Send over the search query
         controller.itemSearch = self.itemSearch.text;
         //controller.minPrice = self.matchingUser;

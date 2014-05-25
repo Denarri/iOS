@@ -33,20 +33,20 @@
     
     [super viewDidLoad];
     
-    //perform search with criteria just submitted
-        [PFCloud callFunctionInBackground:@"eBayMatchCenterSearch"
-                           withParameters:@{@"item": self.itemSearch,
-                                            @"minPrice": @"250",
-                                            @"maxPrice": @"400",
-                                            @"itemCondition": @"New",
-//                                            @"itemLocation": @"US",
-                                            }
-                                    block:^(NSString *result, NSError *error) {
+     //[PFCloud callFunctionInBackground:@"MatchCenter"
+     //                           withParameters:@{all the items in the matchCenter array
+     //                                            }
+     //                                    block:^(NSString *result, NSError *error) {
+     //
+     //                                        if (!error) {
+     //                                            NSLog(@"The result is '%@'", result);
+     //                                        }
+     //                                    }];
+   
     
-                                        if (!error) {
-                                            NSLog(@"The result is '%@'", result);
-                                        }
-                                    }];
+    
+    
+    
     
     
     
