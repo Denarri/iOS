@@ -75,6 +75,9 @@
                                                 NSDictionary *dictionary4 = [resultArray objectAtIndex:4];
                                                 NSArray *userCategoriesThatMatchSearch = [dictionary4 objectForKey:@"User categories that match search"];
                                         
+                                                // CategoryId of the matching userCategory
+                                                NSNumber *matchingCategoryId = [userCategoriesThatMatchSearch objectAtIndex:0];
+                                        
                                         
                                         
                                         
@@ -154,28 +157,32 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     
-    
     if ([segue.identifier isEqualToString:@"ShowMatchCenterSegue"]) {
         MatchCenterViewController *controller = (MatchCenterViewController *) segue.destinationViewController;
         
         
+        //NSLog(@"The Matching category id is '%@' niggaaaaaee", matchingCategoryId);
         
         // Add new item to MatchCenter Array with the criteria from userCategory instance, plus the search term
-//        [PFCloud callFunctionInBackground:@"addToMatchCenter"
-//                           withParameters:@{newlyAddedUserCategoryCriteria+itemSearch
-//                                            }
-//                                    block:^(NSString *result, NSError *error) {
-//                                        
-//                                        if (!error) {
-//                                            NSLog(@"The result is '%@'", result);
-//                                        }
-//                                    }];
+        [PFCloud callFunctionInBackground:@"addToMatchCenter"
+                           withParameters:@{@"searchTerm": self.itemSearch.text,
+//                                          @"categoryId": matchingCategoryId,
+//                                            @"minPrice": self.minPrice,
+//                                            @"maxPrice": self.maxPrice,
+//                                       @"itemCondition": self.itemCondition,
+//                                        @"itemLocation": self.itemLocation
+                                            }
+                                    block:^(NSString *result, NSError *error) {
+                                        
+                                        if (!error) {
+                                            NSLog(@"'%@'", result);
+                                        }
+                                    }];
         
         
         
         // Send over the search query
         controller.itemSearch = self.itemSearch.text;
-        //controller.minPrice = self.matchingUser;
     }
     
     

@@ -166,6 +166,22 @@
     
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     
+
+    
+    [PFCloud callFunctionInBackground:@"addToMatchCenter"
+                       withParameters:@{@"searchTerm": self.itemSearch,
+                                        @"categoryId": self.chosenCategory,
+                                        @"minPrice": self.minPrice,
+                                        @"maxPrice": self.maxPrice,
+                                        @"itemCondition": self.itemCondition,
+                                        @"itemLocation": self.itemLocation,
+                                        }
+                                block:^(NSString *result, NSError *error) {
+                                    
+                                    if (!error) {
+                                        NSLog(@"'%@'", result);
+                                    }
+                                }];
     
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.

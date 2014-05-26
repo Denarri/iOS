@@ -238,29 +238,30 @@ Parse.Cloud.define("userCategorySave", function(request, response) {
 Parse.Cloud.define("addToMatchCenter", function(request, response) {
 
 
-var matchCenterItem = Parse.Object.extend("matchCenterItem");
-    var newMatchCenterItem = new matchCenterItem();
+  var matchCenterItem = Parse.Object.extend("matchCenterItem");
+  var newMatchCenterItem = new matchCenterItem();
 
-    newUserCategory.set("searchTerm");
-    newUserCategory.set("categoryId");
-    newUserCategory.set("minPrice");
-    newUserCategory.set("maxPrice");
-    newUserCategory.set("itemCondition");
-    newUserCategory.set("itemLocation");
-    newUserCategory.set("parent", Parse.User.current());
-    newUserCategory.save({ 
+  newMatchCenterItem.set("searchTerm", request.params.searchTerm);
+  newMatchCenterItem.set("categoryId");
+  newMatchCenterItem.set("minPrice");
+  newMatchCenterItem.set("maxPrice");
+  newMatchCenterItem.set("itemCondition");
+  newMatchCenterItem.set("itemLocation");
+  newMatchCenterItem.set("parent", Parse.User.current());
+  newMatchCenterItem.save({ 
 
-      success: function (){
-        console.log ('userCategory successfully created!');
-        response.success('Request successful');
-      },
+    success: function (){
+      console.log ('MatchCenter Item successfully created!');
+      response.success('MatchCenter Item successfully created!');
+    },
 
-      error: function (){
-        console.log('error!!!');
-      response.error('Request failed');
-      }
+    error: function (){
+      console.log('error!!!');
+    response.error('Request failed');
+    }
 
-    });
+  });
+
 
 });
 
@@ -292,8 +293,9 @@ var matchCenterItem = Parse.Object.extend("matchCenterItem");
 //forEach item in MatchCenter Array, do the stuff below
 Parse.Cloud.define("MatchCenter", function(request, response) {
 
+//forEach:
 
-          url = 'http://svcs.ebay.com/services/search/FindingService/v1';
+  url = 'http://svcs.ebay.com/services/search/FindingService/v1';
 
   Parse.Cloud.httpRequest({
       url: url,
