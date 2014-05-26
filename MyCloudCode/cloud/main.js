@@ -30,8 +30,8 @@ Parse.Cloud.define("userCategoryCreate", function(request, response) {
 
 
 
-var itemLocation;
-var promise; // variable holding the promise
+// var itemLocation;
+// var promise; // variable holding the promise
 
 
 // Query sent from search bar
@@ -39,7 +39,9 @@ var promise; // variable holding the promise
 Parse.Cloud.define("eBayCategorySearch", function(request, response) {
           url = 'http://svcs.ebay.com/services/search/FindingService/v1';
 
-  promise = Parse.Cloud.httpRequest({
+  //promise = 
+
+  Parse.Cloud.httpRequest({
       url: url,
       params: { 	
        'OPERATION-NAME' : 'findItemsByKeywords', 
@@ -124,19 +126,19 @@ Parse.Cloud.define("eBayCategorySearch", function(request, response) {
 
               for (var i = 0; i < results.length; i++) 
               {
-                itemCondition = results[i].get("itemCondition");
+                var itemCondition = results[i].get("itemCondition");
                 console.log(itemCondition);
 
-                itemLocation = results[i].get("itemLocation");
+                var itemLocation = results[i].get("itemLocation");
                 console.log(itemLocation);
 
-                minPrice = results[i].get("minPrice");
+                var minPrice = results[i].get("minPrice");
                 console.log(minPrice);
 
-                maxPrice = results[i].get("maxPrice");
+                var maxPrice = results[i].get("maxPrice");
                 console.log(maxPrice);
 
-                itemSearch = request.params.item;
+                var itemSearch = request.params.item;
                 console.log(itemSearch);
                }
 
