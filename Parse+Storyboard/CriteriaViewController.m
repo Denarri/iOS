@@ -27,15 +27,18 @@
 
 
 
+
+
+
+
 - (void)viewDidLoad
 {
     
     [super viewDidLoad];
+  
     
-    
-    
-    
-    
+    [self addMinTextField];
+    [self addMaxTextField];
     
     
     // Condition UISegment
@@ -58,34 +61,6 @@
     
     
     
-    // Condition UISegment
-//    UIScrollView *conditionScroll = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, 320, 435)];
-//    conditionScroll.contentSize = CGSizeMake(320, 300);
-//    conditionScroll.showsHorizontalScrollIndicator = YES;
-    
-//    NSArray *conditionArray = [NSArray arrayWithObjects: @"Only New", @"Any", nil];
-//    UISegmentedControl *conditionSegmentedControl = [[UISegmentedControl alloc] initWithItems:conditionArray];
-//    conditionSegmentedControl.frame = CGRectMake(87, 190, 157, 30);
-//    [conditionSegmentedControl addTarget:self action:@selector(ConditionSegmentControlAction:) forControlEvents: UIControlEventValueChanged];
-//    conditionSegmentedControl.selectedSegmentIndex = 0;
-//    [conditionScroll addSubview:conditionSegmentedControl];
-//    [self.view addSubview:conditionScroll];
-    
-    
-    // Location UISegment
-//    UIScrollView *locationScroll = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, 320, 435)];
-//    locationScroll.contentSize = CGSizeMake(320, 100);
-//    locationScroll.showsHorizontalScrollIndicator = YES;
-    
-//    NSArray *locationArray = [NSArray arrayWithObjects: @"Fast Shipping", @"Large Selection", nil];
-//    UISegmentedControl *locationSegmentedControl = [[UISegmentedControl alloc] initWithItems:locationArray];
-//    locationSegmentedControl.frame = CGRectMake(67, 275, 200, 30);
-//    [locationSegmentedControl addTarget:self action:@selector(LocationSegmentControlAction:) forControlEvents: UIControlEventValueChanged];
-//    locationSegmentedControl.selectedSegmentIndex = 0;
-//    [locationScroll addSubview:locationSegmentedControl];
-//    [self.view addSubview:locationScroll];
-    
-    
     // Submit button
     UIButton *submitButton = [UIButton buttonWithType:UIButtonTypeRoundedRect]; // Create Round Rect Type button.
     submitButton.frame = CGRectMake(100, 100, 100, 100); // define position and width and height for the button.
@@ -93,9 +68,80 @@
     
     [submitButton addTarget:self action:@selector(submitButton:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:submitButton];
+
     
     
 }
+
+
+
+-(void)addMinTextField{
+    // This allocates a label
+    UILabel *prefixLabel = [[UILabel alloc]initWithFrame:CGRectZero];
+    // This sets the font for the label
+    [prefixLabel setFont:[UIFont boldSystemFontOfSize:14]];
+    // This fits the frame to size of the text
+    [prefixLabel sizeToFit];
+	
+    // This allocates the textfield and sets its frame
+    UITextField *minPrice = [[UITextField  alloc] initWithFrame:
+                             CGRectMake(70, 105, 75, 30)];
+    
+    // This sets the border style of the text field
+    minPrice.borderStyle = UITextBorderStyleRoundedRect;
+    minPrice.contentVerticalAlignment =
+    UIControlContentVerticalAlignmentCenter;
+    [minPrice setFont:[UIFont boldSystemFontOfSize:12]];
+    
+    //Placeholder text is displayed when no text is typed
+    minPrice.placeholder = @"150";
+    
+    //Prefix label is set as left view and the text starts after that
+    minPrice.leftView = prefixLabel;
+    
+    //It set when the left prefixLabel to be displayed
+    minPrice.leftViewMode = UITextFieldViewModeAlways;
+    
+    // Adds the textField to the view.
+    [self.view addSubview:minPrice];
+    
+    // sets the delegate to the current class
+    minPrice.delegate = self;
+}
+
+-(void)addMaxTextField{
+    // This allocates a label
+    UILabel *prefixLabel = [[UILabel alloc]initWithFrame:CGRectZero];
+    // This sets the font for the label
+    [prefixLabel setFont:[UIFont boldSystemFontOfSize:14]];
+    // This fits the frame to size of the text
+    [prefixLabel sizeToFit];
+    
+    UITextField *maxPrice = [[UITextField  alloc] initWithFrame:
+                             CGRectMake(185, 105, 75, 30)];
+    
+    //for max price
+    maxPrice.borderStyle = UITextBorderStyleRoundedRect;
+    maxPrice.contentVerticalAlignment =
+    UIControlContentVerticalAlignmentCenter;
+    [maxPrice setFont:[UIFont boldSystemFontOfSize:12]];
+    
+    //Placeholder text is displayed when no text is typed
+    maxPrice.placeholder = @"300";
+    
+    //Prefix label is set as left view and the text starts after that
+    maxPrice.leftView = prefixLabel;
+    
+    //It set when the left prefixLabel to be displayed
+    maxPrice.leftViewMode = UITextFieldViewModeAlways;
+    
+    // Adds the textField to the view.
+    [self.view addSubview:maxPrice];
+    
+    // sets the delegate to the current class
+    maxPrice.delegate = self;
+}
+
 
 
 - (void)ConditionSegmentControlAction:(UISegmentedControl *)segment
@@ -141,14 +187,15 @@
 //add all the info to users respective new category object
 - (IBAction)submitButton:(id)sender
 {
-    if (self.minPrice.text.length > 0 && self.maxPrice.text.length > 0) {
+    //if (self.minPriceField.text.length > 0 && self.maxPrice.text.length > 0) {
     
         [PFCloud callFunctionInBackground:@"userCategorySave"
                            withParameters:@{@"categoryId": self.chosenCategory,
                                               @"minPrice": self.minPrice,
-                                              @"maxPrice": self.maxPrice,
-                                         @"itemCondition": self.itemCondition,
-                                          @"itemLocation": self.itemLocation}
+                                            @"maxPrice": self.maxPrice,
+                                       @"itemCondition": self.itemCondition,
+                                        @"itemLocation": self.itemLocation,
+                                            }
                                          block:^(NSString *result, NSError *error) {
          
                                              if (!error) {
@@ -159,7 +206,7 @@
                                              }
                                          }];
     
-    }
+    //}
 
 }
 
@@ -168,20 +215,21 @@
     
 
     
-    [PFCloud callFunctionInBackground:@"addToMatchCenter"
-                       withParameters:@{@"searchTerm": self.itemSearch,
-                                        @"categoryId": self.chosenCategory,
-                                        @"minPrice": self.minPrice,
-                                        @"maxPrice": self.maxPrice,
-                                        @"itemCondition": self.itemCondition,
-                                        @"itemLocation": self.itemLocation,
-                                        }
-                                block:^(NSString *result, NSError *error) {
-                                    
-                                    if (!error) {
-                                        NSLog(@"'%@'", result);
-                                    }
-                                }];
+//    [PFCloud callFunctionInBackground:@"addToMatchCenter"
+//                       withParameters:@{
+//                                        @"searchTerm": self.itemSearch,
+//                                        @"categoryId": self.chosenCategory,
+//                                        @"minPrice": self.minPrice,
+//                                        @"maxPrice": self.maxPrice,
+//                                        @"itemCondition": self.itemCondition,
+//                                        @"itemLocation": self.itemLocation,
+//                                        }
+//                                block:^(NSString *result, NSError *error) {
+//                                    
+//                                    if (!error) {
+//                                        NSLog(@"'%@'", result);
+//                                    }
+//                                }];
     
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.

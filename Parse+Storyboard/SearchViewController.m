@@ -71,35 +71,28 @@
                                                 NSDictionary *dictionary3 = [resultArray objectAtIndex:3];
                                                 NSNumber *numberOfMatches = [dictionary3 objectForKey:@"Number of matches"];
                                         
-                                                // Names of Top Categories matching User Categories
-                                                NSDictionary *dictionary4 = [resultArray objectAtIndex:4];
-                                                NSArray *userCategoriesThatMatchSearch = [dictionary4 objectForKey:@"User categories that match search"];
+                                                // Condition of Matching Category
+                                                NSDictionary *dictionary5 = [resultArray objectAtIndex:5];
+                                                _matchingCategoryCondition = [dictionary5 objectForKey:@"Matching Category Condition"];
                                         
-                                                // CategoryId of the matching userCategory
-                                                NSNumber *matchingCategoryId = [userCategoriesThatMatchSearch objectAtIndex:0];
+                                                // Location of Matching Category
+                                                NSDictionary *dictionary6 = [resultArray objectAtIndex:6];
+                                                _matchingCategoryLocation = [dictionary6 objectForKey:@"Matching Category Location"];
+                                        
+                                                // Max Price of Matching Category
+                                                NSDictionary *dictionary7 = [resultArray objectAtIndex:7];
+                                                _matchingCategoryMaxPrice = [dictionary7 objectForKey:@"Matching Category MaxPrice"];
+                                        
+                                                // Min Price of Matching Category
+                                                NSDictionary *dictionary8 = [resultArray objectAtIndex:8];
+                                                _matchingCategoryMinPrice = [dictionary8 objectForKey:@"Matching Category MinPrice"];
+                                        
+                                                // CategoryId of Matching Category
+                                                NSDictionary *dictionary10 = [resultArray objectAtIndex:10];
+                                                _matchingCategoryId = [dictionary10 objectForKey:@"Matching Category Id"];
                                         
                                         
-                                        
-                                        
-                                        
-                                        
-                                        
-//                                                // Condition of Matching Category
-//                                                NSDictionary *dictionary5 = [userCategoriesThatMatchSearch objectAtIndex:1];
-//                                                NSString *matchingUserCategoryCondition = [dictionary5 objectForKey:@"itemCondition"];
-//                                        
-//                                                // Location of Matching Category
-//                                                NSDictionary *dictionary6 = [userCategoriesThatMatchSearch objectAtIndex:2];
-//                                                NSString *matchingUserCategoryLocation = [dictionary6 objectForKey:@"itemLocation"];
-//                                        
-//                                                // Max price of Matching Category
-//                                                NSDictionary *dictionary7 = [userCategoriesThatMatchSearch objectAtIndex:3];
-//                                                NSString *matchingUserCategoryMaxPrice = [dictionary5 objectForKey:@"maxPrice"];
-//                                        
-//                                                // Min price of Matching Category
-//                                                NSDictionary *dictionary8 = [userCategoriesThatMatchSearch objectAtIndex:4];
-//                                                NSString *matchingUserCategoryMinPrice = [dictionary5 objectForKey:@"minPrice"];
-                                        
+                        
                                         
                                         
                                         
@@ -156,21 +149,21 @@
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
+
+    
     
     if ([segue.identifier isEqualToString:@"ShowMatchCenterSegue"]) {
         MatchCenterViewController *controller = (MatchCenterViewController *) segue.destinationViewController;
         
         
-        //NSLog(@"The Matching category id is '%@' niggaaaaaee", matchingCategoryId);
-        
-        // Add new item to MatchCenter Array with the criteria from userCategory instance, plus the search term
+        // Add new item to MatchCenter Array with the criteria from the matching userCategory instance, plus the search term
         [PFCloud callFunctionInBackground:@"addToMatchCenter"
                            withParameters:@{@"searchTerm": self.itemSearch.text,
-//                                          @"categoryId": matchingCategoryId,
-//                                            @"minPrice": self.minPrice,
-//                                            @"maxPrice": self.maxPrice,
-//                                       @"itemCondition": self.itemCondition,
-//                                        @"itemLocation": self.itemLocation
+                                            @"categoryId": self.matchingCategoryId,
+                                              @"minPrice": self.matchingCategoryMinPrice,
+                                              @"maxPrice": self.matchingCategoryMaxPrice,
+                                         @"itemCondition": self.matchingCategoryCondition,
+                                          @"itemLocation": self.matchingCategoryLocation,
                                             }
                                     block:^(NSString *result, NSError *error) {
                                         

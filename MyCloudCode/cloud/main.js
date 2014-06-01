@@ -30,16 +30,12 @@ Parse.Cloud.define("userCategoryCreate", function(request, response) {
 
 
 
-// var itemLocation;
-// var promise; // variable holding the promise
-
 
 // Query sent from search bar
 
 Parse.Cloud.define("eBayCategorySearch", function(request, response) {
           url = 'http://svcs.ebay.com/services/search/FindingService/v1';
 
-  //promise = 
 
   Parse.Cloud.httpRequest({
       url: url,
@@ -124,24 +120,28 @@ Parse.Cloud.define("eBayCategorySearch", function(request, response) {
               console.log(results);
 
 
+              
               for (var i = 0; i < results.length; i++) 
               {
-                var itemCondition = results[i].get("itemCondition");
-                console.log(itemCondition);
 
-                var itemLocation = results[i].get("itemLocation");
-                console.log(itemLocation);
+                var matchingItemCategoryId = results[i].get("categoryId");
+                console.log(matchingItemCategoryId);
 
-                var minPrice = results[i].get("minPrice");
-                console.log(minPrice);
+                var matchingItemCondition = results[i].get("itemCondition");
+                console.log(matchingItemCondition);
 
-                var maxPrice = results[i].get("maxPrice");
-                console.log(maxPrice);
+                var matchingItemLocation = results[i].get("itemLocation");
+                console.log(matchingItemLocation);
 
-                var itemSearch = request.params.item;
-                console.log(itemSearch);
+                var matchingMinPrice = results[i].get("minPrice");
+                console.log(matchingMinPrice);
+
+                var matchingMaxPrice = results[i].get("maxPrice");
+                console.log(matchingMaxPrice);
+
+                var matchingItemSearch = request.params.item;
+                console.log(matchingItemSearch);
                }
-
 
 
               if (userCategoriesMatchingTop2 && userCategoriesMatchingTop2.length > 0) {
@@ -155,14 +155,21 @@ Parse.Cloud.define("eBayCategorySearch", function(request, response) {
                         { "Top category names": top2Names },   
                          { "Number of matches": userCategoriesMatchingTop2.length }, 
          { "User categories that match search": userCategoriesMatchingTop2 }, 
-               { "Matching Category Condition": itemCondition }, 
-                { "Matching Category Location": itemLocation }, 
-                { "Matching Category MaxPrice": maxPrice }, 
-                { "Matching Category MinPrice": minPrice }, 
-                { "Search Term": itemSearch }, 
-
+               { "Matching Category Condition": matchingItemCondition }, 
+                { "Matching Category Location": matchingItemLocation }, 
+                { "Matching Category MaxPrice": matchingMaxPrice }, 
+                { "Matching Category MinPrice": matchingMinPrice }, 
+                { "Search Term": matchingItemSearch },
+                { "Matching Category Id": matchingItemCategoryId },
                 ]
               });
+
+
+
+
+              
+
+
 
               console.log('User categories that match search: ', results);
             },
@@ -180,11 +187,6 @@ Parse.Cloud.define("eBayCategorySearch", function(request, response) {
      });
 });
 
-
-
-//promise.then(function(resp){
-//    console.log(itemLocation);
-//});
 
 
 
@@ -210,7 +212,7 @@ Parse.Cloud.define("userCategorySave", function(request, response) {
 
         success: function (){
           console.log ('userCategory successfully created!');
-          response.success('Request successful');
+          response.success('userCategory successfully created!');
         },
 
         error: function (){
@@ -229,6 +231,7 @@ Parse.Cloud.define("userCategorySave", function(request, response) {
 
 
 
+  //newMatchCenterItem.set("categoryId", request.params.categoryId);
 
 
 
@@ -244,11 +247,11 @@ Parse.Cloud.define("addToMatchCenter", function(request, response) {
   var newMatchCenterItem = new matchCenterItem();
 
   newMatchCenterItem.set("searchTerm", request.params.searchTerm);
-  newMatchCenterItem.set("categoryId");
-  newMatchCenterItem.set("minPrice");
-  newMatchCenterItem.set("maxPrice");
-  newMatchCenterItem.set("itemCondition");
-  newMatchCenterItem.set("itemLocation");
+  newMatchCenterItem.set("categoryId", request.params.categoryId);
+  newMatchCenterItem.set("minPrice", request.params.minPrice);
+  newMatchCenterItem.set("maxPrice", request.params.maxPrice);
+  newMatchCenterItem.set("itemCondition", request.params.itemCondition);
+  newMatchCenterItem.set("itemLocation", request.params.itemLocation);
   newMatchCenterItem.set("parent", Parse.User.current());
   newMatchCenterItem.save({ 
 

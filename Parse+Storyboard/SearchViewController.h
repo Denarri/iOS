@@ -20,8 +20,11 @@
 @property (nonatomic, copy) NSNumber *topCategoryId1;
 @property (nonatomic, copy) NSNumber *topCategoryId2;
 @property (weak, nonatomic) IBOutlet UITextField *itemSearch;
-@property (weak, nonatomic) NSNumber *matchingCategoryId;
-
+@property (strong, nonatomic) NSString *matchingCategoryCondition;
+@property (strong, nonatomic) NSString *matchingCategoryLocation;
+@property (strong, nonatomic) NSNumber *matchingCategoryMaxPrice;
+@property (strong, nonatomic) NSNumber *matchingCategoryMinPrice;
+@property (strong, nonatomic) NSNumber *matchingCategoryId;
 
 
 @end

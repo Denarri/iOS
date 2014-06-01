@@ -217,18 +217,6 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="350" textAlignment="center" minimumFontSize="17" id="nuQ-L9-aef">
-                                <rect key="frame" x="71" y="107" width="70" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="500" textAlignment="center" minimumFontSize="17" id="9Fy-bG-cEg">
-                                <rect key="frame" x="194" y="107" width="70" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="NRy-3L-z5L">
                                 <rect key="frame" x="162" y="111" width="10" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -240,8 +228,6 @@
                     </view>
                     <navigationItem key="navigationItem" id="WMr-aW-0bw"/>
                     <connections>
-                        <outlet property="maxPrice" destination="9Fy-bG-cEg" id="5X3-Jo-Zl0"/>
-                        <outlet property="minPrice" destination="nuQ-L9-aef" id="s5g-Eu-VEn"/>
                         <segue destination="DNb-te-ggn" kind="push" identifier="SearchCategoryChooserToMatchCenterSegue" id="AYe-ID-Kyc"/>
                     </connections>
                 </viewController>
@@ -295,6 +281,6 @@
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="bso-zB-LfR"/>
-        <segue reference="KIO-an-GYK"/>
+        <segue reference="AYe-ID-Kyc"/>
     </inferredMetricsTieBreakers>
 </document>
