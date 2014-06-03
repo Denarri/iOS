@@ -113,7 +113,7 @@
                                         
                                         // Decides which segue is taken based on results
                                             
-                                            // if 1 match found clear categoryResults and top2 array
+                                            // if 1 match found
                                             if ([numberOfMatches intValue] == 1 ){
                                                 [self performSegueWithIdentifier:@"ShowMatchCenterSegue" sender:self];
                                             }
@@ -121,7 +121,7 @@
                                             // if 2 matches found
                                             else if ([numberOfMatches intValue] == 2){
                                                 [self performSegueWithIdentifier:@"ShowUserCategoryChooserSegue" sender:self];
-                                                //default to selected categories criteria  -> send to matchcenter -> clear categoryResults and top2 array
+                                                //default to selected categories criteria  -> send to matchcenter
                                             }
                                             
                                             // if no matches found, and 1 top category is returned
@@ -158,7 +158,8 @@
         
         // Add new item to MatchCenter Array with the criteria from the matching userCategory instance, plus the search term
         [PFCloud callFunctionInBackground:@"addToMatchCenter"
-                           withParameters:@{@"searchTerm": self.itemSearch.text,
+                           withParameters:@{
+                                            @"searchTerm": self.itemSearch.text,
                                             @"categoryId": self.matchingCategoryId,
                                               @"minPrice": self.matchingCategoryMinPrice,
                                               @"maxPrice": self.matchingCategoryMaxPrice,
@@ -174,8 +175,12 @@
         
         
         
-        // Send over the search query
+        // Send over the matching item criteria
         controller.itemSearch = self.itemSearch.text;
+        controller.matchingCategoryMinPrice = self.matchingCategoryMinPrice;
+        controller.matchingCategoryMaxPrice = self.matchingCategoryMaxPrice;
+        controller.matchingCategoryCondition = self.matchingCategoryCondition;
+        controller.matchingCategoryLocation = self.matchingCategoryLocation;
     }
     
     

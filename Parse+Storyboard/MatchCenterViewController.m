@@ -23,6 +23,9 @@
 {
     return [tableData count];
 }
+
+
+
 //- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 //{
 //    
@@ -43,39 +46,52 @@
 
     [super viewDidLoad];
 
-    tableData = [NSArray arrayWithObjects:@"Egg Benedict", @"Mushroom Risotto", @"Full Breakfast", @"Hamburger", @"Ham and Egg Sandwich", @"Creme Brelee", @"White Chocolate Donut", @"Starbucks Coffee", @"Vegetable Curry", @"Instant Noodle with Egg", @"Noodle with BBQ Pork", @"Japanese Noodle with Pork", @"Green Tea", @"Thai Shrimp Cake", @"Angry Birds Cake", @"Ham and Cheese Panini", nil];
-    
-    //self.tableView.dataSource = self;
-    //self.tableView.delegate = self;e
+
+    //perform search with criteria just submitted
+    [PFCloud callFunctionInBackground:@"MatchCenterTest"
+                       withParameters:@{
+                                        @"test": @"Hi",
+                                        }
+                                block:^(NSString *result, NSError *error) {
+                                    
+                                    if (!error) {
+                                        NSLog(@"Test Result: '%@'", result);
+                                    }
+                                }];
+
+
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
 
     
-    //perform search with criteria just submitted
-//    [PFCloud callFunctionInBackground:@"eBayMatchCenterSearch"
-//                       withParameters:@{@"item": self.itemSearch.text,
-//                                        @"minPrice": self.minPrice.text,
-//                                        @"maxPrice": self.maxPrice.text,
-//                                        @"itemCondition": self.itemCondition,
-//                                        @"itemLocation": self.itemLocation,}
-//                                block:^(NSString *result, NSError *error) {
-//                                    
-//                                    if (!error) {
-//                                        NSLog(@"The result is '%@'", result);
-//                                        
-//                                        if ([result intValue] == 1) {
-//                                            [self performSegueWithIdentifier:@"ShowMatchCenterSegue" sender:self];
-//                                        } else {
-//                                            [self performSegueWithIdentifier:@"ShowCriteriaSegue" sender:self];
-//                                        }
-//                                        
-//                                    }
-//                                }];
+    [PFCloud callFunctionInBackground:@"MatchCenterTest"
+                       withParameters:@{
+                                        @"test": @"Hi",
+                                        }
+                                block:^(NSString *result, NSError *error) {
+                                    
+                                    if (!error) {
+                                        NSLog(@"Test Result: '%@'", result);
+                                    }
+                                }];
+
+
+
 }
+
+
+
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+
+
 
 /*
 #pragma mark - Navigation
