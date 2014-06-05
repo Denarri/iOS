@@ -383,22 +383,60 @@ Parse.Cloud.define("MatchCenterTest", function(request, response) {
                   });
               });
 
-
               var top3Titles = [];
+              var top3Prices = [];
+              var top3ImgURLS = [];
 
               //prelim. code, makes an array of the titles of the top 3 items
               //this will eventually be where the title, price, and img url are sent over to the app
               matchCenterItems.forEach(function(item) {
-                  var title = item.title;
-                  top3Titles.push(title)
+                  var title = item.title[0];
+                  var price = item.sellingStatus[0].convertedCurrentPrice[0].__value__;
+                  var imgURL = item.galleryURL[0];
+                  
+                  top3Titles.push(title);
+                  top3Prices.push(price);
+                  top3ImgURLS.push(imgURL);
 
         
               });
                 
-              console.log(top3Titles);
+              //console.log(top3Titles);
 
               //sends titles of top3 to app  
-              response.success(top3Titles);
+              response.success(
+
+                {"Top 3": 
+
+                  [
+                    { "Item 1":
+
+                      [{"Title": top3Titles[0]}, 
+                      {"Price": top3Prices[0]}, 
+                      {"Image URL": top3ImgURLS[0]},]
+
+                    },
+                  
+                    { "Item 2":
+
+                      [{"Title": top3Titles[1]}, 
+                      {"Price": top3Prices[1]}, 
+                      {"Image URL": top3ImgURLS[1]},]
+
+                    },
+                  
+                    { "Item 3":
+
+                      [{"Title": top3Titles[2]}, 
+                      {"Price": top3Prices[2]}, 
+                      {"Image URL": top3ImgURLS[2]},]
+
+                    },
+                  ]
+
+                }
+
+              );
               console.log('MatchCenter Pinged eBay dude!');
             },
             error: function (httpResponse) {
