@@ -51,7 +51,6 @@ Parse.Cloud.define("eBayCategorySearch", function(request, response) {
      },
       success: function (httpResponse) {
 
-
   // parses results
 
           var httpresponse = JSON.parse(httpResponse.text);
@@ -65,9 +64,7 @@ Parse.Cloud.define("eBayCategorySearch", function(request, response) {
             });
           });
 
-
   // count number of times each unique primaryCategory shows up (based on categoryId), returns top two IDs and their respective names
-
 
           var categoryIdResults = {};
 
@@ -81,7 +78,6 @@ Parse.Cloud.define("eBayCategorySearch", function(request, response) {
           var top2 = Object.keys(categoryIdResults).sort(function(a, b) 
             {return categoryIdResults[b]-categoryIdResults[a]; }).slice(0, 2);
           console.log('Top category Ids: ' + top2.join(', '));
-
 
           var categoryNameResults = {};
 
@@ -118,8 +114,6 @@ Parse.Cloud.define("eBayCategorySearch", function(request, response) {
               var userCategoriesMatchingTop2 = results;
               console.log("userCategory comparison success!");
               console.log(results);
-
-
               
               for (var i = 0; i < results.length; i++) 
               {
@@ -143,7 +137,6 @@ Parse.Cloud.define("eBayCategorySearch", function(request, response) {
                 console.log(matchingItemSearch);
                }
 
-
               if (userCategoriesMatchingTop2 && userCategoriesMatchingTop2.length > 0) {
                 isMatching = true;
               }
@@ -163,13 +156,6 @@ Parse.Cloud.define("eBayCategorySearch", function(request, response) {
                 { "Matching Category Id": matchingItemCategoryId },
                 ]
               });
-
-
-
-
-              
-
-
 
               console.log('User categories that match search: ', results);
             },
@@ -354,11 +340,14 @@ Parse.Cloud.define("MatchCenter", function(request, response) {
 
 Parse.Cloud.define("MatchCenterTest", function(request, response) {
 
+      //defines which parse class to iterate through
       var matchCenterItem = Parse.Object.extend("matchCenterItem");
       var query = new Parse.Query(matchCenterItem);
 
+      //setting the limit of items at 10 for now
       query.limit(10);
       query.find().then(function(results) {
+        //the pinging ebay part
         for (i=0; i<results.length; i++) {
           url = 'http://svcs.ebay.com/services/search/FindingService/v1';
           Parse.Cloud.httpRequest({
@@ -381,9 +370,35 @@ Parse.Cloud.define("MatchCenterTest", function(request, response) {
              'keywords' : results[i].get('searchTerm'),
             },
             success: function (httpResponse) {
-              // parses results
+
               var httpresponse = JSON.parse(httpResponse.text);
-              response.success(httpresponse);
+              var matchCenterItems = [];
+              
+              //Parses through ebay's response, pushes each individual item and its properties into an array  
+              httpresponse.findItemsByKeywordsResponse.forEach(function(itemByKeywordsResponse) {
+                  itemByKeywordsResponse.searchResult.forEach(function(result) {
+                    result.item.forEach(function(item) {
+                      matchCenterItems.push(item);
+                    });
+                  });
+              });
+
+
+              var top3Titles = [];
+
+              //prelim. code, makes an array of the titles of the top 3 items
+              //this will eventually be where the title, price, and img url are sent over to the app
+              matchCenterItems.forEach(function(item) {
+                  var title = item.title;
+                  top3Titles.push(title)
+
+        
+              });
+                
+              console.log(top3Titles);
+
+              //sends titles of top3 to app  
+              response.success(top3Titles);
               console.log('MatchCenter Pinged eBay dude!');
             },
             error: function (httpResponse) {
@@ -391,10 +406,6 @@ Parse.Cloud.define("MatchCenterTest", function(request, response) {
               response.error('Request failed with response code ' + httpResponse.status);
             }
           });
-         console.log(results[i].get('itemCondition'));
-         console.log(results[i].get('maxPrice'));
-         console.log(results[i].get('minPrice'));
-         console.log(results[i].get('searchTerm'));
         }
       });
 });
