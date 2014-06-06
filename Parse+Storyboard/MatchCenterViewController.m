@@ -10,6 +10,7 @@
 
 @interface MatchCenterViewController () <UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *matchCenter;
+@property (weak, nonatomic) IBOutlet NSDictionary *matchCenterItems;
 @end
 
 @implementation MatchCenterViewController
@@ -26,10 +27,22 @@
 
 
 
-//- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-//{
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+    
+//    DetailCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
 //    
-//}
+//    Group *group = _groups[indexPath.row];
+//    [cell.nameLabel setText:group.name];
+//    [cell.whoLabel setText:group.who];
+//    [cell.locationLabel setText:[NSString stringWithFormat:@"%@, %@", group.city, group.country]];
+//    [cell.descriptionLabel setText:group.description];
+//    
+//    return cell;
+    
+    
+}
 
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -58,7 +71,8 @@
                                         NSLog(@"Test Result: '%@'", result);
                                     }
                                 }];
-
+    
+ *_matchCenterItems = [NSJSONSerialization JSONObjectWithData:result options:kNilOptions error:nil];
 
 }
 
@@ -76,7 +90,7 @@
                                         NSLog(@"Test Result: '%@'", result);
                                     }
                                 }];
-
+    
 
 
 }
