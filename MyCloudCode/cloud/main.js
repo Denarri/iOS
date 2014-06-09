@@ -391,15 +391,15 @@ Parse.Cloud.define("MatchCenterTest", function(request, response) {
               //prelim. code, makes an array of the titles of the top 3 items
               //this will eventually be where the title, price, and img url are sent over to the app
               matchCenterItems.forEach(function(item) {
-                  var title = item.title[0];
-                  var price = item.sellingStatus[0].convertedCurrentPrice[0].__value__;
-                  var imgURL = item.galleryURL[0];
-                  var itemURL = item.viewItemURL[0];
+                var title = item.title[0];
+                var price = item.sellingStatus[0].convertedCurrentPrice[0].__value__;
+                var imgURL = item.galleryURL[0];
+                var itemURL = item.viewItemURL[0];
                   
-                  top3Titles.push(title);
-                  top3Prices.push(price);
-                  top3ImgURLS.push(imgURL);
-                  top3ItemURLS.push(itemURL);
+                top3Titles.push(title);
+                top3Prices.push(price);
+                top3ImgURLS.push(imgURL);
+                top3ItemURLS.push(itemURL);
               });
                 
               //console.log(top3Titles);
@@ -409,30 +409,26 @@ Parse.Cloud.define("MatchCenterTest", function(request, response) {
 
                 {"Top 3": 
                   [
-
-                    { "Item 1":
-                      [{"Title": top3Titles[0]}, 
-                      {"Price": top3Prices[0]}, 
-                      {"Image URL": top3ImgURLS[0]},
-                      {"Item URL": top3ItemURLS[0]},
-                      ]
-
+                    { 
+                      "Title": top3Titles[0], 
+                      "Price": top3Prices[0], 
+                      "Image URL": top3ImgURLS[0],
+                      "Item URL": top3ItemURLS[0]
                     },
                   
-                    { "Item 2":
-                      [{"Title": top3Titles[1]}, 
-                      {"Price": top3Prices[1]}, 
-                      {"Image URL": top3ImgURLS[1]},
-                      {"Item URL": top3ItemURLS[1]},]
+                    { 
+                      "Title": top3Titles[1], 
+                      "Price": top3Prices[1], 
+                      "Image URL": top3ImgURLS[1],
+                      "Item URL": top3ItemURLS[1]
                     },
                   
-                    { "Item 3":
-                      [{"Title": top3Titles[2]}, 
-                      {"Price": top3Prices[2]}, 
-                      {"Image URL": top3ImgURLS[2]},
-                      {"Item URL": top3ItemURLS[2]},]
+                    { 
+                      "Title": top3Titles[2], 
+                      "Price": top3Prices[2], 
+                      "Image URL": top3ImgURLS[2],
+                      "Item URL": top3ItemURLS[2]
                     },
-
                   ]
                 }
 

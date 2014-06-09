@@ -9,20 +9,95 @@
 #import <UIKit/UIKit.h>
 
 @interface MatchCenterViewController () <UITableViewDataSource, UITableViewDelegate>
-@property (weak, nonatomic) IBOutlet UITableView *matchCenter;
-@property (weak, nonatomic) IBOutlet NSDictionary *matchCenterItems;
+@property (nonatomic, strong) UITableView *matchCenter;
 @end
 
 @implementation MatchCenterViewController
 
+
+
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
-    NSArray *tableData;
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self) {
+//        self.matchCenter = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
+//        _matchCenter.dataSource = self;
+//        _matchCenter.delegate = self;
+//        [self.view addSubview:self.matchCenter];
+    }
+    return self;
+    
+    
+    
 }
 
-//- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+
+
+
+
+
+
+
+
+- (void)viewDidLoad
+{
+
+    [super viewDidLoad];
+    
+    
+
+    self.matchCenter = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
+    self.matchCenter.frame = CGRectMake(0,50,320,self.view.frame.size.height-200);
+    _matchCenter.dataSource = self;
+    _matchCenter.delegate = self;
+    [self.view addSubview:self.matchCenter];
+    
+    self.matchCenterArray = [[NSArray alloc] init];
+    
+
+    
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    
+    self.matchCenterArray = [[NSArray alloc] init];
+    
+    [PFCloud callFunctionInBackground:@"MatchCenterTest"
+                       withParameters:@{
+                                        @"test": @"Hi",
+                                        }
+                                block:^(NSDictionary *result, NSError *error) {
+                                    
+                                    if (!error) {
+                                         self.matchCenterArray = [result objectForKey:@"Top 3"];
+                                        
+                                        
+                                        dispatch_async(dispatch_get_main_queue(), ^{
+                                            [_matchCenter reloadData];
+                                        });
+                                        
+                                        
+                                        NSLog(@"Test Result: '%@'", result);
+                                    }
+                                }];
+    
+    [self.matchCenter registerClass:[UITableViewCell class] forCellReuseIdentifier:@"Cell"];
+
+
+}
+
+
+
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 1;
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [tableData count];
+     return [self.matchCenterArray count];
 }
 
 
@@ -31,72 +106,21 @@
 {
     
     
-//    DetailCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
-//    
-//    Group *group = _groups[indexPath.row];
-//    [cell.nameLabel setText:group.name];
-//    [cell.whoLabel setText:group.who];
-//    [cell.locationLabel setText:[NSString stringWithFormat:@"%@, %@", group.city, group.country]];
-//    [cell.descriptionLabel setText:group.description];
-//    
-//    return cell;
+    static NSString *CellIdentifier = @"Cell";
+    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    
+    
+    NSDictionary *matchCenterDictionary= [self.matchCenterArray objectAtIndex:indexPath.row];
+    
+    cell.textLabel.text = [matchCenterDictionary objectForKey:@"Title"];// title of the first object
+    
+    cell.detailTextLabel.text = [matchCenterDictionary objectForKey:@"Price"];
+    
+    return cell;
     
     
 }
-
-
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
-- (void)viewDidLoad
-{
-
-    [super viewDidLoad];
-
-
-    //perform search with criteria just submitted
-    [PFCloud callFunctionInBackground:@"MatchCenterTest"
-                       withParameters:@{
-                                        @"test": @"Hi",
-                                        }
-                                block:^(NSString *result, NSError *error) {
-                                    
-                                    if (!error) {
-                                        NSLog(@"Test Result: '%@'", result);
-                                    }
-                                }];
-    
- *_matchCenterItems = [NSJSONSerialization JSONObjectWithData:result options:kNilOptions error:nil];
-
-}
-
-- (void)viewDidAppear:(BOOL)animated
-{
-
-    
-    [PFCloud callFunctionInBackground:@"MatchCenterTest"
-                       withParameters:@{
-                                        @"test": @"Hi",
-                                        }
-                                block:^(NSString *result, NSError *error) {
-                                    
-                                    if (!error) {
-                                        NSLog(@"Test Result: '%@'", result);
-                                    }
-                                }];
-    
-
-
-}
-
-
-
 
 - (void)didReceiveMemoryWarning
 {

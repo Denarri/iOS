@@ -13,11 +13,15 @@
 @interface MatchCenterViewController : UIViewController <UITableViewDataSource>
 
 @property (nonatomic) IBOutlet NSString *itemSearch;
-@property (nonatomic, strong) NSArray *imageURLs;
 
+@property (nonatomic, strong) NSArray *imageURLs;
 @property (strong, nonatomic) NSString *matchingCategoryCondition;
 @property (strong, nonatomic) NSString *matchingCategoryLocation;
 @property (strong, nonatomic) NSNumber *matchingCategoryMaxPrice;
 @property (strong, nonatomic) NSNumber *matchingCategoryMinPrice;
+
+
+@property (strong, nonatomic) NSArray *matchCenterArray;
+
 
 @end
