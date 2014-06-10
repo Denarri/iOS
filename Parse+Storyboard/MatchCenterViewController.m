@@ -34,11 +34,6 @@
 
 
 
-
-
-
-
-
 - (void)viewDidLoad
 {
 
@@ -46,7 +41,7 @@
     
     
 
-    self.matchCenter = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
+    self.matchCenter = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewCellStyleSubtitle];
     self.matchCenter.frame = CGRectMake(0,50,320,self.view.frame.size.height-200);
     _matchCenter.dataSource = self;
     _matchCenter.delegate = self;
@@ -63,7 +58,7 @@
     
     self.matchCenterArray = [[NSArray alloc] init];
     
-    [PFCloud callFunctionInBackground:@"MatchCenterTest"
+    [PFCloud callFunctionInBackground:@"MatchCenter"
                        withParameters:@{
                                         @"test": @"Hi",
                                         }
@@ -81,10 +76,6 @@
                                         NSLog(@"Test Result: '%@'", result);
                                     }
                                 }];
-    
-    [self.matchCenter registerClass:[UITableViewCell class] forCellReuseIdentifier:@"Cell"];
-
-
 }
 
 
@@ -106,16 +97,33 @@
 {
     
     
-    static NSString *CellIdentifier = @"Cell";
     
+    
+    
+    
+    
+    static NSString *CellIdentifier = @"Cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (!cell) {
+        // if no cell could be dequeued create a new one
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+    }
+    
+    
+    
+    
+    
+    
+//    static NSString *CellIdentifier = @"Cell";
+//    
+//    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
     
     NSDictionary *matchCenterDictionary= [self.matchCenterArray objectAtIndex:indexPath.row];
     
-    cell.textLabel.text = [matchCenterDictionary objectForKey:@"Title"];// title of the first object
+    cell.textLabel.text = [matchCenterDictionary objectForKey:@"Title"];// title of the item
     
-    cell.detailTextLabel.text = [matchCenterDictionary objectForKey:@"Price"];
+    cell.detailTextLabel.text = [matchCenterDictionary objectForKey:@"Price"];// price of the item
     
     return cell;
     
