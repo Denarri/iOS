@@ -15,31 +15,18 @@
 @implementation MatchCenterViewController
 
 
-
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-//        self.matchCenter = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
-//        _matchCenter.dataSource = self;
-//        _matchCenter.delegate = self;
-//        [self.view addSubview:self.matchCenter];
     }
     return self;
-    
-    
-    
 }
-
-
 
 
 - (void)viewDidLoad
 {
-
     [super viewDidLoad];
-    
-    
 
     self.matchCenter = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewCellStyleSubtitle];
     self.matchCenter.frame = CGRectMake(0,50,320,self.view.frame.size.height-200);
@@ -48,14 +35,10 @@
     [self.view addSubview:self.matchCenter];
     
     self.matchCenterArray = [[NSArray alloc] init];
-    
-
-    
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
-    
     self.matchCenterArray = [[NSArray alloc] init];
     
     [PFCloud callFunctionInBackground:@"MatchCenter"
@@ -67,11 +50,9 @@
                                     if (!error) {
                                          self.matchCenterArray = [result objectForKey:@"Top 3"];
                                         
-                                        
                                         dispatch_async(dispatch_get_main_queue(), ^{
                                             [_matchCenter reloadData];
                                         });
-                                        
                                         
                                         NSLog(@"Test Result: '%@'", result);
                                     }
@@ -86,6 +67,57 @@
     return 1;
 }
 
+
+
+
+//the part where i setup sections and the deleting of said sections
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    return 21.0f;
+}
+
+
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 21)];
+    headerView.backgroundColor = [UIColor lightGrayColor];
+    
+    //NSDictionary *matchCenterDictionary= [self.matchCenterArray objectAtIndex:0];
+    
+    UILabel *headerLabel = [[UILabel alloc] initWithFrame:CGRectMake(8, 0, 250, 21)];
+    headerLabel.text = [NSString stringWithFormat:@"%@", [_matchCenterDictionary objectForKey:@"Title"]];
+    headerLabel.font = [UIFont boldSystemFontOfSize:[UIFont systemFontSize]];
+    headerLabel.textColor = [UIColor whiteColor];
+    headerLabel.backgroundColor = [UIColor lightGrayColor];
+    [headerView addSubview:headerLabel];
+    
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+    button.tag = section + 1000;
+    button.frame = CGRectMake(300, 2, 17, 17);
+    [button setImage:[UIImage imageNamed:@"31-circle-x"] forState:UIControlStateNormal];
+    [button addTarget:self action:@selector(deleteButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+    [headerView addSubview:button];
+    return headerView;
+}
+
+
+
+- (IBAction)deleteButtonPressed:(UIButton *)sender {
+//    NSInteger section = sender.tag - 1000;
+//    [self.objects removeObjectAtIndex:section];
+//    [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:section] withRowAnimation:UITableViewRowAnimationAutomatic];
+//    
+//    // reload sections to get the new titles and tags
+//    NSInteger sectionCount = [self.objects count];
+//    NSIndexSet *indexes = [NSMutableIndexSet indexSetWithIndexesInRange:NSMakeRange(0, sectionCount)];
+//    [self.tableView reloadSections:indexes withRowAnimation:UITableViewRowAnimationNone];
+}
+
+
+
+
+
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
      return [self.matchCenterArray count];
@@ -95,13 +127,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
-    
-    
-    
-    
-    
-    
+    // Initialize cell
     static NSString *CellIdentifier = @"Cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (!cell) {
@@ -109,25 +135,24 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     }
     
-    
-    
-    
-    
-    
-//    static NSString *CellIdentifier = @"Cell";
-//    
-//    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    
-    
+    // populate dictionary with results
     NSDictionary *matchCenterDictionary= [self.matchCenterArray objectAtIndex:indexPath.row];
     
-    cell.textLabel.text = [matchCenterDictionary objectForKey:@"Title"];// title of the item
+    // title of the item
+    cell.textLabel.text = [matchCenterDictionary objectForKey:@"Title"];
+    cell.textLabel.font = [UIFont boldSystemFontOfSize:12];
+
+    // price of the item
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"$%@", [matchCenterDictionary objectForKey:@"Price"]];
+    cell.detailTextLabel.textColor = [UIColor colorWithRed:0/255.0f green:127/255.0f blue:31/255.0f alpha:1.0f];
+
     
-    cell.detailTextLabel.text = [matchCenterDictionary objectForKey:@"Price"];// price of the item
+    NSData *imageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:[matchCenterDictionary objectForKey:@"Image URL"]]];
+    [[cell imageView] setImage:[UIImage imageWithData:imageData]];
     
+    
+   
     return cell;
-    
-    
 }
 
 - (void)didReceiveMemoryWarning
@@ -137,12 +162,9 @@
 }
 
 
-
-
 /*
 #pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     // Get the new view controller using [segue destinationViewController].
