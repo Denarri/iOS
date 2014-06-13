@@ -33,6 +33,7 @@
 		49B03910191189C100D82877 /* UserCategoryChooserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49B0390F191189C100D82877 /* UserCategoryChooserViewController.m */; };
 		49BF26BF192954C400E546E7 /* iPhone 5.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 49BF26BE192954C400E546E7 /* iPhone 5.jpg */; };
 		49BF26C2192A618900E546E7 /* AsyncImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 49BF26C1192A618900E546E7 /* AsyncImageView.m */; };
+		49C4B24B194A06F7006408EE /* xbutton.png in Resources */ = {isa = PBXBuildFile; fileRef = 49C4B24A194A06F7006408EE /* xbutton.png */; };
 		49EE475418E11D9500DFFA24 /* denarri_ios_retina.png in Resources */ = {isa = PBXBuildFile; fileRef = 49EE475318E11D9500DFFA24 /* denarri_ios_retina.png */; };
 		49EE475718E11DFC00DFFA24 /* denarri_ios_spotlight.png in Resources */ = {isa = PBXBuildFile; fileRef = 49EE475518E11DFC00DFFA24 /* denarri_ios_spotlight.png */; };
 		49EE475818E11DFC00DFFA24 /* denarri_ios_settings.png in Resources */ = {isa = PBXBuildFile; fileRef = 49EE475618E11DFC00DFFA24 /* denarri_ios_settings.png */; };
@@ -73,6 +74,7 @@
 		49BF26BE192954C400E546E7 /* iPhone 5.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "iPhone 5.jpg"; sourceTree = "<group>"; };
 		49BF26C0192A618900E546E7 /* AsyncImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AsyncImageView.h; sourceTree = "<group>"; };
 		49BF26C1192A618900E546E7 /* AsyncImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AsyncImageView.m; sourceTree = "<group>"; };
+		49C4B24A194A06F7006408EE /* xbutton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = xbutton.png; sourceTree = "<group>"; };
 		49EE475318E11D9500DFFA24 /* denarri_ios_retina.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = denarri_ios_retina.png; sourceTree = "<group>"; };
 		49EE475518E11DFC00DFFA24 /* denarri_ios_spotlight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = denarri_ios_spotlight.png; sourceTree = "<group>"; };
 		49EE475618E11DFC00DFFA24 /* denarri_ios_settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = denarri_ios_settings.png; sourceTree = "<group>"; };
@@ -135,6 +137,7 @@
 				49EE475618E11DFC00DFFA24 /* denarri_ios_settings.png */,
 				49EE475318E11D9500DFFA24 /* denarri_ios_retina.png */,
 				49593EB518DCE956004CA20C /* Default-568h@2x.png */,
+				49C4B24A194A06F7006408EE /* xbutton.png */,
 				49BF26BE192954C400E546E7 /* iPhone 5.jpg */,
 				49A20F3B1900524200E9B8A1 /* MainBG.jpg */,
 				4AC77FFB160F93500024E877 /* Parse+Storyboard */,
@@ -271,6 +274,7 @@
 				49EE475718E11DFC00DFFA24 /* denarri_ios_spotlight.png in Resources */,
 				4AC78000160F93500024E877 /* InfoPlist.strings in Resources */,
 				4AC78009160F93500024E877 /* MainStoryboard.storyboard in Resources */,
+				49C4B24B194A06F7006408EE /* xbutton.png in Resources */,
 				49BF26BF192954C400E546E7 /* iPhone 5.jpg in Resources */,
 				49EE475418E11D9500DFFA24 /* denarri_ios_retina.png in Resources */,
 				49A20F3C1900524200E9B8A1 /* MainBG.jpg in Resources */,

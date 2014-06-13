@@ -48,11 +48,8 @@
                                 block:^(NSDictionary *result, NSError *error) {
                                     
                                     if (!error) {
-                                         self.matchCenterArray = [result objectForKey:@"Top 3"];
-                                        
-                                        dispatch_async(dispatch_get_main_queue(), ^{
-                                            [_matchCenter reloadData];
-                                        });
+                                        self.matchCenterArray = [result objectForKey:@"Top 3"];
+                                        [_matchCenter reloadData];
                                         
                                         NSLog(@"Test Result: '%@'", result);
                                     }
@@ -82,19 +79,19 @@
     UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 21)];
     headerView.backgroundColor = [UIColor lightGrayColor];
     
-    //NSDictionary *matchCenterDictionary= [self.matchCenterArray objectAtIndex:0];
+    _searchTerm = [[self.matchCenterArray firstObject] objectForKey:@"Search Term"];
     
     UILabel *headerLabel = [[UILabel alloc] initWithFrame:CGRectMake(8, 0, 250, 21)];
-    headerLabel.text = [NSString stringWithFormat:@"%@", [_matchCenterDictionary objectForKey:@"Title"]];
-    headerLabel.font = [UIFont boldSystemFontOfSize:[UIFont systemFontSize]];
-    headerLabel.textColor = [UIColor whiteColor];
+//    headerLabel.text = [NSString stringWithFormat:@"%@", searchTerm];
+//    headerLabel.font = [UIFont boldSystemFontOfSize:[UIFont systemFontSize]];
+//    headerLabel.textColor = [UIColor whiteColor];
     headerLabel.backgroundColor = [UIColor lightGrayColor];
     [headerView addSubview:headerLabel];
     
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
     button.tag = section + 1000;
     button.frame = CGRectMake(300, 2, 17, 17);
-    [button setImage:[UIImage imageNamed:@"31-circle-x"] forState:UIControlStateNormal];
+    [button setImage:[UIImage imageNamed:@"xbutton.png"] forState:UIControlStateNormal];
     [button addTarget:self action:@selector(deleteButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
     [headerView addSubview:button];
     return headerView;
@@ -103,6 +100,21 @@
 
 
 - (IBAction)deleteButtonPressed:(UIButton *)sender {
+    
+    NSLog(@"Search Term: '%@'", _searchTerm);
+    
+    [PFCloud callFunctionInBackground:@"deleteFromMatchCenter"
+                       withParameters:@{
+                                        @"searchTerm": _searchTerm,
+                                       }
+                                block:^(NSDictionary *result, NSError *error) {
+                                    
+                                    if (!error) {
+                                        NSLog(@"Result: '%@'", result);
+                                    }
+                                }];
+    
+    
 //    NSInteger section = sender.tag - 1000;
 //    [self.objects removeObjectAtIndex:section];
 //    [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:section] withRowAnimation:UITableViewRowAnimationAutomatic];
@@ -112,8 +124,6 @@
 //    NSIndexSet *indexes = [NSMutableIndexSet indexSetWithIndexesInRange:NSMakeRange(0, sectionCount)];
 //    [self.tableView reloadSections:indexes withRowAnimation:UITableViewRowAnimationNone];
 }
-
-
 
 
 
@@ -146,12 +156,11 @@
     cell.detailTextLabel.text = [NSString stringWithFormat:@"$%@", [matchCenterDictionary objectForKey:@"Price"]];
     cell.detailTextLabel.textColor = [UIColor colorWithRed:0/255.0f green:127/255.0f blue:31/255.0f alpha:1.0f];
 
-    
+    // image of the item
     NSData *imageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:[matchCenterDictionary objectForKey:@"Image URL"]]];
     [[cell imageView] setImage:[UIImage imageWithData:imageData]];
+    //imageView.frame = CGRectMake(45.0,10.0,10,10);
     
-    
-   
     return cell;
 }
 

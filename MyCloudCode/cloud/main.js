@@ -285,8 +285,8 @@ Parse.Cloud.define("MatchCenter", function(request, response) {
         //the pinging ebay part
 
         for (i=0; i<results.length; i++) {
-          var searchTerm = results[i].get('searchTerm')
-          
+          var searchTerm = results[i].get('searchTerm');
+
           url = 'http://svcs.ebay.com/services/search/FindingService/v1';
           Parse.Cloud.httpRequest({
             url: url,
@@ -446,7 +446,7 @@ Parse.Cloud.define("MatchCenterTest", function(request, response) {
               }
           }, 
             function(err) {
-              console.log('error!');
+              response.error('error!');
             });
 
       });
@@ -542,5 +542,26 @@ Parse.Cloud.define("MatchCenterTest", function(request, response) {
 // });
 
 
+
+
+
+
+Parse.Cloud.define("deleteFromMatchCenter", function(request, response) {
+
+  var matchCenterItem = Parse.Object.extend("matchCenterItem");
+  var query = new Parse.Query(matchCenterItem);
+
+  query.contains('searchTerm', request.params.searchTerm);
+  query.equalTo('parent', Parse.User.current())
+
+  query.find().then(function(matchCenterItem) {
+    return Parse.Object.destroyAll(matchCenterItem);
+  }).then(function(success) {
+    response.success('MatchCenterItem removed!')
+  }, function(error) {
+    response.error('MatchCenterItem Unable to be removed!');
+  });
+
+});
 
 

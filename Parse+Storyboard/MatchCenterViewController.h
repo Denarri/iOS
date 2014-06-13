@@ -20,8 +20,8 @@
 @property (strong, nonatomic) NSNumber *matchingCategoryMaxPrice;
 @property (strong, nonatomic) NSNumber *matchingCategoryMinPrice;
 
-@property (strong, nonatomic) NSDictionary *matchCenterDictionary;
 @property (strong, nonatomic) NSArray *matchCenterArray;
+@property (strong, nonatomic) NSString *searchTerm;
 
 
 @end
