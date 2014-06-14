@@ -396,63 +396,57 @@ Parse.Cloud.define("MatchCenter", function(request, response) {
 
 
 
-
 Parse.Cloud.define("MatchCenterTest", function(request, response) {
-
-      //defines which parse class to iterate through
-      var matchCenterItem = Parse.Object.extend("matchCenterItem");
-      var query = new Parse.Query(matchCenterItem);
-
-      var promises = [];
-
-      //setting the limit of items at 10 for now
-      query.limit(10);
-      query.find().then(function(results) {
+    //defines which parse class to iterate through
+    var matchCenterItem = Parse.Object.extend("matchCenterItem");
+    var query = new Parse.Query(matchCenterItem);
+    var promises = [];
+    //setting the limit of items at 10 for now
+    query.limit(10);
+    query.find().then(function(results) {
         //the pinging ebay part
         for (i=0; i<results.length; i++) {
-          url = 'http://svcs.ebay.com/services/search/FindingService/v1';
-          promises.push(Parse.Cloud.httpRequest({
-            url: url,
-            params: {   
-             'OPERATION-NAME' : 'findItemsByKeywords', 
-             'SERVICE-VERSION' : '1.12.0',
-             'SECURITY-APPNAME' : 'AndrewGh-2d30-4c8d-a9cd-248083bc4d0f',
-             'GLOBAL-ID' : 'EBAY-US',
-             'RESPONSE-DATA-FORMAT' : 'JSON',
-             'REST-PAYLOAD&sortOrder' : 'BestMatch',
-             'paginationInput.entriesPerPage' : '3',
-             'outputSelector=AspectHistogram&itemFilter(0).name=Condition&itemFilter(0).value(0)' : results[i].get('itemCondition'),
-             'itemFilter(1).name=MaxPrice&itemFilter(1).value' : results[i].get('maxPrice'),
-             'itemFilter(1).paramName=Currency&itemFilter(1).paramValue' : 'USD',
-             'itemFilter(2).name=MinPrice&itemFilter(2).value' : results[i].get('minPrice'),
-             'itemFilter(2).paramName=Currency&itemFilter(2).paramValue' : 'USD',
-             //'itemFilter(3).name=LocatedIn&itemFilter(3).Value' : request.params.itemLocation,
-             'itemFilter(3).name=ListingType&itemFilter(3).value' : 'FixedPrice',
-             'keywords' : results[i].get('searchTerm'),
-            },
-          }));
+            url = 'http://svcs.ebay.com/services/search/FindingService/v1';
+            //push function containing criteria for every matchCenterItem into promises array
+            promises.push(function() {
 
-          console.log(results[i].get('itemCondition'));
-        }
-
-
-
-          Parse.Promise.when(promises).then(function(results) {
-            for (i=0; i<results.length; i++)
-              {
-                var httpresponse = JSON.parse(httpResponse.text);
-                console.log(results[i].get('itemCondition'));
-                response.success(httpresponse);
-              }
-          }, 
-            function(err) {
-              response.error('error!');
+                return Parse.Cloud.httpRequest({
+                url: url,
+                params: {
+                    'OPERATION-NAME' : 'findItemsByKeywords',
+                    'SERVICE-VERSION' : '1.12.0',
+                    'SECURITY-APPNAME' : 'AndrewGh-2d30-4c8d-a9cd-248083bc4d0f',
+                    'GLOBAL-ID' : 'EBAY-US',
+                    'RESPONSE-DATA-FORMAT' : 'JSON',
+                    'REST-PAYLOAD&sortOrder' : 'BestMatch',
+                    'paginationInput.entriesPerPage' : '3',
+                    'outputSelector=AspectHistogram&itemFilter(0).name=Condition&itemFilter(0).value(0)' : results[i].get('itemCondition'),
+                    'itemFilter(1).name=MaxPrice&itemFilter(1).value' : results[i].get('maxPrice'),
+                    'itemFilter(1).paramName=Currency&itemFilter(1).paramValue' : 'USD',
+                    'itemFilter(2).name=MinPrice&itemFilter(2).value' : results[i].get('minPrice'),
+                    'itemFilter(2).paramName=Currency&itemFilter(2).paramValue' : 'USD',
+                    //'itemFilter(3).name=LocatedIn&itemFilter(3).Value' : request.params.itemLocation,
+                    'itemFilter(3).name=ListingType&itemFilter(3).value' : 'FixedPrice',
+                    'keywords' : results[i].get('searchTerm'),
+                }
+              });
             });
-
-      });
-  
-        
-
+        }
+        //once all function instances have been pushed to promises array, run all of them
+        Parse.Promise.when(promises).then(function(results) {
+            for (i=0; i<results.length; i++)
+            {
+                // var httpresponse = JSON.parse(httpResponse.text);
+                // response.success(httpresponse);
+                console.log(results[i].get('itemCondition'));
+            }
+            //var httpresponse = JSON.parse(httpResponse.text);
+            response.success('httpresponse');
+        }, function(err) {
+            response.error('oh shit');
+            console.log('error!');
+        });
+    });
 });
 
 

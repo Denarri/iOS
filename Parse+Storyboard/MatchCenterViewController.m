@@ -41,7 +41,7 @@
 {
     self.matchCenterArray = [[NSArray alloc] init];
     
-    [PFCloud callFunctionInBackground:@"MatchCenter"
+    [PFCloud callFunctionInBackground:@"MatchCenterTest"
                        withParameters:@{
                                         @"test": @"Hi",
                                         }
