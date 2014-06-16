@@ -48,8 +48,8 @@
                                 block:^(NSDictionary *result, NSError *error) {
                                     
                                     if (!error) {
-                                        self.matchCenterArray = [result objectForKey:@"Top 3"];
-                                        [_matchCenter reloadData];
+//                                        self.matchCenterArray = [result objectForKey:@"Top 3"];
+//                                        [_matchCenter reloadData];
                                         
                                         NSLog(@"Test Result: '%@'", result);
                                     }
