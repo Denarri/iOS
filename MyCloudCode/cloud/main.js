@@ -452,8 +452,6 @@ Parse.Cloud.define("MatchCenterTest", function(request, response) {
           console.log(httpResponse.text);
         };
 
-
-
         function collectEbayResults (eBayResponseText){
           var ebayResponse = JSON.parse(eBayResponseText)
 
@@ -473,27 +471,23 @@ Parse.Cloud.define("MatchCenterTest", function(request, response) {
               var top3ImgURLS = [];
               var top3ItemURLS = [];
 
-              
-
-              //prelim. code, makes an array of the titles of the top 3 items
-              //this will eventually be where the title, price, and img url are sent over to the app
+              //where the title, price, and img url are sent over to the app
               matchCenterItems.forEach(function(item) {
                 var title = item.title[0];
                 var price = item.sellingStatus[0].convertedCurrentPrice[0].__value__;
                 var imgURL = item.galleryURL[0];
                 var itemURL = item.viewItemURL[0];
-                
                   
                 top3Titles.push(title);
                 top3Prices.push(price);
                 top3ImgURLS.push(imgURL);
                 top3ItemURLS.push(itemURL);
-
-
               });
 
-              var top3 = {"Top 3": 
-                  [
+              var top3 = 
+              {
+                "Top 3": 
+                [
                     { 
                       "Title": top3Titles[0], 
                       "Price": top3Prices[0], 
@@ -517,41 +511,15 @@ Parse.Cloud.define("MatchCenterTest", function(request, response) {
                       "Item URL": top3ItemURLS[2]
                       //"Search Term": searchTerm
                     },
-                  ]
-                }
-                return top3
+                ]
+              }
+              return top3
         }
 
-
-
-
-  /*
-        var parsedHttpResponse = JSON.parse(results.text);
-        //where all httpresponses are collected
-        var ebayPingResults = [];
-
-        console.log(parsedHttpResponse);
-        //Defines function that collects httpresponses into ebayPingResults array
-        function collectEbayResults (httpResponse)
-        {
-          ebayPingResults.push(parsedHttpResponse);
-        }
-        //For loop that runs the collectEbayResults function
-        for (i=0; i<promises.length; i++)
-        {
-          collectEbayResults(results);
-        }
-
-        console.log(ebayPingResults);
-
-        response.success(
-          {
-            "Top 3": ebayPingResults
-          }
+        response.success
+        (
+          eBayResults
         );
-*/
-
-        response.success(eBayResults);
 
       }, function(err) {
           console.log('error!');

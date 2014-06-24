@@ -29,12 +29,12 @@
     [super viewDidLoad];
 
     self.matchCenter = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewCellStyleSubtitle];
-    self.matchCenter.frame = CGRectMake(0,50,320,self.view.frame.size.height-200);
+    self.matchCenter.frame = CGRectMake(0,50,320,self.view.frame.size.height-100);
     _matchCenter.dataSource = self;
     _matchCenter.delegate = self;
     [self.view addSubview:self.matchCenter];
     
-    self.matchCenterArray = [[NSArray alloc] init];
+    _matchCenterArray = [[NSArray alloc] init];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -45,27 +45,22 @@
                        withParameters:@{
                                         @"test": @"Hi",
                                         }
-                                block:^(NSDictionary *result, NSError *error) {
+                                block:^(NSArray *result, NSError *error) {
                                     
                                     if (!error) {
-                                        self.matchCenterArray = [result objectForKey:@"Top 3"];
+                                        _matchCenterArray = result;
                                         [_matchCenter reloadData];
     
-                                        NSLog(@"Test Result: '%@'", result);
+                                        NSLog(@"Result: '%@'", result);
                                     }
                                 }];
 }
 
 
-
-
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 1;
+    return _matchCenterArray.count;
 }
-
-
-
 
 //the part where i setup sections and the deleting of said sections
 
@@ -79,7 +74,7 @@
     UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 21)];
     headerView.backgroundColor = [UIColor lightGrayColor];
     
-    _searchTerm = [[self.matchCenterArray firstObject] objectForKey:@"Search Term"];
+//    _searchTerm = [[self.matchCenterArray firstObject] objectForKey:@"Search Term"];
     
     UILabel *headerLabel = [[UILabel alloc] initWithFrame:CGRectMake(8, 0, 250, 21)];
 //    headerLabel.text = [NSString stringWithFormat:@"%@", searchTerm];
@@ -100,7 +95,6 @@
 
 
 - (IBAction)deleteButtonPressed:(UIButton *)sender {
-    
     NSLog(@"Search Term: '%@'", _searchTerm);
     
     [PFCloud callFunctionInBackground:@"deleteFromMatchCenter"
@@ -113,16 +107,6 @@
                                         NSLog(@"Result: '%@'", result);
                                     }
                                 }];
-    
-    
-//    NSInteger section = sender.tag - 1000;
-//    [self.objects removeObjectAtIndex:section];
-//    [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:section] withRowAnimation:UITableViewRowAnimationAutomatic];
-//    
-//    // reload sections to get the new titles and tags
-//    NSInteger sectionCount = [self.objects count];
-//    NSIndexSet *indexes = [NSMutableIndexSet indexSetWithIndexesInRange:NSMakeRange(0, sectionCount)];
-//    [self.tableView reloadSections:indexes withRowAnimation:UITableViewRowAnimationNone];
 }
 
 
@@ -130,7 +114,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-     return [self.matchCenterArray count];
+     return 3;
 }
 
 
@@ -145,23 +129,38 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     }
     
-    // populate dictionary with results
-    NSDictionary *matchCenterDictionary= [self.matchCenterArray objectAtIndex:indexPath.row];
+    
+    
+//    for (int i = 0; i<[_matchCenterArray count]; i++) {
+//    
+//        for (int j = 0; j<[[[_matchCenterArray  objectAtIndex:i] objectForKey:@"Top 3"] count]; j++) {
+//            NSString *title = [[[_matchCenterArray  objectAtIndex:i]
+//                                objectForKey:@"Top 3"] objectForKey:@"Title"]
+//            );
+//
+//        }
+    
+    
     
     // title of the item
-    cell.textLabel.text = [matchCenterDictionary objectForKey:@"Title"];
+    cell.textLabel.text = _matchCenterArray[indexPath.section][@"Top 3"][indexPath.row][@"Title"];
     cell.textLabel.font = [UIFont boldSystemFontOfSize:12];
 
     // price of the item
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"$%@", [matchCenterDictionary objectForKey:@"Price"]];
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"$%@", _matchCenterArray[indexPath.section][@"Top 3"][indexPath.row][@"Price"]];
     cell.detailTextLabel.textColor = [UIColor colorWithRed:0/255.0f green:127/255.0f blue:31/255.0f alpha:1.0f];
 
     // image of the item
-    NSData *imageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:[matchCenterDictionary objectForKey:@"Image URL"]]];
+    NSData *imageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:_matchCenterArray[indexPath.section][@"Top 3"][indexPath.row][@"Image URL"]]];
     [[cell imageView] setImage:[UIImage imageWithData:imageData]];
     //imageView.frame = CGRectMake(45.0,10.0,10,10);
     
+    
+    
+//}
+    
     return cell;
+    
 }
 
 - (void)didReceiveMemoryWarning
