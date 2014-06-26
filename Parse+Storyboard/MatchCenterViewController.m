@@ -41,7 +41,7 @@
 {
     self.matchCenterArray = [[NSArray alloc] init];
     
-    [PFCloud callFunctionInBackground:@"MatchCenterTest"
+    [PFCloud callFunctionInBackground:@"MatchCenter"
                        withParameters:@{
                                         @"test": @"Hi",
                                         }
@@ -69,46 +69,27 @@
 }
 
 
-
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 21)];
     headerView.backgroundColor = [UIColor lightGrayColor];
     
-//    _searchTerm = [[self.matchCenterArray firstObject] objectForKey:@"Search Term"];
+    _searchTerm = [[[[_matchCenterArray  objectAtIndex:section] objectForKey:@"Top 3"] objectAtIndex:3]objectForKey:@"Search Term"];
     
     UILabel *headerLabel = [[UILabel alloc] initWithFrame:CGRectMake(8, 0, 250, 21)];
-//    headerLabel.text = [NSString stringWithFormat:@"%@", searchTerm];
-//    headerLabel.font = [UIFont boldSystemFontOfSize:[UIFont systemFontSize]];
-//    headerLabel.textColor = [UIColor whiteColor];
+    headerLabel.text = [NSString stringWithFormat:@"%@", _searchTerm];
+    headerLabel.font = [UIFont boldSystemFontOfSize:[UIFont systemFontSize]];
+    headerLabel.textColor = [UIColor whiteColor];
     headerLabel.backgroundColor = [UIColor lightGrayColor];
     [headerView addSubview:headerLabel];
     
-    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-    button.tag = section + 1000;
-    button.frame = CGRectMake(300, 2, 17, 17);
-    [button setImage:[UIImage imageNamed:@"xbutton.png"] forState:UIControlStateNormal];
-    [button addTarget:self action:@selector(deleteButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
-    [headerView addSubview:button];
+    UIButton *deleteButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    deleteButton.tag = section + 1000;
+    deleteButton.frame = CGRectMake(300, 2, 17, 17);
+    [deleteButton setImage:[UIImage imageNamed:@"xbutton.png"] forState:UIControlStateNormal];
+    [deleteButton addTarget:self action:@selector(deleteButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+    [headerView addSubview:deleteButton];
     return headerView;
 }
-
-
-
-- (IBAction)deleteButtonPressed:(UIButton *)sender {
-    NSLog(@"Search Term: '%@'", _searchTerm);
-    
-    [PFCloud callFunctionInBackground:@"deleteFromMatchCenter"
-                       withParameters:@{
-                                        @"searchTerm": _searchTerm,
-                                       }
-                                block:^(NSDictionary *result, NSError *error) {
-                                    
-                                    if (!error) {
-                                        NSLog(@"Result: '%@'", result);
-                                    }
-                                }];
-}
-
 
 
 
@@ -116,7 +97,6 @@
 {
      return 3;
 }
-
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -128,19 +108,6 @@
         // if no cell could be dequeued create a new one
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     }
-    
-    
-    
-//    for (int i = 0; i<[_matchCenterArray count]; i++) {
-//    
-//        for (int j = 0; j<[[[_matchCenterArray  objectAtIndex:i] objectForKey:@"Top 3"] count]; j++) {
-//            NSString *title = [[[_matchCenterArray  objectAtIndex:i]
-//                                objectForKey:@"Top 3"] objectForKey:@"Title"]
-//            );
-//
-//        }
-    
-    
     
     // title of the item
     cell.textLabel.text = _matchCenterArray[indexPath.section][@"Top 3"][indexPath.row][@"Title"];
@@ -155,13 +122,29 @@
     [[cell imageView] setImage:[UIImage imageWithData:imageData]];
     //imageView.frame = CGRectMake(45.0,10.0,10,10);
     
-    
-    
-//}
-    
     return cell;
     
 }
+
+
+
+- (IBAction)deleteButtonPressed:(UIButton *)sender {
+    NSLog(@"Search Term: '%@'", _searchTerm);
+    
+    [PFCloud callFunctionInBackground:@"deleteFromMatchCenter"
+                       withParameters:@{
+                                        @"searchTerm": _searchTerm,
+                                        }
+                                block:^(NSDictionary *result, NSError *error) {
+                                    
+                                    if (!error) {
+                                        NSLog(@"Result: '%@'", result);
+                                        [_matchCenter reloadData];
+                                    }
+                                }];
+}
+
+
 
 - (void)didReceiveMemoryWarning
 {
