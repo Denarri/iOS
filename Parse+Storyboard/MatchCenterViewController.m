@@ -109,6 +109,9 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     }
     
+    // No cell seperators = clean design
+    tableView.separatorColor = [UIColor clearColor];
+    
     // title of the item
     cell.textLabel.text = _matchCenterArray[indexPath.section][@"Top 3"][indexPath.row][@"Title"];
     cell.textLabel.font = [UIFont boldSystemFontOfSize:12];
