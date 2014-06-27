@@ -23,5 +23,4 @@
 @property (strong, nonatomic) NSArray *matchCenterArray;
 @property (strong, nonatomic) NSString *searchTerm;
 
-
 @end

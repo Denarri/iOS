@@ -114,7 +114,7 @@
     
     // title of the item
     cell.textLabel.text = _matchCenterArray[indexPath.section][@"Top 3"][indexPath.row][@"Title"];
-    cell.textLabel.font = [UIFont boldSystemFontOfSize:12];
+    cell.textLabel.font = [UIFont boldSystemFontOfSize:14];
 
     // price of the item
     cell.detailTextLabel.text = [NSString stringWithFormat:@"$%@", _matchCenterArray[indexPath.section][@"Top 3"][indexPath.row][@"Price"]];
@@ -123,16 +123,19 @@
     // image of the item
     NSData *imageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:_matchCenterArray[indexPath.section][@"Top 3"][indexPath.row][@"Image URL"]]];
     [[cell imageView] setImage:[UIImage imageWithData:imageData]];
-    //imageView.frame = CGRectMake(45.0,10.0,10,10);
     
     return cell;
     
 }
 
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 65;
+}
+
 
 - (IBAction)deleteButtonPressed:(UIButton *)sender {
-    NSLog(@"Search Term: '%@'", _searchTerm);
     
     [PFCloud callFunctionInBackground:@"deleteFromMatchCenter"
                        withParameters:@{
