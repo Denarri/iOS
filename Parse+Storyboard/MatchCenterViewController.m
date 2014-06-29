@@ -151,8 +151,20 @@
                       @{@"searchTerm": sectionName,}
                                 block:^(NSDictionary *result, NSError *error) {
                                    if (!error) {
-                                       NSLog(@"Result: '%@'", result);
-                                       [_matchCenter reloadData];
+                                       [PFCloud callFunctionInBackground:@"MatchCenter"
+                                                          withParameters:@{
+                                                                           @"test": @"Hi",
+                                                                           }
+                                                                   block:^(NSArray *result, NSError *error) {
+                                                                       
+                                                                       if (!error) {
+                                                                           _matchCenterArray = result;
+                                                                           [_matchCenter reloadData];
+                                                                           
+                                                                           NSLog(@"Result: '%@'", result);
+                                                                       }
+                                                                   }];
+   
                                    }
                                 }];
 }
