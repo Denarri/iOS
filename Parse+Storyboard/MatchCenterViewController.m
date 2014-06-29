@@ -27,7 +27,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
+    
     self.matchCenter = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewCellStyleSubtitle];
     self.matchCenter.frame = CGRectMake(0,50,320,self.view.frame.size.height-100);
     _matchCenter.dataSource = self;
@@ -50,7 +50,7 @@
                                     if (!error) {
                                         _matchCenterArray = result;
                                         [_matchCenter reloadData];
-    
+                                        
                                         NSLog(@"Result: '%@'", result);
                                     }
                                 }];
@@ -82,20 +82,22 @@
     headerLabel.backgroundColor = [UIColor lightGrayColor];
     [headerView addSubview:headerLabel];
     
+    
     UIButton *deleteButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    deleteButton.tag = section + 1000;
+    deleteButton.tag = section;
     deleteButton.frame = CGRectMake(300, 2, 17, 17);
     [deleteButton setImage:[UIImage imageNamed:@"xbutton.png"] forState:UIControlStateNormal];
     [deleteButton addTarget:self action:@selector(deleteButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
     [headerView addSubview:deleteButton];
     return headerView;
+    
 }
 
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-     return 3;
+    return 3;
 }
 
 
@@ -115,11 +117,11 @@
     // title of the item
     cell.textLabel.text = _matchCenterArray[indexPath.section][@"Top 3"][indexPath.row][@"Title"];
     cell.textLabel.font = [UIFont boldSystemFontOfSize:14];
-
+    
     // price of the item
     cell.detailTextLabel.text = [NSString stringWithFormat:@"$%@", _matchCenterArray[indexPath.section][@"Top 3"][indexPath.row][@"Price"]];
     cell.detailTextLabel.textColor = [UIColor colorWithRed:0/255.0f green:127/255.0f blue:31/255.0f alpha:1.0f];
-
+    
     // image of the item
     NSData *imageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:_matchCenterArray[indexPath.section][@"Top 3"][indexPath.row][@"Image URL"]]];
     [[cell imageView] setImage:[UIImage imageWithData:imageData]];
@@ -135,18 +137,23 @@
 }
 
 
-- (IBAction)deleteButtonPressed:(UIButton *)sender {
+- (void)deleteButtonPressed:(id)sender
+{
+    // links button
+    UIButton *deleteButton = (UIButton *)sender;
     
+    // Define the sections title
+    NSString *sectionName = _searchTerm = [[[[_matchCenterArray  objectAtIndex:deleteButton.tag] objectForKey:@"Top 3"] objectAtIndex:3]objectForKey:@"Search Term"];
+    
+    // Run delete function with respective section header as parameter
     [PFCloud callFunctionInBackground:@"deleteFromMatchCenter"
-                       withParameters:@{
-                                        @"searchTerm": _searchTerm,
-                                        }
+                       withParameters:
+                      @{@"searchTerm": sectionName,}
                                 block:^(NSDictionary *result, NSError *error) {
-                                    
-                                    if (!error) {
-                                        NSLog(@"Result: '%@'", result);
-                                        [_matchCenter reloadData];
-                                    }
+                                   if (!error) {
+                                       NSLog(@"Result: '%@'", result);
+                                       [_matchCenter reloadData];
+                                   }
                                 }];
 }
 
@@ -160,13 +167,13 @@
 
 
 /*
-#pragma mark - Navigation
-
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+ {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 @end
