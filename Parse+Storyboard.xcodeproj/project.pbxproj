@@ -21,6 +21,7 @@
 		4909B56B18FB9DFA00EBF204 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4909B56A18FB9DFA00EBF204 /* Social.framework */; };
 		4909B56D18FB9E0400EBF204 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4909B56C18FB9E0400EBF204 /* Accounts.framework */; };
 		4909B56F18FB9E1600EBF204 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4909B56E18FB9E1600EBF204 /* AdSupport.framework */; };
+		4939233E1960BD290024FA5F /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4939233D1960BD290024FA5F /* WebViewController.m */; };
 		493B58EC192AEFEC006C895C /* ImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 493B58EB192AEFEC006C895C /* ImageViewController.m */; };
 		49593EAE18DCDD02004CA20C /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49593EAD18DCDD02004CA20C /* SearchViewController.m */; };
 		49593EB118DCDD0E004CA20C /* CriteriaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49593EB018DCDD0E004CA20C /* CriteriaViewController.m */; };
@@ -54,6 +55,8 @@
 		4909B56C18FB9E0400EBF204 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
 		4909B56E18FB9E1600EBF204 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		491790EE18DFC03A001B64E3 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		4939233C1960BD290024FA5F /* WebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewController.h; sourceTree = "<group>"; };
+		4939233D1960BD290024FA5F /* WebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewController.m; sourceTree = "<group>"; };
 		493B58EA192AEFEC006C895C /* ImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageViewController.h; sourceTree = "<group>"; };
 		493B58EB192AEFEC006C895C /* ImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageViewController.m; sourceTree = "<group>"; };
 		49593EAC18DCDD02004CA20C /* SearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchViewController.h; sourceTree = "<group>"; };
@@ -207,6 +210,8 @@
 				49593EB018DCDD0E004CA20C /* CriteriaViewController.m */,
 				49593EB218DCDD5A004CA20C /* MatchCenterViewController.h */,
 				49593EB318DCDD5A004CA20C /* MatchCenterViewController.m */,
+				4939233C1960BD290024FA5F /* WebViewController.h */,
+				4939233D1960BD290024FA5F /* WebViewController.m */,
 				4AC77FFC160F93500024E877 /* Supporting Files */,
 			);
 			path = "Parse+Storyboard";
@@ -300,6 +305,7 @@
 				49B03910191189C100D82877 /* UserCategoryChooserViewController.m in Sources */,
 				49593EB418DCDD5A004CA20C /* MatchCenterViewController.m in Sources */,
 				49BF26C2192A618900E546E7 /* AsyncImageView.m in Sources */,
+				4939233E1960BD290024FA5F /* WebViewController.m in Sources */,
 				493B58EC192AEFEC006C895C /* ImageViewController.m in Sources */,
 				49ACF3D21900380900506502 /* MyLogInViewController.m in Sources */,
 				49593EB118DCDD0E004CA20C /* CriteriaViewController.m in Sources */,

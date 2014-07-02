@@ -137,6 +137,16 @@
 }
 
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    self.itemURL = _matchCenterArray[indexPath.section][@"Top 3"][indexPath.row][@"Item URL"];
+    
+//    NSLog(@"The url is: '%@'", itemURL);
+    
+    [self performSegueWithIdentifier:@"WebViewSegue" sender:self];
+}
+
+
 - (void)deleteButtonPressed:(id)sender
 {
     // links button
@@ -178,14 +188,18 @@
 }
 
 
-/*
+
  #pragma mark - Navigation
  
  - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
  {
- // Get the new view controller using [segue destinationViewController].
- // Pass the selected object to the new view controller.
+     
+
+     WebViewController *controller = (WebViewController *) segue.destinationViewController;
+     controller.itemURL = self.itemURL;
+     
+     
  }
- */
+
 
 @end

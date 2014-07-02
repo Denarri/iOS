@@ -9,6 +9,9 @@
 #import <Parse/Parse.h>
 #import "AsyncImageView.h"
 #import "SearchViewController.h"
+#import "WebViewController.h"
+
+
 
 @interface MatchCenterViewController : UIViewController <UITableViewDataSource>
 
@@ -22,6 +25,8 @@
 
 @property (strong, nonatomic) NSArray *matchCenterArray;
 @property (strong, nonatomic) NSString *searchTerm;
+
+@property (strong, nonatomic) NSString *itemURL;
 
 
 @end
