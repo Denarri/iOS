@@ -28,19 +28,14 @@
     [super viewDidLoad];
     NSLog(@"The url dude is: '%@'", _itemURL);
     
-//    _myWebView=[[UIWebView alloc] initWithFrame:CGRectMake(0, 0, 320, 460)];
-//    _myWebView.delegate=self;
-//    [self.view addSubview:_myWebView];
-    
     self.myWebView.delegate = self;
     
-    //////////
+    // set the url
     NSURL *url = [NSURL URLWithString:_itemURL];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
-    //4
     NSOperationQueue *queue = [[NSOperationQueue alloc] init];
     
-    //5
+    // make url request
     [NSURLConnection sendAsynchronousRequest:request queue:queue completionHandler:^(NSURLResponse *response, NSData *data, NSError *error)
      {
          if ([data length] > 0 && error == nil) [self.myWebView loadRequest:request];
@@ -48,14 +43,14 @@
      }];
     
     [self.myWebView setScalesPageToFit:YES];
-    //////
     
-    
-    
-    
-    
-    //[self.myWebView loadRequest:request];
 }
+
+- (IBAction)webViewDone:(id)sender {
+    NSLog(@"YALA KHALAS");
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
