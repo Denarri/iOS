@@ -4,6 +4,7 @@ Parse.Cloud.define("userCategoryCreate", function(request, response) {
     var userCategory = Parse.Object.extend("userCategory");
     var newUserCategory = new userCategory();
     newUserCategory.set("categoryId", "");
+    newUserCategory.set("categoryName");
     newUserCategory.set("minPrice");
     newUserCategory.set("maxPrice");
     newUserCategory.set("itemCondition");
@@ -117,7 +118,6 @@ Parse.Cloud.define("eBayCategorySearch", function(request, response) {
               
               for (var i = 0; i < results.length; i++) 
               {
-
                 var matchingItemCategoryId = results[i].get("categoryId");
                 console.log(matchingItemCategoryId);
 
@@ -135,7 +135,14 @@ Parse.Cloud.define("eBayCategorySearch", function(request, response) {
 
                 var matchingItemSearch = request.params.item;
                 console.log(matchingItemSearch);
+
+                var matchingCategoryName = results[i].get("categoryName");
+                console.log(matchingCategoryName);
                }
+
+               console.log("First category that matches:" + results[0].get("categoryName"));
+
+
 
               if (userCategoriesMatchingTop2 && userCategoriesMatchingTop2.length > 0) {
                 isMatching = true;
@@ -154,10 +161,9 @@ Parse.Cloud.define("eBayCategorySearch", function(request, response) {
                 { "Matching Category MinPrice": matchingMinPrice }, 
                 { "Search Term": matchingItemSearch },
                 { "Matching Category Id": matchingItemCategoryId },
+                { "Matching Category Names": matchingCategoryName },
                 ]
               });
-
-              console.log('User categories that match search: ', results);
             },
             error: function(error) {
               //Error Callback
@@ -188,6 +194,7 @@ Parse.Cloud.define("userCategorySave", function(request, response) {
   var userCategory = Parse.Object.extend("userCategory");
   var newUserCategory = new userCategory();
       newUserCategory.set("categoryId", request.params.categoryId);
+      newUserCategory.set("categoryName", "kaka");
       newUserCategory.set("minPrice", request.params.minPrice);
       newUserCategory.set("maxPrice", request.params.maxPrice);
       newUserCategory.set("itemCondition", request.params.itemCondition);
@@ -247,10 +254,6 @@ Parse.Cloud.define("addToMatchCenter", function(request, response) {
 });
 
 
-
-
-
-//        'http://svcs.ebay.com/services/search/FindingService/v1?SECURITY-APPNAME=AndrewGh-2d30-4c8d-a9cd-248083bc4d0f&OPERATION-NAME=findItemsByKeywords&SERVICE-VERSION=1.12.0&RESPONSE-DATA-FORMAT=JSON&callback=_cb_findItemsByKeywords&REST-PAYLOAD&sortOrder=PricePlusShippingLowest&paginationInput.entriesPerPage=7&outputSelector=AspectHistogram&itemFilter(0).name=Condition&itemFilter(0).value(0)=New&itemFilter(1).name=MaxPrice&itemFilter(1).value=450.00&itemFilter(1).paramName=Currency&itemFilter(1).paramValue=USD&itemFilter(2).name=MinPrice&itemFilter(2).value=350.00&itemFilter(2).paramName=Currency&itemFilter(2).paramValue=USD&itemFilter(3).name=ListingType&itemFilter(3).value=FixedPrice&keywords=Moto+x+16gb+unlocked'
 
 
 

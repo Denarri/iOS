@@ -25,18 +25,11 @@
     return self;
 }
 
-
-
-
-
-
-
 - (void)viewDidLoad
 {
     
     [super viewDidLoad];
   
-    
     [self addMinTextField];
     [self addMaxTextField];
     
@@ -195,6 +188,7 @@
                                             @"maxPrice": self.maxPrice,
                                        @"itemCondition": self.itemCondition,
                                         @"itemLocation": self.itemLocation,
+                                        @"categoryName": self.chosenCategoryName,
                                             }
                                          block:^(NSString *result, NSError *error) {
          

@@ -25,7 +25,26 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
+    
+    
+    
+//    UIButton *category1 = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+//    category1.frame = CGRectMake(10, 120, 300, 35);
+//    [category1 setTitle: [NSString stringWithFormat:@"%@", self.topCategory1] forState:UIControlStateNormal];
+//    [category1 addTarget:self action:@selector(category1ButtonClick:)    forControlEvents:UIControlEventTouchUpInside];
+//    category1.tag = 1;
+//    [self.view addSubview: category1];
+//    
+//    
+//    UIButton *category2 = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+//    category2.frame = CGRectMake(10, 180, 300, 35);
+//    [category2 setTitle: [NSString stringWithFormat:@"%@", self.topCategory2] forState:UIControlStateNormal];
+//    [category2 addTarget:self action:@selector(category2ButtonClick:)    forControlEvents:UIControlEventTouchUpInside];
+//    category1.tag = 2;
+//    [self.view addSubview: category2];
+    
+    
 }
 
 - (void)didReceiveMemoryWarning

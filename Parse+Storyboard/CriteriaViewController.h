@@ -19,6 +19,7 @@ IBOutlet UISegmentedControl *Segment;
 @property (weak, nonatomic) IBOutlet UITextField *minPrice;
 @property (weak, nonatomic) IBOutlet UITextField *maxPrice;
 @property (nonatomic, copy) NSNumber *chosenCategory;
+@property (nonatomic, copy) NSString *chosenCategoryName;
 @property (weak, nonatomic) NSString *itemCondition;
 @property (weak, nonatomic) NSString *itemLocation;
 @property (weak, nonatomic) NSString *itemSearch;
