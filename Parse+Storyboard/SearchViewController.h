@@ -11,7 +11,6 @@
 #import "CriteriaViewController.h"
 
 
-
 @interface SearchViewController : UIViewController
 
 @property (weak, nonatomic) IBOutlet UIButton *nextButtonOutlet;
@@ -20,11 +19,25 @@
 @property (nonatomic, copy) NSNumber *topCategoryId1;
 @property (nonatomic, copy) NSNumber *topCategoryId2;
 @property (weak, nonatomic) IBOutlet UITextField *itemSearch;
-@property (strong, nonatomic) NSString *matchingCategoryCondition;
-@property (strong, nonatomic) NSString *matchingCategoryLocation;
-@property (strong, nonatomic) NSNumber *matchingCategoryMaxPrice;
-@property (strong, nonatomic) NSNumber *matchingCategoryMinPrice;
-@property (strong, nonatomic) NSNumber *matchingCategoryId;
+
+@property (strong, nonatomic) NSString *matchingCategoryCondition1;
+@property (strong, nonatomic) NSString *matchingCategoryCondition2;
+
+@property (strong, nonatomic) NSString *matchingCategoryLocation1;
+@property (strong, nonatomic) NSString *matchingCategoryLocation2;
+
+@property (strong, nonatomic) NSNumber *matchingCategoryMaxPrice1;
+@property (strong, nonatomic) NSNumber *matchingCategoryMaxPrice2;
+
+@property (strong, nonatomic) NSNumber *matchingCategoryMinPrice1;
+@property (strong, nonatomic) NSNumber *matchingCategoryMinPrice2;
+
+@property (strong, nonatomic) NSNumber *matchingCategoryId1;
+@property (strong, nonatomic) NSNumber *matchingCategoryId2;
+
+@property (strong, nonatomic) NSString *matchingCategoryName1;
+@property (strong, nonatomic) NSString *matchingCategoryName2;
+
 
 
 @end

@@ -8,6 +8,8 @@
 #import "SearchViewController.h"
 #import "MatchCenterViewController.h"
 #import "SearchCategoryChooserViewController.h"
+#import "UserCategoryChooserViewController.h"
+
 
 @interface SearchViewController ()
 
@@ -71,29 +73,44 @@
                                                 NSDictionary *dictionary3 = [resultArray objectAtIndex:3];
                                                 NSNumber *numberOfMatches = [dictionary3 objectForKey:@"Number of matches"];
                                         
-                                                // Condition of Matching Category
+                                                        //////
+                                                        //////
+                                        
+                                                // Condition of Matching Categories
                                                 NSDictionary *dictionary5 = [resultArray objectAtIndex:5];
-                                                _matchingCategoryCondition = [dictionary5 objectForKey:@"Matching Category Condition"];
-                                        
-                                                // Location of Matching Category
+                                                _matchingCategoryCondition1 = [dictionary5 objectForKey:@"Matching Category Condition 1"];
                                                 NSDictionary *dictionary6 = [resultArray objectAtIndex:6];
-                                                _matchingCategoryLocation = [dictionary6 objectForKey:@"Matching Category Location"];
+                                                _matchingCategoryCondition2 = [dictionary6 objectForKey:@"Matching Category Condition 2"];
                                         
-                                                // Max Price of Matching Category
+                                                // Location of Matching Categories
                                                 NSDictionary *dictionary7 = [resultArray objectAtIndex:7];
-                                                _matchingCategoryMaxPrice = [dictionary7 objectForKey:@"Matching Category MaxPrice"];
-                                        
-                                                // Min Price of Matching Category
+                                                _matchingCategoryLocation1 = [dictionary7 objectForKey:@"Matching Category Location 1"];
                                                 NSDictionary *dictionary8 = [resultArray objectAtIndex:8];
-                                                _matchingCategoryMinPrice = [dictionary8 objectForKey:@"Matching Category MinPrice"];
+                                                _matchingCategoryLocation2 = [dictionary8 objectForKey:@"Matching Category Location 2"];
                                         
-                                                // CategoryId of Matching Category
+                                                // Max Price of Matching Categories
+                                                NSDictionary *dictionary9 = [resultArray objectAtIndex:9];
+                                                _matchingCategoryMaxPrice1 = [dictionary9 objectForKey:@"Matching Category MaxPrice 1"];
                                                 NSDictionary *dictionary10 = [resultArray objectAtIndex:10];
-                                                _matchingCategoryId = [dictionary10 objectForKey:@"Matching Category Id"];
+                                                _matchingCategoryMaxPrice2 = [dictionary10 objectForKey:@"Matching Category MaxPrice 2"];
                                         
-                                                // CategoryId of Matching Category
+                                                // Min Price of Matching Categories
                                                 NSDictionary *dictionary11 = [resultArray objectAtIndex:11];
-                                                _matchingCategoryId = [dictionary11 objectForKey:@"Matching Category Names"];
+                                                _matchingCategoryMinPrice1 = [dictionary11 objectForKey:@"Matching Category MinPrice 1"];
+                                                NSDictionary *dictionary12 = [resultArray objectAtIndex:12];
+                                                _matchingCategoryMinPrice2 = [dictionary12 objectForKey:@"Matching Category MinPrice 2"];
+                                        
+                                                // CategoryId of Matching Categories
+                                                NSDictionary *dictionary14 = [resultArray objectAtIndex:14];
+                                                _matchingCategoryId1 = [dictionary14 objectForKey:@"Matching Category Id 1"];
+                                                NSDictionary *dictionary15 = [resultArray objectAtIndex:15];
+                                                _matchingCategoryId2 = [dictionary15 objectForKey:@"Matching Category Id 2"];
+                                        
+                                                // Category Name of Matching Categories
+                                                NSDictionary *dictionary16 = [resultArray objectAtIndex:16];
+                                                _matchingCategoryName1 = [dictionary16 objectForKey:@"Matching Category Name 1"];
+                                                NSDictionary *dictionary17 = [resultArray objectAtIndex:17];
+                                                _matchingCategoryName2 = [dictionary17 objectForKey:@"Matching Category Name 2"];
                                         
                                         
                                         
@@ -108,15 +125,7 @@
                                                 if ([numberOfTopCategories intValue] == 2) {
                                                     self.topCategoryId2 = [topCategoryIdsArray objectAtIndex:1];
                                                 }
-                                        
-                                                // Defines where each userCategory name will come from
-                                                self.topCategory1 = [topCategoryNamesArray objectAtIndex:0];
-                                        
-                                                self.topCategory2 = [topCategoryNamesArray objectAtIndex:1];
-                                        
-                                        
-                                        
-                                        
+                                    
                                         
                                     
                                        
@@ -159,9 +168,6 @@
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-
-    
-    
     if ([segue.identifier isEqualToString:@"ShowMatchCenterSegue"]) {
         MatchCenterViewController *controller = (MatchCenterViewController *) segue.destinationViewController;
         
@@ -170,11 +176,11 @@
         [PFCloud callFunctionInBackground:@"addToMatchCenter"
                            withParameters:@{
                                             @"searchTerm": self.itemSearch.text,
-                                            @"categoryId": self.matchingCategoryId,
-                                              @"minPrice": self.matchingCategoryMinPrice,
-                                              @"maxPrice": self.matchingCategoryMaxPrice,
-                                         @"itemCondition": self.matchingCategoryCondition,
-                                          @"itemLocation": self.matchingCategoryLocation,
+                                            @"categoryId": self.matchingCategoryId1,
+                                              @"minPrice": self.matchingCategoryMinPrice1,
+                                              @"maxPrice": self.matchingCategoryMaxPrice1,
+                                         @"itemCondition": self.matchingCategoryCondition1,
+                                          @"itemLocation": self.matchingCategoryLocation1,
                                             }
                                     block:^(NSString *result, NSError *error) {
                                         
@@ -187,10 +193,10 @@
         
         // Send over the matching item criteria
         controller.itemSearch = self.itemSearch.text;
-        controller.matchingCategoryMinPrice = self.matchingCategoryMinPrice;
-        controller.matchingCategoryMaxPrice = self.matchingCategoryMaxPrice;
-        controller.matchingCategoryCondition = self.matchingCategoryCondition;
-        controller.matchingCategoryLocation = self.matchingCategoryLocation;
+        controller.matchingCategoryMinPrice = self.matchingCategoryMinPrice1;
+        controller.matchingCategoryMaxPrice = self.matchingCategoryMaxPrice1;
+        controller.matchingCategoryCondition = self.matchingCategoryCondition1;
+        controller.matchingCategoryLocation = self.matchingCategoryLocation1;
     }
     
     
@@ -222,15 +228,29 @@
   
     else if([segue.identifier isEqualToString:@"ShowUserCategoryChooserSegue"]){
         
-        SearchCategoryChooserViewController *controller = (SearchCategoryChooserViewController *) segue.destinationViewController;
+        UserCategoryChooserViewController *controller = (UserCategoryChooserViewController *) segue.destinationViewController;
         
         // Send over the search query as well as both categories to the Category Chooser VC
-        controller.itemSearch.text = self.itemSearch.text;
-        controller.topCategory1 = self.topCategory1;
-        controller.topCategory2 = self.topCategory2;
-        controller.topCategoryId1 = self.topCategoryId1;
-        controller.topCategoryId2 = self.topCategoryId2;
         
+        controller.itemSearch = self.itemSearch.text;
+        
+        controller.matchingCategoryName1 = self.matchingCategoryName1;
+        controller.matchingCategoryName2 = self.matchingCategoryName2;
+        
+        controller.matchingCategoryId1 = self.matchingCategoryId1;
+        controller.matchingCategoryId2 = self.matchingCategoryId2;
+        
+        controller.matchingCategoryMinPrice1 = self.matchingCategoryMinPrice1;
+        controller.matchingCategoryMinPrice2 = self.matchingCategoryMinPrice2;
+        
+        controller.matchingCategoryMaxPrice1 = self.matchingCategoryMaxPrice1;
+        controller.matchingCategoryMaxPrice2 = self.matchingCategoryMaxPrice2;
+        
+        controller.matchingCategoryCondition1 = self.matchingCategoryCondition1;
+        controller.matchingCategoryCondition2 = self.matchingCategoryCondition2;
+        
+        controller.matchingCategoryLocation1 = self.matchingCategoryLocation1;
+        controller.matchingCategoryLocation2 = self.matchingCategoryLocation2;
     }
 
     

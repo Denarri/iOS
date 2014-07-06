@@ -116,31 +116,39 @@ Parse.Cloud.define("eBayCategorySearch", function(request, response) {
               console.log("userCategory comparison success!");
               console.log(results);
               
-              for (var i = 0; i < results.length; i++) 
-              {
-                var matchingItemCategoryId = results[i].get("categoryId");
-                console.log(matchingItemCategoryId);
+              
+                var matchingItemCategoryId1 = results[0].get("categoryId");
+                console.log(matchingItemCategoryId1);
+                var matchingItemCategoryId2 = results[1].get("categoryId");
+                console.log(matchingItemCategoryId2);
 
-                var matchingItemCondition = results[i].get("itemCondition");
-                console.log(matchingItemCondition);
+                var matchingItemCondition1 = results[0].get("itemCondition");
+                console.log(matchingItemCondition1);
+                var matchingItemCondition2 = results[1].get("itemCondition");
+                console.log(matchingItemCondition2);
 
-                var matchingItemLocation = results[i].get("itemLocation");
-                console.log(matchingItemLocation);
+                var matchingItemLocation1 = results[0].get("itemLocation");
+                console.log(matchingItemLocation1);
+                var matchingItemLocation2 = results[1].get("itemLocation");
+                console.log(matchingItemLocation2);
 
-                var matchingMinPrice = results[i].get("minPrice");
-                console.log(matchingMinPrice);
+                var matchingMinPrice1 = results[0].get("minPrice");
+                console.log(matchingMinPrice1);
+                var matchingMinPrice2 = results[1].get("minPrice");
+                console.log(matchingMinPrice2);
 
-                var matchingMaxPrice = results[i].get("maxPrice");
-                console.log(matchingMaxPrice);
+                var matchingMaxPrice1 = results[0].get("maxPrice");
+                console.log(matchingMaxPrice1);
+                var matchingMaxPrice2 = results[1].get("maxPrice");
+                console.log(matchingMaxPrice2);
 
                 var matchingItemSearch = request.params.item;
                 console.log(matchingItemSearch);
 
-                var matchingCategoryName = results[i].get("categoryName");
-                console.log(matchingCategoryName);
-               }
-
-               console.log("First category that matches:" + results[0].get("categoryName"));
+                var matchingCategoryName1 = results[0].get("categoryName");
+                console.log(matchingCategoryName1);
+                var matchingCategoryName2 = results[1].get("categoryName");
+                console.log(matchingCategoryName2);
 
 
 
@@ -155,13 +163,19 @@ Parse.Cloud.define("eBayCategorySearch", function(request, response) {
                         { "Top category names": top2Names },   
                          { "Number of matches": userCategoriesMatchingTop2.length }, 
          { "User categories that match search": userCategoriesMatchingTop2 }, 
-               { "Matching Category Condition": matchingItemCondition }, 
-                { "Matching Category Location": matchingItemLocation }, 
-                { "Matching Category MaxPrice": matchingMaxPrice }, 
-                { "Matching Category MinPrice": matchingMinPrice }, 
+               { "Matching Category Condition 1": matchingItemCondition1 }, 
+               { "Matching Category Condition 2": matchingItemCondition2 }, 
+                { "Matching Category Location 1": matchingItemLocation1 },
+                { "Matching Category Location 2": matchingItemLocation2 }, 
+                { "Matching Category MaxPrice 1": matchingMaxPrice1 },
+                { "Matching Category MaxPrice 2": matchingMaxPrice2 }, 
+                { "Matching Category MinPrice 1": matchingMinPrice1 },
+                { "Matching Category MinPrice 2": matchingMinPrice2 }, 
                 { "Search Term": matchingItemSearch },
-                { "Matching Category Id": matchingItemCategoryId },
-                { "Matching Category Names": matchingCategoryName },
+                { "Matching Category Id 1": matchingItemCategoryId1 },
+                { "Matching Category Id 2": matchingItemCategoryId2 },
+                { "Matching Category Name 1": matchingCategoryName1 },
+                { "Matching Category Name 2": matchingCategoryName2 },
                 ]
               });
             },
