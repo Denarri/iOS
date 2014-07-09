@@ -193,12 +193,8 @@
  
  - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
  {
-     
-
      WebViewController *controller = (WebViewController *) segue.destinationViewController;
      controller.itemURL = self.itemURL;
-     
-     
  }
 
 

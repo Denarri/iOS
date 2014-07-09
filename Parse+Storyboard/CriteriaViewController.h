@@ -9,19 +9,24 @@
 #import <Parse/Parse.h>
 #import "SearchViewController.h"
 
-@interface CriteriaViewController : UIViewController{
-
-IBOutlet UISegmentedControl *Segment;
-}
-
+@interface CriteriaViewController : UIViewController
 
 //@property (nonatomic) IBOutlet UITextField *itemSearch;
-@property (weak, nonatomic) IBOutlet UITextField *minPrice;
-@property (weak, nonatomic) IBOutlet UITextField *maxPrice;
+
+@property (strong, nonatomic) IBOutlet UITextField *minPrice;
+@property (strong, nonatomic) IBOutlet UITextField *maxPrice;
+
+//
+//@property (strong, nonatomic) IBOutlet UISegmentedControl *conditionSegment;
+//@property (strong, nonatomic) IBOutlet UISegmentedControl *locationSegment;
+//- (IBAction)conditionSegmentValueChanged:(id)sender;
+//- (IBAction)locationSegmentValueChanged:(id)sender;
+
+
 @property (nonatomic, copy) NSNumber *chosenCategory;
 @property (nonatomic, copy) NSString *chosenCategoryName;
-@property (weak, nonatomic) NSString *itemCondition;
-@property (weak, nonatomic) NSString *itemLocation;
-@property (weak, nonatomic) NSString *itemSearch;
+@property (strong, nonatomic) NSString *itemCondition;
+@property (strong, nonatomic) NSString *itemLocation;
+@property (strong, nonatomic) NSString *itemSearch;
 
 @end

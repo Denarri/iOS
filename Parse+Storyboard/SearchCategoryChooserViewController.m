@@ -29,8 +29,6 @@
     [super viewDidLoad];
     
     
-    
-    
     UIButton *category1 = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     category1.frame = CGRectMake(10, 120, 300, 35);
     [category1 setTitle: [NSString stringWithFormat:@"%@", self.topCategory1] forState:UIControlStateNormal];

@@ -73,8 +73,7 @@
                                                 NSDictionary *dictionary3 = [resultArray objectAtIndex:3];
                                                 NSNumber *numberOfMatches = [dictionary3 objectForKey:@"Number of matches"];
                                         
-                                                        //////
-                                                        //////
+                                        
                                         
                                                 // Condition of Matching Categories
                                                 NSDictionary *dictionary5 = [resultArray objectAtIndex:5];

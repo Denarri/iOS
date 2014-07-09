@@ -8,9 +8,6 @@
 #import "CriteriaViewController.h"
 
 @interface CriteriaViewController ()
-@property (weak, nonatomic) IBOutlet UISegmentedControl *itemConditionSegment;
-@property (weak, nonatomic) IBOutlet UISegmentedControl *itemLocationSegment;
-
 
 @end
 
@@ -27,141 +24,58 @@
 
 - (void)viewDidLoad
 {
-    
     [super viewDidLoad];
-  
-    [self addMinTextField];
-    [self addMaxTextField];
     
+    // Default values
+    self.itemCondition = @"New";
+    self.itemLocation = @"US";
     
-    // Condition UISegment
-    UISegmentedControl *conditionSegmentedControl = [[UISegmentedControl alloc] initWithItems:[NSArray arrayWithObjects:@"Only New", @"Any", nil]];
-    conditionSegmentedControl.frame = CGRectMake(87, 190, 157, 30);
+    // Initialize UISegmentedControls
+    UISegmentedControl *conditionSegmentedControl = [[UISegmentedControl alloc] initWithItems:[NSArray arrayWithObjects:@"New Only", @"New/Lightly Used", nil]];
+    conditionSegmentedControl.frame = CGRectMake(35, 210, 250, 35);
     conditionSegmentedControl.selectedSegmentIndex = 0;
-    conditionSegmentedControl.tintColor = [UIColor blackColor];
-    [conditionSegmentedControl addTarget:self action:@selector(ConditionSegmentControlAction:) forControlEvents: UIControlEventValueChanged];
+    conditionSegmentedControl.tintColor = [UIColor blueColor];
+    [conditionSegmentedControl addTarget:self action:@selector(conditionValueChanged:) forControlEvents: UIControlEventValueChanged];
     [self.view addSubview:conditionSegmentedControl];
     
-    
-    // Location UISegment
-    UISegmentedControl *locationSegmentedControl = [[UISegmentedControl alloc] initWithItems:[NSArray arrayWithObjects:@"Fast Shipping", @"Large Selection", nil]];
-    locationSegmentedControl.frame = CGRectMake(67, 275, 200, 30);
+    UISegmentedControl *locationSegmentedControl = [[UISegmentedControl alloc] initWithItems:[NSArray arrayWithObjects:@"Faster Shipping", @"Larger Selection", nil]];
+    locationSegmentedControl.frame = CGRectMake(35, 320, 250, 35);
     locationSegmentedControl.selectedSegmentIndex = 0;
-    locationSegmentedControl.tintColor = [UIColor blackColor];
-    [locationSegmentedControl addTarget:self action:@selector(LocationSegmentControlAction:) forControlEvents: UIControlEventValueChanged];
+    locationSegmentedControl.tintColor = [UIColor blueColor];
+    [locationSegmentedControl addTarget:self action:@selector(locationValueChanged:) forControlEvents: UIControlEventValueChanged];
     [self.view addSubview:locationSegmentedControl];
     
     
-    
-    
     // Submit button
-    UIButton *submitButton = [UIButton buttonWithType:UIButtonTypeRoundedRect]; // Create Round Rect Type button.
-    submitButton.frame = CGRectMake(100, 100, 100, 100); // define position and width and height for the button.
+    UIButton *submitButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    submitButton.frame = CGRectMake(100, 100, 100, 100);
     [submitButton setTitle:@"Submit" forState:UIControlStateNormal];
-    
     [submitButton addTarget:self action:@selector(submitButton:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:submitButton];
-
-    
     
 }
 
-
-
--(void)addMinTextField{
-    // This allocates a label
-    UILabel *prefixLabel = [[UILabel alloc]initWithFrame:CGRectZero];
-    // This sets the font for the label
-    [prefixLabel setFont:[UIFont boldSystemFontOfSize:14]];
-    // This fits the frame to size of the text
-    [prefixLabel sizeToFit];
-	
-    // This allocates the textfield and sets its frame
-    UITextField *minPrice = [[UITextField  alloc] initWithFrame:
-                             CGRectMake(70, 105, 75, 30)];
+- (void)conditionValueChanged:(UISegmentedControl *)conditionSegmentedControl {
     
-    // This sets the border style of the text field
-    minPrice.borderStyle = UITextBorderStyleRoundedRect;
-    minPrice.contentVerticalAlignment =
-    UIControlContentVerticalAlignmentCenter;
-    [minPrice setFont:[UIFont boldSystemFontOfSize:12]];
-    
-    //Placeholder text is displayed when no text is typed
-    minPrice.placeholder = @"150";
-    
-    //Prefix label is set as left view and the text starts after that
-    minPrice.leftView = prefixLabel;
-    
-    //It set when the left prefixLabel to be displayed
-    minPrice.leftViewMode = UITextFieldViewModeAlways;
-    
-    // Adds the textField to the view.
-    [self.view addSubview:minPrice];
-    
-    // sets the delegate to the current class
-    minPrice.delegate = self;
-}
-
--(void)addMaxTextField{
-    // This allocates a label
-    UILabel *prefixLabel = [[UILabel alloc]initWithFrame:CGRectZero];
-    // This sets the font for the label
-    [prefixLabel setFont:[UIFont boldSystemFontOfSize:14]];
-    // This fits the frame to size of the text
-    [prefixLabel sizeToFit];
-    
-    UITextField *maxPrice = [[UITextField  alloc] initWithFrame:
-                             CGRectMake(185, 105, 75, 30)];
-    
-    //for max price
-    maxPrice.borderStyle = UITextBorderStyleRoundedRect;
-    maxPrice.contentVerticalAlignment =
-    UIControlContentVerticalAlignmentCenter;
-    [maxPrice setFont:[UIFont boldSystemFontOfSize:12]];
-    
-    //Placeholder text is displayed when no text is typed
-    maxPrice.placeholder = @"300";
-    
-    //Prefix label is set as left view and the text starts after that
-    maxPrice.leftView = prefixLabel;
-    
-    //It set when the left prefixLabel to be displayed
-    maxPrice.leftViewMode = UITextFieldViewModeAlways;
-    
-    // Adds the textField to the view.
-    [self.view addSubview:maxPrice];
-    
-    // sets the delegate to the current class
-    maxPrice.delegate = self;
-}
-
-
-
-- (void)ConditionSegmentControlAction:(UISegmentedControl *)segment
-{
-    if(segment.selectedSegmentIndex == 0)
+    if(conditionSegmentedControl.selectedSegmentIndex == 0)
     {
-        // set condition to new
-        self.itemCondition = @"new";
+        self.itemCondition = @"New";
     }
-    else if (segment.selectedSegmentIndex == 1)
+    else if(conditionSegmentedControl.selectedSegmentIndex == 1)
     {
-        // set condition to all
-        self.itemCondition = @"all";
+        self.itemCondition = @"All";
     }
 }
 
-- (void)LocationSegmentControlAction:(UISegmentedControl *)segment
-{
-    if(segment.selectedSegmentIndex == 0)
+- (void)locationValueChanged:(UISegmentedControl *)locationSegmentedControl {
+    
+    if(locationSegmentedControl.selectedSegmentIndex == 0)
     {
-        // set location to us
         self.itemLocation = @"US";
     }
-    else if (segment.selectedSegmentIndex == 1)
+    else if(locationSegmentedControl.selectedSegmentIndex == 1)
     {
-        // set clocation to worldwide
-        self.itemLocation = @"Worldwide";
+        self.itemLocation = @"WorldWide";
     }
 }
 
@@ -174,20 +88,19 @@
 
 
 
-
-
-
 //add all the info to users respective new category object
 - (IBAction)submitButton:(id)sender
 {
-    //if (self.minPriceField.text.length > 0 && self.maxPrice.text.length > 0) {
+    if (self.minPrice.text.length > 0 && self.maxPrice.text.length > 0) {
     
         [PFCloud callFunctionInBackground:@"userCategorySave"
                            withParameters:@{@"categoryId": self.chosenCategory,
-                                              @"minPrice": self.minPrice,
-                                            @"maxPrice": self.maxPrice,
+                                            
+                                              @"minPrice": self.minPrice.text,
+                                            @"maxPrice": self.maxPrice.text,
                                        @"itemCondition": self.itemCondition,
                                         @"itemLocation": self.itemLocation,
+                                            
                                         @"categoryName": self.chosenCategoryName,
                                             }
                                          block:^(NSString *result, NSError *error) {
@@ -200,37 +113,29 @@
                                              }
                                          }];
     
-    //}
+    }
 
 }
 
     
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     
-
-    
-//    [PFCloud callFunctionInBackground:@"addToMatchCenter"
-//                       withParameters:@{
-//                                        @"searchTerm": self.itemSearch,
-//                                        @"categoryId": self.chosenCategory,
-//                                        @"minPrice": self.minPrice,
-//                                        @"maxPrice": self.maxPrice,
-//                                        @"itemCondition": self.itemCondition,
-//                                        @"itemLocation": self.itemLocation,
-//                                        }
-//                                block:^(NSString *result, NSError *error) {
-//                                    
-//                                    if (!error) {
-//                                        NSLog(@"'%@'", result);
-//                                    }
-//                                }];
-    
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    [PFCloud callFunctionInBackground:@"addToMatchCenter"
+                       withParameters:@{
+                                        @"searchTerm": self.itemSearch,
+                                        @"categoryId": self.chosenCategory,
+                                        @"minPrice": self.minPrice.text,
+                                        @"maxPrice": self.maxPrice.text,
+                                        @"itemCondition": self.itemCondition,
+                                        @"itemLocation": self.itemLocation,
+                                        }
+                                block:^(NSString *result, NSError *error) {
+                                    
+                                    if (!error) {
+                                        NSLog(@"'%@'", result);
+                                    }
+                                }];
 
 }
-
-    
-
 
 @end

@@ -116,7 +116,8 @@ Parse.Cloud.define("eBayCategorySearch", function(request, response) {
               console.log("userCategory comparison success!");
               console.log(results);
               
-              
+              if (userCategoriesMatchingTop2.length > 0) {
+
                 var matchingItemCategoryId1 = results[0].get("categoryId");
                 console.log(matchingItemCategoryId1);
                 var matchingItemCategoryId2 = results[1].get("categoryId");
@@ -149,7 +150,7 @@ Parse.Cloud.define("eBayCategorySearch", function(request, response) {
                 console.log(matchingCategoryName1);
                 var matchingCategoryName2 = results[1].get("categoryName");
                 console.log(matchingCategoryName2);
-
+              }   
 
 
               if (userCategoriesMatchingTop2 && userCategoriesMatchingTop2.length > 0) {
@@ -208,7 +209,7 @@ Parse.Cloud.define("userCategorySave", function(request, response) {
   var userCategory = Parse.Object.extend("userCategory");
   var newUserCategory = new userCategory();
       newUserCategory.set("categoryId", request.params.categoryId);
-      newUserCategory.set("categoryName", "kaka");
+      newUserCategory.set("categoryName", request.params.categoryName);
       newUserCategory.set("minPrice", request.params.minPrice);
       newUserCategory.set("maxPrice", request.params.maxPrice);
       newUserCategory.set("itemCondition", request.params.itemCondition);
