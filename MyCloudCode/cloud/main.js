@@ -120,36 +120,45 @@ Parse.Cloud.define("eBayCategorySearch", function(request, response) {
 
                 var matchingItemCategoryId1 = results[0].get("categoryId");
                 console.log(matchingItemCategoryId1);
-                var matchingItemCategoryId2 = results[1].get("categoryId");
-                console.log(matchingItemCategoryId2);
 
                 var matchingItemCondition1 = results[0].get("itemCondition");
                 console.log(matchingItemCondition1);
-                var matchingItemCondition2 = results[1].get("itemCondition");
-                console.log(matchingItemCondition2);
-
+                
                 var matchingItemLocation1 = results[0].get("itemLocation");
                 console.log(matchingItemLocation1);
-                var matchingItemLocation2 = results[1].get("itemLocation");
-                console.log(matchingItemLocation2);
 
                 var matchingMinPrice1 = results[0].get("minPrice");
                 console.log(matchingMinPrice1);
-                var matchingMinPrice2 = results[1].get("minPrice");
-                console.log(matchingMinPrice2);
+                
 
                 var matchingMaxPrice1 = results[0].get("maxPrice");
                 console.log(matchingMaxPrice1);
-                var matchingMaxPrice2 = results[1].get("maxPrice");
-                console.log(matchingMaxPrice2);
+               
 
                 var matchingItemSearch = request.params.item;
                 console.log(matchingItemSearch);
 
                 var matchingCategoryName1 = results[0].get("categoryName");
                 console.log(matchingCategoryName1);
-                var matchingCategoryName2 = results[1].get("categoryName");
-                console.log(matchingCategoryName2);
+
+
+                if (userCategoriesMatchingTop2.length > 1) {
+
+                  var matchingItemCategoryId2 = results[1].get("categoryId");
+                    console.log(matchingItemCategoryId2);
+                  var matchingItemCondition2 = results[1].get("itemCondition");
+                    console.log(matchingItemCondition2);
+                  var matchingItemLocation2 = results[1].get("itemLocation");
+                    console.log(matchingItemLocation2);
+                  var matchingMinPrice2 = results[1].get("minPrice");
+                    console.log(matchingMinPrice2);
+                  var matchingMaxPrice2 = results[1].get("maxPrice");
+                    console.log(matchingMaxPrice2);
+                  var matchingCategoryName2 = results[1].get("categoryName");
+                    console.log(matchingCategoryName2);
+
+                }
+                
               }   
 
 
@@ -287,16 +296,10 @@ Parse.Cloud.define("MatchCenter", function(request, response) {
     query.find().then(function(results) {
       for (i=0; i<results.length; i++) {
 
-
-                  // ... later in your loop where you populate promises:
-                  var searchTerm = results[i].get('searchTerm');
-                  // add it to the array just like you add the promises:
-                  searchTerms.push(searchTerm);
-
-
-
-        // var searchTerm = results[i].get('searchTerm');
-        // console.log(searchTerm);
+        // ... later in your loop where you populate promises:
+        var searchTerm = results[i].get('searchTerm');
+        // add it to the array just like you add the promises:
+        searchTerms.push(searchTerm);
 
         url = 'http://svcs.ebay.com/services/search/FindingService/v1';
         //push function containing criteria for every matchCenterItem into promises array
@@ -313,12 +316,13 @@ Parse.Cloud.define("MatchCenter", function(request, response) {
               'RESPONSE-DATA-FORMAT' : 'JSON',
               'REST-PAYLOAD&sortOrder' : 'BestMatch',
               'paginationInput.entriesPerPage' : '3',
-              'outputSelector=AspectHistogram&itemFilter(0).name=Condition&itemFilter(0).value(0)' : results[i].get('itemCondition'),
+              'outputSelector=AspectHistogram&itemFilter(0).name=Condition&itemFilter(0).value(0)' : 'New',
+              'itemFilter(0).value(1)' : results[i].get('itemCondition'),
               'itemFilter(1).name=MaxPrice&itemFilter(1).value' : results[i].get('maxPrice'),
               'itemFilter(1).paramName=Currency&itemFilter(1).paramValue' : 'USD',
               'itemFilter(2).name=MinPrice&itemFilter(2).value' : results[i].get('minPrice'),
               'itemFilter(2).paramName=Currency&itemFilter(2).paramValue' : 'USD',
-              //'itemFilter(3).name=LocatedIn&itemFilter(3).Value' : request.params.itemLocation,
+              //'itemFilter(3).name=LocatedIn&itemFilter(3).Value' : results[i].get('itemLocation'),
               'itemFilter(3).name=ListingType&itemFilter(3).value' : 'FixedPrice',
               'keywords' : results[i].get('searchTerm'),
             }

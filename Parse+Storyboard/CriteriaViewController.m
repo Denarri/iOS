@@ -63,7 +63,7 @@
     }
     else if(conditionSegmentedControl.selectedSegmentIndex == 1)
     {
-        self.itemCondition = @"All";
+        self.itemCondition = @"Used";
     }
 }
 
