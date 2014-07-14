@@ -97,11 +97,11 @@
                            withParameters:@{@"categoryId": self.chosenCategory,
                                             
                                               @"minPrice": self.minPrice.text,
-                                            @"maxPrice": self.maxPrice.text,
-                                       @"itemCondition": self.itemCondition,
-                                        @"itemLocation": self.itemLocation,
+                                              @"maxPrice": self.maxPrice.text,
+                                         @"itemCondition": self.itemCondition,
+                                          @"itemLocation": self.itemLocation,
                                             
-                                        @"categoryName": self.chosenCategoryName,
+                                          @"categoryName": self.chosenCategoryName,
                                             }
                                          block:^(NSString *result, NSError *error) {
          

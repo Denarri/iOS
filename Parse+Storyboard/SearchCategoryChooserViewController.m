@@ -49,21 +49,20 @@
 
 
 
-
 - (IBAction)category1ButtonClick:(id)sender
 
 {
     self.chosenCategory = self.topCategoryId1;
+    self.chosenCategoryName = self.topCategory1;
     [self performSegueWithIdentifier:@"CategoryChooserToCriteriaSegue" sender:nil];
-    
 }
 
 - (IBAction)category2ButtonClick:(id)sender
 
 {
     self.chosenCategory = self.topCategoryId2;
+    self.chosenCategoryName = self.topCategory2;
     [self performSegueWithIdentifier:@"CategoryChooserToCriteriaSegue" sender:nil];
-    
 }
 
 
@@ -84,6 +83,8 @@
  
  // Send over the search query as well as the specific category to CriteriaVC to use
  controller.chosenCategory = self.chosenCategory;
+ controller.chosenCategoryName = self.chosenCategoryName;
+ controller.itemSearch = self.itemSearch;
     
     
     

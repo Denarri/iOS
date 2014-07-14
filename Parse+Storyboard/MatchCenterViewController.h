@@ -15,8 +15,8 @@
 
 @interface MatchCenterViewController : UIViewController <UITableViewDataSource>
 
-@property (nonatomic) IBOutlet NSString *itemSearch;
-
+@property (strong, nonatomic) NSString *itemSearch;
+//@property (strong, nonatomic) IBOutlet UITextField *itemSearch;
 @property (nonatomic, strong) NSArray *imageURLs;
 @property (strong, nonatomic) NSString *matchingCategoryCondition;
 @property (strong, nonatomic) NSString *matchingCategoryLocation;

@@ -11,7 +11,7 @@
 
 @interface CriteriaViewController : UIViewController
 
-//@property (nonatomic) IBOutlet UITextField *itemSearch;
+//@property (strong, nonatomic) IBOutlet UITextField *itemSearch;
 
 @property (strong, nonatomic) IBOutlet UITextField *minPrice;
 @property (strong, nonatomic) IBOutlet UITextField *maxPrice;

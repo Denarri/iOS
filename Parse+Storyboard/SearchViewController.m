@@ -204,7 +204,7 @@
         SearchCategoryChooserViewController *controller = (SearchCategoryChooserViewController *) segue.destinationViewController;
         
         // Send over the search query as well as both categories to the Category Chooser VC
-        controller.itemSearch.text = self.itemSearch.text;
+        controller.itemSearch = self.itemSearch.text;
         controller.topCategory1 = self.topCategory1;
         controller.topCategory2 = self.topCategory2;
         controller.topCategoryId1 = self.topCategoryId1;

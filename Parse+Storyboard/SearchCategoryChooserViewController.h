@@ -11,6 +11,10 @@
 @interface SearchCategoryChooserViewController : SearchViewController
 
 @property (nonatomic, copy) NSNumber *chosenCategory;
+@property (nonatomic, copy) NSString *chosenCategoryName;
+
+@property (strong, nonatomic) NSString *itemSearch;
+//@property (strong, nonatomic) IBOutlet UITextField *itemSearch;
 
 
 @end
