@@ -122,6 +122,14 @@
                                         //userCategory created
                                     }
                                 }];
+    
+    [PFCloud callFunctionInBackground:@"mcComparisonArrayCreate"
+                       withParameters:@{}
+                                block:^(NSNumber *ratings, NSError *error) {
+                                    if (!error) {
+                                        //userCategory created
+                                    }
+                                }];
 }
 
 // Sent to the delegate when the sign up attempt fails.
