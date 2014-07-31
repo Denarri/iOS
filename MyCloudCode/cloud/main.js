@@ -394,6 +394,8 @@ Parse.Cloud.define("MatchCenter", function(request, response) {
           };
 
           function collectEbayResults (eBayResponseText, searchTerm) {
+
+            console.log('so heres what the ebayresponsetext iz:' + eBayResponseText);
             var ebayResponse = JSON.parse(eBayResponseText)
 
             var matchCenterItems = [];
@@ -460,6 +462,7 @@ Parse.Cloud.define("MatchCenter", function(request, response) {
                 return top3
           }
 
+
           response.success
           (
             eBayResults
@@ -486,259 +489,540 @@ Parse.Cloud.define("MatchCenter", function(request, response) {
 
 
 
+
+// Parse.Cloud.job("MatchCenterBackground", function(request, status) {
+
+//   console.log('background task started');
+
+//   //Query through all users 
+//   var usersQuery = new Parse.Query(Parse.User);
+
+//   //For every user, do the following:
+//   usersQuery.each(function(user) {
+//     //query through all their matchCenterItems
+//     var matchCenterItem = Parse.Object.extend("matchCenterItem");
+//     var query = new Parse.Query(matchCenterItem);
+
+//     // promise and searchterm arrays to be filled
+//     var promises = [];
+//     var searchTerms = [];
+
+//     //setting the limit of items at 10 for now
+//     query.limit(10);
+//     console.log('about to start the matchCenterItem query');
+
+//     return query.find().then(function(results) {
+      
+//       console.log('matchCenterItem query results:' + results);
+//       if (results.length > 0) {
+//         console.log('we have entered the matchcenteritem query');
+        
+//         for (i = 0; i < results.length; i++) {
+
+//           console.log('we have also entered the loop inside the matchCenterItem query');
+//           // later in your loop where you populate promises:
+//           var searchTerm = results[i].get('searchTerm');
+//           // add it to the array just like you add the promises:
+//           searchTerms.push(searchTerm);
+
+//           url = 'http://svcs.ebay.com/services/search/FindingService/v1';
+//           //push function containing criteria for every matchCenterItem into promises array
+//           promises.push((function() {
+
+//             if (results[i].get('itemLocation') == 'US') 
+//             {
+//               console.log('americuh!');
+//               var httpRequestPromise = Parse.Cloud.httpRequest({
+//                 url: url,
+//                 params: {
+//                   'OPERATION-NAME': 'findItemsByKeywords',
+//                   'SERVICE-VERSION': '1.12.0',
+//                   'SECURITY-APPNAME': 'AndrewGh-2d30-4c8d-a9cd-248083bc4d0f',
+//                   'GLOBAL-ID': 'EBAY-US',
+//                   'RESPONSE-DATA-FORMAT': 'JSON',
+//                   'REST-PAYLOAD&sortOrder': 'BestMatch',
+//                   'paginationInput.entriesPerPage': '3',
+//                   'outputSelector=AspectHistogram&itemFilter(0).name=Condition&itemFilter(0).value(0)': 'New',
+//                   'itemFilter(0).value(1)': results[i].get('itemCondition'),
+//                   'itemFilter(1).name=MaxPrice&itemFilter(1).value': results[i].get('maxPrice'),
+//                   'itemFilter(1).paramName=Currency&itemFilter(1).paramValue': 'USD',
+//                   'itemFilter(2).name=MinPrice&itemFilter(2).value': results[i].get('minPrice'),
+//                   'itemFilter(2).paramName=Currency&itemFilter(2).paramValue': 'USD',
+//                   'itemFilter(3).name=LocatedIn&itemFilter(3).value': 'US',
+//                   'itemFilter(4).name=ListingType&itemFilter(4).value': 'FixedPrice',
+//                   'keywords': results[i].get('searchTerm'),
+//                 }
+//               });
+//             } 
+            
+//             else if (results[i].get('itemLocation') == 'WorldWide') 
+//             {
+//               console.log('Mr worlwide!');
+//               var httpRequestPromise = Parse.Cloud.httpRequest({
+//                 url: url,
+//                 params: {
+//                   'OPERATION-NAME': 'findItemsByKeywords',
+//                   'SERVICE-VERSION': '1.12.0',
+//                   'SECURITY-APPNAME': 'AndrewGh-2d30-4c8d-a9cd-248083bc4d0f',
+//                   'GLOBAL-ID': 'EBAY-US',
+//                   'RESPONSE-DATA-FORMAT': 'JSON',
+//                   'REST-PAYLOAD&sortOrder': 'BestMatch',
+//                   'paginationInput.entriesPerPage': '3',
+//                   'outputSelector=AspectHistogram&itemFilter(0).name=Condition&itemFilter(0).value(0)': 'New',
+//                   'itemFilter(0).value(1)': results[i].get('itemCondition'),
+//                   'itemFilter(1).name=MaxPrice&itemFilter(1).value': results[i].get('maxPrice'),
+//                   'itemFilter(1).paramName=Currency&itemFilter(1).paramValue': 'USD',
+//                   'itemFilter(2).name=MinPrice&itemFilter(2).value': results[i].get('minPrice'),
+//                   'itemFilter(2).paramName=Currency&itemFilter(2).paramValue': 'USD',
+//                   // 'itemFilter(3).name=LocatedIn&itemFilter(3).value' : 'US',
+//                   'itemFilter(3).name=ListingType&itemFilter(3).value': 'FixedPrice',
+//                   'keywords': results[i].get('searchTerm'),
+//                 }
+//               });
+//             }
+
+//             return httpRequestPromise;
+//           })());
+//         }
+//       }
+
+//       //when finished pushing all the httpRequest functions into promise array, do the following  
+//       return Parse.Promise.when(promises).then(function(results) {
+//         console.log('were in the when.then of promise');
+        
+//         var eBayResults = [];
+//         // piece together eBayResults 
+//         for (var i = 0; i < arguments.length; i++) {
+//           var httpResponse = arguments[i];
+//           // since they're in the same order, this is OK:
+//           var searchTerm = searchTerms[i];
+//           // pass it as a param:
+//           var top3 = collectEbayResults(httpResponse.text, searchTerm);
+//           eBayResults.push(top3);
+//         }
+
+//         // collects ebay responses for every item in the form of top3 
+//         function collectEbayResults(eBayResponseText, searchTerm) {
+          
+//           var ebayResponse = JSON.parse(eBayResponseText);
+//           //console.log('lets check eBayResults here:' + eBayResults);
+//           var matchCenterItems = [];
+
+//           //Parses through ebay's response, pushes each individual item and its properties into an array  
+//           ebayResponse.findItemsByKeywordsResponse.forEach(function(itemByKeywordsResponse) {
+//             itemByKeywordsResponse.searchResult.forEach(function(result) {
+//               result.item.forEach(function(item) {
+//                 matchCenterItems.push(item);
+//               });
+//             });
+//           });
+
+//           var top3Titles = [];
+//           var top3Prices = [];
+//           var top3ImgURLS = [];
+//           var top3ItemURLS = [];
+
+//           //where the title, price, and img url are sent over to the app
+//           matchCenterItems.forEach(function(item) {
+//             var title = item.title[0];
+//             var price = item.sellingStatus[0].convertedCurrentPrice[0].__value__;
+//             var imgURL = item.galleryURL[0];
+//             var itemURL = item.viewItemURL[0];
+
+//             top3Titles.push(title);
+//             top3Prices.push(price);
+//             top3ImgURLS.push(imgURL);
+//             top3ItemURLS.push(itemURL);
+//           });
+
+//           console.log('about to define top3 value');
+//           console.log('btw ebay results is:' + eBayResults);
+
+//           var top3 = {
+//             "Top 3": [{
+//                 "Title": top3Titles[0],
+//                 "Price": top3Prices[0],
+//                 "Image URL": top3ImgURLS[0],
+//                 "Item URL": top3ItemURLS[0]
+//               },
+
+//               {
+//                 "Title": top3Titles[1],
+//                 "Price": top3Prices[1],
+//                 "Image URL": top3ImgURLS[1],
+//                 "Item URL": top3ItemURLS[1]
+//               },
+
+//               {
+//                 "Title": top3Titles[2],
+//                 "Price": top3Prices[2],
+//                 "Image URL": top3ImgURLS[2],
+//                 "Item URL": top3ItemURLS[2]
+//               },
+
+//               {
+//                 "Search Term": searchTerm
+//               }
+//             ]
+//           };
+//           // return top3
+//         }
+
+        
+//         //After all the above is done, eBayResults has presumably been constructed, and we will now make the comparisons
+
+//         //MatchCenter update checking goes here:
+//         console.log('the eBayResults length is:' + eBayResults.length);
+//         console.log('the eBayResults are:' + eBayResults);
+//         // Only check for new matches if user has matchCenterItems  
+//         if (eBayResults.length > 0) {
+//           console.log('yes the ebay results be longer than 0');
+
+//           //Query users MComparisonArray with the following criteria: 
+//           var mComparisonArray = Parse.Object.extend("MComparisonArray");
+//           var mComparisonQuery = new Parse.Query(mComparisonArray);
+
+//           var fakeArray = [{},{},{},{}];
+
+//           mComparisonQuery.contains('Name', 'MatchCenter');
+//           mComparisonQuery.contains("MCItems", fakeArray);
+
+//           console.log('setup query criteria, about to run it');
+//           return mComparisonQuery.find().then(function(results) {
+//             console.log('eh2:' + results);
+//             // No new items                      
+//             if (results.length > 0) {
+//               console.log("No new items, you're good to go!");
+//             }
+//             // New items found
+//             else if (results.length == 0) {
+
+//               console.log('no matching mComparisonArray, lets push some new shit');
+//               //replace MCItems array with contents of eBayResults
+              
+//               //Parse.Object.destroyAll(mComparisonArray);
+
+//               var newMComparisonArray = new mComparisonArray();
+//               newMComparisonArray.set('Name', 'MatchCenter');
+//               newMComparisonArray.set('MCItems', eBayResults);
+//               //newMComparisonArray.set("parent", User);
+
+//               console.log('yala han save il hagat');
+//               // Save updated MComparisonArray  
+//               newMComparisonArray.save().then({
+//                 success: function() {
+//                   console.log('MComparisonArray successfully created!');
+//                   //status.success('MComparisonArray successfully created!');
+//                 },
+//                 error: function() {
+//                   console.log('MComparisonArray error!!!');
+//                   //status.error('Request failed');
+//                 }
+//               });
+//                   //send push notification
+
+//             }
+//               // status.success('MatchCenter Comparison Success!');
+//           },
+//             function(err) {
+//                console.log('nah no results for you bro:' + err); 
+//             });
+//         }
+//       });
+//     });
+//   }).then(function() {
+//     // Set the job's success status
+//     status.success("background job worked brah!");
+//   }, function(error) {
+//     // Set the job's error status
+//     status.error('DAMN IT MAN');
+//   });
+// });
+
+
+
+
+
+
+
+
+
+
+
 Parse.Cloud.job("MatchCenterBackground", function(request, status) {
-    //defines which parse class to iterate through
-    var matchCenterItem = Parse.Object.extend("matchCenterItem");
+    // ... other code to setup usersQuery ...
+  var usersQuery = new Parse.Query(Parse.User);
+
+    usersQuery.each(function (user) {
+        return processUser(user).then(function(eBayResults){
+      return matchCenterComparison(eBayResults);
+    });
+    }).then(function() {
+          status.success("background job worked brah!");
+    }, function(error) {
+      status.error(error);
+    });
+});
+// process user, return promise
+function processUser(user) {
+    // ... code to setup per-user query ...
+  var matchCenterItem = Parse.Object.extend("matchCenterItem");
     var query = new Parse.Query(matchCenterItem);
-    query.equalTo('parent', Parse.User.current())
+  
+    // easy way to share multiple arrays
+    var shared = {
+        promises: [],
+        searchTerms: [],
+    };
 
-    // promise and searchterm arrays to be filled
-    var promises = [];
-    var searchTerms = [];
+    return query.find().then(function(results) {
+        // process results, populate shared data (promises and searchTerms)
+    console.log('matchCenterItem query results:' + results);
+    if (results.length > 0) {
+        console.log('we have entered the matchcenteritem query');
 
-    //setting the limit of items at 10 for now
-    query.limit(10);
+        for (i = 0; i < results.length; i++) {
 
-    query.find().then(function(results) {
-      if (results.length > 0){
-        for (i=0; i<results.length; i++) {
-
+          console.log('we have also entered the loop inside the matchCenterItem query');
           // later in your loop where you populate promises:
           var searchTerm = results[i].get('searchTerm');
           // add it to the array just like you add the promises:
-          searchTerms.push(searchTerm);
+          shared.searchTerms.push(searchTerm);
 
           url = 'http://svcs.ebay.com/services/search/FindingService/v1';
           //push function containing criteria for every matchCenterItem into promises array
-          promises.push((function() {
-            
-            if (results[i].get('itemLocation') == 'US')
+          shared.promises.push((function() {
+
+            if (results[i].get('itemLocation') == 'US') 
             {
               console.log('americuh!');
               var httpRequestPromise = Parse.Cloud.httpRequest({
                 url: url,
-                params: { 
-                  'OPERATION-NAME' : 'findItemsByKeywords',
-                  'SERVICE-VERSION' : '1.12.0',
-                  'SECURITY-APPNAME' : 'AndrewGh-2d30-4c8d-a9cd-248083bc4d0f',
-                  'GLOBAL-ID' : 'EBAY-US',
-                  'RESPONSE-DATA-FORMAT' : 'JSON',
-                  'REST-PAYLOAD&sortOrder' : 'BestMatch',
-                  'paginationInput.entriesPerPage' : '3',
-                  'outputSelector=AspectHistogram&itemFilter(0).name=Condition&itemFilter(0).value(0)' : 'New',
-                  'itemFilter(0).value(1)' : results[i].get('itemCondition'),
-                  'itemFilter(1).name=MaxPrice&itemFilter(1).value' : results[i].get('maxPrice'),
-                  'itemFilter(1).paramName=Currency&itemFilter(1).paramValue' : 'USD',
-                  'itemFilter(2).name=MinPrice&itemFilter(2).value' : results[i].get('minPrice'),
-                  'itemFilter(2).paramName=Currency&itemFilter(2).paramValue' : 'USD',
-                  'itemFilter(3).name=LocatedIn&itemFilter(3).value' : 'US',
-                  'itemFilter(4).name=ListingType&itemFilter(4).value' : 'FixedPrice',
-                  'keywords' : results[i].get('searchTerm'),
+                params: {
+                  'OPERATION-NAME': 'findItemsByKeywords',
+                  'SERVICE-VERSION': '1.12.0',
+                  'SECURITY-APPNAME': 'AndrewGh-2d30-4c8d-a9cd-248083bc4d0f',
+                  'GLOBAL-ID': 'EBAY-US',
+                  'RESPONSE-DATA-FORMAT': 'JSON',
+                  'REST-PAYLOAD&sortOrder': 'BestMatch',
+                  'paginationInput.entriesPerPage': '3',
+                  'outputSelector=AspectHistogram&itemFilter(0).name=Condition&itemFilter(0).value(0)': 'New',
+                  'itemFilter(0).value(1)': results[i].get('itemCondition'),
+                  'itemFilter(1).name=MaxPrice&itemFilter(1).value': results[i].get('maxPrice'),
+                  'itemFilter(1).paramName=Currency&itemFilter(1).paramValue': 'USD',
+                  'itemFilter(2).name=MinPrice&itemFilter(2).value': results[i].get('minPrice'),
+                  'itemFilter(2).paramName=Currency&itemFilter(2).paramValue': 'USD',
+                  'itemFilter(3).name=LocatedIn&itemFilter(3).value': 'US',
+                  'itemFilter(4).name=ListingType&itemFilter(4).value': 'FixedPrice',
+                  'keywords': results[i].get('searchTerm'),
                 }
               });
-            }
-
-            else if (results[i].get('itemLocation') == 'WorldWide')
+            } 
+            
+            else if (results[i].get('itemLocation') == 'WorldWide') 
             {
               console.log('Mr worlwide!');
               var httpRequestPromise = Parse.Cloud.httpRequest({
                 url: url,
-                params: { 
-                  'OPERATION-NAME' : 'findItemsByKeywords',
-                  'SERVICE-VERSION' : '1.12.0',
-                  'SECURITY-APPNAME' : 'AndrewGh-2d30-4c8d-a9cd-248083bc4d0f',
-                  'GLOBAL-ID' : 'EBAY-US',
-                  'RESPONSE-DATA-FORMAT' : 'JSON',
-                  'REST-PAYLOAD&sortOrder' : 'BestMatch',
-                  'paginationInput.entriesPerPage' : '3',
-                  'outputSelector=AspectHistogram&itemFilter(0).name=Condition&itemFilter(0).value(0)' : 'New',
-                  'itemFilter(0).value(1)' : results[i].get('itemCondition'),
-                  'itemFilter(1).name=MaxPrice&itemFilter(1).value' : results[i].get('maxPrice'),
-                  'itemFilter(1).paramName=Currency&itemFilter(1).paramValue' : 'USD',
-                  'itemFilter(2).name=MinPrice&itemFilter(2).value' : results[i].get('minPrice'),
-                  'itemFilter(2).paramName=Currency&itemFilter(2).paramValue' : 'USD',
+                params: {
+                  'OPERATION-NAME': 'findItemsByKeywords',
+                  'SERVICE-VERSION': '1.12.0',
+                  'SECURITY-APPNAME': 'AndrewGh-2d30-4c8d-a9cd-248083bc4d0f',
+                  'GLOBAL-ID': 'EBAY-US',
+                  'RESPONSE-DATA-FORMAT': 'JSON',
+                  'REST-PAYLOAD&sortOrder': 'BestMatch',
+                  'paginationInput.entriesPerPage': '3',
+                  'outputSelector=AspectHistogram&itemFilter(0).name=Condition&itemFilter(0).value(0)': 'New',
+                  'itemFilter(0).value(1)': results[i].get('itemCondition'),
+                  'itemFilter(1).name=MaxPrice&itemFilter(1).value': results[i].get('maxPrice'),
+                  'itemFilter(1).paramName=Currency&itemFilter(1).paramValue': 'USD',
+                  'itemFilter(2).name=MinPrice&itemFilter(2).value': results[i].get('minPrice'),
+                  'itemFilter(2).paramName=Currency&itemFilter(2).paramValue': 'USD',
                   // 'itemFilter(3).name=LocatedIn&itemFilter(3).value' : 'US',
-                  'itemFilter(3).name=ListingType&itemFilter(3).value' : 'FixedPrice',
-                  'keywords' : results[i].get('searchTerm'),
+                  'itemFilter(3).name=ListingType&itemFilter(3).value': 'FixedPrice',
+                  'keywords': results[i].get('searchTerm'),
                 }
               });
             }
 
-            return httpRequestPromise
+            return httpRequestPromise;
           })());
         }
       }
+    
+        //buildEbayRequestPromises(results, shared);
+    }).then(function() {
+        // process promises, return query promise
+        return Parse.Promise.when(shared.promises).then(function() {
+            // process the results of the promises, returning a query promise
+      console.log('were in the when.then of promise');
 
-      //when finished pushing all the httpRequest functions into promise array, do the following  
-      Parse.Promise.when(promises).then(function(results){
+      var eBayResults = [];
+      for (var i = 0; i < arguments.length; i++) {
+      var httpResponse = arguments[i];
+      // since they're in the same order, this is OK:
+      var searchTerm = shared.searchTerms[i];
+      // pass it as a param:
+      var top3 = buildEbayRequestPromises(httpResponse.text, searchTerm);
+      eBayResults.push(top3);
+      }
 
-        var eBayResults = [];
-
-        for (var i = 0; i < arguments.length; i++) {
-          var httpResponse = arguments[i];
-          // since they're in the same order, this is OK:
-          var searchTerm = searchTerms[i];
-          // pass it as a param:
-          var top3 = collectEbayResults(httpResponse.text, searchTerm)
-          eBayResults.push(top3);
-        };
-
-        function collectEbayResults (eBayResponseText, searchTerm) {
-          var ebayResponse = JSON.parse(eBayResponseText)
-
-          var matchCenterItems = [];
-              
-              //Parses through ebay's response, pushes each individual item and its properties into an array  
-              ebayResponse.findItemsByKeywordsResponse.forEach(function(itemByKeywordsResponse) {
-                  itemByKeywordsResponse.searchResult.forEach(function(result) {
-                    result.item.forEach(function(item) {
-                      matchCenterItems.push(item);
-                    });
-                  });
-              });
-
-              var top3Titles = [];
-              var top3Prices = [];
-              var top3ImgURLS = [];
-              var top3ItemURLS = [];
-
-              //where the title, price, and img url are sent over to the app
-              matchCenterItems.forEach(function(item) {
-                var title = item.title[0];
-                var price = item.sellingStatus[0].convertedCurrentPrice[0].__value__;
-                var imgURL = item.galleryURL[0];
-                var itemURL = item.viewItemURL[0];
-                  
-                top3Titles.push(title);
-                top3Prices.push(price);
-                top3ImgURLS.push(imgURL);
-                top3ItemURLS.push(itemURL);
-              });
-
-
-              var top3 = 
-              {
-                "Top 3": 
-                [
-                    { 
-                      "Title": top3Titles[0], 
-                      "Price": top3Prices[0], 
-                      "Image URL": top3ImgURLS[0],
-                      "Item URL": top3ItemURLS[0]
-                    },
-                  
-                    { 
-                      "Title": top3Titles[1], 
-                      "Price": top3Prices[1], 
-                      "Image URL": top3ImgURLS[1],
-                      "Item URL": top3ItemURLS[1]
-                    },
-                  
-                    { 
-                      "Title": top3Titles[2], 
-                      "Price": top3Prices[2], 
-                      "Image URL": top3ImgURLS[2],
-                      "Item URL": top3ItemURLS[2]
-                    },
-
-                    {
-                       "Search Term": searchTerm
-                    }
-                ]
-              }
-              return top3
-
-
-
-
-
-
-
-
-
-
-
-                if (eBayResults.length > 0)
-                {
-
-                  var mComparisonArray = Parse.Object.extend("MComparisonArray");
-                  var query = new Parse.Query(mComparisonArray);
-
-                  query.contains('Name', 'MatchCenter');
-                  query.contains('MCItems', eBayResults);
-                  query.equalTo('parent', Parse.User.current())
-
-
-                  query.find({
-                    success: function(results) {
-                      
-                      // No new items                      
-                      if (results.length > 0){
-                        console.log("No new items, you're good to go!")
-                      }
-
-                      // New items found
-                      else if (results.length = 0){
-                        //replace MCItems array with contents of eBayResults
-                        return Parse.Object.destroyAll(mComparisonArray);
-
-                        var newMComparisonArray = new mComparisonArray();
-                        newMatchCenterItem.set('Name', 'MatchCenter');
-                        newMatchCenterItem.set('MCItems', eBayResults);
-                        newMatchCenterItem.set("parent", Parse.User.current());
-                        newMatchCenterItem.save({ 
-
-                          success: function (){
-                            console.log ('MComparisonArray successfully created!');
-                            response.success('MComparisonArray successfully created!');
-                          },
-
-                          error: function (){
-                          console.log('MComparisonArray error!!!');
-                          response.error('Request failed');
-                          }
-
-                        });
-
-
-                        //send push notification
-
-
-
-
-
-
-
-
-
-
-                      }
-
-                      response.success('MatchCenter Comparison Success!');
-                    },
-                    error: function(error) {
-                      //Error Callback
-                      console.log("An error has occurred");
-                      console.log(error);
-                    }
-                
-                  });              
-
-
-                }
-
-        status.success
-        (
-          'background job worked brah!'
-        );
-
-      }, function(err) {
-          console.log('error!');
-          status.error('DAMN IT MAN');
-          });
+      return eBayResults;
+      //return matchCenterComparison(eBayResults);
+        });
     });
+}
 
-});
+
+// process matchCenterItem results to build eBay promises
+function buildEbayRequestPromises(eBayResponseText, shared) {
+    // ... code that pushes items into shared.promises and shared.searchTerms ...
+  
+  var ebayResponse = JSON.parse(eBayResponseText);
+  //console.log('lets check eBayResults here:' + eBayResults);
+  var matchCenterItems = [];
+
+  //Parses through ebay's response, pushes each individual item and its properties into an array  
+  ebayResponse.findItemsByKeywordsResponse.forEach(function(itemByKeywordsResponse) {
+    itemByKeywordsResponse.searchResult.forEach(function(result) {
+      result.item.forEach(function(item) {
+        matchCenterItems.push(item);
+      });
+    });
+  });
+
+  var top3Titles = [];
+  var top3Prices = [];
+  var top3ImgURLS = [];
+  var top3ItemURLS = [];
+
+  //where the title, price, and img url are sent over to the app
+  matchCenterItems.forEach(function(item) {
+    var title = item.title[0];
+    var price = item.sellingStatus[0].convertedCurrentPrice[0].__value__;
+    var imgURL = item.galleryURL[0];
+    var itemURL = item.viewItemURL[0];
+
+    top3Titles.push(title);
+    top3Prices.push(price);
+    top3ImgURLS.push(imgURL);
+    top3ItemURLS.push(itemURL);
+  });
+
+  console.log('about to define top3 value');
+  //console.log('btw ebay results is:' + eBayResults);
+
+  var top3 = {
+    "Top 3": [
+      {
+      "Title": top3Titles[0],
+      "Price": top3Prices[0],
+      "Image URL": top3ImgURLS[0],
+      "Item URL": top3ItemURLS[0]
+      },
+
+      {
+        "Title": top3Titles[1],
+        "Price": top3Prices[1],
+        "Image URL": top3ImgURLS[1],
+        "Item URL": top3ItemURLS[1]
+      },
+
+      {
+        "Title": top3Titles[2],
+        "Price": top3Prices[2],
+        "Image URL": top3ImgURLS[2],
+        "Item URL": top3ItemURLS[2]
+      },
+
+      // {
+      //   "Search Term": searchTerm
+      // }
+    ]
+  };
+           //return top3;
+}
+    
+    
+// compare eBayResults to the users MCItems Array in their MComparisonArray object
+function matchCenterComparison(eBayResults) {   
+    
+  console.log('izayak habibi, eBayResults are the following:' + eBayResults);
+    
+  if (eBayResults.length > 0) {
+      console.log('amil eh');
+    
+    var matchCenterComparisonPromise = function(){
+    console.log('yes the ebay results be longer than 0');
+
+    //Query users MComparisonArray with these criteria  
+    var mComparisonArray = Parse.Object.extend("MComparisonArray");
+    var mComparisonQuery = new Parse.Query(mComparisonArray);
+    mComparisonQuery.contains('Name', 'MatchCenter');
+    //mComparisonQuery.contains("MCItems", eBayResults);
+
+    console.log('setup query criteria, about to run it');
+
+      mComparisonQuery.find({
+        success: function(results) {
+        console.log('MatchCenter comparison results :' + results);
+        // No new items                      
+        if (results.length > 0) {
+          console.log("No new items, you're good to go!");
+        }
+        // New items found
+        else if (results.length === 0) {
+          console.log('no matching mComparisonArray, lets push some new shit');
+          //replace MCItems array with contents of eBayResults
+          Parse.Object.destroyAll(mComparisonArray);
+
+          var newMComparisonArray = new mComparisonArray();
+          newMComparisonArray.set('Name', 'MatchCenter');
+          newMComparisonArray.set('MCItems', eBayResults);
+          //newMComparisonArray.set("parent", Parse.User());
+
+          console.log('yala han save il hagat');
+          // Save updated MComparisonArray  
+          newMComparisonArray.save().then({
+          success: function() {
+            console.log('MComparisonArray successfully created!');
+            //status.success('MComparisonArray successfully created!');
+          },
+          error: function() {
+            console.log('nah no MComparisonArray saving for you bro:' + error);
+            //status.error('Request failed');
+          }
+          });
+          //send push notification
+
+        }
+        console.log('MatchCenter Comparison Success!');
+        },
+
+        error: function(error) {
+        console.log('nah no results for you bro:' + error);
+        }
+      });
+    };
+    //).then(function() {
+      console.log('about to run this damn matchCenterComparisonPromise');
+      matchCenterComparisonPromise();
+   //});   
+  }       
+} 
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

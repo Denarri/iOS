@@ -5,34 +5,34 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>A7CE0F9B-10EE-4B88-BE40-CECDB434B564</string>
+	<string>66B71AB4-678B-45C6-BD43-85C10917A900</string>
 	<key>IDESourceControlProjectName</key>
 	<string>Parse+Storyboard</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>9A74E41B-CC06-4A8F-A26E-8DB68EDEDAE5</key>
-		<string>ssh://github.com/Denarri/iOS.git</string>
+		<key>DE18E869-3A37-4ABC-8789-1E1B2B7056AB</key>
+		<string>ssh://github.com/ghobs91/Denarri-iOS.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>Parse+Storyboard.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>9A74E41B-CC06-4A8F-A26E-8DB68EDEDAE5</key>
+		<key>DE18E869-3A37-4ABC-8789-1E1B2B7056AB</key>
 		<string>../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>ssh://github.com/Denarri/iOS.git</string>
+	<string>ssh://github.com/ghobs91/Denarri-iOS.git</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>110</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>9A74E41B-CC06-4A8F-A26E-8DB68EDEDAE5</string>
+	<string>DE18E869-3A37-4ABC-8789-1E1B2B7056AB</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>9A74E41B-CC06-4A8F-A26E-8DB68EDEDAE5</string>
+			<string>DE18E869-3A37-4ABC-8789-1E1B2B7056AB</string>
 			<key>IDESourceControlWCCName</key>
 			<string>Parse---Storyboard</string>
 		</dict>
