@@ -949,55 +949,6 @@ function matchCenterComparison(eBayResults) {
       // do some work, possibly async
       console.log('yes the ebay results be longer than 0');
 
-/*      //Query users MComparisonArray with these criteria  
-      var mComparisonArray = Parse.Object.extend("MComparisonArray");
-      var mComparisonQuery = new Parse.Query(mComparisonArray);
-      mComparisonQuery.contains('Name', 'MatchCenter');
-      //mComparisonQuery.contains("MCItems", eBayResults);
-
-      console.log('setup query criteria, about to run it');
-
-      mComparisonQuery.find({
-      success: function(results) {
-        console.log('MatchCenter comparison results :' + results);
-        //No new items                      
-        if (results.length > 0) {
-        console.log("No new items, you're good to go!");
-        }
-        //New items found
-        else if (results.length === 0) {
-        console.log('no matching mComparisonArray, lets push some new shit');
-        //replace MCItems array with contents of eBayResults
-        Parse.Object.destroyAll(mComparisonArray);
-
-        var newMComparisonArray = new mComparisonArray();
-        newMComparisonArray.set('Name', 'MatchCenter');
-        newMComparisonArray.set('MCItems', eBayResults);
-        //newMComparisonArray.set("parent", Parse.User());
-
-        console.log('yala han save il hagat');
-        // Save updated MComparisonArray  
-        newMComparisonArray.save().then({
-        success: function() {
-          console.log('MComparisonArray successfully created!');
-          //status.success('MComparisonArray successfully created!');
-        },
-        error: function() {
-          console.log('nah no MComparisonArray saving for you bro:' + error);
-          //status.error('Request failed');
-        }
-        });
-        //send push notification
-
-        }
-        console.log('MatchCenter Comparison Success!');
-      },
-
-      error: function(error) {
-        console.log('nah no results for you bro:' + error);
-      }
-      }); */
-    
       var mComparisonArray = Parse.Object.extend("MComparisonArray");
       var mComparisonQuery = new Parse.Query(mComparisonArray);
       mComparisonQuery.contains('Name', 'MatchCenterKAKA');
@@ -1015,37 +966,40 @@ function matchCenterComparison(eBayResults) {
     
         //New items found
         else if (results.length === 0) {
-        
-        
-          console.log('no matching mComparisonArray, lets push some new shit');
+            console.log('no matching mComparisonArray, lets push some new shit');
+    
             //replace MCItems array with contents of eBayResults
-            
-            //Parse.Object.destroyAll(mComparisonArray);
+          var mComparisonEditQuery = new Parse.Query(mComparisonArray);
+          mComparisonEditQuery.contains('Name', 'MatchCenter');
 
+          console.log('setup query criteria again, about to run it');
+          mComparisonEditQuery.find().then(function(results) {
+            return Parse.Object.destroyAll(results);
+          }).then(function() {
+            
             var newMComparisonArray = new mComparisonArray();
             newMComparisonArray.set('Name', 'MatchCenter');
             newMComparisonArray.set('MCItems', eBayResults);
             //newMComparisonArray.set("parent", Parse.User());
 
-            console.log('yala han save il hagat');
+            console.log('yala han save il hagat taaaaani');
             // Save updated MComparisonArray  
             newMComparisonArray.save().then({
-            success: function() {
-              console.log('MComparisonArray successfully created!');
-              //status.success('MComparisonArray successfully created!');
-            },
-            error: function() {
-              console.log('nah no MComparisonArray saving for you bro:' + error);
-              //status.error('Request failed');
-            }
+              success: function() {
+                console.log('MComparisonArray successfully created!');
+              },
+              error: function() {
+                console.log('nah no MComparisonArray saving for you bro:' + error);
+                //status.error('Request failed');
+              }
             });
-            //send push notification
+              //send push notification  
+    
+            });
+    
+            
         
-        
-        
-        
-        }
-        
+        }  
       });
     
       
