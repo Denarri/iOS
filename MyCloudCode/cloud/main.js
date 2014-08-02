@@ -753,15 +753,11 @@ Parse.Cloud.job("MatchCenterBackground", function(request, status) {
     // ... other code to setup usersQuery ...
   var usersQuery = new Parse.Query(Parse.User);
 
-    usersQuery.each(function (user) {
-        return processUser(user).then(function(eBayResults){
+  return usersQuery.each(function (user) {
+    return processUser(user).then(function(eBayResults){
       return matchCenterComparison(eBayResults);
     });
-    }).then(function() {
-          status.success("background job worked brah!");
-    }, function(error) {
-      status.error(error);
-    });
+  }); 
 });
 // process user, return promise
 function processUser(user) {
@@ -864,6 +860,7 @@ function processUser(user) {
       var searchTerm = shared.searchTerms[i];
       // pass it as a param:
       var top3 = buildEbayRequestPromises(httpResponse.text, searchTerm);
+        
       eBayResults.push(top3);
       }
 
@@ -872,7 +869,6 @@ function processUser(user) {
         });
     });
 }
-
 
 // process matchCenterItem results to build eBay promises
 function buildEbayRequestPromises(eBayResponseText, shared) {
@@ -910,7 +906,6 @@ function buildEbayRequestPromises(eBayResponseText, shared) {
   });
 
   console.log('about to define top3 value');
-  //console.log('btw ebay results is:' + eBayResults);
 
   var top3 = {
     "Top 3": [
@@ -943,72 +938,123 @@ function buildEbayRequestPromises(eBayResponseText, shared) {
            //return top3;
 }
     
-    
 // compare eBayResults to the users MCItems Array in their MComparisonArray object
 function matchCenterComparison(eBayResults) {   
     
-  console.log('izayak habibi, eBayResults are the following:' + eBayResults);
+    console.log('izayak habibi, eBayResults are the following:' + eBayResults);
     
-  if (eBayResults.length > 0) {
-      console.log('amil eh');
-    
-    var matchCenterComparisonPromise = function(){
-    console.log('yes the ebay results be longer than 0');
+    var matchCenterComparisonPromise = new Parse.Promise();
 
-    //Query users MComparisonArray with these criteria  
-    var mComparisonArray = Parse.Object.extend("MComparisonArray");
-    var mComparisonQuery = new Parse.Query(mComparisonArray);
-    mComparisonQuery.contains('Name', 'MatchCenter');
-    //mComparisonQuery.contains("MCItems", eBayResults);
+    if (eBayResults.length > 0) {
+      // do some work, possibly async
+      console.log('yes the ebay results be longer than 0');
 
-    console.log('setup query criteria, about to run it');
+/*      //Query users MComparisonArray with these criteria  
+      var mComparisonArray = Parse.Object.extend("MComparisonArray");
+      var mComparisonQuery = new Parse.Query(mComparisonArray);
+      mComparisonQuery.contains('Name', 'MatchCenter');
+      //mComparisonQuery.contains("MCItems", eBayResults);
+
+      console.log('setup query criteria, about to run it');
 
       mComparisonQuery.find({
-        success: function(results) {
+      success: function(results) {
         console.log('MatchCenter comparison results :' + results);
-        // No new items                      
+        //No new items                      
         if (results.length > 0) {
-          console.log("No new items, you're good to go!");
+        console.log("No new items, you're good to go!");
         }
-        // New items found
+        //New items found
         else if (results.length === 0) {
-          console.log('no matching mComparisonArray, lets push some new shit');
-          //replace MCItems array with contents of eBayResults
-          Parse.Object.destroyAll(mComparisonArray);
+        console.log('no matching mComparisonArray, lets push some new shit');
+        //replace MCItems array with contents of eBayResults
+        Parse.Object.destroyAll(mComparisonArray);
 
-          var newMComparisonArray = new mComparisonArray();
-          newMComparisonArray.set('Name', 'MatchCenter');
-          newMComparisonArray.set('MCItems', eBayResults);
-          //newMComparisonArray.set("parent", Parse.User());
+        var newMComparisonArray = new mComparisonArray();
+        newMComparisonArray.set('Name', 'MatchCenter');
+        newMComparisonArray.set('MCItems', eBayResults);
+        //newMComparisonArray.set("parent", Parse.User());
 
-          console.log('yala han save il hagat');
-          // Save updated MComparisonArray  
-          newMComparisonArray.save().then({
-          success: function() {
-            console.log('MComparisonArray successfully created!');
-            //status.success('MComparisonArray successfully created!');
-          },
-          error: function() {
-            console.log('nah no MComparisonArray saving for you bro:' + error);
-            //status.error('Request failed');
-          }
-          });
-          //send push notification
+        console.log('yala han save il hagat');
+        // Save updated MComparisonArray  
+        newMComparisonArray.save().then({
+        success: function() {
+          console.log('MComparisonArray successfully created!');
+          //status.success('MComparisonArray successfully created!');
+        },
+        error: function() {
+          console.log('nah no MComparisonArray saving for you bro:' + error);
+          //status.error('Request failed');
+        }
+        });
+        //send push notification
 
         }
         console.log('MatchCenter Comparison Success!');
-        },
+      },
 
-        error: function(error) {
+      error: function(error) {
         console.log('nah no results for you bro:' + error);
+      }
+      }); */
+    
+      var mComparisonArray = Parse.Object.extend("MComparisonArray");
+      var mComparisonQuery = new Parse.Query(mComparisonArray);
+      mComparisonQuery.contains('Name', 'MatchCenterKAKA');
+      //mComparisonQuery.contains("MCItems", eBayResults);
+
+      console.log('setup query criteria, about to run it');
+      mComparisonQuery.find().then(function(results) {
+
+        console.log('MatchCenter comparison results :' + results);
+    
+        //No new items                      
+        if (results.length > 0) {
+        console.log("No new items, you're good to go!");
         }
+    
+        //New items found
+        else if (results.length === 0) {
+        
+        
+          console.log('no matching mComparisonArray, lets push some new shit');
+            //replace MCItems array with contents of eBayResults
+            
+            //Parse.Object.destroyAll(mComparisonArray);
+
+            var newMComparisonArray = new mComparisonArray();
+            newMComparisonArray.set('Name', 'MatchCenter');
+            newMComparisonArray.set('MCItems', eBayResults);
+            //newMComparisonArray.set("parent", Parse.User());
+
+            console.log('yala han save il hagat');
+            // Save updated MComparisonArray  
+            newMComparisonArray.save().then({
+            success: function() {
+              console.log('MComparisonArray successfully created!');
+              //status.success('MComparisonArray successfully created!');
+            },
+            error: function() {
+              console.log('nah no MComparisonArray saving for you bro:' + error);
+              //status.error('Request failed');
+            }
+            });
+            //send push notification
+        
+        
+        
+        
+        }
+        
       });
-    };
-    //).then(function() {
-      console.log('about to run this damn matchCenterComparisonPromise');
-      matchCenterComparisonPromise();
-   //});   
-  }       
+    
+      
+    matchCenterComparisonPromise.resolve(console.log('MatchCenterComparison Suceeded sen!'));
+  } else {
+    matchCenterComparisonPromise.reject({ message: 'No work done, expression failed' });
+  }
+  return matchCenterComparisonPromise;  
+    
 } 
 
 
