@@ -496,19 +496,22 @@ Parse.Cloud.define("MatchCenter", function(request, response) {
 
 Parse.Cloud.job("MatchCenterBackground", function(request, status) {
     // ... other code to setup usersQuery ...
+  //Parse.Cloud.useMasterKey();
   var usersQuery = new Parse.Query(Parse.User);
 
   return usersQuery.each(function (user) {
     return processUser(user).then(function(eBayResults){
-      return matchCenterComparison(eBayResults);
+      return matchCenterComparison(user, eBayResults);
     });
   }); 
 });
+
 // process user, return promise
 function processUser(user) {
     // ... code to setup per-user query ...
-  var matchCenterItem = Parse.Object.extend("matchCenterItem");
+    var matchCenterItem = Parse.Object.extend("matchCenterItem");
     var query = new Parse.Query(matchCenterItem);
+    query.equalTo('parent', user);
   
     // easy way to share multiple arrays
     var shared = {
@@ -686,7 +689,7 @@ function buildEbayRequestPromises(eBayResponseText, shared) {
 }
     
 // compare eBayResults to the users MCItems Array in their MComparisonArray object
-function matchCenterComparison(eBayResults) {   
+function matchCenterComparison(parentUser, eBayResults) {   
     
     console.log('izayak habibi, eBayResults are the following:' + eBayResults);
     
@@ -699,7 +702,8 @@ function matchCenterComparison(eBayResults) {
       var mComparisonArray = Parse.Object.extend("MComparisonArray");
       var mComparisonQuery = new Parse.Query(mComparisonArray);
       
-      mComparisonQuery.contains('Name', 'MatchCenter');
+      mComparisonQuery.equalTo('parent', parentUser);
+      mComparisonQuery.contains('Name', 'MatchCenterKAKA');
       mComparisonQuery.containedIn('MCItems', eBayResults);
 
       console.log('setup query criteria, about to run it');
@@ -727,7 +731,7 @@ function matchCenterComparison(eBayResults) {
               var newMComparisonArray = new mComparisonArray();
               newMComparisonArray.set('Name', 'MatchCenter');
               newMComparisonArray.set('MCItems', eBayResults);
-              //newMComparisonArray.set("parent", Parse.User());
+              newMComparisonArray.set('parent', parentUser);
 
               console.log('yala han save il hagat taaaaani');
               // Save updated MComparisonArray  
