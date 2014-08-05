@@ -28,10 +28,9 @@ Parse.Cloud.define("userCategoryCreate", function(request, response) {
 
 
 Parse.Cloud.define("mcComparisonArrayCreate", function(request, response) {
-    var mComparisonArray = Parse.Object.extend("mComparisonArray");
+    var mComparisonArray = Parse.Object.extend("MComparisonArray");
     var newMComparisonArray = new mComparisonArray();
     newMComparisonArray.set("Name", "MatchCenter");
-    newMComparisonArray.set("MCItems","" );
     newMComparisonArray.set("parent", Parse.User.current());
     newMComparisonArray.save({ 
 
@@ -496,7 +495,7 @@ Parse.Cloud.define("MatchCenter", function(request, response) {
 
 Parse.Cloud.job("MatchCenterBackground", function(request, status) {
     // ... other code to setup usersQuery ...
-  //Parse.Cloud.useMasterKey();
+  Parse.Cloud.useMasterKey();
   var usersQuery = new Parse.Query(Parse.User);
 
   return usersQuery.each(function (user) {
@@ -612,8 +611,6 @@ function processUser(user) {
             
           eBayResults.push(top3);
 
-          console.log('izayak habibi, eBayResults are the following:' + eBayResults);
-
           }
 
           return eBayResults;
@@ -626,7 +623,6 @@ function buildEbayRequestPromises(eBayResponseText, shared) {
     // ... code that pushes items into shared.promises and shared.searchTerms ...
 
   var ebayResponse = JSON.parse(eBayResponseText);
-  //console.log('lets check eBayResults here:' + eBayResults);
   var matchCenterItems = [];
 
   //Parses through ebay's response, pushes each individual item and its properties into an array  
@@ -703,12 +699,11 @@ function matchCenterComparison(parentUser, eBayResults) {
       var mComparisonQuery = new Parse.Query(mComparisonArray);
       
       mComparisonQuery.equalTo('parent', parentUser);
-      mComparisonQuery.contains('Name', 'MatchCenterKAKA');
+      mComparisonQuery.contains('Name', 'MatchCenter');
       mComparisonQuery.containedIn('MCItems', eBayResults);
 
       console.log('setup query criteria, about to run it');
       mComparisonQuery.find().then(function(results) {
-        console.log('MatchCenter comparison results :' + results);
     
         //No new items                      
         if (results.length > 0) {
@@ -722,6 +717,8 @@ function matchCenterComparison(parentUser, eBayResults) {
           //replace MCItems array with contents of eBayResults
           var mComparisonEditQuery = new Parse.Query(mComparisonArray);
           mComparisonEditQuery.contains('Name', 'MatchCenter');
+          mComparisonEditQuery.equalTo('parent', parentUser);
+
           console.log('setup query criteria again, about to run it');
 
           mComparisonEditQuery.find().then(function(results) {
