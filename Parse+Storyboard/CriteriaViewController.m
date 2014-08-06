@@ -48,11 +48,20 @@
     
     // Submit button
     UIButton *submitButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    submitButton.frame = CGRectMake(100, 100, 100, 100);
+    submitButton.frame = CGRectMake(110, 340, 100, 100);
     [submitButton setTitle:@"Submit" forState:UIControlStateNormal];
     [submitButton addTarget:self action:@selector(submitButton:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:submitButton];
     
+}
+
+
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    for (UIView * txt in self.view.subviews){
+        if ([txt isKindOfClass:[UITextField class]] && [txt isFirstResponder]) {
+            [txt resignFirstResponder];
+        }
+    }
 }
 
 - (void)conditionValueChanged:(UISegmentedControl *)conditionSegmentedControl {
