@@ -64,8 +64,9 @@
                                     }
                                 }];
     
-    
-    [self performSegueWithIdentifier:@"UserCategoryChooserToMatchCenterSegue" sender:nil];
+    [self.tabBarController setSelectedIndex:1];
+    //[self performSegueWithIdentifier:@"UserCategoryChooserToMatchCenterSegue" sender:nil];
+
     
 }
 
@@ -94,7 +95,8 @@
                                 }];
     
     
-    [self performSegueWithIdentifier:@"UserCategoryChooserToMatchCenterSegue" sender:nil];
+    [self.tabBarController setSelectedIndex:1];
+    //[self performSegueWithIdentifier:@"UserCategoryChooserToMatchCenterSegue" sender:nil];
     
 }
 

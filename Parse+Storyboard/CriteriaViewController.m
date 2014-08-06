@@ -116,8 +116,26 @@
          
                                              if (!error) {
                                                  NSLog(@"Criteria successfully saved.");
+                                                 
+                                                 [PFCloud callFunctionInBackground:@"addToMatchCenter"
+                                                                    withParameters:@{
+                                                                                     @"searchTerm": self.itemSearch,
+                                                                                     @"categoryId": self.chosenCategory,
+                                                                                     @"minPrice": self.minPrice.text,
+                                                                                     @"maxPrice": self.maxPrice.text,
+                                                                                     @"itemCondition": self.itemCondition,
+                                                                                     @"itemLocation": self.itemLocation,
+                                                                                     }
+                                                                             block:^(NSString *result, NSError *error) {
+                                                                                 
+                                                                                 if (!error) {
+                                                                                     NSLog(@"'%@'", result);
+                                                                                 }
+                                                                             }];
+                                                 
+                                                     [self.tabBarController setSelectedIndex:1];
     
-                                                     [self performSegueWithIdentifier:@"SearchCategoryChooserToMatchCenterSegue" sender:self];
+                                                     //[self performSegueWithIdentifier:@"SearchCategoryChooserToMatchCenterSegue" sender:self];
 
                                              }
                                          }];
@@ -129,21 +147,21 @@
     
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     
-    [PFCloud callFunctionInBackground:@"addToMatchCenter"
-                       withParameters:@{
-                                        @"searchTerm": self.itemSearch,
-                                        @"categoryId": self.chosenCategory,
-                                        @"minPrice": self.minPrice.text,
-                                        @"maxPrice": self.maxPrice.text,
-                                        @"itemCondition": self.itemCondition,
-                                        @"itemLocation": self.itemLocation,
-                                        }
-                                block:^(NSString *result, NSError *error) {
-                                    
-                                    if (!error) {
-                                        NSLog(@"'%@'", result);
-                                    }
-                                }];
+//    [PFCloud callFunctionInBackground:@"addToMatchCenter"
+//                       withParameters:@{
+//                                        @"searchTerm": self.itemSearch,
+//                                        @"categoryId": self.chosenCategory,
+//                                        @"minPrice": self.minPrice.text,
+//                                        @"maxPrice": self.maxPrice.text,
+//                                        @"itemCondition": self.itemCondition,
+//                                        @"itemLocation": self.itemLocation,
+//                                        }
+//                                block:^(NSString *result, NSError *error) {
+//                                    
+//                                    if (!error) {
+//                                        NSLog(@"'%@'", result);
+//                                    }
+//                                }];
 
 }
 
