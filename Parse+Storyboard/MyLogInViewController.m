@@ -6,6 +6,7 @@
 //  Copyright (c) 2014 Juan Figuera. All rights reserved.
 //
 
+
 #import "MyLogInViewController.h"
 #import <QuartzCore/QuartzCore.h>
 
@@ -28,9 +29,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-//    [self.logInView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"MainBG.jpg"]]];
-    self.view.backgroundColor = [UIColor colorWithPatternImage:
-                                 [UIImage imageNamed:@"MainBG.jpg"]];
+    
+    NSLog(@"MA NIGAAAAAAAA");
+    
+    [self.logInView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"MainBG.jpg"]]];
+    [self.logInView setLogo:[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"logo.png"]]];
+    
 }
 
 - (void)didReceiveMemoryWarning

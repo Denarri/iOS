@@ -740,8 +740,26 @@ function matchCenterComparison(parentUser, eBayResults) {
                   console.log('nah no MComparisonArray saving for you bro:' + error);
                 }
               });
+
                 //send push notification  
-    
+                var pushQuery = new Parse.Query(Parse.Installation);
+                pushQuery.equalTo('deviceType', 'ios');
+
+                Parse.Push.send({
+                  where: pushQuery, // Set our Installation query
+                  data: {
+                    alert: "New MatchCenter Item!"
+                  }
+                }, {
+                success: function() {
+                  // Push was successful
+                },
+                error: function(error) {
+                  throw "Got an error " + error.code + " : " + error.message;
+                }
+              });
+
+              
           });
         }  
       }); 

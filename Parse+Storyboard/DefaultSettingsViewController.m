@@ -12,6 +12,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    NSLog(@"MA NIGAAAAAAAA");
+    
+//    [self.loginView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"MainBG.jpg"]]];
+//    [self.logInView setLogo:[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"logo.png"]]];
+    
 	// Do any additional setup after loading the view.
 }
 
