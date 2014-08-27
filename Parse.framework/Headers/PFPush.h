@@ -51,6 +51,7 @@
  skip, limit, or order.
  @param query The installation query to set for this push.
  */
+
 - (void)setQuery:(PFQuery *)query;
 
 /*!

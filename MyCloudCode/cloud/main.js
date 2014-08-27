@@ -639,7 +639,7 @@ function buildEbayRequestPromises(eBayResponseText, shared) {
   var top3ImgURLS = [];
   var top3ItemURLS = [];
 
-  //where the title, price, and img url are sent over to the app
+  //where the title, price, and img url are set
   matchCenterItems.forEach(function(item) {
     var title = item.title[0];
     var price = item.sellingStatus[0].convertedCurrentPrice[0].__value__;
@@ -653,7 +653,7 @@ function buildEbayRequestPromises(eBayResponseText, shared) {
   });
 
   console.log('about to define top3 value');
-
+  //Top 3 item info for every MatchCenterItem
   var top3 = 
     {
     "Top 3": 
@@ -691,6 +691,7 @@ function matchCenterComparison(parentUser, eBayResults) {
     
     var matchCenterComparisonPromise = new Parse.Promise();
 
+    // if the user has MatchCenter items, do this:
     if (eBayResults.length > 0) {
       // do some work, possibly async
       console.log('yes the ebay results be longer than 0');
@@ -707,12 +708,14 @@ function matchCenterComparison(parentUser, eBayResults) {
     
         //No new items                      
         if (results.length > 0) {
-        console.log("No new items, you're good to go!");
+          console.log("No new items, you're good to go!");
+          //Remove user from the "send push notification" channel?
+          //
         }
     
         //New items found
         else if (results.length === 0) {
-            console.log('no matching mComparisonArray, lets push some new shit');
+          console.log('no matching mComparisonArray, lets push some new shit');
     
           //replace MCItems array with contents of eBayResults
           var mComparisonEditQuery = new Parse.Query(mComparisonArray);
@@ -722,15 +725,18 @@ function matchCenterComparison(parentUser, eBayResults) {
           console.log('setup query criteria again, about to run it');
 
           mComparisonEditQuery.find().then(function(results) {
+            //clear old MComparisonArray
             return Parse.Object.destroyAll(results);
           }).then(function() {
-            
+
+              //Create new MComparisonArray with updated info
               var newMComparisonArray = new mComparisonArray();
               newMComparisonArray.set('Name', 'MatchCenter');
               newMComparisonArray.set('MCItems', eBayResults);
               newMComparisonArray.set('parent', parentUser);
 
               console.log('yala han save il hagat taaaaani');
+
               // Save updated MComparisonArray  
               newMComparisonArray.save().then({
                 success: function() {
@@ -741,16 +747,27 @@ function matchCenterComparison(parentUser, eBayResults) {
                 }
               });
 
-                //send push notification  
-                var pushQuery = new Parse.Query(Parse.Installation);
-                pushQuery.equalTo('deviceType', 'ios');
+              //Add user to the "send push notification" channel
 
-                Parse.Push.send({
-                  where: pushQuery, // Set our Installation query
-                  data: {
+              var mComparisonArray = Parse.Object.extend("MComparisonArray");
+              var mComparisonQuery = new Parse.Query(mComparisonArray);
+
+
+              //
+
+
+              ///////////////
+              //send push notification (will probably be placed in seperate background job) 
+              var pushQuery = new Parse.Query(Parse.Installation);
+              pushQuery.equalTo('deviceType', 'ios');
+
+              Parse.Push.send({
+                channels: ["yesPush"], // Set our Installation query
+                data: {
                     alert: "New MatchCenter Item!"
-                  }
-                }, {
+                }
+              }, 
+              {
                 success: function() {
                   // Push was successful
                 },
@@ -758,7 +775,7 @@ function matchCenterComparison(parentUser, eBayResults) {
                   throw "Got an error " + error.code + " : " + error.message;
                 }
               });
-
+              //////////////
               
           });
         }  
@@ -770,6 +787,7 @@ function matchCenterComparison(parentUser, eBayResults) {
   return matchCenterComparisonPromise;  
     
 } 
+ 
 
 
 

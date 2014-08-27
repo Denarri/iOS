@@ -13,10 +13,8 @@
 {
     [super viewDidLoad];
     
-    NSLog(@"MA NIGAAAAAAAA");
-    
-//    [self.loginView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"MainBG.jpg"]]];
-//    [self.logInView setLogo:[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"logo.png"]]];
+    //    [self.loginView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"MainBG.jpg"]]];
+    //    [self.logInView setLogo:[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"logo.png"]]];
     
 	// Do any additional setup after loading the view.
 }
@@ -30,12 +28,17 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewDidLoad];
     if ([PFUser currentUser]) {
-        //[welcomeLabel setText:[NSString stringWithFormat:@"Welcome Back %@!", [[PFUser currentUser] username]]];
-        NSLog(@"PFUser is not current user");
+        NSLog(@"User is logged in");
+        
+        // Points the installation to the respective user who logged in
+        PFInstallation *currentInstallation = [PFInstallation currentInstallation];
+        PFUser* user  = [PFUser currentUser];
+        
+        [currentInstallation setObject:user forKey: @"userId"];
+        [currentInstallation saveInBackground];
         
     } else {
-        NSLog(@"PFUser is current user");
-        //[welcomeLabel setText:@"Not logged in"];
+        NSLog(@"User is not logged in");
     }
 }
 
@@ -72,6 +75,7 @@
     // Check if both fields are completed
     if (username && password && username.length && password.length) {
         return YES; // Begin login process
+        
     }
     
     [[[UIAlertView alloc] initWithTitle:@"Missing Information" message:@"Make sure you fill out all of the information!" delegate:nil cancelButtonTitle:@"ok" otherButtonTitles:nil] show];
