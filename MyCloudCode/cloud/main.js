@@ -795,9 +795,11 @@ Parse.Cloud.job("sendPush", function(request, status) {
    //send push notification to all users in the "yesPush" channel 
 
    Parse.Push.send({
-     channels: ["yesPush"], // Set our Installation query
+     channels: ["yesPush"],
+
      data: {
-     alert: "New MatchCenter Item!"
+     alert: "New MatchCenter Item!",
+     badge: "Increment"
      }
    }, 
    {
