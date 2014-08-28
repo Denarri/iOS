@@ -747,34 +747,40 @@ function matchCenterComparison(parentUser, eBayResults) {
                 }
               });
 
+
+              ////////
               //Add user to the "send push notification" channel
+              var installationQuery = new Parse.Query(Parse.Installation);
+              installationQuery.equalTo('userId', parentUser);
 
-              var mComparisonArray = Parse.Object.extend("MComparisonArray");
-              var mComparisonQuery = new Parse.Query(mComparisonArray);
+              installationQuery.first().then(function(result) {
+                result.set('channels', ["yesPush"]);
+                result.save();
+              });
+              ////////
 
-
-              //
+              console.log('done updating channel');
 
 
               ///////////////
-              //send push notification (will probably be placed in seperate background job) 
-              var pushQuery = new Parse.Query(Parse.Installation);
-              pushQuery.equalTo('deviceType', 'ios');
+              // //send push notification (will probably be placed in seperate background job) 
+              // var pushQuery = new Parse.Query(Parse.Installation);
+              // pushQuery.equalTo('deviceType', 'ios');
 
-              Parse.Push.send({
-                channels: ["yesPush"], // Set our Installation query
-                data: {
-                    alert: "New MatchCenter Item!"
-                }
-              }, 
-              {
-                success: function() {
-                  // Push was successful
-                },
-                error: function(error) {
-                  throw "Got an error " + error.code + " : " + error.message;
-                }
-              });
+              // Parse.Push.send({
+              //   channels: ["yesPush"], // Set our Installation query
+              //   data: {
+              //       alert: "New MatchCenter Item!"
+              //   }
+              // }, 
+              // {
+              //   success: function() {
+              //     // Push was successful
+              //   },
+              //   error: function(error) {
+              //     throw "Got an error " + error.code + " : " + error.message;
+              //   }
+              // });
               //////////////
               
           });
