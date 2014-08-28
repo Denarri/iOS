@@ -709,44 +709,55 @@ function matchCenterComparison(parentUser, eBayResults) {
         //No new items                      
         if (results.length > 0) {
           console.log("No new items, you're good to go!");
-          //Remove user from the "send push notification" channel?
-          //
+
+          //Add user to the "DON'T send push notification" channel
+          ////////
+          var installationQuery = new Parse.Query(Parse.Installation);
+          installationQuery.equalTo('userId', parentUser);
+
+          installationQuery.first().then(function(result) {
+            result.set('channels', ["noPush"]);
+            result.save();
+          });
+          ///////
+          console.log('done updating channel');
         }
     
         //New items found
         else if (results.length === 0) {
           console.log('no matching mComparisonArray, lets push some new shit');
     
-          //replace MCItems array with contents of eBayResults
           var mComparisonEditQuery = new Parse.Query(mComparisonArray);
           mComparisonEditQuery.contains('Name', 'MatchCenter');
           mComparisonEditQuery.equalTo('parent', parentUser);
 
           console.log('setup query criteria again, about to run it');
 
-          mComparisonEditQuery.find().then(function(results) {
-            //clear old MComparisonArray
-            return Parse.Object.destroyAll(results);
+          // Update MComparisonArray with new eBayResults
+          mComparisonEditQuery.first().then(function(results) {
+            results.set('MCItems', eBayResults);
+            results.save();
+
+            console.log('totally just updated the mComparisonArray, NBD');
           }).then(function() {
 
-              //Create new MComparisonArray with updated info
-              var newMComparisonArray = new mComparisonArray();
-              newMComparisonArray.set('Name', 'MatchCenter');
-              newMComparisonArray.set('MCItems', eBayResults);
-              newMComparisonArray.set('parent', parentUser);
+              // //Create new MComparisonArray with updated info
+              // var newMComparisonArray = new mComparisonArray();
+              // newMComparisonArray.set('Name', 'MatchCenter');
+              // newMComparisonArray.set('MCItems', eBayResults);
+              // newMComparisonArray.set('parent', parentUser);
 
-              console.log('yala han save il hagat taaaaani');
+              // console.log('yala han save il hagat taaaaani');
 
-              // Save updated MComparisonArray  
-              newMComparisonArray.save().then({
-                success: function() {
-                  console.log('MComparisonArray successfully created!');
-                },
-                error: function() {
-                  console.log('nah no MComparisonArray saving for you bro:' + error);
-                }
-              });
-
+              // // Save updated MComparisonArray  
+              // newMComparisonArray.save().then({
+              //   success: function() {
+              //     console.log('MComparisonArray successfully created!');
+              //   },
+              //   error: function() {
+              //     console.log('nah no MComparisonArray saving for you bro:' + error);
+              //   }
+              // });
 
               ////////
               //Add user to the "send push notification" channel
@@ -758,30 +769,7 @@ function matchCenterComparison(parentUser, eBayResults) {
                 result.save();
               });
               ////////
-
               console.log('done updating channel');
-
-
-              ///////////////
-              // //send push notification (will probably be placed in seperate background job) 
-              // var pushQuery = new Parse.Query(Parse.Installation);
-              // pushQuery.equalTo('deviceType', 'ios');
-
-              // Parse.Push.send({
-              //   channels: ["yesPush"], // Set our Installation query
-              //   data: {
-              //       alert: "New MatchCenter Item!"
-              //   }
-              // }, 
-              // {
-              //   success: function() {
-              //     // Push was successful
-              //   },
-              //   error: function(error) {
-              //     throw "Got an error " + error.code + " : " + error.message;
-              //   }
-              // });
-              //////////////
               
           });
         }  
@@ -791,10 +779,44 @@ function matchCenterComparison(parentUser, eBayResults) {
     matchCenterComparisonPromise.reject({ message: 'No work done, expression failed' });
   }
   return matchCenterComparisonPromise;  
-    
+  
 } 
  
 
+
+
+
+
+
+Parse.Cloud.job("sendPush", function(request, status) {
+
+  Parse.Cloud.useMasterKey();
+   /////////////
+   //send push notification to all users in the "yesPush" channel 
+
+   Parse.Push.send({
+     channels: ["yesPush"], // Set our Installation query
+     data: {
+     alert: "New MatchCenter Item!"
+     }
+   }, 
+   {
+     success: function() {
+        // Push was successful
+        console.log('Push Notifications completed successfully.');
+     },
+     error: function(error) {
+      throw "Got an error " + error.code + " : " + error.message;
+     }
+   }).then(function() {
+    // Set the job's success status
+    status.success("Push Notifications completed successfully.");
+  }, function(error) {
+    // Set the job's error status
+    status.error("Uh oh, ain't no pushing going on hurr.");
+  });
+
+});
 
 
 
