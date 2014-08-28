@@ -110,7 +110,7 @@
             </objects>
             <point key="canvasLocation" x="4796" y="70"/>
         </scene>
-        <!--Match Center View Controller - MatchCenter-->
+        <!--Match Center View Controller-->
         <scene sceneID="xLZ-Hg-zp9">
             <objects>
                 <viewController id="DNb-te-ggn" customClass="MatchCenterViewController" sceneMemberID="viewController">
@@ -122,21 +122,21 @@
                                 <rect key="frame" x="117" y="45" width="106" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="19"/>
-                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="textColor" red="0.75178328804347827" green="0.75178328804347827" blue="0.75178328804347827" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label appearanceType="aqua" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Or maybe you're not tracking any items...                       " lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="daO-Hh-zCM">
                                 <rect key="frame" x="70" y="71" width="222" height="79"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="19"/>
-                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="textColor" red="0.75178328804347827" green="0.75178328804347827" blue="0.75178328804347827" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label appearanceType="aqua" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Or maybe zombie frogs took down our servers...                       " lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="D5U-jl-gV8">
                                 <rect key="frame" x="70" y="137" width="222" height="79"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="19"/>
-                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="textColor" red="0.75178328804347827" green="0.75178328804347827" blue="0.75178328804347827" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView appearanceType="aqua" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ZombieFrog.jpg" id="WY2-3K-vgo">
@@ -146,7 +146,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="MatchCenter" id="tnK-mJ-1Xd"/>
+                    <tabBarItem key="tabBarItem" title="" id="tnK-mJ-1Xd"/>
                     <navigationItem key="navigationItem" id="Guy-S1-MCK"/>
                     <connections>
                         <segue destination="GIv-xY-O7U" kind="modal" identifier="WebViewSegue" id="fJI-x7-7rw"/>
@@ -273,10 +273,10 @@
             </objects>
             <point key="canvasLocation" x="3397" y="-282"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--Custom Tab Bar-->
         <scene sceneID="QW7-AJ-Ihq">
             <objects>
-                <tabBarController definesPresentationContext="YES" id="SgY-qf-IfA" sceneMemberID="viewController">
+                <tabBarController definesPresentationContext="YES" id="SgY-qf-IfA" customClass="CustomTabBar" sceneMemberID="viewController">
                     <nil key="simulatedBottomBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="1Oy-Zo-87h">
                         <rect key="frame" x="129" y="330" width="163" height="49"/>
@@ -321,7 +321,7 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
+        <segue reference="k1G-pg-6iR"/>
         <segue reference="31y-Ae-iMh"/>
-        <segue reference="KIO-an-GYK"/>
     </inferredMetricsTieBreakers>
 </document>

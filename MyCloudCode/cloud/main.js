@@ -796,7 +796,7 @@ Parse.Cloud.job("sendPush", function(request, status) {
 
    Parse.Push.send({
      channels: ["yesPush"],
-
+     
      data: {
      alert: "New MatchCenter Item!",
      badge: "Increment"

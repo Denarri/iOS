@@ -30,8 +30,11 @@
 		49A20F3C1900524200E9B8A1 /* MainBG.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 49A20F3B1900524200E9B8A1 /* MainBG.jpg */; };
 		49ACF3D21900380900506502 /* MyLogInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49ACF3D11900380900506502 /* MyLogInViewController.m */; };
 		49ACF3D51900428100506502 /* SubclassConfigViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49ACF3D41900428100506502 /* SubclassConfigViewController.m */; };
+		49AD794319AFAE6E009996D5 /* CustomTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 49AD794219AFAE6E009996D5 /* CustomTabBar.m */; };
 		49B0390D1911894B00D82877 /* SearchCategoryChooserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49B0390C1911894B00D82877 /* SearchCategoryChooserViewController.m */; };
 		49B03910191189C100D82877 /* UserCategoryChooserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49B0390F191189C100D82877 /* UserCategoryChooserViewController.m */; };
+		49BD5AB319AFD32E003F3261 /* Search@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49BD5AB219AFD32E003F3261 /* Search@2x.png */; };
+		49BD5AB919AFD880003F3261 /* MatchCenter@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49BD5AB819AFD880003F3261 /* MatchCenter@2x.png */; };
 		49BF26BF192954C400E546E7 /* iPhone 5.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 49BF26BE192954C400E546E7 /* iPhone 5.jpg */; };
 		49BF26C2192A618900E546E7 /* AsyncImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 49BF26C1192A618900E546E7 /* AsyncImageView.m */; };
 		49C4B24B194A06F7006408EE /* xbutton.png in Resources */ = {isa = PBXBuildFile; fileRef = 49C4B24A194A06F7006408EE /* xbutton.png */; };
@@ -71,10 +74,14 @@
 		49ACF3D11900380900506502 /* MyLogInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyLogInViewController.m; sourceTree = "<group>"; };
 		49ACF3D31900428100506502 /* SubclassConfigViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubclassConfigViewController.h; sourceTree = "<group>"; };
 		49ACF3D41900428100506502 /* SubclassConfigViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubclassConfigViewController.m; sourceTree = "<group>"; };
+		49AD794119AFAE6E009996D5 /* CustomTabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomTabBar.h; sourceTree = "<group>"; };
+		49AD794219AFAE6E009996D5 /* CustomTabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomTabBar.m; sourceTree = "<group>"; };
 		49B0390B1911894B00D82877 /* SearchCategoryChooserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchCategoryChooserViewController.h; sourceTree = "<group>"; };
 		49B0390C1911894B00D82877 /* SearchCategoryChooserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchCategoryChooserViewController.m; sourceTree = "<group>"; };
 		49B0390E191189C100D82877 /* UserCategoryChooserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserCategoryChooserViewController.h; sourceTree = "<group>"; };
 		49B0390F191189C100D82877 /* UserCategoryChooserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserCategoryChooserViewController.m; sourceTree = "<group>"; };
+		49BD5AB219AFD32E003F3261 /* Search@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Search@2x.png"; sourceTree = "<group>"; };
+		49BD5AB819AFD880003F3261 /* MatchCenter@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MatchCenter@2x.png"; sourceTree = "<group>"; };
 		49BF26BE192954C400E546E7 /* iPhone 5.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "iPhone 5.jpg"; sourceTree = "<group>"; };
 		49BF26C0192A618900E546E7 /* AsyncImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AsyncImageView.h; sourceTree = "<group>"; };
 		49BF26C1192A618900E546E7 /* AsyncImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AsyncImageView.m; sourceTree = "<group>"; };
@@ -146,6 +153,8 @@
 				49BF26BE192954C400E546E7 /* iPhone 5.jpg */,
 				49A20F3B1900524200E9B8A1 /* MainBG.jpg */,
 				49E7D1B0195A0E2100A556BF /* ZombieFrog.jpg */,
+				49BD5AB219AFD32E003F3261 /* Search@2x.png */,
+				49BD5AB819AFD880003F3261 /* MatchCenter@2x.png */,
 				4AC77FFB160F93500024E877 /* Parse+Storyboard */,
 				4AC77FF4160F93500024E877 /* Frameworks */,
 				4AC77FF2160F93500024E877 /* Products */,
@@ -212,6 +221,8 @@
 				49593EB318DCDD5A004CA20C /* MatchCenterViewController.m */,
 				4939233C1960BD290024FA5F /* WebViewController.h */,
 				4939233D1960BD290024FA5F /* WebViewController.m */,
+				49AD794119AFAE6E009996D5 /* CustomTabBar.h */,
+				49AD794219AFAE6E009996D5 /* CustomTabBar.m */,
 				4AC77FFC160F93500024E877 /* Supporting Files */,
 			);
 			path = "Parse+Storyboard";
@@ -283,10 +294,12 @@
 				4AC78000160F93500024E877 /* InfoPlist.strings in Resources */,
 				4AC78009160F93500024E877 /* MainStoryboard.storyboard in Resources */,
 				49C4B24B194A06F7006408EE /* xbutton.png in Resources */,
+				49BD5AB319AFD32E003F3261 /* Search@2x.png in Resources */,
 				49BF26BF192954C400E546E7 /* iPhone 5.jpg in Resources */,
 				49EE475418E11D9500DFFA24 /* denarri_ios_retina.png in Resources */,
 				49E7D1B1195A0E2100A556BF /* ZombieFrog.jpg in Resources */,
 				49A20F3C1900524200E9B8A1 /* MainBG.jpg in Resources */,
+				49BD5AB919AFD880003F3261 /* MatchCenter@2x.png in Resources */,
 				49EE475818E11DFC00DFFA24 /* denarri_ios_settings.png in Resources */,
 				49593EB618DCE956004CA20C /* Default-568h@2x.png in Resources */,
 			);
@@ -304,6 +317,7 @@
 				49593EAE18DCDD02004CA20C /* SearchViewController.m in Sources */,
 				49B03910191189C100D82877 /* UserCategoryChooserViewController.m in Sources */,
 				49593EB418DCDD5A004CA20C /* MatchCenterViewController.m in Sources */,
+				49AD794319AFAE6E009996D5 /* CustomTabBar.m in Sources */,
 				49BF26C2192A618900E546E7 /* AsyncImageView.m in Sources */,
 				4939233E1960BD290024FA5F /* WebViewController.m in Sources */,
 				493B58EC192AEFEC006C895C /* ImageViewController.m in Sources */,
