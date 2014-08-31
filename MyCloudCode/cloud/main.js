@@ -581,7 +581,6 @@ function processUser(user) {
                   'itemFilter(1).paramName=Currency&itemFilter(1).paramValue': 'USD',
                   'itemFilter(2).name=MinPrice&itemFilter(2).value': results[i].get('minPrice'),
                   'itemFilter(2).paramName=Currency&itemFilter(2).paramValue': 'USD',
-                  // 'itemFilter(3).name=LocatedIn&itemFilter(3).value' : 'US',
                   'itemFilter(3).name=ListingType&itemFilter(3).value': 'FixedPrice',
                   'keywords': results[i].get('searchTerm'),
                 }
@@ -796,7 +795,7 @@ Parse.Cloud.job("sendPush", function(request, status) {
 
    Parse.Push.send({
      channels: ["yesPush"],
-     
+
      data: {
      alert: "New MatchCenter Item!",
      badge: "Increment"

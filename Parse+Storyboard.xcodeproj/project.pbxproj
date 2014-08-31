@@ -27,6 +27,9 @@
 		49593EB118DCDD0E004CA20C /* CriteriaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49593EB018DCDD0E004CA20C /* CriteriaViewController.m */; };
 		49593EB418DCDD5A004CA20C /* MatchCenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49593EB318DCDD5A004CA20C /* MatchCenterViewController.m */; };
 		49593EB618DCE956004CA20C /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49593EB518DCE956004CA20C /* Default-568h@2x.png */; };
+		49638AA219B3B84F00C2253F /* MySignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49638AA119B3B84F00C2253F /* MySignUpViewController.m */; };
+		498A322419B0DB0E00F46733 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 498A322319B0DB0E00F46733 /* FacebookSDK.framework */; };
+		498A322719B0EA8B00F46733 /* UserDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 498A322619B0EA8B00F46733 /* UserDetailsViewController.m */; };
 		49A20F3C1900524200E9B8A1 /* MainBG.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 49A20F3B1900524200E9B8A1 /* MainBG.jpg */; };
 		49ACF3D21900380900506502 /* MyLogInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49ACF3D11900380900506502 /* MyLogInViewController.m */; };
 		49ACF3D51900428100506502 /* SubclassConfigViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49ACF3D41900428100506502 /* SubclassConfigViewController.m */; };
@@ -39,7 +42,7 @@
 		49BF26C2192A618900E546E7 /* AsyncImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 49BF26C1192A618900E546E7 /* AsyncImageView.m */; };
 		49C4B24B194A06F7006408EE /* xbutton.png in Resources */ = {isa = PBXBuildFile; fileRef = 49C4B24A194A06F7006408EE /* xbutton.png */; };
 		49E7D1B1195A0E2100A556BF /* ZombieFrog.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 49E7D1B0195A0E2100A556BF /* ZombieFrog.jpg */; };
-		49EE475418E11D9500DFFA24 /* denarri_ios_retina.png in Resources */ = {isa = PBXBuildFile; fileRef = 49EE475318E11D9500DFFA24 /* denarri_ios_retina.png */; };
+		49EE475418E11D9500DFFA24 /* denarri_ios_retina@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49EE475318E11D9500DFFA24 /* denarri_ios_retina@2x.png */; };
 		49EE475718E11DFC00DFFA24 /* denarri_ios_spotlight.png in Resources */ = {isa = PBXBuildFile; fileRef = 49EE475518E11DFC00DFFA24 /* denarri_ios_spotlight.png */; };
 		49EE475818E11DFC00DFFA24 /* denarri_ios_settings.png in Resources */ = {isa = PBXBuildFile; fileRef = 49EE475618E11DFC00DFFA24 /* denarri_ios_settings.png */; };
 		4AC77FF6160F93500024E877 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AC77FF5160F93500024E877 /* UIKit.framework */; };
@@ -69,6 +72,11 @@
 		49593EB218DCDD5A004CA20C /* MatchCenterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MatchCenterViewController.h; sourceTree = "<group>"; };
 		49593EB318DCDD5A004CA20C /* MatchCenterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MatchCenterViewController.m; sourceTree = "<group>"; };
 		49593EB518DCE956004CA20C /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		49638AA019B3B84F00C2253F /* MySignUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MySignUpViewController.h; sourceTree = "<group>"; };
+		49638AA119B3B84F00C2253F /* MySignUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MySignUpViewController.m; sourceTree = "<group>"; };
+		498A322319B0DB0E00F46733 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = ../../../Documents/FacebookSDK/FacebookSDK.framework; sourceTree = "<group>"; };
+		498A322519B0EA8B00F46733 /* UserDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserDetailsViewController.h; sourceTree = "<group>"; };
+		498A322619B0EA8B00F46733 /* UserDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserDetailsViewController.m; sourceTree = "<group>"; };
 		49A20F3B1900524200E9B8A1 /* MainBG.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = MainBG.jpg; sourceTree = "<group>"; };
 		49ACF3D01900380900506502 /* MyLogInViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyLogInViewController.h; sourceTree = "<group>"; };
 		49ACF3D11900380900506502 /* MyLogInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyLogInViewController.m; sourceTree = "<group>"; };
@@ -87,7 +95,7 @@
 		49BF26C1192A618900E546E7 /* AsyncImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AsyncImageView.m; sourceTree = "<group>"; };
 		49C4B24A194A06F7006408EE /* xbutton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = xbutton.png; sourceTree = "<group>"; };
 		49E7D1B0195A0E2100A556BF /* ZombieFrog.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = ZombieFrog.jpg; sourceTree = "<group>"; };
-		49EE475318E11D9500DFFA24 /* denarri_ios_retina.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = denarri_ios_retina.png; sourceTree = "<group>"; };
+		49EE475318E11D9500DFFA24 /* denarri_ios_retina@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "denarri_ios_retina@2x.png"; sourceTree = "<group>"; };
 		49EE475518E11DFC00DFFA24 /* denarri_ios_spotlight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = denarri_ios_spotlight.png; sourceTree = "<group>"; };
 		49EE475618E11DFC00DFFA24 /* denarri_ios_settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = denarri_ios_settings.png; sourceTree = "<group>"; };
 		4AC77FF1160F93500024E877 /* Parse+Storyboard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Parse+Storyboard.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -124,6 +132,7 @@
 				4909B56B18FB9DFA00EBF204 /* Social.framework in Frameworks */,
 				4909B56918FB9C9800EBF204 /* SystemConfiguration.framework in Frameworks */,
 				4909B56818FB9C8A00EBF204 /* StoreKit.framework in Frameworks */,
+				498A322419B0DB0E00F46733 /* FacebookSDK.framework in Frameworks */,
 				4909B56718FB9C7F00EBF204 /* Security.framework in Frameworks */,
 				4909B56618FB9C7700EBF204 /* QuartzCore.framework in Frameworks */,
 				4909B56518FB9C6B00EBF204 /* MobileCoreServices.framework in Frameworks */,
@@ -147,7 +156,7 @@
 			children = (
 				49EE475518E11DFC00DFFA24 /* denarri_ios_spotlight.png */,
 				49EE475618E11DFC00DFFA24 /* denarri_ios_settings.png */,
-				49EE475318E11D9500DFFA24 /* denarri_ios_retina.png */,
+				49EE475318E11D9500DFFA24 /* denarri_ios_retina@2x.png */,
 				49593EB518DCE956004CA20C /* Default-568h@2x.png */,
 				49C4B24A194A06F7006408EE /* xbutton.png */,
 				49BF26BE192954C400E546E7 /* iPhone 5.jpg */,
@@ -172,6 +181,7 @@
 		4AC77FF4160F93500024E877 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				498A322319B0DB0E00F46733 /* FacebookSDK.framework */,
 				4909B56E18FB9E1600EBF204 /* AdSupport.framework */,
 				4909B56C18FB9E0400EBF204 /* Accounts.framework */,
 				4909B56A18FB9DFA00EBF204 /* Social.framework */,
@@ -209,6 +219,8 @@
 				49ACF3D41900428100506502 /* SubclassConfigViewController.m */,
 				49ACF3D01900380900506502 /* MyLogInViewController.h */,
 				49ACF3D11900380900506502 /* MyLogInViewController.m */,
+				49638AA019B3B84F00C2253F /* MySignUpViewController.h */,
+				49638AA119B3B84F00C2253F /* MySignUpViewController.m */,
 				49593EAC18DCDD02004CA20C /* SearchViewController.h */,
 				49593EAD18DCDD02004CA20C /* SearchViewController.m */,
 				49B0390B1911894B00D82877 /* SearchCategoryChooserViewController.h */,
@@ -223,6 +235,8 @@
 				4939233D1960BD290024FA5F /* WebViewController.m */,
 				49AD794119AFAE6E009996D5 /* CustomTabBar.h */,
 				49AD794219AFAE6E009996D5 /* CustomTabBar.m */,
+				498A322519B0EA8B00F46733 /* UserDetailsViewController.h */,
+				498A322619B0EA8B00F46733 /* UserDetailsViewController.m */,
 				4AC77FFC160F93500024E877 /* Supporting Files */,
 			);
 			path = "Parse+Storyboard";
@@ -296,7 +310,7 @@
 				49C4B24B194A06F7006408EE /* xbutton.png in Resources */,
 				49BD5AB319AFD32E003F3261 /* Search@2x.png in Resources */,
 				49BF26BF192954C400E546E7 /* iPhone 5.jpg in Resources */,
-				49EE475418E11D9500DFFA24 /* denarri_ios_retina.png in Resources */,
+				49EE475418E11D9500DFFA24 /* denarri_ios_retina@2x.png in Resources */,
 				49E7D1B1195A0E2100A556BF /* ZombieFrog.jpg in Resources */,
 				49A20F3C1900524200E9B8A1 /* MainBG.jpg in Resources */,
 				49BD5AB919AFD880003F3261 /* MatchCenter@2x.png in Resources */,
@@ -325,6 +339,8 @@
 				49593EB118DCDD0E004CA20C /* CriteriaViewController.m in Sources */,
 				49ACF3D51900428100506502 /* SubclassConfigViewController.m in Sources */,
 				49B0390D1911894B00D82877 /* SearchCategoryChooserViewController.m in Sources */,
+				498A322719B0EA8B00F46733 /* UserDetailsViewController.m in Sources */,
+				49638AA219B3B84F00C2253F /* MySignUpViewController.m in Sources */,
 				4AC78028160FA9B10024E877 /* DefaultSettingsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -423,6 +439,7 @@
 					"$(inherited)",
 					"$(SRCROOT)",
 					"$(PROJECT_DIR)",
+					/Users/andrew/Documents/FacebookSDK,
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Parse+Storyboard/Parse+Storyboard-Prefix.pch";
@@ -440,6 +457,7 @@
 					"$(inherited)",
 					"$(SRCROOT)",
 					"$(PROJECT_DIR)",
+					/Users/andrew/Documents/FacebookSDK,
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Parse+Storyboard/Parse+Storyboard-Prefix.pch";

@@ -10,6 +10,4 @@
 
 @interface DefaultSettingsViewController : UIViewController <PFLogInViewControllerDelegate, PFSignUpViewControllerDelegate>
 
-
-
 @end

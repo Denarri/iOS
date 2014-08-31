@@ -7,6 +7,7 @@
 //
 
 #import "DefaultSettingsViewController.h"
+#import "SubclassConfigViewController.h"
 
 @interface MyLogInViewController : PFLogInViewController
 

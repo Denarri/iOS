@@ -5,10 +5,10 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <scenes>
-        <!--Default Settings View Controller-->
+        <!--Subclass Config View Controller-->
         <scene sceneID="5">
             <objects>
-                <viewController storyboardIdentifier="DefaultSettingsViewController" id="2" customClass="DefaultSettingsViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="DefaultSettingsViewController" id="2" customClass="SubclassConfigViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="3">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>

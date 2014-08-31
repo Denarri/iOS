@@ -29,13 +29,21 @@
      UIRemoteNotificationTypeSound];
     
     
-    
     [[UINavigationBar appearance] setBarTintColor:[UIColor colorWithRed:40/255.0f green:167/255.0f blue:255/255.0f alpha:1.0f]];
-
 
     
     return YES;
 }
+
+- (BOOL)application:(UIApplication *)application
+            openURL:(NSURL *)url
+  sourceApplication:(NSString *)sourceApplication
+         annotation:(id)annotation {
+    return [FBAppCall handleOpenURL:url
+                  sourceApplication:sourceApplication
+                        withSession:[PFFacebookUtils session]];
+}
+
 
 
 - (void)application:(UIApplication *)application
@@ -82,6 +90,9 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
     }
     
     
+    [FBAppCall handleDidBecomeActiveWithSession:[PFFacebookUtils session]];
+    
+    
 }
 
 
@@ -99,6 +110,8 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+    
+    [[PFFacebookUtils session] close];
 }
 
 @end

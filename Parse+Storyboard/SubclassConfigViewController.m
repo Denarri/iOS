@@ -1,14 +1,14 @@
 //
 //  SubclassConfigViewController.m
-//  Parse+Storyboard
+//  LogInAndSignUpDemo
 //
-//  Created by Andrew Ghobrial on 4/17/14.
-//  Copyright (c) 2014 Juan Figuera. All rights reserved.
+//  Created by Mattieu Gamache-Asselin on 6/15/12.
+//  Copyright (c) 2013 Parse. All rights reserved.
 //
 
 #import "SubclassConfigViewController.h"
 #import "MyLogInViewController.h"
-//#import "MySignUpViewController.h"
+#import "MySignUpViewController.h"
 
 @interface SubclassConfigViewController ()
 
@@ -32,26 +32,24 @@
     
     // Check if user is logged in
     if (![PFUser currentUser]) {
-        // Customize the Log In View Controller
+        // Instantiate our custom log in view controller
         MyLogInViewController *logInViewController = [[MyLogInViewController alloc] init];
         [logInViewController setDelegate:self];
         [logInViewController setFacebookPermissions:[NSArray arrayWithObjects:@"friends_about_me", nil]];
-        [logInViewController setFields:PFLogInFieldsUsernameAndPassword
-                                     | PFLogInFieldsTwitter
-                                     | PFLogInFieldsFacebook
-                                     | PFLogInFieldsSignUpButton
-                                     | PFLogInFieldsDismissButton];
+        [logInViewController setFields: PFLogInFieldsUsernameAndPassword | PFLogInFieldsLogInButton | PFLogInFieldsSignUpButton | PFLogInFieldsPasswordForgotten];
         
+        // Instantiate our custom sign up view controller
+        MySignUpViewController *signUpViewController = [[MySignUpViewController alloc] init];
+        [signUpViewController setDelegate:self];
+        [signUpViewController setFields:PFSignUpFieldsDefault | PFSignUpFieldsAdditional];
         
+        // Link the sign up view controller
+        [logInViewController setSignUpController:signUpViewController];
         
-//        // Customize the Sign Up View Controller
-//        MySignUpViewController *signUpViewController = [[MySignUpViewController alloc] init];
-//        signUpViewController.delegate = self;
-//        signUpViewController.fields = PFSignUpFieldsDefault | PFSignUpFieldsAdditional;
-//        logInViewController.signUpController = signUpViewController;
-        
-        // Present Log In View Controller
+        // Present the log in view controller
         [self presentViewController:logInViewController animated:YES completion:NULL];
+    } else {
+        [self performSegueWithIdentifier:@"login" sender:self];
     }
 }
 
@@ -60,12 +58,14 @@
 
 // Sent to the delegate to determine whether the log in request should be submitted to the server.
 - (BOOL)logInViewController:(PFLogInViewController *)logInController shouldBeginLogInWithUsername:(NSString *)username password:(NSString *)password {
+    // Check if both fields are completed
     if (username && password && username.length && password.length) {
-        return YES;
+        return YES; // Begin login process
+        
     }
     
-    [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Missing Information", nil) message:NSLocalizedString(@"Make sure you fill out all of the information!", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil] show];
-    return NO;
+    [[[UIAlertView alloc] initWithTitle:@"Missing Information" message:@"Make sure you fill out all of the information!" delegate:nil cancelButtonTitle:@"ok" otherButtonTitles:nil] show];
+    return NO; // Interrupt login process
 }
 
 // Sent to the delegate when a PFUser is logged in.
@@ -80,7 +80,7 @@
 
 // Sent to the delegate when the log in screen is dismissed.
 - (void)logInViewControllerDidCancelLogIn:(PFLogInViewController *)logInController {
-    NSLog(@"User dismissed the logInViewController");
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 
@@ -89,16 +89,19 @@
 // Sent to the delegate to determine whether the sign up request should be submitted to the server.
 - (BOOL)signUpViewController:(PFSignUpViewController *)signUpController shouldBeginSignUp:(NSDictionary *)info {
     BOOL informationComplete = YES;
+    
+    // loop through all of the submitted data
     for (id key in info) {
         NSString *field = [info objectForKey:key];
-        if (!field || field.length == 0) {
+        if (!field || !field.length) { // check completion
             informationComplete = NO;
             break;
         }
     }
     
+    // Display an alert if a field wasn't completed
     if (!informationComplete) {
-        [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Missing Information", nil) message:NSLocalizedString(@"Make sure you fill out all of the information!", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil] show];
+        [[[UIAlertView alloc] initWithTitle:@"Missing Information" message:@"Make sure you fill out all of the information!" delegate:nil cancelButtonTitle:@"ok" otherButtonTitles:nil] show];
     }
     
     return informationComplete;
@@ -107,6 +110,22 @@
 // Sent to the delegate when a PFUser is signed up.
 - (void)signUpViewController:(PFSignUpViewController *)signUpController didSignUpUser:(PFUser *)user {
     [self dismissViewControllerAnimated:YES completion:NULL];
+    
+    [PFCloud callFunctionInBackground:@"userCategoryCreate"
+                       withParameters:@{}
+                                block:^(NSNumber *ratings, NSError *error) {
+                                    if (!error) {
+                                        //userCategory created
+                                    }
+                                }];
+    
+    [PFCloud callFunctionInBackground:@"mcComparisonArrayCreate"
+                       withParameters:@{}
+                                block:^(NSNumber *ratings, NSError *error) {
+                                    if (!error) {
+                                        //userCategory created
+                                    }
+                                }];
 }
 
 // Sent to the delegate when the sign up attempt fails.
@@ -120,7 +139,13 @@
 }
 
 
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+{
+    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
+
 #pragma mark - ()
+
 
 - (IBAction)logOutButtonTapAction:(id)sender {
     [PFUser logOut];
