@@ -19,12 +19,20 @@
 #pragma mark - UIViewController
 
 - (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
+    [super viewDidLoad];
     if ([PFUser currentUser]) {
-        self.welcomeLabel.text = [NSString stringWithFormat:NSLocalizedString(@"Welcome %@!", nil), [[PFUser currentUser] username]];
+        NSLog(@"User is logged in");
+        
+        PFInstallation *currentInstallation = [PFInstallation currentInstallation];
+        PFUser* user  = [PFUser currentUser];
+        
+        [currentInstallation setObject:user forKey: @"userId"];
+        [currentInstallation saveInBackground];
+        
     } else {
-        self.welcomeLabel.text = NSLocalizedString(@"Not logged in", nil);
-    }
+        NSLog(@"User is not logged in");
+        //[welcomeLabel setText:@"Not logged in"];
+    }   
 }
 
 - (void)viewDidAppear:(BOOL)animated {
