@@ -41,6 +41,7 @@
 		49BF26BF192954C400E546E7 /* iPhone 5.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 49BF26BE192954C400E546E7 /* iPhone 5.jpg */; };
 		49BF26C2192A618900E546E7 /* AsyncImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 49BF26C1192A618900E546E7 /* AsyncImageView.m */; };
 		49C4B24B194A06F7006408EE /* xbutton.png in Resources */ = {isa = PBXBuildFile; fileRef = 49C4B24A194A06F7006408EE /* xbutton.png */; };
+		49D2DCB119B3C56A003D08D7 /* Denarri-Login-Signup-Logo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49D2DCB019B3C56A003D08D7 /* Denarri-Login-Signup-Logo@2x.png */; };
 		49E7D1B1195A0E2100A556BF /* ZombieFrog.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 49E7D1B0195A0E2100A556BF /* ZombieFrog.jpg */; };
 		49EE475418E11D9500DFFA24 /* denarri_ios_retina@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49EE475318E11D9500DFFA24 /* denarri_ios_retina@2x.png */; };
 		49EE475718E11DFC00DFFA24 /* denarri_ios_spotlight.png in Resources */ = {isa = PBXBuildFile; fileRef = 49EE475518E11DFC00DFFA24 /* denarri_ios_spotlight.png */; };
@@ -94,6 +95,7 @@
 		49BF26C0192A618900E546E7 /* AsyncImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AsyncImageView.h; sourceTree = "<group>"; };
 		49BF26C1192A618900E546E7 /* AsyncImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AsyncImageView.m; sourceTree = "<group>"; };
 		49C4B24A194A06F7006408EE /* xbutton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = xbutton.png; sourceTree = "<group>"; };
+		49D2DCB019B3C56A003D08D7 /* Denarri-Login-Signup-Logo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Denarri-Login-Signup-Logo@2x.png"; sourceTree = "<group>"; };
 		49E7D1B0195A0E2100A556BF /* ZombieFrog.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = ZombieFrog.jpg; sourceTree = "<group>"; };
 		49EE475318E11D9500DFFA24 /* denarri_ios_retina@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "denarri_ios_retina@2x.png"; sourceTree = "<group>"; };
 		49EE475518E11DFC00DFFA24 /* denarri_ios_spotlight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = denarri_ios_spotlight.png; sourceTree = "<group>"; };
@@ -158,6 +160,7 @@
 				49EE475618E11DFC00DFFA24 /* denarri_ios_settings.png */,
 				49EE475318E11D9500DFFA24 /* denarri_ios_retina@2x.png */,
 				49593EB518DCE956004CA20C /* Default-568h@2x.png */,
+				49D2DCB019B3C56A003D08D7 /* Denarri-Login-Signup-Logo@2x.png */,
 				49C4B24A194A06F7006408EE /* xbutton.png */,
 				49BF26BE192954C400E546E7 /* iPhone 5.jpg */,
 				49A20F3B1900524200E9B8A1 /* MainBG.jpg */,
@@ -304,6 +307,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				49D2DCB119B3C56A003D08D7 /* Denarri-Login-Signup-Logo@2x.png in Resources */,
 				49EE475718E11DFC00DFFA24 /* denarri_ios_spotlight.png in Resources */,
 				4AC78000160F93500024E877 /* InfoPlist.strings in Resources */,
 				4AC78009160F93500024E877 /* MainStoryboard.storyboard in Resources */,

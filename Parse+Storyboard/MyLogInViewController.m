@@ -17,7 +17,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self.logInView setLogo:[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"denarri_ios_retina.png"]]];
+    [self.logInView setLogo:[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Denarri-Login-Signup-Logo.png"]]];
     
     }
 
