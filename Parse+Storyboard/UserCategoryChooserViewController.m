@@ -26,6 +26,8 @@
 {
     [super viewDidLoad];
     
+    self.navigationItem.title = @"Categories";
+    
     UIButton *category1 = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     category1.frame = CGRectMake(10, 120, 300, 35);
     [category1 setTitle: [NSString stringWithFormat:@"%@", self.matchingCategoryName1] forState:UIControlStateNormal];

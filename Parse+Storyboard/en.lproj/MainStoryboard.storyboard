@@ -147,7 +147,9 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="" id="tnK-mJ-1Xd"/>
+                    <toolbarItems/>
                     <navigationItem key="navigationItem" id="Guy-S1-MCK"/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <segue destination="GIv-xY-O7U" kind="modal" identifier="WebViewSegue" id="fJI-x7-7rw"/>
                     </connections>

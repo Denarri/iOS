@@ -119,14 +119,6 @@
 - (void)signUpViewController:(PFSignUpViewController *)signUpController didSignUpUser:(PFUser *)user {
     [self dismissViewControllerAnimated:YES completion:NULL];
     
-    [PFCloud callFunctionInBackground:@"userCategoryCreate"
-                       withParameters:@{}
-                                block:^(NSNumber *ratings, NSError *error) {
-                                    if (!error) {
-                                        //userCategory created
-                                    }
-                                }];
-    
     [PFCloud callFunctionInBackground:@"mcComparisonArrayCreate"
                        withParameters:@{}
                                 block:^(NSNumber *ratings, NSError *error) {

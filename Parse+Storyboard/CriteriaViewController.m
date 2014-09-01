@@ -26,6 +26,8 @@
 {
     [super viewDidLoad];
     
+    self.navigationItem.title = @"Criteria";
+    
     // Default values
     self.itemCondition = @"New";
     self.itemLocation = @"US";
