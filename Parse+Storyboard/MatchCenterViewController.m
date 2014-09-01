@@ -42,9 +42,7 @@
     self.matchCenterArray = [[NSArray alloc] init];
     
     [PFCloud callFunctionInBackground:@"MatchCenter"
-                       withParameters:@{
-                                        @"test": @"Hi",
-                                        }
+                       withParameters:@{}
                                 block:^(NSArray *result, NSError *error) {
                                     
                                     if (!error) {
