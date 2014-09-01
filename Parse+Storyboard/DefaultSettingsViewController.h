@@ -7,6 +7,7 @@
 
 #import <UIKit/UIKit.h>
 #import <Parse/Parse.h>
+//#import "UserDetailsViewController.h"
 
 @interface DefaultSettingsViewController : UIViewController <PFLogInViewControllerDelegate, PFSignUpViewControllerDelegate>
 

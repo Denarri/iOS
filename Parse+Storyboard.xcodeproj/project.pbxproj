@@ -29,7 +29,6 @@
 		49593EB618DCE956004CA20C /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49593EB518DCE956004CA20C /* Default-568h@2x.png */; };
 		49638AA219B3B84F00C2253F /* MySignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49638AA119B3B84F00C2253F /* MySignUpViewController.m */; };
 		498A322419B0DB0E00F46733 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 498A322319B0DB0E00F46733 /* FacebookSDK.framework */; };
-		498A322719B0EA8B00F46733 /* UserDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 498A322619B0EA8B00F46733 /* UserDetailsViewController.m */; };
 		49A20F3C1900524200E9B8A1 /* MainBG.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 49A20F3B1900524200E9B8A1 /* MainBG.jpg */; };
 		49ACF3D21900380900506502 /* MyLogInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49ACF3D11900380900506502 /* MyLogInViewController.m */; };
 		49ACF3D51900428100506502 /* SubclassConfigViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49ACF3D41900428100506502 /* SubclassConfigViewController.m */; };
@@ -76,8 +75,6 @@
 		49638AA019B3B84F00C2253F /* MySignUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MySignUpViewController.h; sourceTree = "<group>"; };
 		49638AA119B3B84F00C2253F /* MySignUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MySignUpViewController.m; sourceTree = "<group>"; };
 		498A322319B0DB0E00F46733 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = ../../../Documents/FacebookSDK/FacebookSDK.framework; sourceTree = "<group>"; };
-		498A322519B0EA8B00F46733 /* UserDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserDetailsViewController.h; sourceTree = "<group>"; };
-		498A322619B0EA8B00F46733 /* UserDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserDetailsViewController.m; sourceTree = "<group>"; };
 		49A20F3B1900524200E9B8A1 /* MainBG.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = MainBG.jpg; sourceTree = "<group>"; };
 		49ACF3D01900380900506502 /* MyLogInViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyLogInViewController.h; sourceTree = "<group>"; };
 		49ACF3D11900380900506502 /* MyLogInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyLogInViewController.m; sourceTree = "<group>"; };
@@ -238,8 +235,6 @@
 				4939233D1960BD290024FA5F /* WebViewController.m */,
 				49AD794119AFAE6E009996D5 /* CustomTabBar.h */,
 				49AD794219AFAE6E009996D5 /* CustomTabBar.m */,
-				498A322519B0EA8B00F46733 /* UserDetailsViewController.h */,
-				498A322619B0EA8B00F46733 /* UserDetailsViewController.m */,
 				4AC77FFC160F93500024E877 /* Supporting Files */,
 			);
 			path = "Parse+Storyboard";
@@ -343,7 +338,6 @@
 				49593EB118DCDD0E004CA20C /* CriteriaViewController.m in Sources */,
 				49ACF3D51900428100506502 /* SubclassConfigViewController.m in Sources */,
 				49B0390D1911894B00D82877 /* SearchCategoryChooserViewController.m in Sources */,
-				498A322719B0EA8B00F46733 /* UserDetailsViewController.m in Sources */,
 				49638AA219B3B84F00C2253F /* MySignUpViewController.m in Sources */,
 				4AC78028160FA9B10024E877 /* DefaultSettingsViewController.m in Sources */,
 			);

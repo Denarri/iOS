@@ -19,12 +19,12 @@
     
     [self.logInView setLogo:[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Denarri-Login-Signup-Logo.png"]]];
     
-    }
+}
 
 - (void)viewDidLayoutSubviews {
     [super viewDidLayoutSubviews];
     
-
+    
 }
 
 
