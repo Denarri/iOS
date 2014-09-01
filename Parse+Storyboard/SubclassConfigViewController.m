@@ -49,7 +49,7 @@
         // Instantiate our custom sign up view controller
         MySignUpViewController *signUpViewController = [[MySignUpViewController alloc] init];
         [signUpViewController setDelegate:self];
-        [signUpViewController setFields:PFSignUpFieldsDefault];
+        [signUpViewController setFields: PFSignUpFieldsDefault];
         
         // Link the sign up view controller
         [logInViewController setSignUpController:signUpViewController];

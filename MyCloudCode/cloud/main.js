@@ -502,7 +502,13 @@ Parse.Cloud.job("MatchCenterBackground", function(request, status) {
     return processUser(user).then(function(eBayResults){
       return matchCenterComparison(user, eBayResults);
     });
-  }); 
+  }).then(function() {
+    // Set the job's success status
+    status.success("MatchCenterBackground completed successfully.");
+  }, function(error) {
+    // Set the job's error status
+    status.error("Uh oh, something went wrong.");
+  });
 });
 
 // process user, return promise
@@ -739,25 +745,6 @@ function matchCenterComparison(parentUser, eBayResults) {
 
             console.log('totally just updated the mComparisonArray, NBD');
           }).then(function() {
-
-              // //Create new MComparisonArray with updated info
-              // var newMComparisonArray = new mComparisonArray();
-              // newMComparisonArray.set('Name', 'MatchCenter');
-              // newMComparisonArray.set('MCItems', eBayResults);
-              // newMComparisonArray.set('parent', parentUser);
-
-              // console.log('yala han save il hagat taaaaani');
-
-              // // Save updated MComparisonArray  
-              // newMComparisonArray.save().then({
-              //   success: function() {
-              //     console.log('MComparisonArray successfully created!');
-              //   },
-              //   error: function() {
-              //     console.log('nah no MComparisonArray saving for you bro:' + error);
-              //   }
-              // });
-
               ////////
               //Add user to the "send push notification" channel
               var installationQuery = new Parse.Query(Parse.Installation);
