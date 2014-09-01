@@ -209,10 +209,6 @@
 				4AC78007160F93500024E877 /* MainStoryboard.storyboard */,
 				4AC78004160F93500024E877 /* AppDelegate.h */,
 				4AC78005160F93500024E877 /* AppDelegate.m */,
-				49BF26C0192A618900E546E7 /* AsyncImageView.h */,
-				49BF26C1192A618900E546E7 /* AsyncImageView.m */,
-				493B58EA192AEFEC006C895C /* ImageViewController.h */,
-				493B58EB192AEFEC006C895C /* ImageViewController.m */,
 				4AC78026160FA9B10024E877 /* DefaultSettingsViewController.h */,
 				4AC78027160FA9B10024E877 /* DefaultSettingsViewController.m */,
 				49ACF3D31900428100506502 /* SubclassConfigViewController.h */,
@@ -235,6 +231,10 @@
 				4939233D1960BD290024FA5F /* WebViewController.m */,
 				49AD794119AFAE6E009996D5 /* CustomTabBar.h */,
 				49AD794219AFAE6E009996D5 /* CustomTabBar.m */,
+				49BF26C0192A618900E546E7 /* AsyncImageView.h */,
+				49BF26C1192A618900E546E7 /* AsyncImageView.m */,
+				493B58EA192AEFEC006C895C /* ImageViewController.h */,
+				493B58EB192AEFEC006C895C /* ImageViewController.m */,
 				4AC77FFC160F93500024E877 /* Supporting Files */,
 			);
 			name = Denarri;
