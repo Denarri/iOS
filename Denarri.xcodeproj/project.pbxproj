@@ -97,14 +97,14 @@
 		49EE475318E11D9500DFFA24 /* denarri_ios_retina@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "denarri_ios_retina@2x.png"; sourceTree = "<group>"; };
 		49EE475518E11DFC00DFFA24 /* denarri_ios_spotlight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = denarri_ios_spotlight.png; sourceTree = "<group>"; };
 		49EE475618E11DFC00DFFA24 /* denarri_ios_settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = denarri_ios_settings.png; sourceTree = "<group>"; };
-		4AC77FF1160F93500024E877 /* Parse+Storyboard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Parse+Storyboard.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		4AC77FF1160F93500024E877 /* Denarri.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Denarri.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4AC77FF5160F93500024E877 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		4AC77FF7160F93500024E877 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		4AC77FF9160F93500024E877 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		4AC77FFD160F93500024E877 /* Parse+Storyboard-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Parse+Storyboard-Info.plist"; sourceTree = "<group>"; };
+		4AC77FFD160F93500024E877 /* Denarri-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Denarri-Info.plist"; sourceTree = "<group>"; };
 		4AC77FFF160F93500024E877 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		4AC78001160F93500024E877 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		4AC78003160F93500024E877 /* Parse+Storyboard-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Parse+Storyboard-Prefix.pch"; sourceTree = "<group>"; };
+		4AC78003160F93500024E877 /* Denarri-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Denarri-Prefix.pch"; sourceTree = "<group>"; };
 		4AC78004160F93500024E877 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		4AC78005160F93500024E877 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		4AC78008160F93500024E877 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
@@ -164,7 +164,7 @@
 				49E7D1B0195A0E2100A556BF /* ZombieFrog.jpg */,
 				49BD5AB219AFD32E003F3261 /* Search@2x.png */,
 				49BD5AB819AFD880003F3261 /* MatchCenter@2x.png */,
-				4AC77FFB160F93500024E877 /* Parse+Storyboard */,
+				4AC77FFB160F93500024E877 /* Denarri */,
 				4AC77FF4160F93500024E877 /* Frameworks */,
 				4AC77FF2160F93500024E877 /* Products */,
 			);
@@ -173,7 +173,7 @@
 		4AC77FF2160F93500024E877 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				4AC77FF1160F93500024E877 /* Parse+Storyboard.app */,
+				4AC77FF1160F93500024E877 /* Denarri.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -203,7 +203,7 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		4AC77FFB160F93500024E877 /* Parse+Storyboard */ = {
+		4AC77FFB160F93500024E877 /* Denarri */ = {
 			isa = PBXGroup;
 			children = (
 				4AC78007160F93500024E877 /* MainStoryboard.storyboard */,
@@ -237,16 +237,17 @@
 				49AD794219AFAE6E009996D5 /* CustomTabBar.m */,
 				4AC77FFC160F93500024E877 /* Supporting Files */,
 			);
+			name = Denarri;
 			path = "Parse+Storyboard";
 			sourceTree = "<group>";
 		};
 		4AC77FFC160F93500024E877 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				4AC77FFD160F93500024E877 /* Parse+Storyboard-Info.plist */,
+				4AC77FFD160F93500024E877 /* Denarri-Info.plist */,
 				4AC77FFE160F93500024E877 /* InfoPlist.strings */,
 				4AC78001160F93500024E877 /* main.m */,
-				4AC78003160F93500024E877 /* Parse+Storyboard-Prefix.pch */,
+				4AC78003160F93500024E877 /* Denarri-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -254,9 +255,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		4AC77FF0160F93500024E877 /* Parse+Storyboard */ = {
+		4AC77FF0160F93500024E877 /* Denarri */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 4AC7800F160F93500024E877 /* Build configuration list for PBXNativeTarget "Parse+Storyboard" */;
+			buildConfigurationList = 4AC7800F160F93500024E877 /* Build configuration list for PBXNativeTarget "Denarri" */;
 			buildPhases = (
 				4AC77FED160F93500024E877 /* Sources */,
 				4AC77FEE160F93500024E877 /* Frameworks */,
@@ -266,9 +267,9 @@
 			);
 			dependencies = (
 			);
-			name = "Parse+Storyboard";
+			name = Denarri;
 			productName = "Parse+Storyboard";
-			productReference = 4AC77FF1160F93500024E877 /* Parse+Storyboard.app */;
+			productReference = 4AC77FF1160F93500024E877 /* Denarri.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -280,7 +281,7 @@
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = "Juan Figuera";
 			};
-			buildConfigurationList = 4AC77FEB160F934F0024E877 /* Build configuration list for PBXProject "Parse+Storyboard" */;
+			buildConfigurationList = 4AC77FEB160F934F0024E877 /* Build configuration list for PBXProject "Denarri" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -292,7 +293,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				4AC77FF0160F93500024E877 /* Parse+Storyboard */,
+				4AC77FF0160F93500024E877 /* Denarri */,
 			);
 		};
 /* End PBXProject section */
@@ -440,9 +441,9 @@
 					/Users/andrew/Documents/FacebookSDK,
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Parse+Storyboard/Parse+Storyboard-Prefix.pch";
-				INFOPLIST_FILE = "Parse+Storyboard/Parse+Storyboard-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				GCC_PREFIX_HEADER = "Parse+Storyboard/Denarri-Prefix.pch";
+				INFOPLIST_FILE = "Parse+Storyboard/Denarri-Info.plist";
+				PRODUCT_NAME = Denarri;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -458,9 +459,9 @@
 					/Users/andrew/Documents/FacebookSDK,
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Parse+Storyboard/Parse+Storyboard-Prefix.pch";
-				INFOPLIST_FILE = "Parse+Storyboard/Parse+Storyboard-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				GCC_PREFIX_HEADER = "Parse+Storyboard/Denarri-Prefix.pch";
+				INFOPLIST_FILE = "Parse+Storyboard/Denarri-Info.plist";
+				PRODUCT_NAME = Denarri;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -468,7 +469,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		4AC77FEB160F934F0024E877 /* Build configuration list for PBXProject "Parse+Storyboard" */ = {
+		4AC77FEB160F934F0024E877 /* Build configuration list for PBXProject "Denarri" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4AC7800D160F93500024E877 /* Debug */,
@@ -477,7 +478,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		4AC7800F160F93500024E877 /* Build configuration list for PBXNativeTarget "Parse+Storyboard" */ = {
+		4AC7800F160F93500024E877 /* Build configuration list for PBXNativeTarget "Denarri" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4AC78010160F93500024E877 /* Debug */,
