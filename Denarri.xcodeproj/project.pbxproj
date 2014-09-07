@@ -43,8 +43,8 @@
 		49D2DCB119B3C56A003D08D7 /* Denarri-Login-Signup-Logo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49D2DCB019B3C56A003D08D7 /* Denarri-Login-Signup-Logo@2x.png */; };
 		49E7D1B1195A0E2100A556BF /* ZombieFrog.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 49E7D1B0195A0E2100A556BF /* ZombieFrog.jpg */; };
 		49EE475418E11D9500DFFA24 /* denarri_ios_retina@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49EE475318E11D9500DFFA24 /* denarri_ios_retina@2x.png */; };
-		49EE475718E11DFC00DFFA24 /* denarri_ios_spotlight.png in Resources */ = {isa = PBXBuildFile; fileRef = 49EE475518E11DFC00DFFA24 /* denarri_ios_spotlight.png */; };
-		49EE475818E11DFC00DFFA24 /* denarri_ios_settings.png in Resources */ = {isa = PBXBuildFile; fileRef = 49EE475618E11DFC00DFFA24 /* denarri_ios_settings.png */; };
+		49EE475718E11DFC00DFFA24 /* denarri_ios_spotlight@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49EE475518E11DFC00DFFA24 /* denarri_ios_spotlight@2x.png */; };
+		49EE475818E11DFC00DFFA24 /* denarri_ios_settings@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49EE475618E11DFC00DFFA24 /* denarri_ios_settings@2x.png */; };
 		4AC77FF6160F93500024E877 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AC77FF5160F93500024E877 /* UIKit.framework */; };
 		4AC77FF8160F93500024E877 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AC77FF7160F93500024E877 /* Foundation.framework */; };
 		4AC78000160F93500024E877 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4AC77FFE160F93500024E877 /* InfoPlist.strings */; };
@@ -95,8 +95,8 @@
 		49D2DCB019B3C56A003D08D7 /* Denarri-Login-Signup-Logo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Denarri-Login-Signup-Logo@2x.png"; sourceTree = "<group>"; };
 		49E7D1B0195A0E2100A556BF /* ZombieFrog.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = ZombieFrog.jpg; sourceTree = "<group>"; };
 		49EE475318E11D9500DFFA24 /* denarri_ios_retina@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "denarri_ios_retina@2x.png"; sourceTree = "<group>"; };
-		49EE475518E11DFC00DFFA24 /* denarri_ios_spotlight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = denarri_ios_spotlight.png; sourceTree = "<group>"; };
-		49EE475618E11DFC00DFFA24 /* denarri_ios_settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = denarri_ios_settings.png; sourceTree = "<group>"; };
+		49EE475518E11DFC00DFFA24 /* denarri_ios_spotlight@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "denarri_ios_spotlight@2x.png"; sourceTree = "<group>"; };
+		49EE475618E11DFC00DFFA24 /* denarri_ios_settings@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "denarri_ios_settings@2x.png"; sourceTree = "<group>"; };
 		4AC77FF1160F93500024E877 /* Denarri.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Denarri.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4AC77FF5160F93500024E877 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		4AC77FF7160F93500024E877 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -153,8 +153,8 @@
 		4AC77FE6160F934F0024E877 = {
 			isa = PBXGroup;
 			children = (
-				49EE475518E11DFC00DFFA24 /* denarri_ios_spotlight.png */,
-				49EE475618E11DFC00DFFA24 /* denarri_ios_settings.png */,
+				49EE475518E11DFC00DFFA24 /* denarri_ios_spotlight@2x.png */,
+				49EE475618E11DFC00DFFA24 /* denarri_ios_settings@2x.png */,
 				49EE475318E11D9500DFFA24 /* denarri_ios_retina@2x.png */,
 				49593EB518DCE956004CA20C /* Default-568h@2x.png */,
 				49D2DCB019B3C56A003D08D7 /* Denarri-Login-Signup-Logo@2x.png */,
@@ -280,6 +280,11 @@
 			attributes = {
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = "Juan Figuera";
+				TargetAttributes = {
+					4AC77FF0160F93500024E877 = {
+						DevelopmentTeam = XTXZ3CYRPX;
+					};
+				};
 			};
 			buildConfigurationList = 4AC77FEB160F934F0024E877 /* Build configuration list for PBXProject "Denarri" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -304,7 +309,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				49D2DCB119B3C56A003D08D7 /* Denarri-Login-Signup-Logo@2x.png in Resources */,
-				49EE475718E11DFC00DFFA24 /* denarri_ios_spotlight.png in Resources */,
+				49EE475718E11DFC00DFFA24 /* denarri_ios_spotlight@2x.png in Resources */,
 				4AC78000160F93500024E877 /* InfoPlist.strings in Resources */,
 				4AC78009160F93500024E877 /* MainStoryboard.storyboard in Resources */,
 				49C4B24B194A06F7006408EE /* xbutton.png in Resources */,
@@ -314,7 +319,7 @@
 				49E7D1B1195A0E2100A556BF /* ZombieFrog.jpg in Resources */,
 				49A20F3C1900524200E9B8A1 /* MainBG.jpg in Resources */,
 				49BD5AB919AFD880003F3261 /* MatchCenter@2x.png in Resources */,
-				49EE475818E11DFC00DFFA24 /* denarri_ios_settings.png in Resources */,
+				49EE475818E11DFC00DFFA24 /* denarri_ios_settings@2x.png in Resources */,
 				49593EB618DCE956004CA20C /* Default-568h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -378,8 +383,8 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Andrew Ghobrial (XTXZ3CYRPX)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Andrew Ghobrial (XTXZ3CYRPX)";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -398,6 +403,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				ONLY_ACTIVE_ARCH = YES;
+				PROVISIONING_PROFILE = "1c5dadad-3454-4d15-80e2-3fd88c7b89a0";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -414,8 +420,8 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Andrew Ghobrial (XTXZ3CYRPX)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Andrew Ghobrial (XTXZ3CYRPX)";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
@@ -427,6 +433,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				PROVISIONING_PROFILE = "1c5dadad-3454-4d15-80e2-3fd88c7b89a0";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -435,7 +442,8 @@
 		4AC78010160F93500024E877 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer: Andrew Ghobrial (NC2D2U2HF2)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)",
@@ -446,6 +454,7 @@
 				GCC_PREFIX_HEADER = "Parse+Storyboard/Denarri-Prefix.pch";
 				INFOPLIST_FILE = "Parse+Storyboard/Denarri-Info.plist";
 				PRODUCT_NAME = Denarri;
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
@@ -454,7 +463,8 @@
 		4AC78011160F93500024E877 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer: Andrew Ghobrial (NC2D2U2HF2)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)",
@@ -465,6 +475,7 @@
 				GCC_PREFIX_HEADER = "Parse+Storyboard/Denarri-Prefix.pch";
 				INFOPLIST_FILE = "Parse+Storyboard/Denarri-Info.plist";
 				PRODUCT_NAME = Denarri;
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};

@@ -184,6 +184,9 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([segue.identifier isEqualToString:@"ShowMatchCenterSegue"]) {
+        
+        [self.tabBarController setSelectedIndex:1];
+        
         MatchCenterViewController *controller = (MatchCenterViewController *) segue.destinationViewController;
         
         
