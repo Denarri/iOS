@@ -41,6 +41,7 @@
 {
     self.matchCenterArray = [[NSArray alloc] init];
     
+    // Delay to allow MatchCenter item enough time to be added before pinging ebay
     [NSThread sleepForTimeInterval:2];
     
     [PFCloud callFunctionInBackground:@"MatchCenter"
