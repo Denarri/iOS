@@ -403,7 +403,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "1c5dadad-3454-4d15-80e2-3fd88c7b89a0";
+				PROVISIONING_PROFILE = "cac6a1c5-bef8-4b18-a684-0c6ef201d5ce";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -433,7 +433,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
-				PROVISIONING_PROFILE = "1c5dadad-3454-4d15-80e2-3fd88c7b89a0";
+				PROVISIONING_PROFILE = "cac6a1c5-bef8-4b18-a684-0c6ef201d5ce";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -442,8 +442,8 @@
 		4AC78010160F93500024E877 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Andrew Ghobrial (XTXZ3CYRPX)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Andrew Ghobrial (XTXZ3CYRPX)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)",
@@ -454,7 +454,7 @@
 				GCC_PREFIX_HEADER = "Parse+Storyboard/Denarri-Prefix.pch";
 				INFOPLIST_FILE = "Parse+Storyboard/Denarri-Info.plist";
 				PRODUCT_NAME = Denarri;
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "cac6a1c5-bef8-4b18-a684-0c6ef201d5ce";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
@@ -463,8 +463,8 @@
 		4AC78011160F93500024E877 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Andrew Ghobrial (XTXZ3CYRPX)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Andrew Ghobrial (XTXZ3CYRPX)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)",
@@ -475,7 +475,7 @@
 				GCC_PREFIX_HEADER = "Parse+Storyboard/Denarri-Prefix.pch";
 				INFOPLIST_FILE = "Parse+Storyboard/Denarri-Info.plist";
 				PRODUCT_NAME = Denarri;
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "cac6a1c5-bef8-4b18-a684-0c6ef201d5ce";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};

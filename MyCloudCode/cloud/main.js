@@ -710,7 +710,7 @@ function matchCenterComparison(parentUser, eBayResults) {
 
       console.log('setup query criteria, about to run it');
       mComparisonQuery.find().then(function(results) {
-    
+         console.log('i dont even know man...'); 
         //No new items                      
         if (results.length > 0) {
           console.log("No new items, you're good to go!");

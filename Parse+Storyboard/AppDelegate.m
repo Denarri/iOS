@@ -49,16 +49,14 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
     // Store the deviceToken in the current installation and save it to Parse.
     PFInstallation *currentInstallation = [PFInstallation currentInstallation];
     [currentInstallation setDeviceTokenFromData:deviceToken];
-    currentInstallation.channels = @[@"noPush"];
+    [currentInstallation setChannels:(NSArray *) @[@"noPush"]];
     [currentInstallation saveInBackground];
-    
 }
 
 - (void)application:(UIApplication *)application
 didReceiveRemoteNotification:(NSDictionary *)userInfo {
     [PFPush handlePush:userInfo];
 }
-
 
 
 - (void)applicationWillResignActive:(UIApplication *)application {
@@ -88,7 +86,6 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
     
     
     [FBAppCall handleDidBecomeActiveWithSession:[PFFacebookUtils session]];
-    
     
 }
 

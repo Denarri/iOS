@@ -41,6 +41,8 @@
 {
     self.matchCenterArray = [[NSArray alloc] init];
     
+    [NSThread sleepForTimeInterval:2];
+    
     [PFCloud callFunctionInBackground:@"MatchCenter"
                        withParameters:@{}
                                 block:^(NSArray *result, NSError *error) {
@@ -53,7 +55,6 @@
                                     }
                                 }];
 }
-
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
