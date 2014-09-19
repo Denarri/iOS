@@ -132,10 +132,14 @@
                                                                                  
                                                                                  if (!error) {
                                                                                      NSLog(@"'%@'", result);
+                                                                                     
+                                                                                     [NSThread sleepForTimeInterval:2];
+                                                                                     
+                                                                                     [self.tabBarController setSelectedIndex:1];
                                                                                  }
                                                                              }];
                                                  
-                                                     [self.tabBarController setSelectedIndex:1];
+                                                 
     
                                                      //[self performSegueWithIdentifier:@"SearchCategoryChooserToMatchCenterSegue" sender:self];
 

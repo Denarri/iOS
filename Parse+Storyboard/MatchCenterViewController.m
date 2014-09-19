@@ -10,6 +10,7 @@
 
 @interface MatchCenterViewController () <UITableViewDataSource, UITableViewDelegate>
 @property (nonatomic, strong) UITableView *matchCenter;
+@property (nonatomic, assign) BOOL matchCenterDone;
 @end
 
 @implementation MatchCenterViewController
@@ -28,7 +29,7 @@
 {
     [super viewDidLoad];
     
-    
+    _matchCenterDone = NO;
     
     self.matchCenter = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewCellStyleSubtitle];
     self.matchCenter.frame = CGRectMake(0,50,320,self.view.frame.size.height-100);
@@ -44,7 +45,9 @@
     self.matchCenterArray = [[NSArray alloc] init];
     
     // Delay to allow MatchCenter item enough time to be added before pinging ebay
-    [NSThread sleepForTimeInterval:2];
+    //[NSThread sleepForTimeInterval:2];
+    
+    _matchCenterDone = NO;
     
     [PFCloud callFunctionInBackground:@"MatchCenter"
                        withParameters:@{}
@@ -54,9 +57,12 @@
                                         _matchCenterArray = result;
                                         [_matchCenter reloadData];
                                         
+                                        _matchCenterDone = YES;
+                                        
                                         NSLog(@"Result: '%@'", result);
                                     }
                                 }];
+    
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -151,11 +157,10 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
-    
-    self.itemURL = _matchCenterArray[indexPath.section][@"Top 3"][indexPath.row][@"Item URL"];
-    
-    [self performSegueWithIdentifier:@"WebViewSegue" sender:self];
+    if (_matchCenterDone == YES) {
+        self.itemURL = _matchCenterArray[indexPath.section][@"Top 3"][indexPath.row][@"Item URL"];
+        [self performSegueWithIdentifier:@"WebViewSegue" sender:self];
+    }
 }
 
 
