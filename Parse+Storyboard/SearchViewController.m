@@ -57,10 +57,6 @@
 }
 
 
-
-
-
-
 - (IBAction)nextButton:(id)sender
 {
     if (self.itemSearch.text.length > 0) {

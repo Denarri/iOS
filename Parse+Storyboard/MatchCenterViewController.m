@@ -28,6 +28,8 @@
 {
     [super viewDidLoad];
     
+    
+    
     self.matchCenter = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewCellStyleSubtitle];
     self.matchCenter.frame = CGRectMake(0,50,320,self.view.frame.size.height-100);
     _matchCenter.dataSource = self;
@@ -68,6 +70,11 @@
     return 21.0f;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+{
+    return 0.01f;
+}
+
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 21)];
@@ -99,6 +106,11 @@
 {
     return 3;
 }
+
+//- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+//    NSArray *currentSectionArray = _matchCenterArray[section];
+//    return currentSectionArray.count;
+//}
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -139,9 +151,9 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    self.itemURL = _matchCenterArray[indexPath.section][@"Top 3"][indexPath.row][@"Item URL"];
     
-//    NSLog(@"The url is: '%@'", itemURL);
+    
+    self.itemURL = _matchCenterArray[indexPath.section][@"Top 3"][indexPath.row][@"Item URL"];
     
     [self performSegueWithIdentifier:@"WebViewSegue" sender:self];
 }

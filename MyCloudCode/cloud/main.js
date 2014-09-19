@@ -698,19 +698,18 @@ function matchCenterComparison(parentUser, eBayResults) {
 
     // if the user has MatchCenter items, do this:
     if (eBayResults.length > 0) {
-      // do some work, possibly async
       console.log('yes the ebay results be longer than 0');
 
       var mComparisonArray = Parse.Object.extend("MComparisonArray");
       var mComparisonQuery = new Parse.Query(mComparisonArray);
       
+      // Query that compares MCItems array contents to eBayResults
       mComparisonQuery.equalTo('parent', parentUser);
       mComparisonQuery.contains('Name', 'MatchCenter');
       mComparisonQuery.containedIn('MCItems', eBayResults);
 
       console.log('setup query criteria, about to run it');
       mComparisonQuery.find().then(function(results) {
-         console.log('i dont even know man...'); 
         //No new items                      
         if (results.length > 0) {
           console.log("No new items, you're good to go!");
