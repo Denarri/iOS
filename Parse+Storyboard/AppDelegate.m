@@ -22,11 +22,23 @@
     // Override point for customization after application launch.
     
     // Push notifications
-    [application registerForRemoteNotificationTypes:
-     UIRemoteNotificationTypeBadge|
-     UIRemoteNotificationTypeAlert|
-     UIRemoteNotificationTypeSound];
     
+//    // For iOS 7
+//    [application registerForRemoteNotificationTypes:
+//     UIRemoteNotificationTypeBadge|
+//     UIRemoteNotificationTypeAlert|
+//     UIRemoteNotificationTypeSound];
+    
+    // For iOS 8
+    UIUserNotificationSettings *settings =
+    [UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert |
+     UIUserNotificationTypeBadge |
+     UIUserNotificationTypeSound
+                                      categories:nil];
+    [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
+    [[UIApplication sharedApplication] registerForRemoteNotifications];
+
+    // Navbar to blue
     [[UINavigationBar appearance] setBarTintColor:[UIColor colorWithRed:40/255.0f green:167/255.0f blue:255/255.0f alpha:1.0f]];
 
     return YES;
