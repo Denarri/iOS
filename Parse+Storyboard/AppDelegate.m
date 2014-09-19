@@ -1,7 +1,7 @@
 //
 //  Denarri iOS App
 //
-//  Created by Andrew Ghobrial and Chris Meseha on 03/01/14.
+//  Created by Andrew Ghobrial.
 //  Copyright (c) 2014 Denarri. All rights reserved.
 //
 
@@ -32,14 +32,14 @@
     return YES;
 }
 
-- (BOOL)application:(UIApplication *)application
-            openURL:(NSURL *)url
-  sourceApplication:(NSString *)sourceApplication
-         annotation:(id)annotation {
-    return [FBAppCall handleOpenURL:url
-                  sourceApplication:sourceApplication
-                        withSession:[PFFacebookUtils session]];
-}
+//- (BOOL)application:(UIApplication *)application
+//            openURL:(NSURL *)url
+//  sourceApplication:(NSString *)sourceApplication
+//         annotation:(id)annotation {
+//    return [FBAppCall handleOpenURL:url
+//                  sourceApplication:sourceApplication
+//                        withSession:[PFFacebookUtils session]];
+//}
 
 
 
@@ -86,7 +86,7 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo
     }
     
     
-    [FBAppCall handleDidBecomeActiveWithSession:[PFFacebookUtils session]];
+    //[FBAppCall handleDidBecomeActiveWithSession:[PFFacebookUtils session]];
     
 }
 
@@ -106,7 +106,7 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     
-    [[PFFacebookUtils session] close];
+    //[[PFFacebookUtils session] close];
 }
 
 @end

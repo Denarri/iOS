@@ -2,7 +2,7 @@
 //  SubclassConfigViewController.h
 //  Parse+Storyboard
 //
-//  Created by Andrew Ghobrial on 4/17/14.
+//  Created by Andrew Ghobrial.
 //  Copyright (c) 2014 Juan Figuera. All rights reserved.
 //
 
