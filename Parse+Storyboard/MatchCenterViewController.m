@@ -38,6 +38,8 @@
     [self.view addSubview:self.matchCenter];
     
     _matchCenterArray = [[NSArray alloc] init];
+    
+    
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -49,6 +51,9 @@
     
     _matchCenterDone = NO;
     
+    // Disable ability to scroll until table is MatchCenter table is done loading
+    self.matchCenter.scrollEnabled = NO;
+    
     [PFCloud callFunctionInBackground:@"MatchCenter"
                        withParameters:@{}
                                 block:^(NSArray *result, NSError *error) {
@@ -58,7 +63,7 @@
                                         [_matchCenter reloadData];
                                         
                                         _matchCenterDone = YES;
-                                        
+                                        self.matchCenter.scrollEnabled = YES;
                                         NSLog(@"Result: '%@'", result);
                                     }
                                 }];

@@ -21,26 +21,25 @@
     
     // Override point for customization after application launch.
     
-    // Push notifications
+    // Register for Push Notitications, if running iOS 8
+    if ([application respondsToSelector:@selector(registerUserNotificationSettings:)]) {
+        UIUserNotificationType userNotificationTypes = (UIUserNotificationTypeAlert |
+                                                        UIUserNotificationTypeBadge |
+                                                        UIUserNotificationTypeSound);
+        UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:userNotificationTypes
+                                                                                 categories:nil];
+        [application registerUserNotificationSettings:settings];
+        [application registerForRemoteNotifications];
+    } else {
+        // Register for Push Notifications before iOS 8
+        [application registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge |
+                                                         UIRemoteNotificationTypeAlert |
+                                                         UIRemoteNotificationTypeSound)];
+    }
     
-//    // For iOS 7
-//    [application registerForRemoteNotificationTypes:
-//     UIRemoteNotificationTypeBadge|
-//     UIRemoteNotificationTypeAlert|
-//     UIRemoteNotificationTypeSound];
-    
-    // For iOS 8
-    UIUserNotificationSettings *settings =
-    [UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert |
-     UIUserNotificationTypeBadge |
-     UIUserNotificationTypeSound
-                                      categories:nil];
-    [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
-    [[UIApplication sharedApplication] registerForRemoteNotifications];
-
     // Navbar to blue
     [[UINavigationBar appearance] setBarTintColor:[UIColor colorWithRed:40/255.0f green:167/255.0f blue:255/255.0f alpha:1.0f]];
-
+    
     return YES;
 }
 
@@ -105,7 +104,7 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo
 
 - (void)applicationDidEnterBackground:(UIApplication *)application
 {
-    // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
+    // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
 }
 

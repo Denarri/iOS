@@ -35,6 +35,15 @@
     
     self.navigationItem.title = @"Denarri";
     
+    
+    UIBarButtonItem *settingsItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCompose target:self action:@selector(settingsButton:)];
+    
+    NSArray *actionButtonItems = @[settingsItem];
+    self.navigationItem.rightBarButtonItems = actionButtonItems;
+
+    
+    
+    
     [self.nextButtonOutlet addTarget:self action:@selector(nextButton:) forControlEvents:UIControlEventTouchUpInside];
     // Do any additional setup after loading the view.
     
@@ -54,6 +63,12 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)settingsButton:(id)sender
+{
+    [self performSegueWithIdentifier:@"CriteriaSettingsSegue" sender:self];
+    NSLog(@"OH YEAAAAA");
 }
 
 
