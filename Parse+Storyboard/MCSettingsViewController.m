@@ -1,49 +1,46 @@
 //
-//  CriteriaSettingsViewController.m
+//  MCSettingsViewController.m
 //  Denarri
 //
 //  Created by Andrew Ghobrial on 9/22/14.
 //
 
-#import "CriteriaSettingsViewController.h"
+#import "MCSettingsViewController.h"
 
-@interface CriteriaSettingsViewController () <UITableViewDataSource, UITableViewDelegate>
-@property (nonatomic, strong) UITableView *criteriaSettingsTable;
+@interface MCSettingsViewController () <UITableViewDataSource, UITableViewDelegate>
+@property (nonatomic, strong) UITableView *mcSettingsTable;
 
 @end
 
-@implementation CriteriaSettingsViewController
+@implementation MCSettingsViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
     
+    self.mcSettingsTable = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewCellStyleDefault];
+    self.mcSettingsTable.frame = CGRectMake(0,50,320,self.view.frame.size.height-100);
+    _mcSettingsTable.dataSource = self;
+    _mcSettingsTable.delegate = self;
+    [self.view addSubview:self.mcSettingsTable];
     
-    
-    self.criteriaSettingsTable = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewCellStyleDefault];
-    self.criteriaSettingsTable.frame = CGRectMake(0,50,320,self.view.frame.size.height-100);
-    _criteriaSettingsTable.dataSource = self;
-    _criteriaSettingsTable.delegate = self;
-    [self.view addSubview:self.criteriaSettingsTable];
-    
-    _criteriaSettingsArray = [[NSArray alloc] init];
+    _mcSettingsArray = [[NSArray alloc] init];
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
-    self.criteriaSettingsArray = [[NSArray alloc] init];
+    self.mcSettingsArray = [[NSArray alloc] init];
     
     // Disable ability to scroll until table is MatchCenter table is done loading
-    self.criteriaSettingsTable.scrollEnabled = NO;
+    self.mcSettingsTable.scrollEnabled = NO;
     
-    [PFCloud callFunctionInBackground:@""
+    [PFCloud callFunctionInBackground:@"mcSettings"
                        withParameters:@{}
                                 block:^(NSArray *result, NSError *error) {
                                     
                                     if (!error) {
-                                        _criteriaSettingsArray = result;
-                                        [_criteriaSettingsTable reloadData];
-                                        self.criteriaSettingsTable.scrollEnabled = YES;
+                                        _mcSettingsArray = result;
+                                        [_mcSettingsTable reloadData];
+                                        self.mcSettingsTable.scrollEnabled = YES;
                                         NSLog(@"Result: '%@'", result);
                                     }
                                 }];
@@ -57,7 +54,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 3;
+    return _mcSettingsArray.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -73,9 +70,18 @@
     tableView.separatorColor = [UIColor clearColor];
     
     // title of the item
-    cell.textLabel.text = [NSString stringWithFormat:@"taameya"];
+    //cell.textLabel.text = [NSString stringWithFormat:@"taameya"];
+    
+    PFObject *item = self.mcSettingsArray[indexPath.row];
+    NSString *searchTerm = item[@"searchTerm"];
+    cell.textLabel.text = searchTerm;
+    
+    //cell.textLabel.text = _mcSettingsArray[indexPath.row][@"matchCenterItem"][@"searchTerm"];
+    
     cell.textLabel.font = [UIFont boldSystemFontOfSize:14];
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+
+    
     
     return cell;
 }
@@ -85,9 +91,10 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (IBAction)criteriaSettingsDone:(id)sender {
+- (IBAction)mcSettingsDone:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
+
 
 /*
 #pragma mark - Navigation

@@ -840,3 +840,54 @@ Parse.Cloud.define("deleteFromMatchCenter", function(request, response) {
   });
 
 });
+
+
+
+
+
+
+
+
+
+
+
+
+Parse.Cloud.define("mcSettings", function(request, response) {
+
+  var matchCenterItem = Parse.Object.extend("matchCenterItem");
+  var query = new Parse.Query(matchCenterItem);
+
+  query.equalTo('parent', Parse.User.current())
+
+  // query.find().then(function(results) {
+  //   console.log(results);
+  // });
+
+  query.find({
+    success: function(results) {
+
+      console.log(results);
+      response.success(results);
+
+    },
+    error: function() {
+      response.error("matchCenterItem lookup failed");
+    }
+  });
+
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
