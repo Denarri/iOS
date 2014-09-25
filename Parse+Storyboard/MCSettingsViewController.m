@@ -24,14 +24,6 @@
     [self.view addSubview:self.mcSettingsTable];
     
     _mcSettingsArray = [[NSArray alloc] init];
-}
-
-- (void)viewDidAppear:(BOOL)animated
-{
-    self.mcSettingsArray = [[NSArray alloc] init];
-    
-    // Disable ability to scroll until table is MatchCenter table is done loading
-    self.mcSettingsTable.scrollEnabled = NO;
     
     [PFCloud callFunctionInBackground:@"mcSettings"
                        withParameters:@{}
@@ -44,6 +36,27 @@
                                         NSLog(@"Result: '%@'", result);
                                     }
                                 }];
+
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+//    self.mcSettingsArray = [[NSArray alloc] init];
+    
+    // Disable ability to scroll until table is MatchCenter table is done loading
+//    self.mcSettingsTable.scrollEnabled = NO;
+    
+//    [PFCloud callFunctionInBackground:@"mcSettings"
+//                       withParameters:@{}
+//                                block:^(NSArray *result, NSError *error) {
+//                                    
+//                                    if (!error) {
+//                                        _mcSettingsArray = result;
+//                                        [_mcSettingsTable reloadData];
+//                                        self.mcSettingsTable.scrollEnabled = YES;
+//                                        NSLog(@"Result: '%@'", result);
+//                                    }
+//                                }];
 
 }
 
@@ -70,20 +83,25 @@
     tableView.separatorColor = [UIColor clearColor];
     
     // title of the item
-    //cell.textLabel.text = [NSString stringWithFormat:@"taameya"];
     
-    PFObject *item = self.mcSettingsArray[indexPath.row];
+    PFObject *item = _mcSettingsArray[indexPath.row];
     NSString *searchTerm = item[@"searchTerm"];
     cell.textLabel.text = searchTerm;
     
-    //cell.textLabel.text = _mcSettingsArray[indexPath.row][@"matchCenterItem"][@"searchTerm"];
-    
     cell.textLabel.font = [UIFont boldSystemFontOfSize:14];
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-
-    
     
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    self.minPrice = _mcSettingsArray[indexPath.row][@"minPrice"];
+    self.maxPrice = _mcSettingsArray[indexPath.row][@"maxPrice"];
+    self.itemCondition = _mcSettingsArray[indexPath.row][@"itemCondition"];
+    self.itemLocation = _mcSettingsArray[indexPath.row][@"itemLocation"];
+    
+    [self performSegueWithIdentifier:@"MCSettingsToMCFormSegue" sender:self];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -96,14 +114,18 @@
 }
 
 
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    MCSettingsFormViewController *controller = (MCSettingsFormViewController *) segue.destinationViewController;
+    
+    controller.minPrice = self.minPrice;
+    controller.maxPrice = self.maxPrice;
+    controller.itemCondition = self.itemCondition;
+    controller.itemLocation = self.itemLocation;
 }
-*/
+
 
 @end
