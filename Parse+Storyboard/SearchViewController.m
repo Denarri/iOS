@@ -35,13 +35,18 @@
     
     self.navigationItem.title = @"Denarri";
     
-    
-    UIBarButtonItem *settingsItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCompose target:self action:@selector(settingsButton:)];
-    
-    NSArray *actionButtonItems = @[settingsItem];
-    self.navigationItem.rightBarButtonItems = actionButtonItems;
+//    UIBarButtonItem *settingsItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCompose target:self action:@selector(settingsButton:)];
+//    
+//    NSArray *actionButtonItems = @[settingsItem];
+//    self.navigationItem.rightBarButtonItems = actionButtonItems;
 
+    UIButton *button =  [UIButton buttonWithType:UIButtonTypeCustom];
+    [button setImage:[UIImage imageNamed:@"settingsgear.png"] forState:UIControlStateNormal];
+    [button addTarget:self action:@selector(settingsButton:)forControlEvents:UIControlEventTouchUpInside];
+    [button setFrame:CGRectMake(0, 0, 31, 31)];
     
+    UIBarButtonItem *barButton = [[UIBarButtonItem alloc] initWithCustomView:button];
+    self.navigationItem.rightBarButtonItem = barButton;
     
     
     [self.nextButtonOutlet addTarget:self action:@selector(nextButton:) forControlEvents:UIControlEventTouchUpInside];

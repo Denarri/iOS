@@ -887,20 +887,6 @@ Parse.Cloud.define("editMatchCenter", function(request, response) {
   query.contains('searchTerm', request.params.searchTerm);
   query.equalTo('parent', Parse.User.current())
 
-  // query.first().then(function(results) {
-      
-  //   results.set('minPrice', request.params.minPrice);
-  //   results.set('maxPrice', request.params.maxPrice);
-  //   results.set('itemCondition', request.params.itemCondition);
-  //   results.set('itemLocation', request.params.itemLocation);
-  //   results.save();
-
-  //   response.success('MatchCenterItem successfully edited!');
-
-  // });
-
-
-
   query.first({
     success: function(results) {
 
@@ -917,7 +903,6 @@ Parse.Cloud.define("editMatchCenter", function(request, response) {
       response.error('MatchCenterItem NAAAAT successfully edited!');
     }
   });
-
 
 });
 
