@@ -17,5 +17,6 @@
 @property (strong, nonatomic) NSString *maxPrice;
 @property (strong, nonatomic) NSString *itemCondition;
 @property (strong, nonatomic) NSString *itemLocation;
+@property (strong, nonatomic) NSString *searchTerm;
 
 @end

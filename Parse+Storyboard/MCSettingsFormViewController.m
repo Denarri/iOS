@@ -18,13 +18,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    NSLog(@"'%@'", _itemCondition);
-    NSLog(@"'%@'", _itemLocation);
-    
     self.navigationItem.title = @"Criteria";
     
     // Min Price
-    UITextField *tf = [[UITextField alloc] initWithFrame:CGRectMake(-25, -76, 70, 30)];
+    //UITextField *tf = [[UITextField alloc] initWithFrame:CGRectMake(-25, -76, 70, 30)];
+    UITextField *tf = [[UITextField alloc] initWithFrame:CGRectMake(10, 25, 70, 30)];
+    
+    tf.userInteractionEnabled = YES;
     tf.textColor = [UIColor blackColor];
     tf.font = [UIFont fontWithName:@"Helvetica-Neue" size:14];
     tf.backgroundColor=[UIColor whiteColor];
@@ -37,7 +37,8 @@
     tf.layer.borderWidth= 1.0f;
     
     // Max Price
-    UITextField *tf1 = [[UITextField alloc] initWithFrame:CGRectMake(100, -76, 70, 30)];
+    UITextField *tf1 = [[UITextField alloc] initWithFrame:CGRectMake(125, 25, 70, 30)];
+    tf1.userInteractionEnabled = YES;
     tf1.textColor = [UIColor blackColor];
     tf1.font = [UIFont fontWithName:@"Helvetica-Neue" size:14];
     tf1.backgroundColor=[UIColor whiteColor];
@@ -50,16 +51,15 @@
     tf1.layer.borderWidth= 1.0f;
     
     //and so on adjust your view size according to your needs
-    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(100, 200, 400, 400)];
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(70, 100, 200, 60)];
+    
     [view addSubview:tf];
     [view addSubview:tf1];
-    
     [self.view addSubview:view];
-
+    
     // Condition UISegmentedControls
     UISegmentedControl *conditionSegmentedControl = [[UISegmentedControl alloc] initWithItems:[NSArray arrayWithObjects:@"New Only", @"New/Lightly Used", nil]];
     conditionSegmentedControl.frame = CGRectMake(35, 210, 250, 35);
-    conditionSegmentedControl.selectedSegmentIndex = 0;
     conditionSegmentedControl.tintColor = [UIColor blueColor];
     
     if ([_itemCondition  isEqual: @"New"]) {
@@ -74,18 +74,16 @@
     // Location UISegmentedControls
     UISegmentedControl *locationSegmentedControl = [[UISegmentedControl alloc] initWithItems:[NSArray arrayWithObjects:@"Faster Shipping", @"Larger Selection", nil]];
     locationSegmentedControl.frame = CGRectMake(35, 320, 250, 35);
-    locationSegmentedControl.selectedSegmentIndex = 0;
     locationSegmentedControl.tintColor = [UIColor blueColor];
     
     if ([_itemLocation  isEqual: @"US"]) {
-        conditionSegmentedControl.selectedSegmentIndex=0;
-    } else if ([_itemCondition  isEqual: @"WorldWide"]) {
-        conditionSegmentedControl.selectedSegmentIndex=1;
+        locationSegmentedControl.selectedSegmentIndex=0;
+    } else if ([_itemLocation  isEqual: @"WorldWide"]) {
+        locationSegmentedControl.selectedSegmentIndex=1;
     }
     
     [locationSegmentedControl addTarget:self action:@selector(locationValueChanged:) forControlEvents: UIControlEventValueChanged];
     [self.view addSubview:locationSegmentedControl];
-    
     
     // Submit button
     UIButton *submitButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
@@ -93,8 +91,15 @@
     [submitButton setTitle:@"Submit" forState:UIControlStateNormal];
     [submitButton addTarget:self action:@selector(submitButton:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:submitButton];
+}
 
-    
+
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    for (UIView * txt in self.view.subviews){
+        if ([txt isKindOfClass:[UITextField class]] && [txt isFirstResponder]) {
+            [txt resignFirstResponder];
+        }
+    }
 }
 
 
@@ -102,12 +107,16 @@
     
     if(conditionSegmentedControl.selectedSegmentIndex == 0)
     {
-        self.itemCondition = @"New";
+        _itemCondition = @"New";
     }
     else if(conditionSegmentedControl.selectedSegmentIndex == 1)
     {
-        self.itemCondition = @"Used";
+        _itemCondition = @"Used";
     }
+    
+    
+    NSLog(@"itemCondition: '%@'", _itemCondition);
+    
 }
 
 - (void)locationValueChanged:(UISegmentedControl *)locationSegmentedControl {
@@ -124,6 +133,30 @@
 
 - (IBAction)cancelButton:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (IBAction)submitButton:(id)sender
+{
+    if (_minPrice.length > 0 && _maxPrice.length > 0) {
+        
+        NSLog(@"itemCondition: '%@'", _itemCondition);
+        
+        [PFCloud callFunctionInBackground:@"editMatchCenter"
+                           withParameters:@{
+                                            @"searchTerm": _searchTerm,
+                                            @"minPrice": _minPrice,
+                                            @"maxPrice": _maxPrice,
+                                            @"itemCondition": _itemCondition,
+                                            @"itemLocation": _itemLocation
+                                            }
+                                    block:^(NSString *result, NSError *error) {
+                                        
+                                        if (!error) {
+                                            NSLog(@"Result: '%@'", result);
+                                            [self dismissViewControllerAnimated:YES completion:nil];
+                                        }
+                                    }];
+    }
 }
 
 - (void)didReceiveMemoryWarning {

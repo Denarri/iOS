@@ -100,6 +100,7 @@
     self.maxPrice = _mcSettingsArray[indexPath.row][@"maxPrice"];
     self.itemCondition = _mcSettingsArray[indexPath.row][@"itemCondition"];
     self.itemLocation = _mcSettingsArray[indexPath.row][@"itemLocation"];
+    self.searchTerm = _mcSettingsArray[indexPath.row][@"searchTerm"];
     
     [self performSegueWithIdentifier:@"MCSettingsToMCFormSegue" sender:self];
 }
@@ -121,6 +122,7 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     MCSettingsFormViewController *controller = (MCSettingsFormViewController *) segue.destinationViewController;
     
+    controller.searchTerm = self.searchTerm;
     controller.minPrice = self.minPrice;
     controller.maxPrice = self.maxPrice;
     controller.itemCondition = self.itemCondition;

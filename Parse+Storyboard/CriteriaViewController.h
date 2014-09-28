@@ -15,14 +15,6 @@
 
 @property (strong, nonatomic) IBOutlet UITextField *minPrice;
 @property (strong, nonatomic) IBOutlet UITextField *maxPrice;
-
-//
-//@property (strong, nonatomic) IBOutlet UISegmentedControl *conditionSegment;
-//@property (strong, nonatomic) IBOutlet UISegmentedControl *locationSegment;
-//- (IBAction)conditionSegmentValueChanged:(id)sender;
-//- (IBAction)locationSegmentValueChanged:(id)sender;
-
-
 @property (nonatomic, copy) NSNumber *chosenCategory;
 @property (nonatomic, copy) NSString *chosenCategoryName;
 @property (strong, nonatomic) NSString *itemCondition;

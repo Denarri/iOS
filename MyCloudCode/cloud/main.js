@@ -859,10 +859,6 @@ Parse.Cloud.define("mcSettings", function(request, response) {
 
   query.equalTo('parent', Parse.User.current())
 
-  // query.find().then(function(results) {
-  //   console.log(results);
-  // });
-
   query.find({
     success: function(results) {
 
@@ -876,6 +872,59 @@ Parse.Cloud.define("mcSettings", function(request, response) {
   });
 
 });
+
+
+
+
+
+
+// Add new item to MatchCenter Array with the criteria from userCategory instance, plus the search term
+Parse.Cloud.define("editMatchCenter", function(request, response) {
+
+  var matchCenterItem = Parse.Object.extend("matchCenterItem");
+  var query = new Parse.Query(matchCenterItem);
+
+  query.contains('searchTerm', request.params.searchTerm);
+  query.equalTo('parent', Parse.User.current())
+
+  // query.first().then(function(results) {
+      
+  //   results.set('minPrice', request.params.minPrice);
+  //   results.set('maxPrice', request.params.maxPrice);
+  //   results.set('itemCondition', request.params.itemCondition);
+  //   results.set('itemLocation', request.params.itemLocation);
+  //   results.save();
+
+  //   response.success('MatchCenterItem successfully edited!');
+
+  // });
+
+
+
+  query.first({
+    success: function(results) {
+
+      results.set('minPrice', request.params.minPrice);
+      results.set('maxPrice', request.params.maxPrice);
+      results.set('itemCondition', request.params.itemCondition);
+      results.set('itemLocation', request.params.itemLocation);
+      results.save();
+
+      response.success('MatchCenterItem successfully edited!');
+
+    },
+    error: function() {
+      response.error('MatchCenterItem NAAAAT successfully edited!');
+    }
+  });
+
+
+});
+
+
+
+
+
 
 
 

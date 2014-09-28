@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
+#import <Parse/Parse.h>
 
 @interface MCSettingsFormViewController : UIViewController
 
@@ -15,5 +16,9 @@
 @property (strong, nonatomic) NSString *maxPrice;
 @property (strong, nonatomic) NSString *itemCondition;
 @property (strong, nonatomic) NSString *itemLocation;
+@property (strong, nonatomic) NSString *searchTerm;
+
+@property (strong, nonatomic) IBOutlet UITextField *tf;
+@property (strong, nonatomic) IBOutlet UITextField *tf1;
 
 @end
