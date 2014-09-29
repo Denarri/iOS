@@ -21,41 +21,40 @@
     self.navigationItem.title = @"Criteria";
     
     // Min Price
-    //UITextField *tf = [[UITextField alloc] initWithFrame:CGRectMake(-25, -76, 70, 30)];
-    UITextField *tf = [[UITextField alloc] initWithFrame:CGRectMake(10, 25, 70, 30)];
+    self.tf = [[UITextField alloc] initWithFrame:CGRectMake(80, 125, 70, 30)];
     
-    tf.userInteractionEnabled = YES;
-    tf.textColor = [UIColor blackColor];
-    tf.font = [UIFont fontWithName:@"Helvetica-Neue" size:14];
-    tf.backgroundColor=[UIColor whiteColor];
-    tf.text= _minPrice;
+//    UITextField *tf = [[UITextField alloc] initWithFrame:CGRectMake(80, 125, 70, 30)];
+    [self.view addSubview:self.tf];
     
-    tf.textAlignment = NSTextAlignmentCenter;
-    tf.layer.cornerRadius=8.0f;
-    tf.layer.masksToBounds=YES;
-    tf.layer.borderColor=[[UIColor lightGrayColor]CGColor];
-    tf.layer.borderWidth= 1.0f;
+    self.tf.userInteractionEnabled = YES;
+    self.tf.textColor = [UIColor blackColor];
+    self.tf.font = [UIFont fontWithName:@"Helvetica-Neue" size:14];
+    self.tf.backgroundColor=[UIColor whiteColor];
+    self.tf.text = _minPrice;
+    
+    self.tf.textAlignment = NSTextAlignmentCenter;
+    self.tf.layer.cornerRadius=8.0f;
+    self.tf.layer.masksToBounds=YES;
+    self.tf.layer.borderColor=[[UIColor lightGrayColor]CGColor];
+    self.tf.layer.borderWidth= 1.0f;
     
     // Max Price
-    UITextField *tf1 = [[UITextField alloc] initWithFrame:CGRectMake(125, 25, 70, 30)];
-    tf1.userInteractionEnabled = YES;
-    tf1.textColor = [UIColor blackColor];
-    tf1.font = [UIFont fontWithName:@"Helvetica-Neue" size:14];
-    tf1.backgroundColor=[UIColor whiteColor];
-    tf1.text= _maxPrice;
+    self.tf1 = [[UITextField alloc] initWithFrame:CGRectMake(195, 125, 70, 30)];
     
-    tf1.textAlignment = NSTextAlignmentCenter;
-    tf1.layer.cornerRadius=8.0f;
-    tf1.layer.masksToBounds=YES;
-    tf1.layer.borderColor=[[UIColor lightGrayColor]CGColor];
-    tf1.layer.borderWidth= 1.0f;
+    //UITextField *tf1 = [[UITextField alloc] initWithFrame:CGRectMake(195, 125, 70, 30)];
+    [self.view addSubview:self.tf1];
     
-    //and so on adjust your view size according to your needs
-    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(70, 100, 200, 60)];
+    self.tf1.userInteractionEnabled = YES;
+    self.tf1.textColor = [UIColor blackColor];
+    self.tf1.font = [UIFont fontWithName:@"Helvetica-Neue" size:14];
+    self.tf1.backgroundColor=[UIColor whiteColor];
+    self.tf1.text = _maxPrice;
     
-    [view addSubview:tf];
-    [view addSubview:tf1];
-    [self.view addSubview:view];
+    self.tf1.textAlignment = NSTextAlignmentCenter;
+    self.tf1.layer.cornerRadius=8.0f;
+    self.tf1.layer.masksToBounds=YES;
+    self.tf1.layer.borderColor=[[UIColor lightGrayColor]CGColor];
+    self.tf1.layer.borderWidth= 1.0f;
     
     // Condition UISegmentedControls
     UISegmentedControl *conditionSegmentedControl = [[UISegmentedControl alloc] initWithItems:[NSArray arrayWithObjects:@"New Only", @"New/Lightly Used", nil]];
@@ -137,15 +136,13 @@
 
 - (IBAction)submitButton:(id)sender
 {
-    if (_minPrice.length > 0 && _maxPrice.length > 0) {
-        
-        NSLog(@"itemCondition: '%@'", _itemCondition);
+    if (self.tf.text.length > 0 && self.tf1.text.length > 0) {
         
         [PFCloud callFunctionInBackground:@"editMatchCenter"
                            withParameters:@{
                                             @"searchTerm": _searchTerm,
-                                            @"minPrice": _minPrice,
-                                            @"maxPrice": _maxPrice,
+                                            @"minPrice": self.tf.text,
+                                            @"maxPrice": self.tf1.text,
                                             @"itemCondition": _itemCondition,
                                             @"itemLocation": _itemLocation
                                             }
