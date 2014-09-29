@@ -111,18 +111,12 @@
     
 }
 
-
-
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 3;
+    NSDictionary *currentSectionDictionary = _matchCenterArray[section];
+    NSArray *top3ArrayForSection = currentSectionDictionary[@"Top 3"];
+    return top3ArrayForSection.count-1;
 }
-
-//- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-//    NSArray *currentSectionArray = _matchCenterArray[section];
-//    return currentSectionArray.count;
-//}
-
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
