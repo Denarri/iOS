@@ -894,9 +894,11 @@ Parse.Cloud.define("editMatchCenter", function(request, response) {
       results.set('maxPrice', request.params.maxPrice);
       results.set('itemCondition', request.params.itemCondition);
       results.set('itemLocation', request.params.itemLocation);
-      results.save();
+      //results.save();
 
-      response.success('MatchCenterItem successfully edited!');
+      results.save().then(function(
+        savedMatchCenterItem){response.success('MatchCenterItem successfully edited!'); 
+      });
 
     },
     error: function() {
