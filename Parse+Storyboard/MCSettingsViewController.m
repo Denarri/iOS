@@ -17,6 +17,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    UIActivityIndicatorView *activityIndicator = [[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    activityIndicator.center = CGPointMake(self.view.frame.size.width / 2.0, self.view.frame.size.height / 2.0);
+    [self.view addSubview: activityIndicator];
+    
+    [activityIndicator startAnimating];
+    
     self.mcSettingsTable = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewCellStyleDefault];
     self.mcSettingsTable.frame = CGRectMake(0,50,320,self.view.frame.size.height-100);
     _mcSettingsTable.dataSource = self;
@@ -31,6 +37,9 @@
                                     
                                     if (!error) {
                                         _mcSettingsArray = result;
+                                        
+                                        [activityIndicator stopAnimating];
+                                        
                                         [_mcSettingsTable reloadData];
                                         self.mcSettingsTable.scrollEnabled = YES;
                                         NSLog(@"Result: '%@'", result);

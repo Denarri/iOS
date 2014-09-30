@@ -507,7 +507,7 @@ Parse.Cloud.job("MatchCenterBackground", function(request, status) {
     status.success("MatchCenterBackground completed successfully.");
   }, function(error) {
     // Set the job's error status
-    status.error("Uh oh, something went wrong.");
+    status.error("Got an error " + error.code + " : " + error.message);
   });
 });
 

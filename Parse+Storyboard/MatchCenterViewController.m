@@ -39,12 +39,17 @@
     
     _matchCenterArray = [[NSArray alloc] init];
     
-    
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     self.matchCenterArray = [[NSArray alloc] init];
+    
+    UIActivityIndicatorView *activityIndicator = [[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    activityIndicator.center = CGPointMake(self.view.frame.size.width / 2.0, self.view.frame.size.height / 2.0);
+    [self.view addSubview: activityIndicator];
+    
+    [activityIndicator startAnimating];
     
     // Delay to allow MatchCenter item enough time to be added before pinging ebay
     //[NSThread sleepForTimeInterval:2];
@@ -60,6 +65,9 @@
                                     
                                     if (!error) {
                                         _matchCenterArray = result;
+                                        
+                                        [activityIndicator stopAnimating];
+
                                         [_matchCenter reloadData];
                                         
                                         _matchCenterDone = YES;
@@ -165,6 +173,12 @@
 
 - (void)deleteButtonPressed:(id)sender
 {
+    UIActivityIndicatorView *activityIndicator = [[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    activityIndicator.center = CGPointMake(self.view.frame.size.width / 2.0, self.view.frame.size.height / 2.0);
+    [self.view addSubview: activityIndicator];
+    
+    [activityIndicator startAnimating];
+    
     // links button
     UIButton *deleteButton = (UIButton *)sender;
     
@@ -185,6 +199,9 @@
                                                                        
                                                                        if (!error) {
                                                                            _matchCenterArray = result;
+                                                                           
+                                                                           [activityIndicator stopAnimating];
+                                                                           
                                                                            [_matchCenter reloadData];
                                                                            
                                                                            NSLog(@"Result: '%@'", result);

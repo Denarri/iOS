@@ -103,6 +103,12 @@
 - (IBAction)submitButton:(id)sender
 {
     if (self.minPrice.text.length > 0 && self.maxPrice.text.length > 0) {
+        
+        UIActivityIndicatorView *activityIndicator = [[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+        activityIndicator.center = CGPointMake(self.view.frame.size.width / 3.0, self.view.frame.size.height / 3.0);
+        [self.view addSubview: activityIndicator];
+        
+        [activityIndicator startAnimating];
     
         [PFCloud callFunctionInBackground:@"userCategorySave"
                            withParameters:@{@"categoryId": self.chosenCategory,
@@ -135,6 +141,8 @@
                                                                                      
                                                                                      [NSThread sleepForTimeInterval:2];
                                                                                      
+                                                                                     [activityIndicator stopAnimating];
+                                                                                     
                                                                                      [self.tabBarController setSelectedIndex:1];
                                                                                  }
                                                                              }];
@@ -146,6 +154,10 @@
                                              }
                                          }];
     
+    }
+    else {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Empty fields!" message:@"Make sure all fields are filled in before submitting!" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alert show];
     }
 
 }

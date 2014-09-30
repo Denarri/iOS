@@ -138,6 +138,13 @@
 {
     if (self.tf.text.length > 0 && self.tf1.text.length > 0) {
         
+        UIActivityIndicatorView *activityIndicator = [[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+        activityIndicator.center = CGPointMake(self.view.frame.size.width / 3.0, self.view.frame.size.height / 3.0);
+        [self.view addSubview: activityIndicator];
+        
+        [activityIndicator startAnimating];
+        
+        
         [PFCloud callFunctionInBackground:@"editMatchCenter"
                            withParameters:@{
                                             @"searchTerm": _searchTerm,
@@ -150,9 +157,16 @@
                                         
                                         if (!error) {
                                             NSLog(@"Result: '%@'", result);
+                                            
+                                            [activityIndicator startAnimating];
+                                            
                                             [self dismissViewControllerAnimated:YES completion:nil];
                                         }
                                     }];
+    }
+    else {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Empty fields!" message:@"Make sure all fields are filled in before submitting!" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alert show];
     }
 }
 

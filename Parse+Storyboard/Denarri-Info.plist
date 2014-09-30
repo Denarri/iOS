@@ -59,5 +59,7 @@
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
 	</array>
+	<key>UILaunchImageFile</key>
+	<string></string>
 </dict>
 </plist>

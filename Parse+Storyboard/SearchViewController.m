@@ -52,6 +52,8 @@
     [self.nextButtonOutlet addTarget:self action:@selector(nextButton:) forControlEvents:UIControlEventTouchUpInside];
     // Do any additional setup after loading the view.
     
+    
+    
 }
 
 
@@ -80,6 +82,13 @@
 - (IBAction)nextButton:(id)sender
 {
     if (self.itemSearch.text.length > 0) {
+        
+        UIActivityIndicatorView *activityIndicator = [[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+        activityIndicator.center = CGPointMake(self.view.frame.size.width / 2.0, self.view.frame.size.height / 2.0);
+        [self.view addSubview: activityIndicator];
+        
+        [activityIndicator startAnimating];
+        
         [PFCloud callFunctionInBackground:@"eBayCategorySearch"
                            withParameters:@{@"item": self.itemSearch.text}
                                     block:^(NSDictionary *result, NSError *error) {
@@ -164,6 +173,8 @@
                                         
                                         // Decides which segue is taken based on results
                                             
+                                            [activityIndicator stopAnimating];
+                                            
                                             // if 1 match found
                                             if ([numberOfMatches intValue] == 1 ){
                                                 [self performSegueWithIdentifier:@"ShowMatchCenterSegue" sender:self];
@@ -186,6 +197,10 @@
                                             
                                         }
                                     }];
+    }
+    else {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Empty fields!" message:@"Make sure all fields are filled in before submitting!" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alert show];
     }
 }
 

@@ -26,6 +26,13 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    UIActivityIndicatorView *activityIndicator = [[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    activityIndicator.center = CGPointMake(self.view.frame.size.width / 2.0, self.view.frame.size.height / 2.0);
+    [self.view addSubview: activityIndicator];
+    
+    [activityIndicator startAnimating];
+    
     NSLog(@"The url dude is: '%@'", _itemURL);
     
     self.myWebView.delegate = self;
@@ -38,7 +45,10 @@
     // make url request
     [NSURLConnection sendAsynchronousRequest:request queue:queue completionHandler:^(NSURLResponse *response, NSData *data, NSError *error)
      {
-         if ([data length] > 0 && error == nil) [self.myWebView loadRequest:request];
+         if ([data length] > 0 && error == nil) {
+             [self.myWebView loadRequest:request];
+             [activityIndicator stopAnimating];
+         }
          else if (error != nil) NSLog(@"Error: %@", error);
      }];
     
