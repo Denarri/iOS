@@ -49,11 +49,18 @@
     
     
     // Submit button
-    UIButton *submitButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    submitButton.frame = CGRectMake(110, 340, 100, 100);
-    [submitButton setTitle:@"Submit" forState:UIControlStateNormal];
-    [submitButton addTarget:self action:@selector(submitButton:) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:submitButton];
+    self.submitButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    self.submitButton.frame = CGRectMake(110, 340, 100, 100);
+    [self.submitButton setTitle:@"Submit" forState:UIControlStateNormal];
+    [self.submitButton addTarget:self action:@selector(submitButton:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:self.submitButton];
+    
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    
+    self.submitButton.userInteractionEnabled = YES;
     
 }
 
@@ -104,6 +111,8 @@
 {
     if (self.minPrice.text.length > 0 && self.maxPrice.text.length > 0) {
         
+        self.submitButton.userInteractionEnabled = NO;
+        
         UIActivityIndicatorView *activityIndicator = [[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
         activityIndicator.center = CGPointMake(self.view.frame.size.width / 3.0, self.view.frame.size.height / 3.0);
         [self.view addSubview: activityIndicator];
@@ -146,11 +155,6 @@
                                                                                      [self.tabBarController setSelectedIndex:1];
                                                                                  }
                                                                              }];
-                                                 
-                                                 
-    
-                                                     //[self performSegueWithIdentifier:@"SearchCategoryChooserToMatchCenterSegue" sender:self];
-
                                              }
                                          }];
     

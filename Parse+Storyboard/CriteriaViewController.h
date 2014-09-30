@@ -15,6 +15,8 @@
 
 @property (strong, nonatomic) IBOutlet UITextField *minPrice;
 @property (strong, nonatomic) IBOutlet UITextField *maxPrice;
+@property (strong, nonatomic) IBOutlet UIButton *submitButton;
+
 @property (nonatomic, copy) NSNumber *chosenCategory;
 @property (nonatomic, copy) NSString *chosenCategoryName;
 @property (strong, nonatomic) NSString *itemCondition;

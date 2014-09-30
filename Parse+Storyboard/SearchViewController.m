@@ -33,12 +33,9 @@
 {
     [super viewDidLoad];
     
-    self.navigationItem.title = @"Denarri";
+    _nextButtonOutlet.userInteractionEnabled = YES;
     
-//    UIBarButtonItem *settingsItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCompose target:self action:@selector(settingsButton:)];
-//    
-//    NSArray *actionButtonItems = @[settingsItem];
-//    self.navigationItem.rightBarButtonItems = actionButtonItems;
+    self.navigationItem.title = @"Denarri";
 
     UIButton *button =  [UIButton buttonWithType:UIButtonTypeCustom];
     [button setImage:[UIImage imageNamed:@"settingsgear.png"] forState:UIControlStateNormal];
@@ -51,9 +48,6 @@
     
     [self.nextButtonOutlet addTarget:self action:@selector(nextButton:) forControlEvents:UIControlEventTouchUpInside];
     // Do any additional setup after loading the view.
-    
-    
-    
 }
 
 
@@ -65,6 +59,13 @@
     }
 }
 
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    
+_nextButtonOutlet.userInteractionEnabled = YES;
+    
+}
 
 - (void)didReceiveMemoryWarning
 {
@@ -82,6 +83,8 @@
 - (IBAction)nextButton:(id)sender
 {
     if (self.itemSearch.text.length > 0) {
+        
+        _nextButtonOutlet.userInteractionEnabled = NO;
         
         UIActivityIndicatorView *activityIndicator = [[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
         activityIndicator.center = CGPointMake(self.view.frame.size.width / 2.0, self.view.frame.size.height / 2.0);
