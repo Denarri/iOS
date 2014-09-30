@@ -60,6 +60,6 @@
 		<string>UIInterfaceOrientationPortrait</string>
 	</array>
 	<key>UILaunchImageFile</key>
-	<string></string>
+	<string>Splash.png</string>
 </dict>
 </plist>
