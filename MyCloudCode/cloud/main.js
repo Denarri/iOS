@@ -404,9 +404,13 @@ Parse.Cloud.define("MatchCenter", function(request, response) {
                 //Parses through ebay's response, pushes each individual item and its properties into an array  
                 ebayResponse.findItemsByKeywordsResponse.forEach(function(itemByKeywordsResponse) {
                     itemByKeywordsResponse.searchResult.forEach(function(result) {
-                      result.item.forEach(function(item) {
-                        matchCenterItems.push(item);
-                      });
+
+                      if (result.item){
+                        result.item.forEach(function(item) {
+                          matchCenterItems.push(item);
+                        });
+                      }
+
                     });
                 });
 
@@ -697,6 +701,8 @@ function matchCenterComparison(parentUser, eBayResults) {
     var matchCenterComparisonPromise = new Parse.Promise();
 
     // if the user has MatchCenter items, do this:
+
+    console.log('ando ishal');
     if (eBayResults.length > 0) {
       console.log('yes the ebay results be longer than 0');
 
@@ -763,7 +769,7 @@ function matchCenterComparison(parentUser, eBayResults) {
   } else {
     matchCenterComparisonPromise.reject({ message: 'No work done, expression failed' });
   }
-  return matchCenterComparisonPromise;  
+  //return matchCenterComparisonPromise;  
   
 } 
  
