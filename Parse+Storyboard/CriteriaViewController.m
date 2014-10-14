@@ -41,16 +41,15 @@
     [self.view addSubview:conditionSegmentedControl];
     
     UISegmentedControl *locationSegmentedControl = [[UISegmentedControl alloc] initWithItems:[NSArray arrayWithObjects:@"Faster Shipping", @"Larger Selection", nil]];
-    locationSegmentedControl.frame = CGRectMake(35, 320, 250, 35);
+    locationSegmentedControl.frame = CGRectMake(35, 290, 250, 35);
     locationSegmentedControl.selectedSegmentIndex = 0;
     locationSegmentedControl.tintColor = [UIColor blueColor];
     [locationSegmentedControl addTarget:self action:@selector(locationValueChanged:) forControlEvents: UIControlEventValueChanged];
     [self.view addSubview:locationSegmentedControl];
     
-    
     // Submit button
     self.submitButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    self.submitButton.frame = CGRectMake(110, 340, 100, 100);
+    self.submitButton.frame = CGRectMake(110, 330, 100, 100);
     [self.submitButton setTitle:@"Submit" forState:UIControlStateNormal];
     [self.submitButton addTarget:self action:@selector(submitButton:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.submitButton];
@@ -97,7 +96,6 @@
     }
 }
 
-
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -118,50 +116,71 @@
         [self.view addSubview: activityIndicator];
         
         [activityIndicator startAnimating];
-    
+        
         [PFCloud callFunctionInBackground:@"userCategorySave"
                            withParameters:@{@"categoryId": self.chosenCategory,
                                             
-                                              @"minPrice": self.minPrice.text,
-                                              @"maxPrice": self.maxPrice.text,
-                                         @"itemCondition": self.itemCondition,
-                                          @"itemLocation": self.itemLocation,
+                                            @"minPrice": self.minPrice.text,
+                                            @"maxPrice": self.maxPrice.text,
+                                            @"itemCondition": self.itemCondition,
+                                            @"itemLocation": self.itemLocation,
                                             
-                                          @"categoryName": self.chosenCategoryName,
+                                            @"categoryName": self.chosenCategoryName,
                                             }
-                                         block:^(NSString *result, NSError *error) {
-         
-                                             if (!error) {
-                                                 NSLog(@"Criteria successfully saved.");
-                                                 
-                                                 [PFCloud callFunctionInBackground:@"addToMatchCenter"
-                                                                    withParameters:@{
-                                                                                     @"searchTerm": self.itemSearch,
-                                                                                     @"categoryId": self.chosenCategory,
-                                                                                     @"minPrice": self.minPrice.text,
-                                                                                     @"maxPrice": self.maxPrice.text,
-                                                                                     @"itemCondition": self.itemCondition,
-                                                                                     @"itemLocation": self.itemLocation,
-                                                                                     }
-                                                                             block:^(NSString *result, NSError *error) {
-                                                                                 
-                                                                                 if (!error) {
-                                                                                     NSLog(@"'%@'", result);
-                                                                                     
-                                                                                     [NSThread sleepForTimeInterval:2];
-                                                                                     
-                                                                                     [activityIndicator stopAnimating];
-                                                                                     
-                                                                                     [self.tabBarController setSelectedIndex:1];
-                                                                                 }
-                                                                             }];
-                                             }
-                                         }];
-    
+                                    block:^(NSString *result, NSError *error) {
+                                        
+                                        if (!error) {
+                                            NSLog(@"Criteria successfully saved.");
+                                            
+                                            [PFCloud callFunctionInBackground:@"addToMatchCenter"
+                                                               withParameters:@{
+                                                                                @"searchTerm": self.itemSearch,
+                                                                                @"categoryId": self.chosenCategory,
+                                                                                  @"minPrice": self.minPrice.text,
+                                                                                  @"maxPrice": self.maxPrice.text,
+                                                                             @"itemCondition": self.itemCondition,
+                                                                              @"itemLocation": self.itemLocation,
+                                                                              @"itemPriority": self.itemPriority,
+                                                                                }
+                                                                        block:^(NSString *result, NSError *error) {
+                                                                            
+                                                                            if (!error) {
+                                                                                NSLog(@"'%@'", result);
+                                                                                
+                                                                                [NSThread sleepForTimeInterval:2];
+                                                                                
+                                                                                [activityIndicator stopAnimating];
+                                                                                
+                                                                                [self.tabBarController setSelectedIndex:1];
+                                                                            }
+                                                                        }];
+                                        }
+                                    }];
+        
     }
     else {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Empty fields!" message:@"Make sure all fields are filled in before submitting!" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
-        [alert show];
+        if ([UIAlertController class]) {
+            // Alert the iOS8 way
+            UIAlertController * alert=   [UIAlertController
+                                          alertControllerWithTitle:@"Empty fields!"
+                                          message:@"Make sure all fields are filled in before submitting!"
+                                          preferredStyle:UIAlertControllerStyleAlert];
+            
+            UIAlertAction* ok = [UIAlertAction
+                                 actionWithTitle:@"OK"
+                                 style:UIAlertActionStyleDefault
+                                 handler:^(UIAlertAction * action)
+                                 {
+                                     [alert dismissViewControllerAnimated:YES completion:nil];
+                                     
+                                 }];
+            [alert addAction:ok];
+            [self presentViewController:alert animated:YES completion:nil];
+        } else {
+            // Alert the iOS7 way
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Empty fields!" message:@"Make sure all fields are filled in before submitting!" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            [alert show];
+        }
     }
 
 }

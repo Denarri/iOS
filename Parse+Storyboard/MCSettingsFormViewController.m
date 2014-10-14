@@ -21,9 +21,8 @@
     self.navigationItem.title = @"Criteria";
     
     // Min Price
-    self.tf = [[UITextField alloc] initWithFrame:CGRectMake(80, 125, 70, 30)];
-    
-//    UITextField *tf = [[UITextField alloc] initWithFrame:CGRectMake(80, 125, 70, 30)];
+    self.tf = [[UITextField alloc] initWithFrame:CGRectMake(75, 100, 70, 30)];
+
     [self.view addSubview:self.tf];
     
     self.tf.userInteractionEnabled = YES;
@@ -39,9 +38,8 @@
     self.tf.layer.borderWidth= 1.0f;
     
     // Max Price
-    self.tf1 = [[UITextField alloc] initWithFrame:CGRectMake(195, 125, 70, 30)];
+    self.tf1 = [[UITextField alloc] initWithFrame:CGRectMake(190, 100, 70, 30)];
     
-    //UITextField *tf1 = [[UITextField alloc] initWithFrame:CGRectMake(195, 125, 70, 30)];
     [self.view addSubview:self.tf1];
     
     self.tf1.userInteractionEnabled = YES;
@@ -56,37 +54,48 @@
     self.tf1.layer.borderColor=[[UIColor lightGrayColor]CGColor];
     self.tf1.layer.borderWidth= 1.0f;
     
-    // Condition UISegmentedControls
+    // Item Condition
     UISegmentedControl *conditionSegmentedControl = [[UISegmentedControl alloc] initWithItems:[NSArray arrayWithObjects:@"New Only", @"New/Lightly Used", nil]];
-    conditionSegmentedControl.frame = CGRectMake(35, 210, 250, 35);
-    conditionSegmentedControl.tintColor = [UIColor blueColor];
-    
-    if ([_itemCondition  isEqual: @"New"]) {
-        conditionSegmentedControl.selectedSegmentIndex=0;
-    } else if ([_itemCondition  isEqual: @"Used"]) {
-        conditionSegmentedControl.selectedSegmentIndex=1;
+    conditionSegmentedControl.frame = CGRectMake(35, 170, 250, 35);
+    if ([self.itemCondition  isEqual: @"New"]) {
+        conditionSegmentedControl.selectedSegmentIndex = 0;
     }
-    
+    else {
+        conditionSegmentedControl.selectedSegmentIndex = 1;
+    }
+    conditionSegmentedControl.tintColor = [UIColor blueColor];
     [conditionSegmentedControl addTarget:self action:@selector(conditionValueChanged:) forControlEvents: UIControlEventValueChanged];
     [self.view addSubview:conditionSegmentedControl];
     
-    // Location UISegmentedControls
+    // Item Location
     UISegmentedControl *locationSegmentedControl = [[UISegmentedControl alloc] initWithItems:[NSArray arrayWithObjects:@"Faster Shipping", @"Larger Selection", nil]];
-    locationSegmentedControl.frame = CGRectMake(35, 320, 250, 35);
-    locationSegmentedControl.tintColor = [UIColor blueColor];
-    
-    if ([_itemLocation  isEqual: @"US"]) {
-        locationSegmentedControl.selectedSegmentIndex=0;
-    } else if ([_itemLocation  isEqual: @"WorldWide"]) {
-        locationSegmentedControl.selectedSegmentIndex=1;
+    locationSegmentedControl.frame = CGRectMake(35, 250, 250, 35);
+    if ([self.itemLocation  isEqual: @"US"]) {
+        locationSegmentedControl.selectedSegmentIndex = 0;
     }
-    
+    else {
+        locationSegmentedControl.selectedSegmentIndex = 1;
+    }
+    locationSegmentedControl.tintColor = [UIColor blueColor];
     [locationSegmentedControl addTarget:self action:@selector(locationValueChanged:) forControlEvents: UIControlEventValueChanged];
     [self.view addSubview:locationSegmentedControl];
     
+    // Item priority
+    UISegmentedControl *prioritySegmentedControl = [[UISegmentedControl alloc] initWithItems:[NSArray arrayWithObjects:@"Just Browsing", @"Need It Soon", nil]];
+    prioritySegmentedControl.frame = CGRectMake(35, 330, 250, 35);
+    if ([self.itemPriority  isEqual: @"Low"]) {
+        prioritySegmentedControl.selectedSegmentIndex = 0;
+    }
+    else {
+        prioritySegmentedControl.selectedSegmentIndex = 1;
+    }
+    prioritySegmentedControl.tintColor = [UIColor blueColor];
+    [prioritySegmentedControl addTarget:self action:@selector(priorityValueChanged:) forControlEvents: UIControlEventValueChanged];
+    [self.view addSubview:prioritySegmentedControl];
+    
     // Submit button
     UIButton *submitButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    submitButton.frame = CGRectMake(110, 340, 100, 100);
+    submitButton.frame = CGRectMake(110, 350, 100, 100);
     [submitButton setTitle:@"Submit" forState:UIControlStateNormal];
     [submitButton addTarget:self action:@selector(submitButton:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:submitButton];
@@ -130,6 +139,20 @@
     }
 }
 
+- (void)priorityValueChanged:(UISegmentedControl *)prioritySegmentedControl {
+    
+    if(prioritySegmentedControl.selectedSegmentIndex == 0)
+    {
+        self.itemPriority = @"Low";
+    }
+    else if(prioritySegmentedControl.selectedSegmentIndex == 1)
+    {
+        self.itemPriority = @"High";
+    }
+    
+     NSLog(@"itemPriority: '%@'", self.itemPriority);
+}
+
 - (IBAction)cancelButton:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
@@ -148,10 +171,11 @@
         [PFCloud callFunctionInBackground:@"editMatchCenter"
                            withParameters:@{
                                             @"searchTerm": _searchTerm,
-                                            @"minPrice": self.tf.text,
-                                            @"maxPrice": self.tf1.text,
-                                            @"itemCondition": _itemCondition,
-                                            @"itemLocation": _itemLocation
+                                              @"minPrice": self.tf.text,
+                                              @"maxPrice": self.tf1.text,
+                                         @"itemCondition": _itemCondition,
+                                          @"itemLocation": _itemLocation,
+                                          @"itemPriority": self.itemPriority,
                                             }
                                     block:^(NSString *result, NSError *error) {
                                         
@@ -165,8 +189,28 @@
                                     }];
     }
     else {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Empty fields!" message:@"Make sure all fields are filled in before submitting!" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
-        [alert show];
+        if ([UIAlertController class]) {
+            // Alert the iOS8 way
+            UIAlertController * alert=   [UIAlertController
+                                          alertControllerWithTitle:@"Empty fields!"
+                                          message:@"Make sure all fields are filled in before submitting!"
+                                          preferredStyle:UIAlertControllerStyleAlert];
+            
+            UIAlertAction* ok = [UIAlertAction
+                                 actionWithTitle:@"OK"
+                                 style:UIAlertActionStyleDefault
+                                 handler:^(UIAlertAction * action)
+                                 {
+                                     [alert dismissViewControllerAnimated:YES completion:nil];
+                                     
+                                 }];
+            [alert addAction:ok];
+            [self presentViewController:alert animated:YES completion:nil];
+        } else {
+            // Alert the iOS7 way
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Empty fields!" message:@"Make sure all fields are filled in before submitting!" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            [alert show];
+        }
     }
 }
 

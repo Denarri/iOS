@@ -21,6 +21,7 @@
 @property (nonatomic, copy) NSString *chosenCategoryName;
 @property (strong, nonatomic) NSString *itemCondition;
 @property (strong, nonatomic) NSString *itemLocation;
+@property (strong, nonatomic) NSString *itemPriority;
 @property (strong, nonatomic) NSString *itemSearch;
 
 @end

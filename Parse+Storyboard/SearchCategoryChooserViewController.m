@@ -86,7 +86,7 @@
  controller.chosenCategory = self.chosenCategory;
  controller.chosenCategoryName = self.chosenCategoryName;
  controller.itemSearch = self.itemSearch;
-    
+ controller.itemPriority = self.itemPriority;
     
     
 }

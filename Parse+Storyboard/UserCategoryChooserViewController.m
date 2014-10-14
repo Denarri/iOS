@@ -57,7 +57,8 @@
                                         @"minPrice": self.matchingCategoryMinPrice1,
                                         @"maxPrice": self.matchingCategoryMaxPrice1,
                                         @"itemCondition": self.matchingCategoryCondition1,
-                                        @"itemLocation": self.matchingCategoryLocation1
+                                        @"itemLocation": self.matchingCategoryLocation1,
+                                        @"itemPriority": self.itemPriority,
                                         }
                                 block:^(NSString *result, NSError *error) {
                                     
@@ -84,20 +85,22 @@
                        withParameters:@{
                                         @"searchTerm": self.itemSearch,
                                         @"categoryId": self.matchingCategoryId2,
-                                        @"minPrice": self.matchingCategoryMinPrice2,
-                                        @"maxPrice": self.matchingCategoryMaxPrice2,
-                                        @"itemCondition": self.matchingCategoryCondition2,
-                                        @"itemLocation": self.matchingCategoryLocation2,
+                                          @"minPrice": self.matchingCategoryMinPrice2,
+                                          @"maxPrice": self.matchingCategoryMaxPrice2,
+                                     @"itemCondition": self.matchingCategoryCondition2,
+                                      @"itemLocation": self.matchingCategoryLocation2,
+                                      @"itemPriority": self.itemPriority,
                                         }
                                 block:^(NSString *result, NSError *error) {
                                     
                                     if (!error) {
                                         NSLog(@"'%@'", result);
+                                        [self.tabBarController setSelectedIndex:1];
                                     }
                                 }];
     
     
-    [self.tabBarController setSelectedIndex:1];
+    
     //[self performSegueWithIdentifier:@"UserCategoryChooserToMatchCenterSegue" sender:nil];
     
 }

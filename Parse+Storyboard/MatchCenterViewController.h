@@ -11,11 +11,14 @@
 #import "SearchViewController.h"
 #import "WebViewController.h"
 
+#import "SLExpandableTableView.h"
+
 
 
 @interface MatchCenterViewController : UIViewController <UITableViewDataSource>
 
 @property (strong, nonatomic) NSString *itemSearch;
+@property (strong, nonatomic) NSString *itemPriority;
 //@property (strong, nonatomic) IBOutlet UITextField *itemSearch;
 @property (nonatomic, strong) NSArray *imageURLs;
 @property (strong, nonatomic) NSString *matchingCategoryCondition;
@@ -25,8 +28,16 @@
 
 @property (strong, nonatomic) NSArray *matchCenterArray;
 @property (strong, nonatomic) NSString *searchTerm;
-
 @property (strong, nonatomic) NSString *itemURL;
+@property (assign) NSInteger expandedSection;
+@property (assign) BOOL results;
 
+@property (weak, nonatomic) IBOutlet UIButton *moreButton;
+@property (strong) NSMutableSet *expandedSections;
 
+@end
+
+@interface MoreButton : UIButton
+@property (assign) NSInteger expandedSection;
+@property (assign) NSInteger sectionIndex;
 @end

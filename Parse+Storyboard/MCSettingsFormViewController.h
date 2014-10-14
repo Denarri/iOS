@@ -17,6 +17,7 @@
 @property (strong, nonatomic) NSString *itemCondition;
 @property (strong, nonatomic) NSString *itemLocation;
 @property (strong, nonatomic) NSString *searchTerm;
+@property (strong, nonatomic) NSString *itemPriority;
 
 @property (strong, nonatomic) IBOutlet UITextField *tf;
 @property (strong, nonatomic) IBOutlet UITextField *tf1;

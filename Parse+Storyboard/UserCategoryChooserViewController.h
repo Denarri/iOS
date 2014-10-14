@@ -11,7 +11,7 @@
 @interface UserCategoryChooserViewController : UIViewController
 
 @property (strong, nonatomic) NSString *itemSearch;
-
+@property (strong, nonatomic) NSString *itemPriority;
 
 //@property (weak, nonatomic) IBOutlet UITextField *itemSearch;
 

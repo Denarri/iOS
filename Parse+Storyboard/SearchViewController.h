@@ -20,6 +20,8 @@
 @property (nonatomic, copy) NSNumber *topCategoryId2;
 @property (strong, nonatomic) IBOutlet UITextField *itemSearch;
 
+@property (strong, nonatomic) NSString *itemPriority;
+
 @property (strong, nonatomic) NSString *matchingCategoryCondition1;
 @property (strong, nonatomic) NSString *matchingCategoryCondition2;
 

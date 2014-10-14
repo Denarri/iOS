@@ -110,6 +110,7 @@
     self.itemCondition = _mcSettingsArray[indexPath.row][@"itemCondition"];
     self.itemLocation = _mcSettingsArray[indexPath.row][@"itemLocation"];
     self.searchTerm = _mcSettingsArray[indexPath.row][@"searchTerm"];
+    self.itemPriority = _mcSettingsArray[indexPath.row][@"itemPriority"];
     
     [self performSegueWithIdentifier:@"MCSettingsToMCFormSegue" sender:self];
 }
@@ -136,6 +137,7 @@
     controller.maxPrice = self.maxPrice;
     controller.itemCondition = self.itemCondition;
     controller.itemLocation = self.itemLocation;
+    controller.itemPriority = self.itemPriority;
 }
 
 

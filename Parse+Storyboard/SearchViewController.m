@@ -45,6 +45,15 @@
     UIBarButtonItem *barButton = [[UIBarButtonItem alloc] initWithCustomView:button];
     self.navigationItem.rightBarButtonItem = barButton;
     
+    // Item priority
+    UISegmentedControl *prioritySegmentedControl = [[UISegmentedControl alloc] initWithItems:[NSArray arrayWithObjects:@"Just Browsing", @"Need It Soon", nil]];
+    prioritySegmentedControl.frame = CGRectMake(25, 330, 200, 25);
+    prioritySegmentedControl.center = CGPointMake(160.0, 190.0);// for center
+    prioritySegmentedControl.selectedSegmentIndex = 0;
+    prioritySegmentedControl.tintColor = [UIColor blueColor];
+    [prioritySegmentedControl addTarget:self action:@selector(priorityValueChanged:) forControlEvents: UIControlEventValueChanged];
+    [self.view addSubview:prioritySegmentedControl];
+    
     
     [self.nextButtonOutlet addTarget:self action:@selector(nextButton:) forControlEvents:UIControlEventTouchUpInside];
     // Do any additional setup after loading the view.
@@ -79,6 +88,17 @@ _nextButtonOutlet.userInteractionEnabled = YES;
     NSLog(@"OH YEAAAAA");
 }
 
+- (void)priorityValueChanged:(UISegmentedControl *)prioritySegmentedControl {
+    
+    if(prioritySegmentedControl.selectedSegmentIndex == 0)
+    {
+        self.itemPriority = @"Low";
+    }
+    else if(prioritySegmentedControl.selectedSegmentIndex == 1)
+    {
+        self.itemPriority = @"High";
+    }
+}
 
 - (IBAction)nextButton:(id)sender
 {
@@ -97,84 +117,84 @@ _nextButtonOutlet.userInteractionEnabled = YES;
                                     block:^(NSDictionary *result, NSError *error) {
                                         NSLog(@"'%@'", result);
                                         
-                                       // Parses results
+                                        // Parses results
                                         
-                                            NSArray *resultArray = [result objectForKey:@"results"];
+                                        NSArray *resultArray = [result objectForKey:@"results"];
                                         
-                                                // Number of Top Categories
-                                                NSDictionary *dictionary0 = [resultArray objectAtIndex:0];
-                                                NSNumber *numberOfTopCategories = [dictionary0 objectForKey:@"Number of top categories"];
+                                        // Number of Top Categories
+                                        NSDictionary *dictionary0 = [resultArray objectAtIndex:0];
+                                        NSNumber *numberOfTopCategories = [dictionary0 objectForKey:@"Number of top categories"];
                                         
-                                                // Ids of the Top Categories
-                                                NSDictionary *dictionary1 = [resultArray objectAtIndex:1];
-                                                NSArray *topCategoryIdsArray = [dictionary1 objectForKey:@"Top category Ids"];
+                                        // Ids of the Top Categories
+                                        NSDictionary *dictionary1 = [resultArray objectAtIndex:1];
+                                        NSArray *topCategoryIdsArray = [dictionary1 objectForKey:@"Top category Ids"];
                                         
-                                                // Names of the Top Categories
-                                                NSDictionary *dictionary2 = [resultArray objectAtIndex:2];
-                                                NSArray *topCategoryNamesArray = [dictionary2 objectForKey:@"Top category names"];
+                                        // Names of the Top Categories
+                                        NSDictionary *dictionary2 = [resultArray objectAtIndex:2];
+                                        NSArray *topCategoryNamesArray = [dictionary2 objectForKey:@"Top category names"];
                                         
-                                                // Number of Top Categories matching User Categories
-                                                NSDictionary *dictionary3 = [resultArray objectAtIndex:3];
-                                                NSNumber *numberOfMatches = [dictionary3 objectForKey:@"Number of matches"];
-                                        
-                                        
-                                        
-                                                // Condition of Matching Categories
-                                                NSDictionary *dictionary5 = [resultArray objectAtIndex:5];
-                                                _matchingCategoryCondition1 = [dictionary5 objectForKey:@"Matching Category Condition 1"];
-                                                NSDictionary *dictionary6 = [resultArray objectAtIndex:6];
-                                                _matchingCategoryCondition2 = [dictionary6 objectForKey:@"Matching Category Condition 2"];
-                                        
-                                                // Location of Matching Categories
-                                                NSDictionary *dictionary7 = [resultArray objectAtIndex:7];
-                                                _matchingCategoryLocation1 = [dictionary7 objectForKey:@"Matching Category Location 1"];
-                                                NSDictionary *dictionary8 = [resultArray objectAtIndex:8];
-                                                _matchingCategoryLocation2 = [dictionary8 objectForKey:@"Matching Category Location 2"];
-                                        
-                                                // Max Price of Matching Categories
-                                                NSDictionary *dictionary9 = [resultArray objectAtIndex:9];
-                                                _matchingCategoryMaxPrice1 = [dictionary9 objectForKey:@"Matching Category MaxPrice 1"];
-                                                NSDictionary *dictionary10 = [resultArray objectAtIndex:10];
-                                                _matchingCategoryMaxPrice2 = [dictionary10 objectForKey:@"Matching Category MaxPrice 2"];
-                                        
-                                                // Min Price of Matching Categories
-                                                NSDictionary *dictionary11 = [resultArray objectAtIndex:11];
-                                                _matchingCategoryMinPrice1 = [dictionary11 objectForKey:@"Matching Category MinPrice 1"];
-                                                NSDictionary *dictionary12 = [resultArray objectAtIndex:12];
-                                                _matchingCategoryMinPrice2 = [dictionary12 objectForKey:@"Matching Category MinPrice 2"];
-                                        
-                                                // CategoryId of Matching Categories
-                                                NSDictionary *dictionary14 = [resultArray objectAtIndex:14];
-                                                _matchingCategoryId1 = [dictionary14 objectForKey:@"Matching Category Id 1"];
-                                                NSDictionary *dictionary15 = [resultArray objectAtIndex:15];
-                                                _matchingCategoryId2 = [dictionary15 objectForKey:@"Matching Category Id 2"];
-                                        
-                                                // Category Name of Matching Categories
-                                                NSDictionary *dictionary16 = [resultArray objectAtIndex:16];
-                                                _matchingCategoryName1 = [dictionary16 objectForKey:@"Matching Category Name 1"];
-                                                NSDictionary *dictionary17 = [resultArray objectAtIndex:17];
-                                                _matchingCategoryName2 = [dictionary17 objectForKey:@"Matching Category Name 2"];
+                                        // Number of Top Categories matching User Categories
+                                        NSDictionary *dictionary3 = [resultArray objectAtIndex:3];
+                                        NSNumber *numberOfMatches = [dictionary3 objectForKey:@"Number of matches"];
                                         
                                         
                                         
-                                                // Defines where each topCategory name will come from
-                                                self.topCategory1 = [topCategoryNamesArray objectAtIndex:0];
-                                                if ([numberOfTopCategories intValue] == 2) {
-                                                    self.topCategory2 = [topCategoryNamesArray objectAtIndex:1];
-                                                }
+                                        // Condition of Matching Categories
+                                        NSDictionary *dictionary5 = [resultArray objectAtIndex:5];
+                                        _matchingCategoryCondition1 = [dictionary5 objectForKey:@"Matching Category Condition 1"];
+                                        NSDictionary *dictionary6 = [resultArray objectAtIndex:6];
+                                        _matchingCategoryCondition2 = [dictionary6 objectForKey:@"Matching Category Condition 2"];
                                         
-                                                // Defines where each topCategory ID will come from
-                                                self.topCategoryId1 = [topCategoryIdsArray objectAtIndex:0];
-                                                if ([numberOfTopCategories intValue] == 2) {
-                                                    self.topCategoryId2 = [topCategoryIdsArray objectAtIndex:1];
-                                                }
-                                    
+                                        // Location of Matching Categories
+                                        NSDictionary *dictionary7 = [resultArray objectAtIndex:7];
+                                        _matchingCategoryLocation1 = [dictionary7 objectForKey:@"Matching Category Location 1"];
+                                        NSDictionary *dictionary8 = [resultArray objectAtIndex:8];
+                                        _matchingCategoryLocation2 = [dictionary8 objectForKey:@"Matching Category Location 2"];
                                         
-                                    
-                                       
+                                        // Max Price of Matching Categories
+                                        NSDictionary *dictionary9 = [resultArray objectAtIndex:9];
+                                        _matchingCategoryMaxPrice1 = [dictionary9 objectForKey:@"Matching Category MaxPrice 1"];
+                                        NSDictionary *dictionary10 = [resultArray objectAtIndex:10];
+                                        _matchingCategoryMaxPrice2 = [dictionary10 objectForKey:@"Matching Category MaxPrice 2"];
+                                        
+                                        // Min Price of Matching Categories
+                                        NSDictionary *dictionary11 = [resultArray objectAtIndex:11];
+                                        _matchingCategoryMinPrice1 = [dictionary11 objectForKey:@"Matching Category MinPrice 1"];
+                                        NSDictionary *dictionary12 = [resultArray objectAtIndex:12];
+                                        _matchingCategoryMinPrice2 = [dictionary12 objectForKey:@"Matching Category MinPrice 2"];
+                                        
+                                        // CategoryId of Matching Categories
+                                        NSDictionary *dictionary14 = [resultArray objectAtIndex:14];
+                                        _matchingCategoryId1 = [dictionary14 objectForKey:@"Matching Category Id 1"];
+                                        NSDictionary *dictionary15 = [resultArray objectAtIndex:15];
+                                        _matchingCategoryId2 = [dictionary15 objectForKey:@"Matching Category Id 2"];
+                                        
+                                        // Category Name of Matching Categories
+                                        NSDictionary *dictionary16 = [resultArray objectAtIndex:16];
+                                        _matchingCategoryName1 = [dictionary16 objectForKey:@"Matching Category Name 1"];
+                                        NSDictionary *dictionary17 = [resultArray objectAtIndex:17];
+                                        _matchingCategoryName2 = [dictionary17 objectForKey:@"Matching Category Name 2"];
+                                        
+                                        
+                                        
+                                        // Defines where each topCategory name will come from
+                                        self.topCategory1 = [topCategoryNamesArray objectAtIndex:0];
+                                        if ([numberOfTopCategories intValue] == 2) {
+                                            self.topCategory2 = [topCategoryNamesArray objectAtIndex:1];
+                                        }
+                                        
+                                        // Defines where each topCategory ID will come from
+                                        self.topCategoryId1 = [topCategoryIdsArray objectAtIndex:0];
+                                        if ([numberOfTopCategories intValue] == 2) {
+                                            self.topCategoryId2 = [topCategoryIdsArray objectAtIndex:1];
+                                        }
+                                        
+                                        
+                                        
+                                        
                                         if (!error) {
-                                        
-                                        // Decides which segue is taken based on results
+                                            
+                                            // Decides which segue is taken based on results
                                             
                                             [activityIndicator stopAnimating];
                                             
@@ -202,8 +222,30 @@ _nextButtonOutlet.userInteractionEnabled = YES;
                                     }];
     }
     else {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Empty fields!" message:@"Make sure all fields are filled in before submitting!" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
-        [alert show];
+        
+        if ([UIAlertController class]) {
+            // Alert the iOS8 way
+            UIAlertController * alert=   [UIAlertController
+                                          alertControllerWithTitle:@"Empty fields!"
+                                          message:@"Make sure all fields are filled in before submitting!"
+                                          preferredStyle:UIAlertControllerStyleAlert];
+            
+            UIAlertAction* ok = [UIAlertAction
+                                 actionWithTitle:@"OK"
+                                 style:UIAlertActionStyleDefault
+                                 handler:^(UIAlertAction * action)
+                                 {
+                                     [alert dismissViewControllerAnimated:YES completion:nil];
+                                     
+                                 }];
+            [alert addAction:ok];
+            [self presentViewController:alert animated:YES completion:nil];
+        } else {
+            // Alert the iOS7 way
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Empty fields!" message:@"Make sure all fields are filled in before submitting!" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            [alert show];
+        }
+
     }
 }
 
@@ -219,7 +261,7 @@ _nextButtonOutlet.userInteractionEnabled = YES;
 {
     if ([segue.identifier isEqualToString:@"ShowMatchCenterSegue"]) {
         
-        [self.tabBarController setSelectedIndex:1];
+        
         
         MatchCenterViewController *controller = (MatchCenterViewController *) segue.destinationViewController;
         
@@ -229,15 +271,17 @@ _nextButtonOutlet.userInteractionEnabled = YES;
                            withParameters:@{
                                             @"searchTerm": self.itemSearch.text,
                                             @"categoryId": self.matchingCategoryId1,
-                                              @"minPrice": self.matchingCategoryMinPrice1,
-                                              @"maxPrice": self.matchingCategoryMaxPrice1,
-                                         @"itemCondition": self.matchingCategoryCondition1,
-                                          @"itemLocation": self.matchingCategoryLocation1,
+                                            @"minPrice": self.matchingCategoryMinPrice1,
+                                            @"maxPrice": self.matchingCategoryMaxPrice1,
+                                            @"itemCondition": self.matchingCategoryCondition1,
+                                            @"itemLocation": self.matchingCategoryLocation1,
+                                            @"itemPriority": self.itemPriority,
                                             }
                                     block:^(NSString *result, NSError *error) {
                                         
                                         if (!error) {
                                             NSLog(@"'%@'", result);
+                                            [self.tabBarController setSelectedIndex:1];
                                         }
                                     }];
         
@@ -258,6 +302,7 @@ _nextButtonOutlet.userInteractionEnabled = YES;
         
         // Send over the search query as well as both categories to the Category Chooser VC
         controller.itemSearch = self.itemSearch.text;
+        controller.itemPriority = self.itemPriority;
         controller.topCategory1 = self.topCategory1;
         controller.topCategory2 = self.topCategory2;
         controller.topCategoryId1 = self.topCategoryId1;
@@ -273,6 +318,7 @@ _nextButtonOutlet.userInteractionEnabled = YES;
         
         // Send over the search query as well as the specific category to CriteriaVC to use
         controller.itemSearch = self.itemSearch.text;
+        controller.itemPriority = self.itemPriority;
         controller.chosenCategory = self.topCategoryId1;
         controller.chosenCategoryName = self.topCategory1;
     }
@@ -285,6 +331,7 @@ _nextButtonOutlet.userInteractionEnabled = YES;
         // Send over the search query as well as both categories to the Category Chooser VC
         
         controller.itemSearch = self.itemSearch.text;
+        controller.itemPriority = self.itemPriority;
         
         controller.matchingCategoryName1 = self.matchingCategoryName1;
         controller.matchingCategoryName2 = self.matchingCategoryName2;

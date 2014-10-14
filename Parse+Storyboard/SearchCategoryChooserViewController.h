@@ -14,6 +14,7 @@
 @property (nonatomic, copy) NSString *chosenCategoryName;
 
 @property (strong, nonatomic) NSString *itemSearch;
+@property (strong, nonatomic) NSString *itemPriority;
 //@property (strong, nonatomic) IBOutlet UITextField *itemSearch;
 
 

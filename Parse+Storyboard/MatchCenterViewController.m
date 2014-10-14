@@ -9,9 +9,13 @@
 #import <UIKit/UIKit.h>
 
 @interface MatchCenterViewController () <UITableViewDataSource, UITableViewDelegate>
+
 @property (nonatomic, strong) UITableView *matchCenter;
 @property (nonatomic, assign) BOOL matchCenterDone;
+@property (nonatomic, assign) BOOL hasPressedShowMoreButton;
 @end
+
+
 
 @implementation MatchCenterViewController
 
@@ -24,22 +28,29 @@
     return self;
 }
 
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
+    self.navigationItem.title = @"Denarri";
+    
     _matchCenterDone = NO;
     
+    _hasPressedShowMoreButton = NO;
+    
     self.matchCenter = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewCellStyleSubtitle];
+    
     self.matchCenter.frame = CGRectMake(0,50,320,self.view.frame.size.height-100);
     _matchCenter.dataSource = self;
     _matchCenter.delegate = self;
     [self.view addSubview:self.matchCenter];
     
+    self.expandedSection = -1;
+    
     _matchCenterArray = [[NSArray alloc] init];
     
 }
+
 
 - (void)viewDidAppear:(BOOL)animated
 {
@@ -51,15 +62,12 @@
     
     [activityIndicator startAnimating];
     
-    // Delay to allow MatchCenter item enough time to be added before pinging ebay
-    //[NSThread sleepForTimeInterval:2];
-    
     _matchCenterDone = NO;
     
     // Disable ability to scroll until table is MatchCenter table is done loading
     self.matchCenter.scrollEnabled = NO;
     
-    [PFCloud callFunctionInBackground:@"MatchCenter"
+    [PFCloud callFunctionInBackground:@"MatchCenter3"
                        withParameters:@{}
                                 block:^(NSArray *result, NSError *error) {
                                     
@@ -91,15 +99,35 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
-    return 0.01f;
+    return 40;
 }
 
+
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
+    UIView *view = [[UIView alloc] initWithFrame:CGRectZero];
+    view.backgroundColor = [UIColor whiteColor];
+    
+    MoreButton *moreButton = [MoreButton buttonWithType:UIButtonTypeCustom];
+    moreButton.frame = CGRectMake(0, 0, 320, 44);
+    moreButton.sectionIndex = section;
+    [moreButton setImage:[UIImage imageNamed:@"downarrow.png"] forState:UIControlStateNormal];
+    [moreButton addTarget:self action:@selector(moreButtonSelected:) forControlEvents:UIControlEventTouchUpInside];
+    [view addSubview:moreButton];
+    
+    return view;
+}
+
+- (void)moreButtonSelected:(MoreButton *)button {
+    self.expandedSection = button.sectionIndex;
+    [self.matchCenter reloadData];
+}
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 21)];
     headerView.backgroundColor = [UIColor lightGrayColor];
     
-    _searchTerm = [[[[_matchCenterArray  objectAtIndex:section] objectForKey:@"Top 3"] objectAtIndex:3]objectForKey:@"Search Term"];
+    
+    _searchTerm = [[[[_matchCenterArray  objectAtIndex:section] objectForKey:@"Top 3"] objectAtIndex:0]objectForKey:@"Search Term"];
     
     UILabel *headerLabel = [[UILabel alloc] initWithFrame:CGRectMake(8, 0, 250, 21)];
     headerLabel.text = [NSString stringWithFormat:@"%@", _searchTerm];
@@ -107,7 +135,6 @@
     headerLabel.textColor = [UIColor whiteColor];
     headerLabel.backgroundColor = [UIColor lightGrayColor];
     [headerView addSubview:headerLabel];
-    
     
     UIButton *deleteButton = [UIButton buttonWithType:UIButtonTypeCustom];
     deleteButton.tag = section;
@@ -123,9 +150,19 @@
 {
     NSDictionary *currentSectionDictionary = _matchCenterArray[section];
     NSArray *top3ArrayForSection = currentSectionDictionary[@"Top 3"];
+    
+    if (top3ArrayForSection.count-1 < 1){
+        _results = NO;
+    }
+    else if(top3ArrayForSection.count-1 >= 1){
+        _results = YES;
+    }
+    
     return top3ArrayForSection.count-1;
 }
 
+
+// Cell layout
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // Initialize cell
@@ -140,26 +177,55 @@
     tableView.separatorColor = [UIColor clearColor];
     
     // title of the item
-    cell.textLabel.text = _matchCenterArray[indexPath.section][@"Top 3"][indexPath.row][@"Title"];
-    cell.textLabel.font = [UIFont boldSystemFontOfSize:14];
     
-    // price of the item
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"$%@", _matchCenterArray[indexPath.section][@"Top 3"][indexPath.row][@"Price"]];
-    cell.detailTextLabel.textColor = [UIColor colorWithRed:0/255.0f green:127/255.0f blue:31/255.0f alpha:1.0f];
+    if (_results == NO) {
+        cell.textLabel.text = @"Sorry burry, didn't find nuttin";
+        cell.textLabel.font = [UIFont boldSystemFontOfSize:14];
+    }
     
-    // image of the item
-    NSData *imageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:_matchCenterArray[indexPath.section][@"Top 3"][indexPath.row][@"Image URL"]]];
-    [[cell imageView] setImage:[UIImage imageWithData:imageData]];
+    else if (_results == YES) {
+        cell.textLabel.text = _matchCenterArray[indexPath.section][@"Top 3"][indexPath.row+1][@"Title"];
+        cell.textLabel.font = [UIFont boldSystemFontOfSize:14];
+    }
+    
+    if (_results == YES) {
+        // price of the item
+        cell.detailTextLabel.text = [NSString stringWithFormat:@"$%@", _matchCenterArray[indexPath.section][@"Top 3"][indexPath.row+1][@"Price"]];
+        cell.detailTextLabel.textColor = [UIColor colorWithRed:0/255.0f green:127/255.0f blue:31/255.0f alpha:1.0f];
+    
+        // image of the item
+        NSData *imageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:_matchCenterArray[indexPath.section][@"Top 3"][indexPath.row+1][@"Image URL"]]];
+        [[cell imageView] setImage:[UIImage imageWithData:imageData]];
+    }
     
     return cell;
     
 }
 
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    return 65;
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.section == self.expandedSection || indexPath.row <= 3) {
+        return 65;
+    }
+    return 0;
 }
+
+//- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    if (_hasPressedShowMoreButton == YES){
+//        return 65;
+//    }
+//    
+//    else if (_hasPressedShowMoreButton == NO){
+//        if (indexPath.row > 3){
+//            return 0;
+//        }
+//        else{
+//            return 65;
+//        }
+//    }
+//    
+//}
 
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -183,7 +249,7 @@
     UIButton *deleteButton = (UIButton *)sender;
     
     // Define the sections title
-    NSString *sectionName = _searchTerm = [[[[_matchCenterArray  objectAtIndex:deleteButton.tag] objectForKey:@"Top 3"] objectAtIndex:3]objectForKey:@"Search Term"];
+    NSString *sectionName = _searchTerm = [[[[_matchCenterArray  objectAtIndex:deleteButton.tag] objectForKey:@"Top 3"] objectAtIndex:0]objectForKey:@"Search Term"];
     
     // Run delete function with respective section header as parameter
     [PFCloud callFunctionInBackground:@"deleteFromMatchCenter"
@@ -192,9 +258,7 @@
                                 block:^(NSDictionary *result, NSError *error) {
                                    if (!error) {
                                        [PFCloud callFunctionInBackground:@"MatchCenter"
-                                                          withParameters:@{
-                                                                           @"test": @"Hi",
-                                                                           }
+                                                          withParameters:@{}
                                                                    block:^(NSArray *result, NSError *error) {
                                                                        
                                                                        if (!error) {
@@ -226,9 +290,13 @@
  
  - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
  {
+     // Opens item in browser
      WebViewController *controller = (WebViewController *) segue.destinationViewController;
      controller.itemURL = self.itemURL;
  }
 
 
+@end
+
+@implementation MoreButton
 @end
