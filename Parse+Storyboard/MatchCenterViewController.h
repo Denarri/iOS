@@ -31,6 +31,8 @@
 @property (strong, nonatomic) NSString *itemURL;
 @property (assign) NSInteger expandedSection;
 @property (assign) BOOL results;
+@property (assign) NSInteger rowCount;
+
 
 @property (weak, nonatomic) IBOutlet UIButton *moreButton;
 @property (strong) NSMutableSet *expandedSections;

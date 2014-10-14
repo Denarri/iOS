@@ -153,12 +153,14 @@
     
     if (top3ArrayForSection.count-1 < 1){
         _results = NO;
+        _rowCount = 1;
     }
     else if(top3ArrayForSection.count-1 >= 1){
         _results = YES;
+        _rowCount = top3ArrayForSection.count-1;
     }
     
-    return top3ArrayForSection.count-1;
+    return _rowCount;
 }
 
 
@@ -179,8 +181,8 @@
     // title of the item
     
     if (_results == NO) {
-        cell.textLabel.text = @"Sorry burry, didn't find nuttin";
-        cell.textLabel.font = [UIFont boldSystemFontOfSize:14];
+        cell.textLabel.text = @"No items found, but we'll keep a lookout for you!";
+        cell.textLabel.font = [UIFont boldSystemFontOfSize:12];
     }
     
     else if (_results == YES) {

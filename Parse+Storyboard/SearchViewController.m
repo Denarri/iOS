@@ -260,12 +260,9 @@ _nextButtonOutlet.userInteractionEnabled = YES;
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([segue.identifier isEqualToString:@"ShowMatchCenterSegue"]) {
-        
-        
-        
+
         MatchCenterViewController *controller = (MatchCenterViewController *) segue.destinationViewController;
-        
-        
+
         // Add new item to MatchCenter Array with the criteria from the matching userCategory instance, plus the search term
         [PFCloud callFunctionInBackground:@"addToMatchCenter"
                            withParameters:@{
@@ -285,8 +282,6 @@ _nextButtonOutlet.userInteractionEnabled = YES;
                                         }
                                     }];
         
-        
-        
         // Send over the matching item criteria
         controller.itemSearch = self.itemSearch.text;
         controller.matchingCategoryMinPrice = self.matchingCategoryMinPrice1;
@@ -294,7 +289,6 @@ _nextButtonOutlet.userInteractionEnabled = YES;
         controller.matchingCategoryCondition = self.matchingCategoryCondition1;
         controller.matchingCategoryLocation = self.matchingCategoryLocation1;
     }
-    
     
     else if([segue.identifier isEqualToString:@"ShowSearchCategoryChooserSegue"]){
         
@@ -311,9 +305,7 @@ _nextButtonOutlet.userInteractionEnabled = YES;
     }
     
     else if([segue.identifier isEqualToString:@"ShowCriteriaSegue"]){
-        
-        
-        
+
         CriteriaViewController *controller = (CriteriaViewController *) segue.destinationViewController;
         
         // Send over the search query as well as the specific category to CriteriaVC to use
@@ -322,7 +314,6 @@ _nextButtonOutlet.userInteractionEnabled = YES;
         controller.chosenCategory = self.topCategoryId1;
         controller.chosenCategoryName = self.topCategory1;
     }
-    
   
     else if([segue.identifier isEqualToString:@"ShowUserCategoryChooserSegue"]){
         
@@ -351,14 +342,7 @@ _nextButtonOutlet.userInteractionEnabled = YES;
         controller.matchingCategoryLocation1 = self.matchingCategoryLocation1;
         controller.matchingCategoryLocation2 = self.matchingCategoryLocation2;
     }
-
-    
-    
 }
-
-
-
-
 
 
 @end

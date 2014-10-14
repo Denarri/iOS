@@ -1074,58 +1074,26 @@ function buildEbayRequestPromises(eBayResponseText, shared) {
     });
   });
 
-  var top3Titles = [];
-  var top3Prices = [];
-  //var top3ImgURLS = [];
-  var top3ItemURLS = [];
-
   //where the title, price, and img url are set
 
   if (matchCenterItems.length > 0){
 
-    matchCenterItems.forEach(function(item) {
-      var title = item.title[0];
-      var price = item.sellingStatus[0].convertedCurrentPrice[0].__value__;
-      //var imgURL = item.galleryURL[0];
-      var itemURL = item.viewItemURL[0];
+    console.log('about to define top3 value');
+    //Top 3 item info for every MatchCenterItem
+    // Creates array of items and their properties for every MC Item
+    var top3 = {'Top 3': []};
 
-      top3Titles.push(title);
-      top3Prices.push(price);
-      //top3ImgURLS.push(imgURL);
-      top3ItemURLS.push(itemURL);
+    matchCenterItems.forEach(function(item) {
+      top3['Top 3'].push(
+        {
+          'Title': item.title[0],
+          'Price': item.sellingStatus[0].convertedCurrentPrice[0].__value__,
+          'Item URL':  item.viewItemURL[0]
+        });
     });
 
-  }
-  console.log('about to define top3 value');
-  //Top 3 item info for every MatchCenterItem
-  var top3 = 
-    {
-    "Top 3": 
-      [
-        {
-        "Title": top3Titles[0],
-        "Price": top3Prices[0],
-        //"Image URL": top3ImgURLS[0],
-        "Item URL": top3ItemURLS[0]
-        },
-
-        {
-        "Title": top3Titles[1],
-        "Price": top3Prices[1],
-        //"Image URL": top3ImgURLS[1],
-        "Item URL": top3ItemURLS[1]
-        },
-
-        {
-        "Title": top3Titles[2],
-        "Price": top3Prices[2],
-        //"Image URL": top3ImgURLS[2],
-        "Item URL": top3ItemURLS[2]
-        }
-      ]
-    };
-
-    return top3;
+  }    
+  return top3;
 }
     
 // compare eBayResults to the users MCItems Array in their MComparisonArray object
