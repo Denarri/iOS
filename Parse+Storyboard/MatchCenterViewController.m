@@ -36,9 +36,12 @@
     
     _matchCenterDone = NO;
     _hasPressedShowMoreButton = NO;
-    self.matchCenter = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewCellStyleSubtitle];
     
+    // Set up MatchCenter table
+    self.matchCenter = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewCellStyleSubtitle];
     self.matchCenter.frame = CGRectMake(0,70,320,self.view.frame.size.height-100);
+    self.edgesForExtendedLayout = UIRectEdgeAll;
+    self.matchCenter.contentInset = UIEdgeInsetsMake(0.0f, 0.0f, CGRectGetHeight(self.tabBarController.tabBar.frame), 0.0f);
     _matchCenter.dataSource = self;
     _matchCenter.delegate = self;
     [self.view addSubview:self.matchCenter];
@@ -126,9 +129,6 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {
-    
-    NSLog(@"shazam:'%d'", self.didAddNewItem);
-    
     if (self.didAddNewItem == YES) {
         NSLog(@"well then lets refresh the MC");
         
@@ -182,7 +182,7 @@
         
     }
     else {
-        NSLog(@"DIDNT CATCH THAT ITEM BRAH");
+        NSLog(@"No refreshing required");
     }
     
     
@@ -211,7 +211,7 @@
     view.backgroundColor = [UIColor whiteColor];
     
     MoreButton *moreButton = [MoreButton buttonWithType:UIButtonTypeCustom];
-    moreButton.frame = CGRectMake(0, 0, 320, 44);
+    moreButton.frame = CGRectMake(0, 0, 320, 35);
     moreButton.sectionIndex = section;
     [moreButton setImage:[UIImage imageNamed:@"downarrow.png"] forState:UIControlStateNormal];
     [moreButton addTarget:self action:@selector(moreButtonSelected:) forControlEvents:UIControlEventTouchUpInside];
@@ -250,22 +250,6 @@
     
 }
 
-//- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-//{
-//    NSDictionary *currentSectionDictionary = _matchCenterArray[section];
-//    NSArray *top3ArrayForSection = currentSectionDictionary[@"Top 3"];
-//    
-//    if (top3ArrayForSection.count-1 < 1){
-//        _results = NO;
-//        _rowCount = 1;
-//    }
-//    else if(top3ArrayForSection.count-1 >= 1){
-//        _results = YES;
-//        _rowCount = top3ArrayForSection.count-1;
-//    }
-//    
-//    return _rowCount;
-//}
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -275,48 +259,6 @@
     return (top3ArrayForSection.count-1 < 1) ? 1 : top3ArrayForSection.count-1;
 }
 
-
-//// Cell layout
-//- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-//{
-//    // Initialize cell
-//    static NSString *CellIdentifier = @"Cell";
-//    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-//    if (!cell) {
-//        // if no cell could be dequeued create a new one
-//        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
-//    }
-//    
-//    // No cell seperators = clean design
-//    tableView.separatorColor = [UIColor clearColor];
-//    
-//    if (_results == NO) {
-//        
-//        // title of the item
-//        cell.textLabel.text = @"No items found, but we'll keep a lookout for you!";
-//        cell.textLabel.font = [UIFont boldSystemFontOfSize:12];
-//        
-//    }
-//    
-//    else if (_results == YES) {
-//        
-//        // title of the item
-//        cell.textLabel.text = _matchCenterArray[indexPath.section][@"Top 3"][indexPath.row+1][@"Title"];
-//        cell.textLabel.font = [UIFont boldSystemFontOfSize:14];
-//        
-//        // price of the item
-//        cell.detailTextLabel.text = [NSString stringWithFormat:@"$%@", _matchCenterArray[indexPath.section][@"Top 3"][indexPath.row+1][@"Price"]];
-//        cell.detailTextLabel.textColor = [UIColor colorWithRed:0/255.0f green:127/255.0f blue:31/255.0f alpha:1.0f];
-//        
-//        // image of the item
-//        NSData *imageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:_matchCenterArray[indexPath.section][@"Top 3"][indexPath.row+1][@"Image URL"]]];
-//        [[cell imageView] setImage:[UIImage imageWithData:imageData]];
-//
-//    }
-//    
-//    return cell;
-//    
-//}
 
 // Cell layout
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -382,7 +324,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (_matchCenterDone == YES) {
-        self.itemURL = _matchCenterArray[indexPath.section][@"Top 3"][indexPath.row][@"Item URL"];
+        self.itemURL = _matchCenterArray[indexPath.section][@"Top 3"][indexPath.row+1][@"Item URL"];
         [self performSegueWithIdentifier:@"WebViewSegue" sender:self];
     }
 }

@@ -54,16 +54,6 @@
     UIBarButtonItem *barButton = [[UIBarButtonItem alloc] initWithCustomView:button];
     self.navigationItem.rightBarButtonItem = barButton;
     
-//    // Item priority
-//    UISegmentedControl *prioritySegmentedControl = [[UISegmentedControl alloc] initWithItems:[NSArray arrayWithObjects:@"Just Browsing", @"Need It Soon", nil]];
-//    prioritySegmentedControl.frame = CGRectMake(25, 330, 200, 25);
-//    prioritySegmentedControl.center = CGPointMake(160.0, 190.0);// for center
-//    prioritySegmentedControl.selectedSegmentIndex = 0;
-//    prioritySegmentedControl.tintColor = [UIColor blueColor];
-//    [prioritySegmentedControl addTarget:self action:@selector(priorityValueChanged:) forControlEvents: UIControlEventValueChanged];
-//    [self.view addSubview:prioritySegmentedControl];
-    
-    
     [self.nextButtonOutlet addTarget:self action:@selector(nextButton:) forControlEvents:UIControlEventTouchUpInside];
     // Do any additional setup after loading the view.
 }
@@ -82,7 +72,6 @@
 {
     _nextButtonOutlet.userInteractionEnabled = YES;
     self.itemPriority = @"Low";
-    NSLog(@"prioritay:'%@'", self.itemPriority);
 }
 
 - (void)didReceiveMemoryWarning
@@ -96,20 +85,6 @@
     [self performSegueWithIdentifier:@"CriteriaSettingsSegue" sender:self];
     NSLog(@"OH YEAAAAA");
 }
-
-//- (void)priorityValueChanged:(UISegmentedControl *)prioritySegmentedControl {
-//    
-//    if(prioritySegmentedControl.selectedSegmentIndex == 0)
-//    {
-//        self.itemPriority = @"Low";
-//    }
-//    else if(prioritySegmentedControl.selectedSegmentIndex == 1)
-//    {
-//        self.itemPriority = @"High";
-//    }
-//    
-//    NSLog(@"prioritay:'%@'", self.itemPriority);
-//}
 
 - (IBAction)priorityValuechanged:(id)sender {
     if(_itemPrioritySegment.selectedSegmentIndex == 0)
