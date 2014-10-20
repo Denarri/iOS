@@ -19,7 +19,10 @@
 @property (nonatomic, copy) NSNumber *topCategoryId1;
 @property (nonatomic, copy) NSNumber *topCategoryId2;
 @property (strong, nonatomic) IBOutlet UITextField *itemSearch;
+@property (strong, nonatomic) IBOutlet UISegmentedControl *itemPrioritySegment;
 
+
+// Item Criteria
 @property (strong, nonatomic) NSString *itemPriority;
 
 @property (strong, nonatomic) NSString *matchingCategoryCondition1;
@@ -39,7 +42,7 @@
 
 @property (strong, nonatomic) NSString *matchingCategoryName1;
 @property (strong, nonatomic) NSString *matchingCategoryName2;
-
+//
 
 
 @end

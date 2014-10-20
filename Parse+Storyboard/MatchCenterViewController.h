@@ -25,6 +25,7 @@
 @property (strong, nonatomic) NSString *matchingCategoryLocation;
 @property (strong, nonatomic) NSNumber *matchingCategoryMaxPrice;
 @property (strong, nonatomic) NSNumber *matchingCategoryMinPrice;
+@property (strong, nonatomic) NSNumber *matchingCategoryId;
 
 @property (strong, nonatomic) NSArray *matchCenterArray;
 @property (strong, nonatomic) NSString *searchTerm;
@@ -32,6 +33,8 @@
 @property (assign) NSInteger expandedSection;
 @property (assign) BOOL results;
 @property (assign) NSInteger rowCount;
+//@property (nonatomic, assign) int didAddNewItem;
+@property (assign) BOOL didAddNewItem;
 
 
 @property (weak, nonatomic) IBOutlet UIButton *moreButton;

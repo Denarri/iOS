@@ -8,6 +8,7 @@
 #import <UIKit/UIKit.h>
 #import <Parse/Parse.h>
 #import "SearchViewController.h"
+#import "MatchCenterViewController.h"
 
 @interface CriteriaViewController : UIViewController
 

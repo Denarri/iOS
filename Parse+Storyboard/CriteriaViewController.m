@@ -132,28 +132,24 @@
                                         if (!error) {
                                             NSLog(@"Criteria successfully saved.");
                                             
-                                            [PFCloud callFunctionInBackground:@"addToMatchCenter"
-                                                               withParameters:@{
-                                                                                @"searchTerm": self.itemSearch,
-                                                                                @"categoryId": self.chosenCategory,
-                                                                                  @"minPrice": self.minPrice.text,
-                                                                                  @"maxPrice": self.maxPrice.text,
-                                                                             @"itemCondition": self.itemCondition,
-                                                                              @"itemLocation": self.itemLocation,
-                                                                              @"itemPriority": self.itemPriority,
-                                                                                }
-                                                                        block:^(NSString *result, NSError *error) {
-                                                                            
-                                                                            if (!error) {
-                                                                                NSLog(@"'%@'", result);
-                                                                                
-                                                                                [NSThread sleepForTimeInterval:2];
-                                                                                
-                                                                                [activityIndicator stopAnimating];
-                                                                                
-                                                                                [self.tabBarController setSelectedIndex:1];
-                                                                            }
-                                                                        }];
+                                            UIViewController *toViewController = [self.tabBarController viewControllers][1];
+                                            if ([toViewController isKindOfClass:[MatchCenterViewController class]]) {
+                                                MatchCenterViewController *matchViewController = (MatchCenterViewController *)toViewController;
+                                                
+                                                matchViewController.didAddNewItem = YES;
+                                                
+                                                // Send over the matching item criteria
+                                                matchViewController.itemSearch = self.itemSearch;
+                                                matchViewController.matchingCategoryId = self.chosenCategory;
+                                                matchViewController.matchingCategoryMinPrice = self.minPrice.text;
+                                                matchViewController.matchingCategoryMaxPrice = self.maxPrice.text;
+                                                matchViewController.matchingCategoryCondition = self.itemCondition;
+                                                matchViewController.matchingCategoryLocation = self.itemLocation;
+                                                matchViewController.itemPriority = self.itemPriority;
+                                                
+                                                NSLog(@"alright they're set, time to switch");
+                                            }
+                                            [self.tabBarController setSelectedIndex:1];
                                         }
                                     }];
         
@@ -187,22 +183,6 @@
 
     
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    
-//    [PFCloud callFunctionInBackground:@"addToMatchCenter"
-//                       withParameters:@{
-//                                        @"searchTerm": self.itemSearch,
-//                                        @"categoryId": self.chosenCategory,
-//                                        @"minPrice": self.minPrice.text,
-//                                        @"maxPrice": self.maxPrice.text,
-//                                        @"itemCondition": self.itemCondition,
-//                                        @"itemLocation": self.itemLocation,
-//                                        }
-//                                block:^(NSString *result, NSError *error) {
-//                                    
-//                                    if (!error) {
-//                                        NSLog(@"'%@'", result);
-//                                    }
-//                                }];
 
 }
 

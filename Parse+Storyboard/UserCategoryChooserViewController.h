@@ -7,6 +7,7 @@
 
 #import <UIKit/UIKit.h>
 #import "SearchViewController.h"
+#import "MatchCenterViewController.h"
 
 @interface UserCategoryChooserViewController : UIViewController
 

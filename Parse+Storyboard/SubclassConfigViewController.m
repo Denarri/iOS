@@ -49,7 +49,7 @@
         // Instantiate our custom sign up view controller
         MySignUpViewController *signUpViewController = [[MySignUpViewController alloc] init];
         [signUpViewController setDelegate:self];
-        [signUpViewController setFields: PFSignUpFieldsDefault];
+        [signUpViewController setFields: PFSignUpFieldsDefault | PFSignUpFieldsAdditional];
         
         // Link the sign up view controller
         [logInViewController setSignUpController:signUpViewController];
@@ -98,12 +98,23 @@
 - (BOOL)signUpViewController:(PFSignUpViewController *)signUpController shouldBeginSignUp:(NSDictionary *)info {
     BOOL informationComplete = YES;
     
+//    // loop through all of the submitted data
+//    for (id key in info) {
+//        NSString *field = [info objectForKey:key];
+//        if (!field || !field.length) { // check completion
+//            informationComplete = NO;
+//            break;
+//        }
+//    }
+    
     // loop through all of the submitted data
     for (id key in info) {
-        NSString *field = [info objectForKey:key];
-        if (!field || !field.length) { // check completion
-            informationComplete = NO;
-            break;
+        if (![key isEqualToString:@"additional"]) { //IF the key is not equal to additional field continue execution
+            NSString *field = [info objectForKey:key];
+            if (!field || !field.length) { // check completion
+                informationComplete = NO;
+                break;
+            } 
         }
     }
     

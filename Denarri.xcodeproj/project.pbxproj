@@ -28,6 +28,7 @@
 		4911753F19DB48990073C999 /* Splash.png in Resources */ = {isa = PBXBuildFile; fileRef = 4911753819DB48990073C999 /* Splash.png */; };
 		4911754019DB48990073C999 /* Splash@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4911753919DB48990073C999 /* Splash@2x.png */; };
 		49129ABE19DF477C00269A22 /* SLExpandableTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 49129ABD19DF477C00269A22 /* SLExpandableTableView.m */; };
+		4921486119F05A82000A706B /* ZombieFrogGray@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4921486019F05A82000A706B /* ZombieFrogGray@2x.jpg */; };
 		49367D6419D0BFC50018FD80 /* MCSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49367D6319D0BFC50018FD80 /* MCSettingsViewController.m */; };
 		4939233E1960BD290024FA5F /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4939233D1960BD290024FA5F /* WebViewController.m */; };
 		493B58EC192AEFEC006C895C /* ImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 493B58EB192AEFEC006C895C /* ImageViewController.m */; };
@@ -58,6 +59,7 @@
 		49EE475418E11D9500DFFA24 /* denarri_ios_retina@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49EE475318E11D9500DFFA24 /* denarri_ios_retina@2x.png */; };
 		49EE475718E11DFC00DFFA24 /* denarri_ios_spotlight@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49EE475518E11DFC00DFFA24 /* denarri_ios_spotlight@2x.png */; };
 		49EE475818E11DFC00DFFA24 /* denarri_ios_settings@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49EE475618E11DFC00DFFA24 /* denarri_ios_settings@2x.png */; };
+		49FE4B3119F036B400C58499 /* refresh@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49FE4B3019F036B400C58499 /* refresh@2x.png */; };
 		4AC77FF6160F93500024E877 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AC77FF5160F93500024E877 /* UIKit.framework */; };
 		4AC77FF8160F93500024E877 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AC77FF7160F93500024E877 /* Foundation.framework */; };
 		4AC78000160F93500024E877 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4AC77FFE160F93500024E877 /* InfoPlist.strings */; };
@@ -83,6 +85,7 @@
 		49129ABC19DF477C00269A22 /* SLExpandableTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLExpandableTableView.h; sourceTree = "<group>"; };
 		49129ABD19DF477C00269A22 /* SLExpandableTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLExpandableTableView.m; sourceTree = "<group>"; };
 		491790EE18DFC03A001B64E3 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		4921486019F05A82000A706B /* ZombieFrogGray@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "ZombieFrogGray@2x.jpg"; sourceTree = "<group>"; };
 		49367D6219D0BFC50018FD80 /* MCSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCSettingsViewController.h; sourceTree = "<group>"; };
 		49367D6319D0BFC50018FD80 /* MCSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCSettingsViewController.m; sourceTree = "<group>"; };
 		4939233C1960BD290024FA5F /* WebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewController.h; sourceTree = "<group>"; };
@@ -127,6 +130,7 @@
 		49EE475318E11D9500DFFA24 /* denarri_ios_retina@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "denarri_ios_retina@2x.png"; sourceTree = "<group>"; };
 		49EE475518E11DFC00DFFA24 /* denarri_ios_spotlight@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "denarri_ios_spotlight@2x.png"; sourceTree = "<group>"; };
 		49EE475618E11DFC00DFFA24 /* denarri_ios_settings@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "denarri_ios_settings@2x.png"; sourceTree = "<group>"; };
+		49FE4B3019F036B400C58499 /* refresh@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "refresh@2x.png"; sourceTree = "<group>"; };
 		4AC77FF1160F93500024E877 /* Denarri.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Denarri.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4AC77FF5160F93500024E877 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		4AC77FF7160F93500024E877 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -192,6 +196,7 @@
 				49BF26BE192954C400E546E7 /* iPhone 5.jpg */,
 				49A20F3B1900524200E9B8A1 /* MainBG.jpg */,
 				49E7D1B0195A0E2100A556BF /* ZombieFrog.jpg */,
+				4921486019F05A82000A706B /* ZombieFrogGray@2x.jpg */,
 				49BD5AB219AFD32E003F3261 /* Search@2x.png */,
 				49BD5AB819AFD880003F3261 /* MatchCenter@2x.png */,
 				4911752D19D89E320073C999 /* settingsgear@2x.png */,
@@ -203,6 +208,7 @@
 				4911753819DB48990073C999 /* Splash.png */,
 				4911753919DB48990073C999 /* Splash@2x.png */,
 				4964583319E3A0BC00BC43FE /* downarrow@2x.png */,
+				49FE4B3019F036B400C58499 /* refresh@2x.png */,
 				4AC77FFB160F93500024E877 /* Denarri */,
 				4AC77FF4160F93500024E877 /* Frameworks */,
 				4AC77FF2160F93500024E877 /* Products */,
@@ -359,6 +365,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4921486119F05A82000A706B /* ZombieFrogGray@2x.jpg in Resources */,
 				49D2DCB119B3C56A003D08D7 /* Denarri-Login-Signup-Logo@2x.png in Resources */,
 				49EE475718E11DFC00DFFA24 /* denarri_ios_spotlight@2x.png in Resources */,
 				4911753B19DB48990073C999 /* Splash-667h@2x.png in Resources */,
@@ -381,6 +388,7 @@
 				49EE475818E11DFC00DFFA24 /* denarri_ios_settings@2x.png in Resources */,
 				4964583419E3A0BC00BC43FE /* downarrow@2x.png in Resources */,
 				49593EB618DCE956004CA20C /* Default-568h@2x.png in Resources */,
+				49FE4B3119F036B400C58499 /* refresh@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

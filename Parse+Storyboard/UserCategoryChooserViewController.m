@@ -48,60 +48,88 @@
 - (IBAction)category1ButtonClick:(id)sender
 
 {
-    // Add new item to MatchCenter with the criteria from the matching userCategory instance, plus the search term
+//    // Add new item to MatchCenter with the criteria from the matching userCategory instance, plus the search term
+//    
+//    [PFCloud callFunctionInBackground:@"addToMatchCenter"
+//                       withParameters:@{
+//                                        @"searchTerm": self.itemSearch,
+//                                        @"categoryId": self.matchingCategoryId1,
+//                                        @"minPrice": self.matchingCategoryMinPrice1,
+//                                        @"maxPrice": self.matchingCategoryMaxPrice1,
+//                                        @"itemCondition": self.matchingCategoryCondition1,
+//                                        @"itemLocation": self.matchingCategoryLocation1,
+//                                        @"itemPriority": self.itemPriority,
+//                                        }
+//                                block:^(NSString *result, NSError *error) {
+//                                    
+//                                    if (!error) {
+//                                        NSLog(@"'%@'", result);
+//                                    }
+//                                }];
     
-    [PFCloud callFunctionInBackground:@"addToMatchCenter"
-                       withParameters:@{
-                                        @"searchTerm": self.itemSearch,
-                                        @"categoryId": self.matchingCategoryId1,
-                                        @"minPrice": self.matchingCategoryMinPrice1,
-                                        @"maxPrice": self.matchingCategoryMaxPrice1,
-                                        @"itemCondition": self.matchingCategoryCondition1,
-                                        @"itemLocation": self.matchingCategoryLocation1,
-                                        @"itemPriority": self.itemPriority,
-                                        }
-                                block:^(NSString *result, NSError *error) {
-                                    
-                                    if (!error) {
-                                        NSLog(@"'%@'", result);
-                                    }
-                                }];
-    
+    UIViewController *toViewController = [self.tabBarController viewControllers][1];
+    if ([toViewController isKindOfClass:[MatchCenterViewController class]]) {
+        MatchCenterViewController *matchViewController = (MatchCenterViewController *)toViewController;
+        
+        matchViewController.didAddNewItem = YES;
+        
+        // Send over the matching item criteria
+        matchViewController.itemSearch = self.itemSearch;
+        matchViewController.matchingCategoryId = self.matchingCategoryId1;
+        matchViewController.matchingCategoryMinPrice = self.matchingCategoryMinPrice1;
+        matchViewController.matchingCategoryMaxPrice = self.matchingCategoryMaxPrice1;
+        matchViewController.matchingCategoryCondition = self.matchingCategoryCondition1;
+        matchViewController.matchingCategoryLocation = self.matchingCategoryLocation1;
+        matchViewController.itemPriority = self.itemPriority;
+        
+        NSLog(@"alright they're set, time to switch");
+    }
     [self.tabBarController setSelectedIndex:1];
-    //[self performSegueWithIdentifier:@"UserCategoryChooserToMatchCenterSegue" sender:nil];
-
     
 }
 
 - (IBAction)category2ButtonClick:(id)sender
 
 {
-    self.chosenCategory = self.matchingCategoryId2;
+//    self.chosenCategory = self.matchingCategoryId2;
+//    
+//    // Add new item to MatchCenter Array with the criteria from the matching userCategory instance, plus the search term
+//    [PFCloud callFunctionInBackground:@"addToMatchCenter"
+//                       withParameters:@{
+//                                        @"searchTerm": self.itemSearch,
+//                                        @"categoryId": self.matchingCategoryId2,
+//                                          @"minPrice": self.matchingCategoryMinPrice2,
+//                                          @"maxPrice": self.matchingCategoryMaxPrice2,
+//                                     @"itemCondition": self.matchingCategoryCondition2,
+//                                      @"itemLocation": self.matchingCategoryLocation2,
+//                                      @"itemPriority": self.itemPriority,
+//                                        }
+//                                block:^(NSString *result, NSError *error) {
+//                                    
+//                                    if (!error) {
+//                                        NSLog(@"'%@'", result);
+//                                        [self.tabBarController setSelectedIndex:1];
+//                                    }
+//                                }];
     
-    
-    
-    // Add new item to MatchCenter Array with the criteria from the matching userCategory instance, plus the search term
-    [PFCloud callFunctionInBackground:@"addToMatchCenter"
-                       withParameters:@{
-                                        @"searchTerm": self.itemSearch,
-                                        @"categoryId": self.matchingCategoryId2,
-                                          @"minPrice": self.matchingCategoryMinPrice2,
-                                          @"maxPrice": self.matchingCategoryMaxPrice2,
-                                     @"itemCondition": self.matchingCategoryCondition2,
-                                      @"itemLocation": self.matchingCategoryLocation2,
-                                      @"itemPriority": self.itemPriority,
-                                        }
-                                block:^(NSString *result, NSError *error) {
-                                    
-                                    if (!error) {
-                                        NSLog(@"'%@'", result);
-                                        [self.tabBarController setSelectedIndex:1];
-                                    }
-                                }];
-    
-    
-    
-    //[self performSegueWithIdentifier:@"UserCategoryChooserToMatchCenterSegue" sender:nil];
+    UIViewController *toViewController = [self.tabBarController viewControllers][1];
+    if ([toViewController isKindOfClass:[MatchCenterViewController class]]) {
+        MatchCenterViewController *matchViewController = (MatchCenterViewController *)toViewController;
+        
+        matchViewController.didAddNewItem = YES;
+        
+        // Send over the matching item criteria
+        matchViewController.itemSearch = self.itemSearch;
+        matchViewController.matchingCategoryId = self.matchingCategoryId2;
+        matchViewController.matchingCategoryMinPrice = self.matchingCategoryMinPrice2;
+        matchViewController.matchingCategoryMaxPrice = self.matchingCategoryMaxPrice2;
+        matchViewController.matchingCategoryCondition = self.matchingCategoryCondition2;
+        matchViewController.matchingCategoryLocation = self.matchingCategoryLocation2;
+        matchViewController.itemPriority = self.itemPriority;
+        
+        NSLog(@"alright they're set, time to switch");
+    }
+    [self.tabBarController setSelectedIndex:1];
     
 }
 

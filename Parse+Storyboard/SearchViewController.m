@@ -32,10 +32,19 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+
     _nextButtonOutlet.userInteractionEnabled = YES;
     
-    self.navigationItem.title = @"Denarri";
+    // Navbar Title
+    CGRect frame = CGRectMake(0, 0, 400, 44);
+    UILabel *label = [[UILabel alloc] initWithFrame:frame];
+    label.backgroundColor = [UIColor clearColor];
+    label.font = [UIFont systemFontOfSize:20.0];
+    label.textAlignment = NSTextAlignmentCenter;
+    label.textColor = [UIColor blackColor];
+    label.text = @"         Denarri";
+    self.navigationItem.titleView = label;
+    //self.navigationItem.title = @"Denarri";
 
     UIButton *button =  [UIButton buttonWithType:UIButtonTypeCustom];
     [button setImage:[UIImage imageNamed:@"settingsgear.png"] forState:UIControlStateNormal];
@@ -45,14 +54,14 @@
     UIBarButtonItem *barButton = [[UIBarButtonItem alloc] initWithCustomView:button];
     self.navigationItem.rightBarButtonItem = barButton;
     
-    // Item priority
-    UISegmentedControl *prioritySegmentedControl = [[UISegmentedControl alloc] initWithItems:[NSArray arrayWithObjects:@"Just Browsing", @"Need It Soon", nil]];
-    prioritySegmentedControl.frame = CGRectMake(25, 330, 200, 25);
-    prioritySegmentedControl.center = CGPointMake(160.0, 190.0);// for center
-    prioritySegmentedControl.selectedSegmentIndex = 0;
-    prioritySegmentedControl.tintColor = [UIColor blueColor];
-    [prioritySegmentedControl addTarget:self action:@selector(priorityValueChanged:) forControlEvents: UIControlEventValueChanged];
-    [self.view addSubview:prioritySegmentedControl];
+//    // Item priority
+//    UISegmentedControl *prioritySegmentedControl = [[UISegmentedControl alloc] initWithItems:[NSArray arrayWithObjects:@"Just Browsing", @"Need It Soon", nil]];
+//    prioritySegmentedControl.frame = CGRectMake(25, 330, 200, 25);
+//    prioritySegmentedControl.center = CGPointMake(160.0, 190.0);// for center
+//    prioritySegmentedControl.selectedSegmentIndex = 0;
+//    prioritySegmentedControl.tintColor = [UIColor blueColor];
+//    [prioritySegmentedControl addTarget:self action:@selector(priorityValueChanged:) forControlEvents: UIControlEventValueChanged];
+//    [self.view addSubview:prioritySegmentedControl];
     
     
     [self.nextButtonOutlet addTarget:self action:@selector(nextButton:) forControlEvents:UIControlEventTouchUpInside];
@@ -71,9 +80,9 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {
-    
-_nextButtonOutlet.userInteractionEnabled = YES;
-    
+    _nextButtonOutlet.userInteractionEnabled = YES;
+    self.itemPriority = @"Low";
+    NSLog(@"prioritay:'%@'", self.itemPriority);
 }
 
 - (void)didReceiveMemoryWarning
@@ -88,17 +97,33 @@ _nextButtonOutlet.userInteractionEnabled = YES;
     NSLog(@"OH YEAAAAA");
 }
 
-- (void)priorityValueChanged:(UISegmentedControl *)prioritySegmentedControl {
-    
-    if(prioritySegmentedControl.selectedSegmentIndex == 0)
+//- (void)priorityValueChanged:(UISegmentedControl *)prioritySegmentedControl {
+//    
+//    if(prioritySegmentedControl.selectedSegmentIndex == 0)
+//    {
+//        self.itemPriority = @"Low";
+//    }
+//    else if(prioritySegmentedControl.selectedSegmentIndex == 1)
+//    {
+//        self.itemPriority = @"High";
+//    }
+//    
+//    NSLog(@"prioritay:'%@'", self.itemPriority);
+//}
+
+- (IBAction)priorityValuechanged:(id)sender {
+    if(_itemPrioritySegment.selectedSegmentIndex == 0)
     {
         self.itemPriority = @"Low";
     }
-    else if(prioritySegmentedControl.selectedSegmentIndex == 1)
+    else if(_itemPrioritySegment.selectedSegmentIndex == 1)
     {
         self.itemPriority = @"High";
     }
+    
+    NSLog(@"prioritay:'%@'", self.itemPriority);
 }
+
 
 - (IBAction)nextButton:(id)sender
 {
@@ -200,7 +225,28 @@ _nextButtonOutlet.userInteractionEnabled = YES;
                                             
                                             // if 1 match found
                                             if ([numberOfMatches intValue] == 1 ){
-                                                [self performSegueWithIdentifier:@"ShowMatchCenterSegue" sender:self];
+                                                
+                                                UIViewController *toViewController = [self.tabBarController viewControllers][1];
+                                                if ([toViewController isKindOfClass:[MatchCenterViewController class]]) {
+                                                    MatchCenterViewController *matchViewController = (MatchCenterViewController *)toViewController;
+                                                    
+                                                    matchViewController.didAddNewItem = YES;
+                                                    
+                                                    // Send over the matching item criteria
+                                                    matchViewController.itemSearch = self.itemSearch.text;
+                                                    matchViewController.matchingCategoryId = self.matchingCategoryId1;
+                                                    matchViewController.matchingCategoryMinPrice = self.matchingCategoryMinPrice1;
+                                                    matchViewController.matchingCategoryMaxPrice = self.matchingCategoryMaxPrice1;
+                                                    matchViewController.matchingCategoryCondition = self.matchingCategoryCondition1;
+                                                    matchViewController.matchingCategoryLocation = self.matchingCategoryLocation1;
+                                                    matchViewController.itemPriority = self.itemPriority;
+                                                    
+                                                    NSLog(@"alright they're set, time to switch");
+
+                                                }
+                                                [self.tabBarController setSelectedIndex:1];
+                                                
+                                                //[self performSegueWithIdentifier:@"ShowMatchCenterSegue" sender:self];
                                             }
                                             
                                             // if 2 matches found
@@ -260,34 +306,26 @@ _nextButtonOutlet.userInteractionEnabled = YES;
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([segue.identifier isEqualToString:@"ShowMatchCenterSegue"]) {
-
-        MatchCenterViewController *controller = (MatchCenterViewController *) segue.destinationViewController;
-
-        // Add new item to MatchCenter Array with the criteria from the matching userCategory instance, plus the search term
-        [PFCloud callFunctionInBackground:@"addToMatchCenter"
-                           withParameters:@{
-                                            @"searchTerm": self.itemSearch.text,
-                                            @"categoryId": self.matchingCategoryId1,
-                                            @"minPrice": self.matchingCategoryMinPrice1,
-                                            @"maxPrice": self.matchingCategoryMaxPrice1,
-                                            @"itemCondition": self.matchingCategoryCondition1,
-                                            @"itemLocation": self.matchingCategoryLocation1,
-                                            @"itemPriority": self.itemPriority,
-                                            }
-                                    block:^(NSString *result, NSError *error) {
-                                        
-                                        if (!error) {
-                                            NSLog(@"'%@'", result);
-                                            [self.tabBarController setSelectedIndex:1];
-                                        }
-                                    }];
         
-        // Send over the matching item criteria
-        controller.itemSearch = self.itemSearch.text;
-        controller.matchingCategoryMinPrice = self.matchingCategoryMinPrice1;
-        controller.matchingCategoryMaxPrice = self.matchingCategoryMaxPrice1;
-        controller.matchingCategoryCondition = self.matchingCategoryCondition1;
-        controller.matchingCategoryLocation = self.matchingCategoryLocation1;
+//        MatchCenterViewController *controller = (MatchCenterViewController *) segue.destinationViewController;
+//        
+//        self.didAddNewItem = 1;
+//        controller.didAddNewItem = self.didAddNewItem;
+//        
+//        NSLog(@"we're about to set controller values before segueing to MC");
+//        // Send over the matching item criteria
+//        controller.itemSearch = self.itemSearch.text;
+//        controller.matchingCategoryId = self.matchingCategoryId1;
+//        controller.matchingCategoryMinPrice = self.matchingCategoryMinPrice1;
+//        controller.matchingCategoryMaxPrice = self.matchingCategoryMaxPrice1;
+//        controller.matchingCategoryCondition = self.matchingCategoryCondition1;
+//        controller.matchingCategoryLocation = self.matchingCategoryLocation1;
+//        controller.itemPriority = self.itemPriority;
+//        
+//        NSLog(@"alright they're set, time to switch");
+//        
+//        [NSThread sleepForTimeInterval:1];
+//        [self.tabBarController setSelectedIndex:1];
     }
     
     else if([segue.identifier isEqualToString:@"ShowSearchCategoryChooserSegue"]){
@@ -305,7 +343,7 @@ _nextButtonOutlet.userInteractionEnabled = YES;
     }
     
     else if([segue.identifier isEqualToString:@"ShowCriteriaSegue"]){
-
+    
         CriteriaViewController *controller = (CriteriaViewController *) segue.destinationViewController;
         
         // Send over the search query as well as the specific category to CriteriaVC to use
@@ -314,7 +352,8 @@ _nextButtonOutlet.userInteractionEnabled = YES;
         controller.chosenCategory = self.topCategoryId1;
         controller.chosenCategoryName = self.topCategory1;
     }
-  
+    
+    
     else if([segue.identifier isEqualToString:@"ShowUserCategoryChooserSegue"]){
         
         UserCategoryChooserViewController *controller = (UserCategoryChooserViewController *) segue.destinationViewController;
@@ -342,6 +381,7 @@ _nextButtonOutlet.userInteractionEnabled = YES;
         controller.matchingCategoryLocation1 = self.matchingCategoryLocation1;
         controller.matchingCategoryLocation2 = self.matchingCategoryLocation2;
     }
+
 }
 
 

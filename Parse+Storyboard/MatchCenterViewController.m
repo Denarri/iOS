@@ -13,6 +13,7 @@
 @property (nonatomic, strong) UITableView *matchCenter;
 @property (nonatomic, assign) BOOL matchCenterDone;
 @property (nonatomic, assign) BOOL hasPressedShowMoreButton;
+
 @end
 
 
@@ -28,19 +29,16 @@
     return self;
 }
 
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
-    self.navigationItem.title = @"Denarri";
-    
     _matchCenterDone = NO;
-    
     _hasPressedShowMoreButton = NO;
-    
     self.matchCenter = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewCellStyleSubtitle];
     
-    self.matchCenter.frame = CGRectMake(0,50,320,self.view.frame.size.height-100);
+    self.matchCenter.frame = CGRectMake(0,70,320,self.view.frame.size.height-100);
     _matchCenter.dataSource = self;
     _matchCenter.delegate = self;
     [self.view addSubview:self.matchCenter];
@@ -49,11 +47,15 @@
     
     _matchCenterArray = [[NSArray alloc] init];
     
-}
-
-
-- (void)viewDidAppear:(BOOL)animated
-{
+    // Refresh button
+    UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"refresh.png"]];
+    imageView.frame = CGRectMake(275, 25, 30, 30);
+    imageView.userInteractionEnabled = YES;
+    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(refreshPressed:)];
+    [imageView addGestureRecognizer:tapGesture];
+    [self.view addSubview:imageView];
+    
+    // Preparing for MC and indicating loading
     self.matchCenterArray = [[NSArray alloc] init];
     
     UIActivityIndicatorView *activityIndicator = [[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
@@ -75,7 +77,7 @@
                                         _matchCenterArray = result;
                                         
                                         [activityIndicator stopAnimating];
-
+                                        
                                         [_matchCenter reloadData];
                                         
                                         _matchCenterDone = YES;
@@ -83,6 +85,107 @@
                                         NSLog(@"Result: '%@'", result);
                                     }
                                 }];
+  
+}
+
+- (void)refreshPressed:(id)sender
+{
+    NSLog(@"OOOH BOY THAT TICKLEz");
+    
+    self.matchCenterArray = [[NSArray alloc] init];
+    
+    UIActivityIndicatorView *activityIndicator = [[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    activityIndicator.center = CGPointMake(self.view.frame.size.width / 2.0, self.view.frame.size.height / 2.0);
+    [self.view addSubview: activityIndicator];
+    
+    [activityIndicator startAnimating];
+    
+    _matchCenterDone = NO;
+    
+    // Disable ability to scroll until table is MatchCenter table is done loading
+    self.matchCenter.scrollEnabled = NO;
+    
+    [PFCloud callFunctionInBackground:@"MatchCenter3"
+                       withParameters:@{}
+                                block:^(NSArray *result, NSError *error) {
+                                    
+                                    if (!error) {
+                                        _matchCenterArray = result;
+                                        
+                                        [activityIndicator stopAnimating];
+                                        
+                                        [_matchCenter reloadData];
+                                        
+                                        _matchCenterDone = YES;
+                                        self.matchCenter.scrollEnabled = YES;
+                                        NSLog(@"Result: '%@'", result);
+                                    }
+                                }];
+
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    
+    NSLog(@"shazam:'%d'", self.didAddNewItem);
+    
+    if (self.didAddNewItem == YES) {
+        NSLog(@"well then lets refresh the MC");
+        
+        // Start loading indicator
+        UIActivityIndicatorView *activityIndicator = [[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+        activityIndicator.center = CGPointMake(self.view.frame.size.width / 2.0, self.view.frame.size.height / 2.0);
+        [self.view addSubview: activityIndicator];
+        [activityIndicator startAnimating];
+        
+        // Disable ability to scroll until table is MatchCenter table is done loading
+        self.matchCenter.scrollEnabled = NO;
+        _matchCenterDone = NO;
+        
+        // Add new item to MatchCenter Array with the criteria from the matching userCategory instance, plus the search term
+        [PFCloud callFunctionInBackground:@"addToMatchCenter"
+                           withParameters:@{
+                                            @"searchTerm": self.itemSearch,
+                                            @"categoryId": self.matchingCategoryId,
+                                            @"minPrice": self.matchingCategoryMinPrice,
+                                            @"maxPrice": self.matchingCategoryMaxPrice,
+                                            @"itemCondition": self.matchingCategoryCondition,
+                                            @"itemLocation": self.matchingCategoryLocation,
+                                            @"itemPriority": self.itemPriority,
+                                            }
+                                    block:^(NSString *result, NSError *error) {
+                                        
+                                        if (!error) {
+                                            NSLog(@"'%@'", result);
+                                            self.matchCenterArray = [[NSArray alloc] init];
+                                            
+                                            [PFCloud callFunctionInBackground:@"MatchCenter3"
+                                                               withParameters:@{}
+                                                                        block:^(NSArray *result, NSError *error) {
+                                                                            
+                                                                            if (!error) {
+                                                                                _matchCenterArray = result;
+                                                                                [_matchCenter reloadData];
+                                                                                [activityIndicator stopAnimating];
+                                                                                
+                                                                                // Reenable scrolling/reset didAddNewItem bool
+                                                                                _matchCenterDone = YES;
+                                                                                self.matchCenter.scrollEnabled = YES;
+                                                                                self.didAddNewItem = NO;
+                                                                                NSLog(@"Result: '%@'", result);
+                                                                            }
+                                                                        }];
+
+                                        }
+                                    }];
+        
+        
+    }
+    else {
+        NSLog(@"DIDNT CATCH THAT ITEM BRAH");
+    }
+    
+    
     
 }
 
@@ -117,6 +220,7 @@
     return view;
 }
 
+
 - (void)moreButtonSelected:(MoreButton *)button {
     self.expandedSection = button.sectionIndex;
     [self.matchCenter reloadData];
@@ -146,23 +250,73 @@
     
 }
 
+//- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+//{
+//    NSDictionary *currentSectionDictionary = _matchCenterArray[section];
+//    NSArray *top3ArrayForSection = currentSectionDictionary[@"Top 3"];
+//    
+//    if (top3ArrayForSection.count-1 < 1){
+//        _results = NO;
+//        _rowCount = 1;
+//    }
+//    else if(top3ArrayForSection.count-1 >= 1){
+//        _results = YES;
+//        _rowCount = top3ArrayForSection.count-1;
+//    }
+//    
+//    return _rowCount;
+//}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     NSDictionary *currentSectionDictionary = _matchCenterArray[section];
     NSArray *top3ArrayForSection = currentSectionDictionary[@"Top 3"];
     
-    if (top3ArrayForSection.count-1 < 1){
-        _results = NO;
-        _rowCount = 1;
-    }
-    else if(top3ArrayForSection.count-1 >= 1){
-        _results = YES;
-        _rowCount = top3ArrayForSection.count-1;
-    }
-    
-    return _rowCount;
+    return (top3ArrayForSection.count-1 < 1) ? 1 : top3ArrayForSection.count-1;
 }
 
+
+//// Cell layout
+//- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    // Initialize cell
+//    static NSString *CellIdentifier = @"Cell";
+//    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+//    if (!cell) {
+//        // if no cell could be dequeued create a new one
+//        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+//    }
+//    
+//    // No cell seperators = clean design
+//    tableView.separatorColor = [UIColor clearColor];
+//    
+//    if (_results == NO) {
+//        
+//        // title of the item
+//        cell.textLabel.text = @"No items found, but we'll keep a lookout for you!";
+//        cell.textLabel.font = [UIFont boldSystemFontOfSize:12];
+//        
+//    }
+//    
+//    else if (_results == YES) {
+//        
+//        // title of the item
+//        cell.textLabel.text = _matchCenterArray[indexPath.section][@"Top 3"][indexPath.row+1][@"Title"];
+//        cell.textLabel.font = [UIFont boldSystemFontOfSize:14];
+//        
+//        // price of the item
+//        cell.detailTextLabel.text = [NSString stringWithFormat:@"$%@", _matchCenterArray[indexPath.section][@"Top 3"][indexPath.row+1][@"Price"]];
+//        cell.detailTextLabel.textColor = [UIColor colorWithRed:0/255.0f green:127/255.0f blue:31/255.0f alpha:1.0f];
+//        
+//        // image of the item
+//        NSData *imageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:_matchCenterArray[indexPath.section][@"Top 3"][indexPath.row+1][@"Image URL"]]];
+//        [[cell imageView] setImage:[UIImage imageWithData:imageData]];
+//
+//    }
+//    
+//    return cell;
+//    
+//}
 
 // Cell layout
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -178,26 +332,38 @@
     // No cell seperators = clean design
     tableView.separatorColor = [UIColor clearColor];
     
-    // title of the item
+    NSDictionary *currentSectionDictionary = _matchCenterArray[indexPath.section];
+    NSArray *top3ArrayForSection = currentSectionDictionary[@"Top 3"];
     
-    if (_results == NO) {
+    if (top3ArrayForSection.count-1 < 1) {
+        
+        // title of the item
         cell.textLabel.text = @"No items found, but we'll keep a lookout for you!";
         cell.textLabel.font = [UIFont boldSystemFontOfSize:12];
+        
+        // price of the item
+        cell.detailTextLabel.text = @"";
+        
+        // image of the item
+        NSData *imageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:@""]];
+        [[cell imageView] setImage:[UIImage imageWithData:imageData]];
+
     }
     
-    else if (_results == YES) {
+    else {
+        
+        // title of the item
         cell.textLabel.text = _matchCenterArray[indexPath.section][@"Top 3"][indexPath.row+1][@"Title"];
         cell.textLabel.font = [UIFont boldSystemFontOfSize:14];
-    }
-    
-    if (_results == YES) {
+        
         // price of the item
         cell.detailTextLabel.text = [NSString stringWithFormat:@"$%@", _matchCenterArray[indexPath.section][@"Top 3"][indexPath.row+1][@"Price"]];
         cell.detailTextLabel.textColor = [UIColor colorWithRed:0/255.0f green:127/255.0f blue:31/255.0f alpha:1.0f];
-    
+        
         // image of the item
         NSData *imageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:_matchCenterArray[indexPath.section][@"Top 3"][indexPath.row+1][@"Image URL"]]];
         [[cell imageView] setImage:[UIImage imageWithData:imageData]];
+        
     }
     
     return cell;
@@ -211,23 +377,6 @@
     }
     return 0;
 }
-
-//- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-//{
-//    if (_hasPressedShowMoreButton == YES){
-//        return 65;
-//    }
-//    
-//    else if (_hasPressedShowMoreButton == NO){
-//        if (indexPath.row > 3){
-//            return 0;
-//        }
-//        else{
-//            return 65;
-//        }
-//    }
-//    
-//}
 
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -259,7 +408,8 @@
                       @{@"searchTerm": sectionName,}
                                 block:^(NSDictionary *result, NSError *error) {
                                    if (!error) {
-                                       [PFCloud callFunctionInBackground:@"MatchCenter"
+                                       [NSThread sleepForTimeInterval: 1];
+                                       [PFCloud callFunctionInBackground:@"MatchCenter3"
                                                           withParameters:@{}
                                                                    block:^(NSArray *result, NSError *error) {
                                                                        
