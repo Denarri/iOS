@@ -455,8 +455,8 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Andrew Ghobrial (NC2D2U2HF2)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Andrew Ghobrial (NC2D2U2HF2)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Andrew Ghobrial (XTXZ3CYRPX)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Andrew Ghobrial (XTXZ3CYRPX)";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -476,7 +476,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "e6f8f1cc-6959-4fb5-9d28-ff3a0dd34db1";
+				PROVISIONING_PROFILE = "b949b329-4463-4ab0-8b30-8e1d750b75e4";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -508,7 +508,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
-				PROVISIONING_PROFILE = "1c5dadad-3454-4d15-80e2-3fd88c7b89a0";
+				PROVISIONING_PROFILE = "b949b329-4463-4ab0-8b30-8e1d750b75e4";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -517,8 +517,8 @@
 		4AC78010160F93500024E877 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer: Andrew Ghobrial (NC2D2U2HF2)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Andrew Ghobrial (NC2D2U2HF2)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Andrew Ghobrial (XTXZ3CYRPX)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Andrew Ghobrial (XTXZ3CYRPX)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)",
@@ -530,7 +530,7 @@
 				INFOPLIST_FILE = "Parse+Storyboard/Denarri-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = Denarri;
-				PROVISIONING_PROFILE = "e6f8f1cc-6959-4fb5-9d28-ff3a0dd34db1";
+				PROVISIONING_PROFILE = "b949b329-4463-4ab0-8b30-8e1d750b75e4";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
@@ -552,7 +552,7 @@
 				INFOPLIST_FILE = "Parse+Storyboard/Denarri-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = Denarri;
-				PROVISIONING_PROFILE = "1c5dadad-3454-4d15-80e2-3fd88c7b89a0";
+				PROVISIONING_PROFILE = "b949b329-4463-4ab0-8b30-8e1d750b75e4";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};

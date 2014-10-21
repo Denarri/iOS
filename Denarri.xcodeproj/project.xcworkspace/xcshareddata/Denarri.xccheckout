@@ -11,17 +11,17 @@
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
 		<key>C2A9638BDD9ECD1592D99110227C96F3F3EF8D97</key>
-		<string>ssh://github.com/ghobs91/Denarri-iOS.git</string>
+		<string>github.com:ghobs91/Denarri-iOS.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>Denarri.xcodeproj/project.xcworkspace</string>
+	<string>Denarri.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>C2A9638BDD9ECD1592D99110227C96F3F3EF8D97</key>
 		<string>../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>ssh://github.com/ghobs91/Denarri-iOS.git</string>
+	<string>github.com:ghobs91/Denarri-iOS.git</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
