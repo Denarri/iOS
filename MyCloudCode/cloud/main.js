@@ -336,8 +336,8 @@ Parse.Cloud.define("MatchCenter", function(request, response) {
                     'RESPONSE-DATA-FORMAT' : 'JSON',
                     'REST-PAYLOAD&sortOrder' : 'BestMatch',
                     'paginationInput.entriesPerPage' : '10',
-                    'affiliate.trackingId': '5337584338',
-                    'affiliate.networkId': '9',
+                    // 'affiliate.trackingId': '5337584338',
+                    // 'affiliate.networkId': '9',
                     'outputSelector=AspectHistogram&itemFilter(0).name=Condition&itemFilter(0).value(0)' : 'New',
                     'itemFilter(0).value(1)' : '1500',
                     'itemFilter(0).value(2)' : results[i].get('itemCondition'),
@@ -365,8 +365,8 @@ Parse.Cloud.define("MatchCenter", function(request, response) {
                     'RESPONSE-DATA-FORMAT' : 'JSON',
                     'REST-PAYLOAD&sortOrder' : 'BestMatch',
                     'paginationInput.entriesPerPage' : '10',
-                    'affiliate.trackingId': '5337584338',
-                    'affiliate.networkId': '9',
+                    // 'affiliate.trackingId': '5337584338',
+                    // 'affiliate.networkId': '9',
                     'outputSelector=AspectHistogram&itemFilter(0).name=Condition&itemFilter(0).value(0)' : 'New',
                     'itemFilter(0).value(1)' : '1500',
                     'itemFilter(0).value(2)' : results[i].get('itemCondition'),
@@ -550,8 +550,8 @@ Parse.Cloud.define("MatchCenter2", function(request, response) {
                     'RESPONSE-DATA-FORMAT' : 'JSON',
                     'REST-PAYLOAD&sortOrder' : 'BestMatch',
                     'paginationInput.entriesPerPage' : '10',
-                    'affiliate.trackingId': '5337584338',
-                    'affiliate.networkId': '9',
+                    // 'affiliate.trackingId': '5337584338',
+                    // 'affiliate.networkId': '9',
                     'outputSelector=AspectHistogram&itemFilter(0).name=Condition&itemFilter(0).value(0)' : 'New',
                     'itemFilter(0).value(1)' : '1500',
                     'itemFilter(0).value(2)' : results[i].get('itemCondition'),
@@ -579,8 +579,8 @@ Parse.Cloud.define("MatchCenter2", function(request, response) {
                     'RESPONSE-DATA-FORMAT' : 'JSON',
                     'REST-PAYLOAD&sortOrder' : 'BestMatch',
                     'paginationInput.entriesPerPage' : '10',
-                    'affiliate.trackingId': '5337584338',
-                    'affiliate.networkId': '9',
+                    // 'affiliate.trackingId': '5337584338',
+                    // 'affiliate.networkId': '9',
                     'outputSelector=AspectHistogram&itemFilter(0).name=Condition&itemFilter(0).value(0)' : 'New',
                     'itemFilter(0).value(1)' : '1500',
                     'itemFilter(0).value(2)' : results[i].get('itemCondition'),
@@ -805,8 +805,8 @@ Parse.Cloud.define("MatchCenter3", function(request, response) {
                     'RESPONSE-DATA-FORMAT' : 'JSON',
                     'REST-PAYLOAD&sortOrder' : 'BestMatch',
                     'paginationInput.entriesPerPage' : '10',
-                    'affiliate.trackingId': '5337584338',
-                    'affiliate.networkId': '9',
+                    // 'affiliate.trackingId': '5337584338',
+                    // 'affiliate.networkId': '9',
                     'outputSelector=AspectHistogram&itemFilter(0).name=Condition&itemFilter(0).value(0)' : 'New',
                     'itemFilter(0).value(1)' : '1500',
                     'itemFilter(0).value(2)' : results[i].get('itemCondition'),
@@ -834,8 +834,8 @@ Parse.Cloud.define("MatchCenter3", function(request, response) {
                     'RESPONSE-DATA-FORMAT' : 'JSON',
                     'REST-PAYLOAD&sortOrder' : 'BestMatch',
                     'paginationInput.entriesPerPage' : '10',
-                    'affiliate.trackingId': '5337584338',
-                    'affiliate.networkId': '9',
+                    // 'affiliate.trackingId': '5337584338',
+                    // 'affiliate.networkId': '9',
                     'outputSelector=AspectHistogram&itemFilter(0).name=Condition&itemFilter(0).value(0)' : 'New',
                     'itemFilter(0).value(1)' : '1500',
                     'itemFilter(0).value(2)' : results[i].get('itemCondition'),
@@ -1255,35 +1255,82 @@ Parse.Cloud.job("sendHighPush", function(request, status) {
 });
 
 
+
+
+
+
+
+
 Parse.Cloud.job("sendLowPush", function(request, status) {
 
   Parse.Cloud.useMasterKey();
    /////////////
-   //send push notification to all users in the "yesPush" channel 
+   //send push notification to all users in the "lowPush" channel 
 
-   Parse.Push.send({
-     channels: ["lowPush"],
-     //push_time: new Date("T00:45:00"),
-     data: {
-     alert: "New MatchCenter Item!",
-     badge: "Increment"
-     }
-   }, 
-   {
-     success: function() {
-        // Push was successful
-        console.log('Push Notifications completed successfully.');
-     },
-     error: function(error) {
-      throw "Got an error " + error.code + " : " + error.message;
-     }
-   }).then(function() {
-    // Set the job's success status
-    status.success("Push Notifications completed successfully.");
-  }, function(error) {
-    // Set the job's error status
-    status.error("Uh oh, ain't no pushing going on hurr.");
+  //{Query the # value of pushIncrement with object id hKj2Eazz6h}
+  var pushIncrement = Parse.Object.extend("pushIncrement");
+  var pushIncrementQuery = new Parse.Query(pushIncrement);
+  pushIncrementQuery.equalTo('objectId', 'hKj2Eazz6h');
+
+  pushIncrementQuery.get('hKj2Eazz6h', {
+      success: function(obj) {
+          var dayNumber = obj.get("Number");
+          // ...
+          //Figure out whether its day 1, 2, or 3, and increment. Send lowPush if day 3.
+        if (dayNumber == 1){
+          //change it to 2
+          console.log('dayNumber is 1');
+
+          obj.set('Number', 2);
+          obj.save();
+          console.log('dayNumber is now 2');
+          status.success("Push Notifications completed successfully.");
+        }
+        else if (dayNumber == 2){
+          //change it to 3
+          console.log('dayNumber is 2');
+          obj.set('Number', 3);
+          obj.save();
+          console.log('dayNumber is now 3');
+          status.success("Push Notifications completed successfully.");
+        }
+        else if (dayNumber == 3){
+          console.log('dayNumber is 3');
+          //send push, then change it to 1
+          Parse.Push.send({
+             channels: ["lowPush"],
+             //push_time: new Date("T00:45:00"),
+             data: {
+             alert: "New MatchCenter Item!",
+             badge: "Increment"
+             }
+           }, 
+           {
+             success: function() {
+                // Push was successful
+             },
+             error: function(error) {
+              throw "Got an error " + error.code + " : " + error.message;
+             }
+           }).then(function() {
+            // Set the job's success status
+            obj.set('Number', 1);
+            obj.save();
+            status.success("Push Notifications completed successfully.");
+           }, function(error) {
+              // Set the job's error status
+              status.error("Uh oh, ain't no pushing going on hurr.");
+           });
+        }
+      },
+
+      error: function(error) {
+         console.log('shit');
+         status.error('shitty shit');
+      }
   });
+
+
 
 });
 
