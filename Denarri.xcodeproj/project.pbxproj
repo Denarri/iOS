@@ -29,12 +29,14 @@
 		4911754019DB48990073C999 /* Splash@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4911753919DB48990073C999 /* Splash@2x.png */; };
 		49129ABE19DF477C00269A22 /* SLExpandableTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 49129ABD19DF477C00269A22 /* SLExpandableTableView.m */; };
 		4921486119F05A82000A706B /* ZombieFrogGray@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4921486019F05A82000A706B /* ZombieFrogGray@2x.jpg */; };
+		493601471A0C6CF900E99644 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 493601431A0C6CF900E99644 /* Bolts.framework */; };
+		493601481A0C6CF900E99644 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 493601441A0C6CF900E99644 /* Parse.framework */; };
+		493601491A0C6CF900E99644 /* ParseFacebookUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 493601451A0C6CF900E99644 /* ParseFacebookUtils.framework */; };
+		4936014A1A0C6CF900E99644 /* ParseUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 493601461A0C6CF900E99644 /* ParseUI.framework */; };
+		493601511A0D549600E99644 /* Denarri-Login-Signup-Logo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 493601501A0D549600E99644 /* Denarri-Login-Signup-Logo@2x.png */; };
 		49367D6419D0BFC50018FD80 /* MCSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49367D6319D0BFC50018FD80 /* MCSettingsViewController.m */; };
 		4939233E1960BD290024FA5F /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4939233D1960BD290024FA5F /* WebViewController.m */; };
 		493B58EC192AEFEC006C895C /* ImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 493B58EB192AEFEC006C895C /* ImageViewController.m */; };
-		49553C9519CCA41C000E8876 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49553C9419CCA41C000E8876 /* Parse.framework */; };
-		49553C9719CCA430000E8876 /* ParseFacebookUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49553C9619CCA430000E8876 /* ParseFacebookUtils.framework */; };
-		49553C9919CCA4D1000E8876 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49553C9819CCA4D1000E8876 /* Bolts.framework */; };
 		49593EAE18DCDD02004CA20C /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49593EAD18DCDD02004CA20C /* SearchViewController.m */; };
 		49593EB118DCDD0E004CA20C /* CriteriaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49593EB018DCDD0E004CA20C /* CriteriaViewController.m */; };
 		49593EB618DCE956004CA20C /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49593EB518DCE956004CA20C /* Default-568h@2x.png */; };
@@ -55,7 +57,6 @@
 		49BF26C2192A618900E546E7 /* AsyncImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 49BF26C1192A618900E546E7 /* AsyncImageView.m */; };
 		49BF474719D33C9D00C9925F /* MCSettingsFormViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49BF474619D33C9D00C9925F /* MCSettingsFormViewController.m */; };
 		49C15CFD19E877DD000F8B23 /* MatchCenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49593EB318DCDD5A004CA20C /* MatchCenterViewController.m */; };
-		49D2DCB119B3C56A003D08D7 /* Denarri-Login-Signup-Logo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49D2DCB019B3C56A003D08D7 /* Denarri-Login-Signup-Logo@2x.png */; };
 		49E7D1B1195A0E2100A556BF /* ZombieFrog.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 49E7D1B0195A0E2100A556BF /* ZombieFrog.jpg */; };
 		49EE475418E11D9500DFFA24 /* denarri_ios_retina@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49EE475318E11D9500DFFA24 /* denarri_ios_retina@2x.png */; };
 		49EE475718E11DFC00DFFA24 /* denarri_ios_spotlight@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49EE475518E11DFC00DFFA24 /* denarri_ios_spotlight@2x.png */; };
@@ -86,15 +87,17 @@
 		49129ABD19DF477C00269A22 /* SLExpandableTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLExpandableTableView.m; sourceTree = "<group>"; };
 		491790EE18DFC03A001B64E3 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		4921486019F05A82000A706B /* ZombieFrogGray@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "ZombieFrogGray@2x.jpg"; sourceTree = "<group>"; };
+		493601431A0C6CF900E99644 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
+		493601441A0C6CF900E99644 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
+		493601451A0C6CF900E99644 /* ParseFacebookUtils.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseFacebookUtils.framework; sourceTree = "<group>"; };
+		493601461A0C6CF900E99644 /* ParseUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseUI.framework; sourceTree = "<group>"; };
+		493601501A0D549600E99644 /* Denarri-Login-Signup-Logo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Denarri-Login-Signup-Logo@2x.png"; sourceTree = "<group>"; };
 		49367D6219D0BFC50018FD80 /* MCSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCSettingsViewController.h; sourceTree = "<group>"; };
 		49367D6319D0BFC50018FD80 /* MCSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCSettingsViewController.m; sourceTree = "<group>"; };
 		4939233C1960BD290024FA5F /* WebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewController.h; sourceTree = "<group>"; };
 		4939233D1960BD290024FA5F /* WebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewController.m; sourceTree = "<group>"; };
 		493B58EA192AEFEC006C895C /* ImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageViewController.h; sourceTree = "<group>"; };
 		493B58EB192AEFEC006C895C /* ImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageViewController.m; sourceTree = "<group>"; };
-		49553C9419CCA41C000E8876 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
-		49553C9619CCA430000E8876 /* ParseFacebookUtils.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseFacebookUtils.framework; sourceTree = "<group>"; };
-		49553C9819CCA4D1000E8876 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
 		49593EAC18DCDD02004CA20C /* SearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchViewController.h; sourceTree = "<group>"; };
 		49593EAD18DCDD02004CA20C /* SearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchViewController.m; sourceTree = "<group>"; };
 		49593EAF18DCDD0E004CA20C /* CriteriaViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CriteriaViewController.h; sourceTree = "<group>"; };
@@ -126,7 +129,6 @@
 		49BF26C1192A618900E546E7 /* AsyncImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AsyncImageView.m; sourceTree = "<group>"; };
 		49BF474519D33C9D00C9925F /* MCSettingsFormViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCSettingsFormViewController.h; sourceTree = "<group>"; };
 		49BF474619D33C9D00C9925F /* MCSettingsFormViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCSettingsFormViewController.m; sourceTree = "<group>"; };
-		49D2DCB019B3C56A003D08D7 /* Denarri-Login-Signup-Logo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Denarri-Login-Signup-Logo@2x.png"; sourceTree = "<group>"; };
 		49E7D1B0195A0E2100A556BF /* ZombieFrog.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = ZombieFrog.jpg; sourceTree = "<group>"; };
 		49EE475318E11D9500DFFA24 /* denarri_ios_retina@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "denarri_ios_retina@2x.png"; sourceTree = "<group>"; };
 		49EE475518E11DFC00DFFA24 /* denarri_ios_spotlight@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "denarri_ios_spotlight@2x.png"; sourceTree = "<group>"; };
@@ -161,19 +163,20 @@
 			files = (
 				4909B56F18FB9E1600EBF204 /* AdSupport.framework in Frameworks */,
 				4909B56D18FB9E0400EBF204 /* Accounts.framework in Frameworks */,
+				4936014A1A0C6CF900E99644 /* ParseUI.framework in Frameworks */,
 				4909B56B18FB9DFA00EBF204 /* Social.framework in Frameworks */,
 				4909B56918FB9C9800EBF204 /* SystemConfiguration.framework in Frameworks */,
-				49553C9719CCA430000E8876 /* ParseFacebookUtils.framework in Frameworks */,
 				498A322419B0DB0E00F46733 /* FacebookSDK.framework in Frameworks */,
+				493601491A0C6CF900E99644 /* ParseFacebookUtils.framework in Frameworks */,
 				4909B56718FB9C7F00EBF204 /* Security.framework in Frameworks */,
 				4909B56618FB9C7700EBF204 /* QuartzCore.framework in Frameworks */,
 				4909B56518FB9C6B00EBF204 /* MobileCoreServices.framework in Frameworks */,
 				4909B56418FB9C6100EBF204 /* libz.dylib in Frameworks */,
-				49553C9519CCA41C000E8876 /* Parse.framework in Frameworks */,
 				4909B56318FB9C3400EBF204 /* CoreLocation.framework in Frameworks */,
+				493601481A0C6CF900E99644 /* Parse.framework in Frameworks */,
 				4909B56218FB9C2A00EBF204 /* CoreGraphics.framework in Frameworks */,
 				4909B56118FB9C1E00EBF204 /* CFNetwork.framework in Frameworks */,
-				49553C9919CCA4D1000E8876 /* Bolts.framework in Frameworks */,
+				493601471A0C6CF900E99644 /* Bolts.framework in Frameworks */,
 				4909B56018FB9C1400EBF204 /* AudioToolbox.framework in Frameworks */,
 				4AC7801F160FA6D50024E877 /* libsqlite3.dylib in Frameworks */,
 				4AC77FF6160F93500024E877 /* UIKit.framework in Frameworks */,
@@ -184,14 +187,10 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		4AC77FE6160F934F0024E877 = {
+		4936014B1A0C702B00E99644 /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				49EE475518E11DFC00DFFA24 /* denarri_ios_spotlight@2x.png */,
-				49EE475618E11DFC00DFFA24 /* denarri_ios_settings@2x.png */,
-				49EE475318E11D9500DFFA24 /* denarri_ios_retina@2x.png */,
-				49593EB518DCE956004CA20C /* Default-568h@2x.png */,
-				49D2DCB019B3C56A003D08D7 /* Denarri-Login-Signup-Logo@2x.png */,
+				493601501A0D549600E99644 /* Denarri-Login-Signup-Logo@2x.png */,
 				49BF26BE192954C400E546E7 /* iPhone 5.jpg */,
 				49A20F3B1900524200E9B8A1 /* MainBG.jpg */,
 				49E7D1B0195A0E2100A556BF /* ZombieFrog.jpg */,
@@ -209,6 +208,18 @@
 				4964583319E3A0BC00BC43FE /* downarrow@2x.png */,
 				49B93B321A0BF3E200C6A324 /* refresh@2x.png */,
 				49B93B341A0BF8B500C6A324 /* xbutton@2x.png */,
+				49EE475518E11DFC00DFFA24 /* denarri_ios_spotlight@2x.png */,
+				49EE475618E11DFC00DFFA24 /* denarri_ios_settings@2x.png */,
+				49EE475318E11D9500DFFA24 /* denarri_ios_retina@2x.png */,
+				49593EB518DCE956004CA20C /* Default-568h@2x.png */,
+			);
+			name = Images;
+			sourceTree = "<group>";
+		};
+		4AC77FE6160F934F0024E877 = {
+			isa = PBXGroup;
+			children = (
+				4936014B1A0C702B00E99644 /* Images */,
 				4AC77FFB160F93500024E877 /* Denarri */,
 				4AC77FF4160F93500024E877 /* Frameworks */,
 				4AC77FF2160F93500024E877 /* Products */,
@@ -226,9 +237,10 @@
 		4AC77FF4160F93500024E877 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				49553C9819CCA4D1000E8876 /* Bolts.framework */,
-				49553C9619CCA430000E8876 /* ParseFacebookUtils.framework */,
-				49553C9419CCA41C000E8876 /* Parse.framework */,
+				493601431A0C6CF900E99644 /* Bolts.framework */,
+				493601441A0C6CF900E99644 /* Parse.framework */,
+				493601451A0C6CF900E99644 /* ParseFacebookUtils.framework */,
+				493601461A0C6CF900E99644 /* ParseUI.framework */,
 				498A322319B0DB0E00F46733 /* FacebookSDK.framework */,
 				4909B56E18FB9E1600EBF204 /* AdSupport.framework */,
 				4909B56C18FB9E0400EBF204 /* Accounts.framework */,
@@ -366,7 +378,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4921486119F05A82000A706B /* ZombieFrogGray@2x.jpg in Resources */,
-				49D2DCB119B3C56A003D08D7 /* Denarri-Login-Signup-Logo@2x.png in Resources */,
+				493601511A0D549600E99644 /* Denarri-Login-Signup-Logo@2x.png in Resources */,
 				49EE475718E11DFC00DFFA24 /* denarri_ios_spotlight@2x.png in Resources */,
 				4911753B19DB48990073C999 /* Splash-667h@2x.png in Resources */,
 				4AC78000160F93500024E877 /* InfoPlist.strings in Resources */,
