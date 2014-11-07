@@ -7,7 +7,7 @@
 
 #import "WebViewController.h"
 
-@interface WebViewController ()
+@interface WebViewController () 
 
 @end
 
@@ -60,6 +60,53 @@
     NSLog(@"YALA KHALAS");
     [self dismissViewControllerAnimated:YES completion:nil];
 }
+
+- (IBAction)shareButtonAction:(id)sender {
+    NSLog(@"WE GON SHARE");
+    
+    
+    
+    UIActionSheet *popup = [[UIActionSheet alloc] initWithTitle:@"Select Sharing option:" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:
+                            @"Share on Facebook",
+                            @"Share on Twitter",
+                            @"Share via E-mail",
+                            @"Share via iMessage",
+                            nil];
+    popup.tag = 1;
+    [popup showInView:[UIApplication sharedApplication].keyWindow];
+}
+
+- (void)actionSheet:(UIActionSheet *)popup clickedButtonAtIndex:(NSInteger)buttonIndex {
+    
+    switch (popup.tag) {
+        case 1: {
+            switch (buttonIndex) {
+                case 0:
+                    NSLog(@"lets share on fb");
+//                    [self FBShare];
+                    break;
+                case 1:
+                    NSLog(@"lets share on twitter");
+//                    [self TwitterShare];
+                    break;
+                case 2:
+                    NSLog(@"lets share on email");
+//                    [self emailContent];
+                    break;
+                case 3:
+                    NSLog(@"lets share on iMessage");
+//                    [self saveContent];
+                    break;
+                default:
+                    break;
+            }
+            break;
+        }
+        default:
+            break;
+    }
+}
+
 
 - (void)didReceiveMemoryWarning
 {

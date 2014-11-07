@@ -42,17 +42,17 @@
     label.font = [UIFont systemFontOfSize:20.0];
     label.textAlignment = NSTextAlignmentCenter;
     label.textColor = [UIColor blackColor];
-    label.text = @"         Denarri";
+    label.text = @"Denarri";
     self.navigationItem.titleView = label;
     //self.navigationItem.title = @"Denarri";
 
-    UIButton *button =  [UIButton buttonWithType:UIButtonTypeCustom];
-    [button setImage:[UIImage imageNamed:@"settingsgear.png"] forState:UIControlStateNormal];
-    [button addTarget:self action:@selector(settingsButton:)forControlEvents:UIControlEventTouchUpInside];
-    [button setFrame:CGRectMake(0, 0, 31, 31)];
-    
-    UIBarButtonItem *barButton = [[UIBarButtonItem alloc] initWithCustomView:button];
-    self.navigationItem.rightBarButtonItem = barButton;
+//    UIButton *button =  [UIButton buttonWithType:UIButtonTypeCustom];
+//    [button setImage:[UIImage imageNamed:@"settingsgear.png"] forState:UIControlStateNormal];
+//    [button addTarget:self action:@selector(settingsButton:)forControlEvents:UIControlEventTouchUpInside];
+//    [button setFrame:CGRectMake(0, 0, 31, 31)];
+//    
+//    UIBarButtonItem *barButton = [[UIBarButtonItem alloc] initWithCustomView:button];
+//    self.navigationItem.rightBarButtonItem = barButton;
     
     [self.nextButtonOutlet addTarget:self action:@selector(nextButton:) forControlEvents:UIControlEventTouchUpInside];
     // Do any additional setup after loading the view.

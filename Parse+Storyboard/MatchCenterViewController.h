@@ -36,6 +36,8 @@
 //@property (nonatomic, assign) int didAddNewItem;
 @property (assign) BOOL didAddNewItem;
 
+@property (strong, nonatomic) IBOutlet UIButton *editButton;
+
 
 @property (weak, nonatomic) IBOutlet UIButton *moreButton;
 @property (strong) NSMutableSet *expandedSections;
