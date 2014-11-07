@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="14A379b" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="2">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14A379b" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="2">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
     </dependencies>
     <scenes>
         <!--Subclass Config View Controller-->
@@ -49,6 +50,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" id="grj-gY-Hri"/>
                     <connections>
                         <outlet property="mcSettingsDone" destination="9mA-vq-zal" id="O2C-oh-rB1"/>
                         <segue destination="4rc-JF-hzi" kind="modal" identifier="MCSettingsToMCFormSegue" id="RcY-ZB-V1I"/>
@@ -56,7 +58,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xeN-zW-10r" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1918" y="542"/>
+            <point key="canvasLocation" x="4175" y="692"/>
         </scene>
         <!--MC Settings Form View Controller-->
         <scene sceneID="iO8-UT-pLe">
@@ -126,7 +128,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XWy-Oo-oQt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1918" y="1235"/>
+            <point key="canvasLocation" x="4175" y="1335"/>
         </scene>
         <!--Search Category Chooser View Controller-->
         <scene sceneID="YZB-0d-ZNX">
@@ -211,12 +213,22 @@
                                     <action selector="webViewDone:" destination="GIv-xY-O7U" eventType="touchUpInside" id="wYd-4G-YA6"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AW0-G3-lGr">
+                                <rect key="frame" x="264" y="28" width="40" height="30"/>
+                                <state key="normal" title="Share">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="shareButtonAction:" destination="GIv-xY-O7U" eventType="touchUpInside" id="kWj-Cj-LXw"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Title" id="5sg-8J-dMG"/>
                     <connections>
                         <outlet property="myWebView" destination="uxG-Bh-Cc2" id="afF-Us-7FC"/>
+                        <outlet property="shareButton" destination="AW0-G3-lGr" id="pxx-hm-MGh"/>
                         <outlet property="webViewDone" destination="GBR-jQ-q3J" id="eEL-GT-oSX"/>
                     </connections>
                 </viewController>
@@ -243,25 +255,25 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Loading...                       " lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="106" translatesAutoresizingMaskIntoConstraints="NO" id="8hH-ex-ixe">
-                                <rect key="frame" x="11" y="65" width="106" height="32"/>
+                                <rect key="frame" x="16" y="66" width="106" height="32"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                 <color key="textColor" red="0.79448784722222221" green="0.79448784722222221" blue="0.79448784722222221" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Or maybe you're not tracking any items...                       " lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="222" translatesAutoresizingMaskIntoConstraints="NO" id="daO-Hh-zCM">
-                                <rect key="frame" x="11" y="79" width="222" height="79"/>
+                                <rect key="frame" x="16" y="80" width="222" height="79"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                 <color key="textColor" red="0.79448784722222221" green="0.79448784722222221" blue="0.79448784722222221" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Or maybe zombie frogs took down our servers...                       " lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="222" translatesAutoresizingMaskIntoConstraints="NO" id="D5U-jl-gV8">
-                                <rect key="frame" x="11" y="134" width="222" height="79"/>
+                                <rect key="frame" x="16" y="135" width="222" height="79"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                 <color key="textColor" red="0.79448784722222221" green="0.79448784722222221" blue="0.79448784722222221" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="ZombieFrogGray.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="3yb-Ch-GRI">
-                                <rect key="frame" x="227" y="70" width="83" height="127"/>
+                                <rect key="frame" x="232" y="71" width="83" height="127"/>
                                 <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             </imageView>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="MatchCenter" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="106" translatesAutoresizingMaskIntoConstraints="NO" id="ZxP-si-6Ok">
@@ -270,6 +282,16 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C5h-i2-fQ9">
+                                <rect key="frame" x="7" y="28" width="30" height="30"/>
+                                <state key="normal" title="Edit">
+                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="editButtonAction:" destination="DNb-te-ggn" eventType="touchUpInside" id="gNf-Sq-4Yc"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -281,7 +303,9 @@
                     <nil key="simulatedTopBarMetrics"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="editButton" destination="C5h-i2-fQ9" id="OqZ-yG-EwR"/>
                         <segue destination="GIv-xY-O7U" kind="modal" identifier="WebViewSegue" id="fJI-x7-7rw"/>
+                        <segue destination="lXu-f0-LVu" kind="modal" identifier="CriteriaSettingsSegue" id="6f4-6U-Fi3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="g6R-A0-hP2" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -343,7 +367,6 @@
                         <segue destination="DNb-te-ggn" kind="push" identifier="ShowMatchCenterSegue" id="f7J-JZ-mSA"/>
                         <segue destination="VVp-gr-Il1" kind="push" identifier="ShowSearchCategoryChooserSegue" id="2iw-RD-0Ug"/>
                         <segue destination="EJR-8m-fBh" kind="push" identifier="ShowUserCategoryChooserSegue" id="LSE-SS-YPH"/>
-                        <segue destination="lXu-f0-LVu" kind="modal" identifier="CriteriaSettingsSegue" id="RhI-yn-ir5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="alB-IP-YhU" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -466,7 +489,7 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="f7J-JZ-mSA"/>
-        <segue reference="31y-Ae-iMh"/>
+        <segue reference="bso-zB-LfR"/>
+        <segue reference="AYe-ID-Kyc"/>
     </inferredMetricsTieBreakers>
 </document>

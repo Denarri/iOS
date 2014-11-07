@@ -51,12 +51,13 @@
     _matchCenterArray = [[NSArray alloc] init];
     
     // Refresh button
-    UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"refresh.png"]];
-    imageView.frame = CGRectMake(275, 25, 30, 30);
-    imageView.userInteractionEnabled = YES;
+    UIImageView *refreshImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"refresh.png"]];
+    refreshImageView.frame = CGRectMake(280, 30, 30, 30);
+    refreshImageView.userInteractionEnabled = YES;
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(refreshPressed:)];
-    [imageView addGestureRecognizer:tapGesture];
-    [self.view addSubview:imageView];
+    [refreshImageView addGestureRecognizer:tapGesture];
+    [self.view addSubview:refreshImageView];
+    
     
     // Preparing for MC and indicating loading
     self.matchCenterArray = [[NSArray alloc] init];
@@ -90,6 +91,12 @@
                                 }];
   
 }
+
+- (IBAction)editButtonAction:(id)sender {
+    [self performSegueWithIdentifier:@"CriteriaSettingsSegue" sender:self];
+    NSLog(@"OH YEAAAAA");
+}
+
 
 - (void)refreshPressed:(id)sender
 {
@@ -210,6 +217,7 @@
     UIView *view = [[UIView alloc] initWithFrame:CGRectZero];
     view.backgroundColor = [UIColor whiteColor];
     
+    
     MoreButton *moreButton = [MoreButton buttonWithType:UIButtonTypeCustom];
     moreButton.frame = CGRectMake(0, 0, 320, 35);
     moreButton.sectionIndex = section;
@@ -228,16 +236,16 @@
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 21)];
-    headerView.backgroundColor = [UIColor lightGrayColor];
+    headerView.backgroundColor = [UIColor colorWithRed:0.949 green:0.949 blue:0.949 alpha:1];
     
     
     _searchTerm = [[[[_matchCenterArray  objectAtIndex:section] objectForKey:@"Top 3"] objectAtIndex:0]objectForKey:@"Search Term"];
     
     UILabel *headerLabel = [[UILabel alloc] initWithFrame:CGRectMake(8, 0, 250, 21)];
     headerLabel.text = [NSString stringWithFormat:@"%@", _searchTerm];
-    headerLabel.font = [UIFont boldSystemFontOfSize:[UIFont systemFontSize]];
-    headerLabel.textColor = [UIColor whiteColor];
-    headerLabel.backgroundColor = [UIColor lightGrayColor];
+    headerLabel.font = [UIFont systemFontOfSize:[UIFont systemFontSize]];
+    headerLabel.textColor = [UIColor blackColor];
+    headerLabel.backgroundColor = [UIColor colorWithRed:0.949 green:0.949 blue:0.949 alpha:1];
     [headerView addSubview:headerLabel];
     
     UIButton *deleteButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -281,7 +289,7 @@
         
         // title of the item
         cell.textLabel.text = @"No items found, but we'll keep a lookout for you!";
-        cell.textLabel.font = [UIFont boldSystemFontOfSize:12];
+        cell.textLabel.font = [UIFont systemFontOfSize:12];
         
         // price of the item
         cell.detailTextLabel.text = @"";
@@ -296,7 +304,7 @@
         
         // title of the item
         cell.textLabel.text = _matchCenterArray[indexPath.section][@"Top 3"][indexPath.row+1][@"Title"];
-        cell.textLabel.font = [UIFont boldSystemFontOfSize:14];
+        cell.textLabel.font = [UIFont systemFontOfSize:14];
         
         // price of the item
         cell.detailTextLabel.text = [NSString stringWithFormat:@"$%@", _matchCenterArray[indexPath.section][@"Top 3"][indexPath.row+1][@"Price"]];
@@ -305,6 +313,9 @@
         // image of the item
         NSData *imageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:_matchCenterArray[indexPath.section][@"Top 3"][indexPath.row+1][@"Image URL"]]];
         [[cell imageView] setImage:[UIImage imageWithData:imageData]];
+        
+        cell.imageView.layer.masksToBounds = YES;
+        cell.imageView.layer.cornerRadius = 2.5;
         
     }
     
@@ -384,9 +395,11 @@
  
  - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
  {
-     // Opens item in browser
-     WebViewController *controller = (WebViewController *) segue.destinationViewController;
-     controller.itemURL = self.itemURL;
+     if ([segue.identifier isEqualToString:@"WebViewSegue"]){
+         // Opens item in browser
+         WebViewController *controller = (WebViewController *) segue.destinationViewController;
+         controller.itemURL = self.itemURL;
+     }
  }
 
 
