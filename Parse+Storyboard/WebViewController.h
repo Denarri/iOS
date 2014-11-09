@@ -7,6 +7,9 @@
 
 #import <UIKit/UIKit.h>
 #import "MatchCenterViewController.h"
+#import <MessageUI/MessageUI.h>
+#import <MessageUI/MFMailComposeViewController.h>
+#import <MessageUI/MFMessageComposeViewController.h>
 
 @interface WebViewController : UIViewController <UIWebViewDelegate, UIActionSheetDelegate>
 

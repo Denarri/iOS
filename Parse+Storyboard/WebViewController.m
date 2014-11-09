@@ -64,12 +64,7 @@
 - (IBAction)shareButtonAction:(id)sender {
     NSLog(@"WE GON SHARE");
     
-    
-    
     UIActionSheet *popup = [[UIActionSheet alloc] initWithTitle:@"Select Sharing option:" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:
-                            @"Share on Facebook",
-                            @"Share on Twitter",
-                            @"Share via E-mail",
                             @"Share via iMessage",
                             nil];
     popup.tag = 1;
@@ -81,21 +76,26 @@
     switch (popup.tag) {
         case 1: {
             switch (buttonIndex) {
+//                case 0:
+//                    NSLog(@"lets share on email");
+//                    if ([MFMailComposeViewController canSendMail]) {
+//                        MFMailComposeViewController *mailController = [[MFMailComposeViewController alloc] init];
+//                        [mailController setMailComposeDelegate:self];
+//                        [mailController setSubject:@"Item I found On Denarri"];
+//                        [mailController setMessageBody:(@"Check out this awesome deal I found on the Denarri app!:") isHTML:NO];
+//                        [self presentViewController:mailController animated:YES completion:nil];
+//                    }
+//                    break;
                 case 0:
-                    NSLog(@"lets share on fb");
-//                    [self FBShare];
-                    break;
-                case 1:
-                    NSLog(@"lets share on twitter");
-//                    [self TwitterShare];
-                    break;
-                case 2:
-                    NSLog(@"lets share on email");
-//                    [self emailContent];
-                    break;
-                case 3:
                     NSLog(@"lets share on iMessage");
-//                    [self saveContent];
+                    if ([MFMessageComposeViewController canSendText]) {
+                        MFMessageComposeViewController *messageController = [[MFMessageComposeViewController alloc] init];
+                        [messageController setMessageComposeDelegate:self];
+                        [messageController setBody: [NSString stringWithFormat: @"Check out this awesome deal I found on the Denarri app!: '%@'", _itemURL]];
+                        
+//                        [NSString stringWithFormat: @"Check out this awesome deal I found on the Denarri app!: '%@'", _itemURL];
+                        [self presentViewController:messageController animated:NO completion:nil];
+                    }
                     break;
                 default:
                     break;
@@ -107,6 +107,15 @@
     }
 }
 
+// Then implement the delegate method
+- (void)mailComposeController:(MFMailComposeViewController*)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError*)error {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+// Then implement the delegate method
+- (void)messageComposeViewController:(MFMessageComposeViewController *)controller didFinishWithResult:(MessageComposeResult)result {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
 
 - (void)didReceiveMemoryWarning
 {

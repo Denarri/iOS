@@ -29,6 +29,7 @@
 		4911754019DB48990073C999 /* Splash@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4911753919DB48990073C999 /* Splash@2x.png */; };
 		49129ABE19DF477C00269A22 /* SLExpandableTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 49129ABD19DF477C00269A22 /* SLExpandableTableView.m */; };
 		4921486119F05A82000A706B /* ZombieFrogGray@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4921486019F05A82000A706B /* ZombieFrogGray@2x.jpg */; };
+		4928788C1A0D7B040060D520 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4928788B1A0D7B040060D520 /* MessageUI.framework */; };
 		493601471A0C6CF900E99644 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 493601431A0C6CF900E99644 /* Bolts.framework */; };
 		493601481A0C6CF900E99644 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 493601441A0C6CF900E99644 /* Parse.framework */; };
 		493601491A0C6CF900E99644 /* ParseFacebookUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 493601451A0C6CF900E99644 /* ParseFacebookUtils.framework */; };
@@ -87,6 +88,7 @@
 		49129ABD19DF477C00269A22 /* SLExpandableTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLExpandableTableView.m; sourceTree = "<group>"; };
 		491790EE18DFC03A001B64E3 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		4921486019F05A82000A706B /* ZombieFrogGray@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "ZombieFrogGray@2x.jpg"; sourceTree = "<group>"; };
+		4928788B1A0D7B040060D520 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		493601431A0C6CF900E99644 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
 		493601441A0C6CF900E99644 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 		493601451A0C6CF900E99644 /* ParseFacebookUtils.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseFacebookUtils.framework; sourceTree = "<group>"; };
@@ -161,6 +163,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4928788C1A0D7B040060D520 /* MessageUI.framework in Frameworks */,
 				4909B56F18FB9E1600EBF204 /* AdSupport.framework in Frameworks */,
 				4909B56D18FB9E0400EBF204 /* Accounts.framework in Frameworks */,
 				4936014A1A0C6CF900E99644 /* ParseUI.framework in Frameworks */,
@@ -237,6 +240,7 @@
 		4AC77FF4160F93500024E877 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				4928788B1A0D7B040060D520 /* MessageUI.framework */,
 				493601431A0C6CF900E99644 /* Bolts.framework */,
 				493601441A0C6CF900E99644 /* Parse.framework */,
 				493601451A0C6CF900E99644 /* ParseFacebookUtils.framework */,
