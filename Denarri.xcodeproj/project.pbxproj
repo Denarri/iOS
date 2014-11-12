@@ -58,6 +58,7 @@
 		49BF26C2192A618900E546E7 /* AsyncImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 49BF26C1192A618900E546E7 /* AsyncImageView.m */; };
 		49BF474719D33C9D00C9925F /* MCSettingsFormViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49BF474619D33C9D00C9925F /* MCSettingsFormViewController.m */; };
 		49C15CFD19E877DD000F8B23 /* MatchCenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49593EB318DCDD5A004CA20C /* MatchCenterViewController.m */; };
+		49C53ECE1A12D36A00D60D0C /* MatchCenterCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 49C53ECD1A12D36A00D60D0C /* MatchCenterCell.m */; };
 		49E7D1B1195A0E2100A556BF /* ZombieFrog.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 49E7D1B0195A0E2100A556BF /* ZombieFrog.jpg */; };
 		49EE475418E11D9500DFFA24 /* denarri_ios_retina@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49EE475318E11D9500DFFA24 /* denarri_ios_retina@2x.png */; };
 		49EE475718E11DFC00DFFA24 /* denarri_ios_spotlight@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49EE475518E11DFC00DFFA24 /* denarri_ios_spotlight@2x.png */; };
@@ -131,6 +132,8 @@
 		49BF26C1192A618900E546E7 /* AsyncImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AsyncImageView.m; sourceTree = "<group>"; };
 		49BF474519D33C9D00C9925F /* MCSettingsFormViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCSettingsFormViewController.h; sourceTree = "<group>"; };
 		49BF474619D33C9D00C9925F /* MCSettingsFormViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCSettingsFormViewController.m; sourceTree = "<group>"; };
+		49C53ECC1A12D36A00D60D0C /* MatchCenterCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MatchCenterCell.h; path = ../MatchCenterCell.h; sourceTree = "<group>"; };
+		49C53ECD1A12D36A00D60D0C /* MatchCenterCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MatchCenterCell.m; path = ../MatchCenterCell.m; sourceTree = "<group>"; };
 		49E7D1B0195A0E2100A556BF /* ZombieFrog.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = ZombieFrog.jpg; sourceTree = "<group>"; };
 		49EE475318E11D9500DFFA24 /* denarri_ios_retina@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "denarri_ios_retina@2x.png"; sourceTree = "<group>"; };
 		49EE475518E11DFC00DFFA24 /* denarri_ios_spotlight@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "denarri_ios_spotlight@2x.png"; sourceTree = "<group>"; };
@@ -289,6 +292,8 @@
 				49593EB018DCDD0E004CA20C /* CriteriaViewController.m */,
 				49593EB218DCDD5A004CA20C /* MatchCenterViewController.h */,
 				49593EB318DCDD5A004CA20C /* MatchCenterViewController.m */,
+				49C53ECC1A12D36A00D60D0C /* MatchCenterCell.h */,
+				49C53ECD1A12D36A00D60D0C /* MatchCenterCell.m */,
 				49129ABC19DF477C00269A22 /* SLExpandableTableView.h */,
 				49129ABD19DF477C00269A22 /* SLExpandableTableView.m */,
 				4939233C1960BD290024FA5F /* WebViewController.h */,
@@ -430,6 +435,7 @@
 				49ACF3D51900428100506502 /* SubclassConfigViewController.m in Sources */,
 				49367D6419D0BFC50018FD80 /* MCSettingsViewController.m in Sources */,
 				49B0390D1911894B00D82877 /* SearchCategoryChooserViewController.m in Sources */,
+				49C53ECE1A12D36A00D60D0C /* MatchCenterCell.m in Sources */,
 				49638AA219B3B84F00C2253F /* MySignUpViewController.m in Sources */,
 				49BF474719D33C9D00C9925F /* MCSettingsFormViewController.m in Sources */,
 				4AC78028160FA9B10024E877 /* DefaultSettingsViewController.m in Sources */,

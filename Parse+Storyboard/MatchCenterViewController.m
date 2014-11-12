@@ -7,6 +7,7 @@
 
 #import "MatchCenterViewController.h"
 #import <UIKit/UIKit.h>
+#import "MatchCenterCell.h"
 
 @interface MatchCenterViewController () <UITableViewDataSource, UITableViewDelegate>
 
@@ -272,11 +273,11 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // Initialize cell
-    static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    static NSString *CellIdentifier = @"MatchCenterCell";
+    MatchCenterCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (!cell) {
         // if no cell could be dequeued create a new one
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+        cell = [[MatchCenterCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     }
     
     // No cell seperators = clean design
@@ -291,13 +292,6 @@
         cell.textLabel.text = @"No items found, but we'll keep a lookout for you!";
         cell.textLabel.font = [UIFont systemFontOfSize:12];
         
-        // price of the item
-        cell.detailTextLabel.text = @"";
-        
-        // image of the item
-        NSData *imageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:@""]];
-        [[cell imageView] setImage:[UIImage imageWithData:imageData]];
-
     }
     
     else {
@@ -306,9 +300,16 @@
         cell.textLabel.text = _matchCenterArray[indexPath.section][@"Top 3"][indexPath.row+1][@"Title"];
         cell.textLabel.font = [UIFont systemFontOfSize:14];
         
-        // price of the item
-        cell.detailTextLabel.text = [NSString stringWithFormat:@"$%@", _matchCenterArray[indexPath.section][@"Top 3"][indexPath.row+1][@"Price"]];
+        NSString *price = [NSString stringWithFormat:@"$%@", _matchCenterArray[indexPath.section][@"Top 3"][indexPath.row+1][@"Price"]];
+        NSString *condition = [NSString stringWithFormat:@"%@", _matchCenterArray[indexPath.section][@"Top 3"][indexPath.row+1][@"Item Condition"]];
+    
+        // price + condition of the item
+        cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ - %@", price, condition];
         cell.detailTextLabel.textColor = [UIColor colorWithRed:0/255.0f green:127/255.0f blue:31/255.0f alpha:1.0f];
+        
+//        // condition of the item
+//        cell.conditionLabel.text = condition;
+//        cell.conditionLabel.textColor = [UIColor colorWithRed:0/255.0f green:127/255.0f blue:31/255.0f alpha:1.0f];
         
         // image of the item
         NSData *imageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:_matchCenterArray[indexPath.section][@"Top 3"][indexPath.row+1][@"Image URL"]]];
