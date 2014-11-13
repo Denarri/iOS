@@ -28,6 +28,8 @@
 {
     [super viewDidLoad];
     
+    NSLog(@"'%@'", self.itemLocation);
+    
     self.navigationItem.title = @"Categories";
     
     UIButton *category1 = [UIButton buttonWithType:UIButtonTypeRoundedRect];
@@ -87,7 +89,7 @@
  controller.chosenCategoryName = self.chosenCategoryName;
  controller.itemSearch = self.itemSearch;
  controller.itemPriority = self.itemPriority;
-    
+ controller.itemLocation = self.itemLocation;
     
 }
 

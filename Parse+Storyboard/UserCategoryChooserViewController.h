@@ -27,6 +27,7 @@
 
 @property (strong, nonatomic) NSString *matchingCategoryLocation1;
 @property (strong, nonatomic) NSString *matchingCategoryLocation2;
+@property (strong, nonatomic) NSString *itemLocation;
 
 @property (strong, nonatomic) NSNumber *matchingCategoryMaxPrice1;
 @property (strong, nonatomic) NSNumber *matchingCategoryMaxPrice2;

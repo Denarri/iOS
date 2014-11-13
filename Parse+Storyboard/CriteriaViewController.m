@@ -30,26 +30,25 @@
     
     // Default values
     self.itemCondition = @"New";
-    self.itemLocation = @"US";
     
     // Initialize UISegmentedControls
     UISegmentedControl *conditionSegmentedControl = [[UISegmentedControl alloc] initWithItems:[NSArray arrayWithObjects:@"New Only", @"New/Lightly Used", nil]];
-    conditionSegmentedControl.frame = CGRectMake(35, 210, 250, 35);
+    conditionSegmentedControl.frame = CGRectMake(35, 230, 250, 35);
     conditionSegmentedControl.selectedSegmentIndex = 0;
     conditionSegmentedControl.tintColor = [UIColor blueColor];
     [conditionSegmentedControl addTarget:self action:@selector(conditionValueChanged:) forControlEvents: UIControlEventValueChanged];
     [self.view addSubview:conditionSegmentedControl];
     
-    UISegmentedControl *locationSegmentedControl = [[UISegmentedControl alloc] initWithItems:[NSArray arrayWithObjects:@"Faster Shipping", @"Larger Selection", nil]];
-    locationSegmentedControl.frame = CGRectMake(35, 290, 250, 35);
-    locationSegmentedControl.selectedSegmentIndex = 0;
-    locationSegmentedControl.tintColor = [UIColor blueColor];
-    [locationSegmentedControl addTarget:self action:@selector(locationValueChanged:) forControlEvents: UIControlEventValueChanged];
-    [self.view addSubview:locationSegmentedControl];
+//    UISegmentedControl *locationSegmentedControl = [[UISegmentedControl alloc] initWithItems:[NSArray arrayWithObjects:@"Faster Shipping", @"Larger Selection", nil]];
+//    locationSegmentedControl.frame = CGRectMake(35, 290, 250, 35);
+//    locationSegmentedControl.selectedSegmentIndex = 0;
+//    locationSegmentedControl.tintColor = [UIColor blueColor];
+//    [locationSegmentedControl addTarget:self action:@selector(locationValueChanged:) forControlEvents: UIControlEventValueChanged];
+//    [self.view addSubview:locationSegmentedControl];
     
     // Submit button
     self.submitButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    self.submitButton.frame = CGRectMake(110, 330, 100, 100);
+    self.submitButton.frame = CGRectMake(110, 300, 100, 100);
     [self.submitButton setTitle:@"Submit" forState:UIControlStateNormal];
     [self.submitButton addTarget:self action:@selector(submitButton:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.submitButton];
@@ -58,7 +57,7 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {
-    
+    NSLog(@"'%@'", self.itemLocation);
     self.submitButton.userInteractionEnabled = YES;
     
 }
@@ -84,17 +83,17 @@
     }
 }
 
-- (void)locationValueChanged:(UISegmentedControl *)locationSegmentedControl {
-    
-    if(locationSegmentedControl.selectedSegmentIndex == 0)
-    {
-        self.itemLocation = @"US";
-    }
-    else if(locationSegmentedControl.selectedSegmentIndex == 1)
-    {
-        self.itemLocation = @"WorldWide";
-    }
-}
+//- (void)locationValueChanged:(UISegmentedControl *)locationSegmentedControl {
+//    
+//    if(locationSegmentedControl.selectedSegmentIndex == 0)
+//    {
+//        self.itemLocation = @"US";
+//    }
+//    else if(locationSegmentedControl.selectedSegmentIndex == 1)
+//    {
+//        self.itemLocation = @"WorldWide";
+//    }
+//}
 
 - (void)didReceiveMemoryWarning
 {

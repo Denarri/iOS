@@ -24,6 +24,8 @@
 
 // Item Criteria
 @property (strong, nonatomic) NSString *itemPriority;
+@property (strong, nonatomic) NSString *itemLocation;
+
 
 @property (strong, nonatomic) NSString *matchingCategoryCondition1;
 @property (strong, nonatomic) NSString *matchingCategoryCondition2;

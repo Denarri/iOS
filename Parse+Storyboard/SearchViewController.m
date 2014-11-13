@@ -72,6 +72,7 @@
 {
     _nextButtonOutlet.userInteractionEnabled = YES;
     self.itemPriority = @"Low";
+    self.itemLocation = @"WorldWide";
 }
 
 - (void)didReceiveMemoryWarning
@@ -90,13 +91,16 @@
     if(_itemPrioritySegment.selectedSegmentIndex == 0)
     {
         self.itemPriority = @"Low";
+        self.itemLocation = @"WorldWide";
     }
     else if(_itemPrioritySegment.selectedSegmentIndex == 1)
     {
         self.itemPriority = @"High";
+        self.itemLocation = @"US";
     }
     
     NSLog(@"prioritay:'%@'", self.itemPriority);
+    NSLog(@"locationtayyyyy:'%@'", self.itemLocation);
 }
 
 
@@ -213,7 +217,7 @@
                                                     matchViewController.matchingCategoryMinPrice = self.matchingCategoryMinPrice1;
                                                     matchViewController.matchingCategoryMaxPrice = self.matchingCategoryMaxPrice1;
                                                     matchViewController.matchingCategoryCondition = self.matchingCategoryCondition1;
-                                                    matchViewController.matchingCategoryLocation = self.matchingCategoryLocation1;
+                                                    matchViewController.matchingCategoryLocation = self.itemLocation;
                                                     matchViewController.itemPriority = self.itemPriority;
                                                     
                                                     NSLog(@"alright they're set, time to switch");
@@ -314,6 +318,7 @@
         controller.topCategory2 = self.topCategory2;
         controller.topCategoryId1 = self.topCategoryId1;
         controller.topCategoryId2 = self.topCategoryId2;
+        controller.itemLocation = self.itemLocation;
         
     }
     
@@ -324,6 +329,7 @@
         // Send over the search query as well as the specific category to CriteriaVC to use
         controller.itemSearch = self.itemSearch.text;
         controller.itemPriority = self.itemPriority;
+        controller.itemLocation = self.itemLocation;
         controller.chosenCategory = self.topCategoryId1;
         controller.chosenCategoryName = self.topCategory1;
     }
@@ -353,8 +359,7 @@
         controller.matchingCategoryCondition1 = self.matchingCategoryCondition1;
         controller.matchingCategoryCondition2 = self.matchingCategoryCondition2;
         
-        controller.matchingCategoryLocation1 = self.matchingCategoryLocation1;
-        controller.matchingCategoryLocation2 = self.matchingCategoryLocation2;
+        controller.itemLocation = self.itemLocation;
     }
 
 }

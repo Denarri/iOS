@@ -280,6 +280,9 @@
         cell = [[MatchCenterCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     }
     
+    //[cell.contentView addSubview:cell.priceLabel];
+    [cell.contentView addSubview:cell.conditionLabel];
+    
     // No cell seperators = clean design
     tableView.separatorColor = [UIColor clearColor];
     
@@ -300,10 +303,10 @@
         cell.textLabel.text = _matchCenterArray[indexPath.section][@"Top 3"][indexPath.row+1][@"Title"];
         cell.textLabel.font = [UIFont systemFontOfSize:14];
         
+        // price + condition of the item
         NSString *price = [NSString stringWithFormat:@"$%@", _matchCenterArray[indexPath.section][@"Top 3"][indexPath.row+1][@"Price"]];
         NSString *condition = [NSString stringWithFormat:@"%@", _matchCenterArray[indexPath.section][@"Top 3"][indexPath.row+1][@"Item Condition"]];
     
-        // price + condition of the item
         cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ - %@", price, condition];
         cell.detailTextLabel.textColor = [UIColor colorWithRed:0/255.0f green:127/255.0f blue:31/255.0f alpha:1.0f];
         
