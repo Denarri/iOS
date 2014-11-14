@@ -55,10 +55,11 @@
 		49BD5AB319AFD32E003F3261 /* Search@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49BD5AB219AFD32E003F3261 /* Search@2x.png */; };
 		49BD5AB919AFD880003F3261 /* MatchCenter@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49BD5AB819AFD880003F3261 /* MatchCenter@2x.png */; };
 		49BF26BF192954C400E546E7 /* iPhone 5.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 49BF26BE192954C400E546E7 /* iPhone 5.jpg */; };
-		49BF26C2192A618900E546E7 /* AsyncImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 49BF26C1192A618900E546E7 /* AsyncImageView.m */; };
 		49BF474719D33C9D00C9925F /* MCSettingsFormViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49BF474619D33C9D00C9925F /* MCSettingsFormViewController.m */; };
 		49C15CFD19E877DD000F8B23 /* MatchCenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49593EB318DCDD5A004CA20C /* MatchCenterViewController.m */; };
 		49C53ECE1A12D36A00D60D0C /* MatchCenterCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 49C53ECD1A12D36A00D60D0C /* MatchCenterCell.m */; };
+		49C53ED11A155ADF00D60D0C /* AsyncImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 49C53ED01A155ADF00D60D0C /* AsyncImageView.m */; };
+		49C53ED31A1561C800D60D0C /* Placeholder@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49C53ED21A1561C800D60D0C /* Placeholder@2x.png */; };
 		49E7D1B1195A0E2100A556BF /* ZombieFrog.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 49E7D1B0195A0E2100A556BF /* ZombieFrog.jpg */; };
 		49EE475418E11D9500DFFA24 /* denarri_ios_retina@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49EE475318E11D9500DFFA24 /* denarri_ios_retina@2x.png */; };
 		49EE475718E11DFC00DFFA24 /* denarri_ios_spotlight@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49EE475518E11DFC00DFFA24 /* denarri_ios_spotlight@2x.png */; };
@@ -128,12 +129,13 @@
 		49BD5AB219AFD32E003F3261 /* Search@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Search@2x.png"; sourceTree = "<group>"; };
 		49BD5AB819AFD880003F3261 /* MatchCenter@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MatchCenter@2x.png"; sourceTree = "<group>"; };
 		49BF26BE192954C400E546E7 /* iPhone 5.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "iPhone 5.jpg"; sourceTree = "<group>"; };
-		49BF26C0192A618900E546E7 /* AsyncImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AsyncImageView.h; sourceTree = "<group>"; };
-		49BF26C1192A618900E546E7 /* AsyncImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AsyncImageView.m; sourceTree = "<group>"; };
 		49BF474519D33C9D00C9925F /* MCSettingsFormViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCSettingsFormViewController.h; sourceTree = "<group>"; };
 		49BF474619D33C9D00C9925F /* MCSettingsFormViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCSettingsFormViewController.m; sourceTree = "<group>"; };
 		49C53ECC1A12D36A00D60D0C /* MatchCenterCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MatchCenterCell.h; path = ../MatchCenterCell.h; sourceTree = "<group>"; };
 		49C53ECD1A12D36A00D60D0C /* MatchCenterCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MatchCenterCell.m; path = ../MatchCenterCell.m; sourceTree = "<group>"; };
+		49C53ECF1A155ADF00D60D0C /* AsyncImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AsyncImageView.h; sourceTree = "<group>"; };
+		49C53ED01A155ADF00D60D0C /* AsyncImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AsyncImageView.m; sourceTree = "<group>"; };
+		49C53ED21A1561C800D60D0C /* Placeholder@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Placeholder@2x.png"; sourceTree = "<group>"; };
 		49E7D1B0195A0E2100A556BF /* ZombieFrog.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = ZombieFrog.jpg; sourceTree = "<group>"; };
 		49EE475318E11D9500DFFA24 /* denarri_ios_retina@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "denarri_ios_retina@2x.png"; sourceTree = "<group>"; };
 		49EE475518E11DFC00DFFA24 /* denarri_ios_spotlight@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "denarri_ios_spotlight@2x.png"; sourceTree = "<group>"; };
@@ -196,6 +198,7 @@
 		4936014B1A0C702B00E99644 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				49C53ED21A1561C800D60D0C /* Placeholder@2x.png */,
 				493601501A0D549600E99644 /* Denarri-Login-Signup-Logo@2x.png */,
 				49BF26BE192954C400E546E7 /* iPhone 5.jpg */,
 				49A20F3B1900524200E9B8A1 /* MainBG.jpg */,
@@ -294,6 +297,8 @@
 				49593EB318DCDD5A004CA20C /* MatchCenterViewController.m */,
 				49C53ECC1A12D36A00D60D0C /* MatchCenterCell.h */,
 				49C53ECD1A12D36A00D60D0C /* MatchCenterCell.m */,
+				49C53ECF1A155ADF00D60D0C /* AsyncImageView.h */,
+				49C53ED01A155ADF00D60D0C /* AsyncImageView.m */,
 				49129ABC19DF477C00269A22 /* SLExpandableTableView.h */,
 				49129ABD19DF477C00269A22 /* SLExpandableTableView.m */,
 				4939233C1960BD290024FA5F /* WebViewController.h */,
@@ -304,8 +309,6 @@
 				49BF474619D33C9D00C9925F /* MCSettingsFormViewController.m */,
 				49AD794119AFAE6E009996D5 /* CustomTabBar.h */,
 				49AD794219AFAE6E009996D5 /* CustomTabBar.m */,
-				49BF26C0192A618900E546E7 /* AsyncImageView.h */,
-				49BF26C1192A618900E546E7 /* AsyncImageView.m */,
 				493B58EA192AEFEC006C895C /* ImageViewController.h */,
 				493B58EB192AEFEC006C895C /* ImageViewController.m */,
 				4AC77FFC160F93500024E877 /* Supporting Files */,
@@ -396,6 +399,7 @@
 				49BD5AB319AFD32E003F3261 /* Search@2x.png in Resources */,
 				49BF26BF192954C400E546E7 /* iPhone 5.jpg in Resources */,
 				49EE475418E11D9500DFFA24 /* denarri_ios_retina@2x.png in Resources */,
+				49C53ED31A1561C800D60D0C /* Placeholder@2x.png in Resources */,
 				49E7D1B1195A0E2100A556BF /* ZombieFrog.jpg in Resources */,
 				49A20F3C1900524200E9B8A1 /* MainBG.jpg in Resources */,
 				4911754019DB48990073C999 /* Splash@2x.png in Resources */,
@@ -426,13 +430,13 @@
 				49593EAE18DCDD02004CA20C /* SearchViewController.m in Sources */,
 				49B03910191189C100D82877 /* UserCategoryChooserViewController.m in Sources */,
 				49AD794319AFAE6E009996D5 /* CustomTabBar.m in Sources */,
-				49BF26C2192A618900E546E7 /* AsyncImageView.m in Sources */,
 				4939233E1960BD290024FA5F /* WebViewController.m in Sources */,
 				493B58EC192AEFEC006C895C /* ImageViewController.m in Sources */,
 				49C15CFD19E877DD000F8B23 /* MatchCenterViewController.m in Sources */,
 				49ACF3D21900380900506502 /* MyLogInViewController.m in Sources */,
 				49593EB118DCDD0E004CA20C /* CriteriaViewController.m in Sources */,
 				49ACF3D51900428100506502 /* SubclassConfigViewController.m in Sources */,
+				49C53ED11A155ADF00D60D0C /* AsyncImageView.m in Sources */,
 				49367D6419D0BFC50018FD80 /* MCSettingsViewController.m in Sources */,
 				49B0390D1911894B00D82877 /* SearchCategoryChooserViewController.m in Sources */,
 				49C53ECE1A12D36A00D60D0C /* MatchCenterCell.m in Sources */,

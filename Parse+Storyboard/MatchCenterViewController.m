@@ -90,7 +90,7 @@
                                         NSLog(@"Result: '%@'", result);
                                     }
                                 }];
-  
+    
 }
 
 - (IBAction)editButtonAction:(id)sender {
@@ -132,7 +132,7 @@
                                         NSLog(@"Result: '%@'", result);
                                     }
                                 }];
-
+    
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -183,7 +183,7 @@
                                                                                 NSLog(@"Result: '%@'", result);
                                                                             }
                                                                         }];
-
+                                            
                                         }
                                     }];
         
@@ -280,6 +280,7 @@
         cell = [[MatchCenterCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     }
     
+    
     //[cell.contentView addSubview:cell.priceLabel];
     [cell.contentView addSubview:cell.conditionLabel];
     
@@ -295,6 +296,9 @@
         cell.textLabel.text = @"No items found, but we'll keep a lookout for you!";
         cell.textLabel.font = [UIFont systemFontOfSize:12];
         
+        cell.detailTextLabel.text = [NSString stringWithFormat:@""];
+        [cell.imageView setImage:[UIImage imageNamed:@""]];
+        
     }
     
     else {
@@ -306,20 +310,30 @@
         // price + condition of the item
         NSString *price = [NSString stringWithFormat:@"$%@", _matchCenterArray[indexPath.section][@"Top 3"][indexPath.row+1][@"Price"]];
         NSString *condition = [NSString stringWithFormat:@"%@", _matchCenterArray[indexPath.section][@"Top 3"][indexPath.row+1][@"Item Condition"]];
-    
+        
         cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ - %@", price, condition];
         cell.detailTextLabel.textColor = [UIColor colorWithRed:0/255.0f green:127/255.0f blue:31/255.0f alpha:1.0f];
         
-//        // condition of the item
-//        cell.conditionLabel.text = condition;
-//        cell.conditionLabel.textColor = [UIColor colorWithRed:0/255.0f green:127/255.0f blue:31/255.0f alpha:1.0f];
+        //        // condition of the item
+        //        cell.conditionLabel.text = condition;
+        //        cell.conditionLabel.textColor = [UIColor colorWithRed:0/255.0f green:127/255.0f blue:31/255.0f alpha:1.0f];
         
-        // image of the item
-        NSData *imageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:_matchCenterArray[indexPath.section][@"Top 3"][indexPath.row+1][@"Image URL"]]];
-        [[cell imageView] setImage:[UIImage imageWithData:imageData]];
+        // Load images using background thread to avoid the laggy tableView
+        [cell.imageView setImage:[UIImage imageNamed:@"Placeholder.png"]];
         
-        cell.imageView.layer.masksToBounds = YES;
-        cell.imageView.layer.cornerRadius = 2.5;
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+            // Download or get images here
+            NSData *imageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:_matchCenterArray[indexPath.section][@"Top 3"][indexPath.row+1][@"Image URL"]]];
+            
+            // Use main thread to update the view. View changes are always handled through main thread
+            dispatch_async(dispatch_get_main_queue(), ^{
+                // Refresh image view here
+                [cell.imageView setImage:[UIImage imageWithData:imageData]];
+                cell.imageView.layer.masksToBounds = YES;
+                cell.imageView.layer.cornerRadius = 2.5;
+                [cell setNeedsLayout];
+            });
+        });
         
     }
     
@@ -362,26 +376,26 @@
     // Run delete function with respective section header as parameter
     [PFCloud callFunctionInBackground:@"deleteFromMatchCenter"
                        withParameters:
-                      @{@"searchTerm": sectionName,}
+     @{@"searchTerm": sectionName,}
                                 block:^(NSDictionary *result, NSError *error) {
-                                   if (!error) {
-                                       [NSThread sleepForTimeInterval: 1];
-                                       [PFCloud callFunctionInBackground:@"MatchCenter3"
-                                                          withParameters:@{}
-                                                                   block:^(NSArray *result, NSError *error) {
-                                                                       
-                                                                       if (!error) {
-                                                                           _matchCenterArray = result;
-                                                                           
-                                                                           [activityIndicator stopAnimating];
-                                                                           
-                                                                           [_matchCenter reloadData];
-                                                                           
-                                                                           NSLog(@"Result: '%@'", result);
-                                                                       }
-                                                                   }];
-   
-                                   }
+                                    if (!error) {
+                                        [NSThread sleepForTimeInterval: 1];
+                                        [PFCloud callFunctionInBackground:@"MatchCenter3"
+                                                           withParameters:@{}
+                                                                    block:^(NSArray *result, NSError *error) {
+                                                                        
+                                                                        if (!error) {
+                                                                            _matchCenterArray = result;
+                                                                            
+                                                                            [activityIndicator stopAnimating];
+                                                                            
+                                                                            [_matchCenter reloadData];
+                                                                            
+                                                                            NSLog(@"Result: '%@'", result);
+                                                                        }
+                                                                    }];
+                                        
+                                    }
                                 }];
 }
 
@@ -395,16 +409,16 @@
 
 
 
- #pragma mark - Navigation
- 
- - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
- {
-     if ([segue.identifier isEqualToString:@"WebViewSegue"]){
-         // Opens item in browser
-         WebViewController *controller = (WebViewController *) segue.destinationViewController;
-         controller.itemURL = self.itemURL;
-     }
- }
+#pragma mark - Navigation
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"WebViewSegue"]){
+        // Opens item in browser
+        WebViewController *controller = (WebViewController *) segue.destinationViewController;
+        controller.itemURL = self.itemURL;
+    }
+}
 
 
 @end
