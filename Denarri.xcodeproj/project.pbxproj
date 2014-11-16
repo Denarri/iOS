@@ -48,6 +48,7 @@
 		49ACF3D21900380900506502 /* MyLogInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49ACF3D11900380900506502 /* MyLogInViewController.m */; };
 		49ACF3D51900428100506502 /* SubclassConfigViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49ACF3D41900428100506502 /* SubclassConfigViewController.m */; };
 		49AD794319AFAE6E009996D5 /* CustomTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 49AD794219AFAE6E009996D5 /* CustomTabBar.m */; };
+		49AEC2301A1953E400798C04 /* EmptyTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 49AEC22F1A1953E400798C04 /* EmptyTableViewCell.m */; };
 		49B0390D1911894B00D82877 /* SearchCategoryChooserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49B0390C1911894B00D82877 /* SearchCategoryChooserViewController.m */; };
 		49B03910191189C100D82877 /* UserCategoryChooserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49B0390F191189C100D82877 /* UserCategoryChooserViewController.m */; };
 		49B93B331A0BF3E200C6A324 /* refresh@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49B93B321A0BF3E200C6A324 /* refresh@2x.png */; };
@@ -120,6 +121,8 @@
 		49ACF3D41900428100506502 /* SubclassConfigViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubclassConfigViewController.m; sourceTree = "<group>"; };
 		49AD794119AFAE6E009996D5 /* CustomTabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomTabBar.h; sourceTree = "<group>"; };
 		49AD794219AFAE6E009996D5 /* CustomTabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomTabBar.m; sourceTree = "<group>"; };
+		49AEC22E1A1953E400798C04 /* EmptyTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmptyTableViewCell.h; sourceTree = "<group>"; };
+		49AEC22F1A1953E400798C04 /* EmptyTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmptyTableViewCell.m; sourceTree = "<group>"; };
 		49B0390B1911894B00D82877 /* SearchCategoryChooserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchCategoryChooserViewController.h; sourceTree = "<group>"; };
 		49B0390C1911894B00D82877 /* SearchCategoryChooserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchCategoryChooserViewController.m; sourceTree = "<group>"; };
 		49B0390E191189C100D82877 /* UserCategoryChooserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserCategoryChooserViewController.h; sourceTree = "<group>"; };
@@ -297,6 +300,8 @@
 				49593EB318DCDD5A004CA20C /* MatchCenterViewController.m */,
 				49C53ECC1A12D36A00D60D0C /* MatchCenterCell.h */,
 				49C53ECD1A12D36A00D60D0C /* MatchCenterCell.m */,
+				49AEC22E1A1953E400798C04 /* EmptyTableViewCell.h */,
+				49AEC22F1A1953E400798C04 /* EmptyTableViewCell.m */,
 				49C53ECF1A155ADF00D60D0C /* AsyncImageView.h */,
 				49C53ED01A155ADF00D60D0C /* AsyncImageView.m */,
 				49129ABC19DF477C00269A22 /* SLExpandableTableView.h */,
@@ -437,6 +442,7 @@
 				49593EB118DCDD0E004CA20C /* CriteriaViewController.m in Sources */,
 				49ACF3D51900428100506502 /* SubclassConfigViewController.m in Sources */,
 				49C53ED11A155ADF00D60D0C /* AsyncImageView.m in Sources */,
+				49AEC2301A1953E400798C04 /* EmptyTableViewCell.m in Sources */,
 				49367D6419D0BFC50018FD80 /* MCSettingsViewController.m in Sources */,
 				49B0390D1911894B00D82877 /* SearchCategoryChooserViewController.m in Sources */,
 				49C53ECE1A12D36A00D60D0C /* MatchCenterCell.m in Sources */,
@@ -481,8 +487,8 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Andrew Ghobrial (NC2D2U2HF2)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Andrew Ghobrial (NC2D2U2HF2)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Andrew Ghobrial (XTXZ3CYRPX)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Andrew Ghobrial (XTXZ3CYRPX)";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -502,7 +508,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "e6f8f1cc-6959-4fb5-9d28-ff3a0dd34db1";
+				PROVISIONING_PROFILE = "b949b329-4463-4ab0-8b30-8e1d750b75e4";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -534,7 +540,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
-				PROVISIONING_PROFILE = "1c5dadad-3454-4d15-80e2-3fd88c7b89a0";
+				PROVISIONING_PROFILE = "b949b329-4463-4ab0-8b30-8e1d750b75e4";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -543,8 +549,8 @@
 		4AC78010160F93500024E877 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer: Andrew Ghobrial (NC2D2U2HF2)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Andrew Ghobrial (NC2D2U2HF2)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Andrew Ghobrial (XTXZ3CYRPX)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Andrew Ghobrial (XTXZ3CYRPX)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)",
@@ -556,7 +562,7 @@
 				INFOPLIST_FILE = "Parse+Storyboard/Denarri-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = Denarri;
-				PROVISIONING_PROFILE = "e6f8f1cc-6959-4fb5-9d28-ff3a0dd34db1";
+				PROVISIONING_PROFILE = "b949b329-4463-4ab0-8b30-8e1d750b75e4";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
@@ -578,7 +584,7 @@
 				INFOPLIST_FILE = "Parse+Storyboard/Denarri-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = Denarri;
-				PROVISIONING_PROFILE = "1c5dadad-3454-4d15-80e2-3fd88c7b89a0";
+				PROVISIONING_PROFILE = "b949b329-4463-4ab0-8b30-8e1d750b75e4";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};

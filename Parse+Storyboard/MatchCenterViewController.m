@@ -8,6 +8,7 @@
 #import "MatchCenterViewController.h"
 #import <UIKit/UIKit.h>
 #import "MatchCenterCell.h"
+#import "EmptyTableViewCell.h"
 
 @interface MatchCenterViewController () <UITableViewDataSource, UITableViewDelegate>
 
@@ -272,25 +273,20 @@
 // Cell layout
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Initialize cell
-    static NSString *CellIdentifier = @"MatchCenterCell";
-    MatchCenterCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (!cell) {
-        // if no cell could be dequeued create a new one
-        cell = [[MatchCenterCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
-    }
-    
-    
-    //[cell.contentView addSubview:cell.priceLabel];
-    [cell.contentView addSubview:cell.conditionLabel];
-    
-    // No cell seperators = clean design
-    tableView.separatorColor = [UIColor clearColor];
-    
+    //load top 3 data
     NSDictionary *currentSectionDictionary = _matchCenterArray[indexPath.section];
     NSArray *top3ArrayForSection = currentSectionDictionary[@"Top 3"];
     
+    // if no results for that item
     if (top3ArrayForSection.count-1 < 1) {
+        
+        // Initialize cell
+        static NSString *CellIdentifier = @"MatchCenterCell";
+        EmptyTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        if (!cell) {
+            // if no cell could be dequeued create a new one
+            cell = [[EmptyTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+        }
         
         // title of the item
         cell.textLabel.text = @"No items found, but we'll keep a lookout for you!";
@@ -299,9 +295,31 @@
         cell.detailTextLabel.text = [NSString stringWithFormat:@""];
         [cell.imageView setImage:[UIImage imageNamed:@""]];
         
+        return cell;
     }
     
+    // if results for that item found
     else {
+        
+        // Initialize cell
+        static NSString *CellIdentifier = @"MatchCenterCell";
+        MatchCenterCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        if (!cell) {
+            // if no cell could be dequeued create a new one
+            cell = [[MatchCenterCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+        }
+        
+        tableView.separatorColor = [UIColor clearColor];
+        
+        if (indexPath.row == 0) {
+            cell.bestMatchLabel.text = @"Best Match";
+            cell.bestMatchLabel.font = [UIFont systemFontOfSize:12];
+            cell.bestMatchLabel.textColor = [UIColor colorWithRed:0.18 green:0.541 blue:0.902 alpha:1];
+            
+            [cell.contentView addSubview:cell.bestMatchLabel];
+
+        }
+        
         
         // title of the item
         cell.textLabel.text = _matchCenterArray[indexPath.section][@"Top 3"][indexPath.row+1][@"Title"];
@@ -312,11 +330,7 @@
         NSString *condition = [NSString stringWithFormat:@"%@", _matchCenterArray[indexPath.section][@"Top 3"][indexPath.row+1][@"Item Condition"]];
         
         cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ - %@", price, condition];
-        cell.detailTextLabel.textColor = [UIColor colorWithRed:0/255.0f green:127/255.0f blue:31/255.0f alpha:1.0f];
-        
-        //        // condition of the item
-        //        cell.conditionLabel.text = condition;
-        //        cell.conditionLabel.textColor = [UIColor colorWithRed:0/255.0f green:127/255.0f blue:31/255.0f alpha:1.0f];
+        cell.detailTextLabel.textColor = [UIColor colorWithRed:0.384 green:0.722 blue:0.384 alpha:1];
         
         // Load images using background thread to avoid the laggy tableView
         [cell.imageView setImage:[UIImage imageNamed:@"Placeholder.png"]];
@@ -334,10 +348,10 @@
                 [cell setNeedsLayout];
             });
         });
-        
+        return cell;
     }
     
-    return cell;
+    
     
 }
 

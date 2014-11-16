@@ -12,7 +12,7 @@
 @interface MatchCenterCell : UITableViewCell
 
 @property (strong, nonatomic) IBOutlet UILabel *titleLabel;
-@property (strong, nonatomic) IBOutlet UILabel *priceLabel;
+@property (strong, nonatomic) IBOutlet UILabel *bestMatchLabel;
 @property (strong, nonatomic) IBOutlet UILabel *conditionLabel;
 
 
