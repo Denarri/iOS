@@ -51,7 +51,7 @@
     self.detailTextLabel.frame = frame;
     
     frame = CGRectMake(cvf.size.height + 5,
-                       self.bestMatchLabel.frame.origin.y,
+                       30,
                        cvf.size.width - cvf.size.height - 2*1,
                        self.bestMatchLabel.frame.size.height);
     self.bestMatchLabel.frame = frame;
