@@ -67,22 +67,22 @@
     [conditionSegmentedControl addTarget:self action:@selector(conditionValueChanged:) forControlEvents: UIControlEventValueChanged];
     [self.view addSubview:conditionSegmentedControl];
     
-    // Item Location
-    UISegmentedControl *locationSegmentedControl = [[UISegmentedControl alloc] initWithItems:[NSArray arrayWithObjects:@"Faster Shipping", @"Larger Selection", nil]];
-    locationSegmentedControl.frame = CGRectMake(35, 250, 250, 35);
-    if ([self.itemLocation  isEqual: @"US"]) {
-        locationSegmentedControl.selectedSegmentIndex = 0;
-    }
-    else {
-        locationSegmentedControl.selectedSegmentIndex = 1;
-    }
-    locationSegmentedControl.tintColor = [UIColor blueColor];
-    [locationSegmentedControl addTarget:self action:@selector(locationValueChanged:) forControlEvents: UIControlEventValueChanged];
-    [self.view addSubview:locationSegmentedControl];
+//    // Item Location
+//    UISegmentedControl *locationSegmentedControl = [[UISegmentedControl alloc] initWithItems:[NSArray arrayWithObjects:@"Faster Shipping", @"Larger Selection", nil]];
+//    locationSegmentedControl.frame = CGRectMake(35, 250, 250, 35);
+//    if ([self.itemLocation  isEqual: @"US"]) {
+//        locationSegmentedControl.selectedSegmentIndex = 0;
+//    }
+//    else {
+//        locationSegmentedControl.selectedSegmentIndex = 1;
+//    }
+//    locationSegmentedControl.tintColor = [UIColor blueColor];
+//    [locationSegmentedControl addTarget:self action:@selector(locationValueChanged:) forControlEvents: UIControlEventValueChanged];
+//    [self.view addSubview:locationSegmentedControl];
     
     // Item priority
     UISegmentedControl *prioritySegmentedControl = [[UISegmentedControl alloc] initWithItems:[NSArray arrayWithObjects:@"Just Browsing", @"Need It Soon", nil]];
-    prioritySegmentedControl.frame = CGRectMake(35, 330, 250, 35);
+    prioritySegmentedControl.frame = CGRectMake(35, 260, 250, 35);
     if ([self.itemPriority  isEqual: @"Low"]) {
         prioritySegmentedControl.selectedSegmentIndex = 0;
     }
@@ -95,7 +95,7 @@
     
     // Submit button
     UIButton *submitButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    submitButton.frame = CGRectMake(110, 350, 100, 100);
+    submitButton.frame = CGRectMake(110, 300, 100, 100);
     [submitButton setTitle:@"Submit" forState:UIControlStateNormal];
     [submitButton addTarget:self action:@selector(submitButton:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:submitButton];
@@ -127,27 +127,29 @@
     
 }
 
-- (void)locationValueChanged:(UISegmentedControl *)locationSegmentedControl {
-    
-    if(locationSegmentedControl.selectedSegmentIndex == 0)
-    {
-        self.itemLocation = @"US";
-    }
-    else if(locationSegmentedControl.selectedSegmentIndex == 1)
-    {
-        self.itemLocation = @"WorldWide";
-    }
-}
+//- (void)locationValueChanged:(UISegmentedControl *)locationSegmentedControl {
+//    
+//    if(locationSegmentedControl.selectedSegmentIndex == 0)
+//    {
+//        self.itemLocation = @"US";
+//    }
+//    else if(locationSegmentedControl.selectedSegmentIndex == 1)
+//    {
+//        self.itemLocation = @"WorldWide";
+//    }
+//}
 
 - (void)priorityValueChanged:(UISegmentedControl *)prioritySegmentedControl {
     
     if(prioritySegmentedControl.selectedSegmentIndex == 0)
     {
         self.itemPriority = @"Low";
+        self.itemLocation = @"WorldWide";
     }
     else if(prioritySegmentedControl.selectedSegmentIndex == 1)
     {
         self.itemPriority = @"High";
+        self.itemLocation = @"US";
     }
     
      NSLog(@"itemPriority: '%@'", self.itemPriority);

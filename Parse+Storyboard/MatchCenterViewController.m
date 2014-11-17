@@ -301,26 +301,16 @@
     // if results for that item found
     else {
         
-        // Initialize cell
-        static NSString *CellIdentifier = @"MatchCenterCell";
-        MatchCenterCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        // Change this [1]
+        static NSString *SecondCellIdentifier = @"SecondMatchCenterCell";
+        MatchCenterCell *cell = [tableView dequeueReusableCellWithIdentifier:SecondCellIdentifier];
         if (!cell) {
             // if no cell could be dequeued create a new one
-            cell = [[MatchCenterCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+            cell = [[MatchCenterCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:SecondCellIdentifier];
         }
         
         tableView.separatorColor = [UIColor clearColor];
-        
-        if (indexPath.row == 0) {
-            cell.bestMatchLabel.text = @"Best Match";
-            cell.bestMatchLabel.font = [UIFont systemFontOfSize:12];
-            cell.bestMatchLabel.textColor = [UIColor colorWithRed:0.18 green:0.541 blue:0.902 alpha:1];
-            
-            [cell.contentView addSubview:cell.bestMatchLabel];
 
-        }
-        
-        
         // title of the item
         cell.textLabel.text = _matchCenterArray[indexPath.section][@"Top 3"][indexPath.row+1][@"Title"];
         cell.textLabel.font = [UIFont systemFontOfSize:14];
@@ -331,6 +321,18 @@
         
         cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ - %@", price, condition];
         cell.detailTextLabel.textColor = [UIColor colorWithRed:0.384 green:0.722 blue:0.384 alpha:1];
+        
+        // Best Match label, appplied to top result
+        if (indexPath.row == 0) {
+            cell.bestMatchLabel.text = @"Best Match";
+            cell.bestMatchLabel.font = [UIFont systemFontOfSize:12];
+            cell.bestMatchLabel.textColor = [UIColor colorWithRed:0.18 green:0.541 blue:0.902 alpha:1];
+            
+            [cell.contentView addSubview:cell.bestMatchLabel];
+            [cell.bestMatchLabel setHidden:NO];
+        } else {
+            [cell.bestMatchLabel setHidden:YES];
+        }
         
         // Load images using background thread to avoid the laggy tableView
         [cell.imageView setImage:[UIImage imageNamed:@"Placeholder.png"]];
@@ -350,8 +352,6 @@
         });
         return cell;
     }
-    
-    
     
 }
 

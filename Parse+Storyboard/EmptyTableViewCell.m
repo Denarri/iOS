@@ -22,7 +22,6 @@
 
 - (void) layoutSubviews {
     [super layoutSubviews];
-    CGRect cvf = self.contentView.frame;
     self.imageView.frame = CGRectMake(0.0,
                                       0.0,
                                       0,
