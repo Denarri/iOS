@@ -36,6 +36,25 @@
 {
     [super viewDidLoad];
     
+    
+    
+//    // Setup coach marks
+//    NSArray *coachMarks = @[
+//                            @{
+//                                @"rect": [NSValue valueWithCGRect:(CGRect){{0,0},{45,45}}],
+//                                @"caption": @"Just browsing? We'll only notify you periodically of new matches. Need it soon? We'll notify you more frequently, and match you with items that are closer to you."
+//                                },
+//                            ];
+//    
+//    WSCoachMarksView *coachMarksView = [[WSCoachMarksView alloc] initWithFrame:self.navigationController.view.bounds coachMarks:coachMarks];
+//    [self.view addSubview:coachMarksView];
+//    coachMarksView.animationDuration = 0.5f;
+//    coachMarksView.enableContinueLabel = NO;
+//    [coachMarksView start];
+    
+    
+    
+    
     _matchCenterDone = NO;
     _hasPressedShowMoreButton = NO;
     

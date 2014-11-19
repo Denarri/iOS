@@ -875,7 +875,6 @@ Parse.Cloud.define("MatchCenter3", function (request, response) {
             var ebayResponse = JSON.parse(eBayResponseText);
 
             var matchCenterItems = [];
-
             //Parses through ebay's response, pushes each individual item and its properties into an array  
             ebayResponse.findItemsByKeywordsResponse.forEach(function (itemByKeywordsResponse) {
               itemByKeywordsResponse.searchResult.forEach(function (result) {

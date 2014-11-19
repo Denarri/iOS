@@ -10,6 +10,7 @@
 #import "AsyncImageView.h"
 #import "SearchViewController.h"
 #import "WebViewController.h"
+#import "WSCoachMarksView.h"
 
 #import "SLExpandableTableView.h"
 

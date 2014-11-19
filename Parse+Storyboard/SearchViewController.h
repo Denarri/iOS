@@ -9,6 +9,7 @@
 #import <Parse/Parse.h>
 #import <Parse/PFCloud.h>
 #import "CriteriaViewController.h"
+#import "WSCoachMarksView.h"
 
 
 @interface SearchViewController : UIViewController

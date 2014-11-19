@@ -26,6 +26,20 @@
 {
     [super viewDidLoad];
     
+    // Setup coach marks
+    NSArray *coachMarks = @[
+                            @{
+                                @"rect": [NSValue valueWithCGRect:(CGRect){{25,90},{270,190}}],
+                                @"caption": @"Denarri learns your preferences as you use it, so the next time you search this kind of item, you can skip this step! Awesome, right?"
+                                },
+                            ];
+    
+    WSCoachMarksView *coachMarksView = [[WSCoachMarksView alloc] initWithFrame:self.navigationController.view.bounds coachMarks:coachMarks];
+    [self.navigationController.view addSubview:coachMarksView];
+    coachMarksView.animationDuration = 0.5f;
+    coachMarksView.enableContinueLabel = NO;
+    [coachMarksView start];
+    
     self.navigationItem.title = @"Criteria";
     
     // Default values
@@ -52,6 +66,8 @@
     [self.submitButton setTitle:@"Submit" forState:UIControlStateNormal];
     [self.submitButton addTarget:self action:@selector(submitButton:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.submitButton];
+    
+    
     
 }
 

@@ -11,6 +11,7 @@
 #import "UserCategoryChooserViewController.h"
 
 
+
 @interface SearchViewController ()
 
 
@@ -33,6 +34,21 @@
 {
     [super viewDidLoad];
 
+    // Setup coach marks
+    NSArray *coachMarks = @[
+                            @{
+                                @"rect": [NSValue valueWithCGRect:(CGRect){{50,168},{220,45}}],
+                                @"caption": @"Just browsing? We'll only notify you periodically of new matches. Need it soon? We'll notify you more frequently, and match you with items that are closer to you."
+                                },
+                            ];
+    
+    WSCoachMarksView *coachMarksView = [[WSCoachMarksView alloc] initWithFrame:self.navigationController.view.bounds coachMarks:coachMarks];
+    [self.navigationController.view addSubview:coachMarksView];
+    coachMarksView.animationDuration = 0.5f;
+    coachMarksView.enableContinueLabel = NO;
+    [coachMarksView start];
+    
+  
     _nextButtonOutlet.userInteractionEnabled = YES;
     
     // Navbar Title
@@ -68,12 +84,16 @@
 }
 
 
+
+
 - (void)viewDidAppear:(BOOL)animated
 {
     _nextButtonOutlet.userInteractionEnabled = YES;
     self.itemPriority = @"Low";
     self.itemLocation = @"WorldWide";
+    
 }
+
 
 - (void)didReceiveMemoryWarning
 {

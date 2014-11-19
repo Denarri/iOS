@@ -43,6 +43,7 @@
 		49593EB618DCE956004CA20C /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49593EB518DCE956004CA20C /* Default-568h@2x.png */; };
 		49638AA219B3B84F00C2253F /* MySignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49638AA119B3B84F00C2253F /* MySignUpViewController.m */; };
 		4964583419E3A0BC00BC43FE /* downarrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4964583319E3A0BC00BC43FE /* downarrow@2x.png */; };
+		4984227C1A1D351E00C6D55A /* WSCoachMarksView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4984227B1A1D351E00C6D55A /* WSCoachMarksView.m */; };
 		498A322419B0DB0E00F46733 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 498A322319B0DB0E00F46733 /* FacebookSDK.framework */; };
 		49A20F3C1900524200E9B8A1 /* MainBG.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 49A20F3B1900524200E9B8A1 /* MainBG.jpg */; };
 		49ACF3D21900380900506502 /* MyLogInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49ACF3D11900380900506502 /* MyLogInViewController.m */; };
@@ -113,6 +114,8 @@
 		49638AA019B3B84F00C2253F /* MySignUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MySignUpViewController.h; sourceTree = "<group>"; };
 		49638AA119B3B84F00C2253F /* MySignUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MySignUpViewController.m; sourceTree = "<group>"; };
 		4964583319E3A0BC00BC43FE /* downarrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "downarrow@2x.png"; sourceTree = "<group>"; };
+		4984227A1A1D351E00C6D55A /* WSCoachMarksView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WSCoachMarksView.h; sourceTree = "<group>"; };
+		4984227B1A1D351E00C6D55A /* WSCoachMarksView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WSCoachMarksView.m; sourceTree = "<group>"; };
 		498A322319B0DB0E00F46733 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = ../../../Documents/FacebookSDK/FacebookSDK.framework; sourceTree = "<group>"; };
 		49A20F3B1900524200E9B8A1 /* MainBG.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = MainBG.jpg; sourceTree = "<group>"; };
 		49ACF3D01900380900506502 /* MyLogInViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyLogInViewController.h; sourceTree = "<group>"; };
@@ -280,6 +283,8 @@
 				4AC78007160F93500024E877 /* MainStoryboard.storyboard */,
 				4AC78004160F93500024E877 /* AppDelegate.h */,
 				4AC78005160F93500024E877 /* AppDelegate.m */,
+				4984227A1A1D351E00C6D55A /* WSCoachMarksView.h */,
+				4984227B1A1D351E00C6D55A /* WSCoachMarksView.m */,
 				4AC78026160FA9B10024E877 /* DefaultSettingsViewController.h */,
 				4AC78027160FA9B10024E877 /* DefaultSettingsViewController.m */,
 				49ACF3D31900428100506502 /* SubclassConfigViewController.h */,
@@ -434,6 +439,7 @@
 				49129ABE19DF477C00269A22 /* SLExpandableTableView.m in Sources */,
 				49593EAE18DCDD02004CA20C /* SearchViewController.m in Sources */,
 				49B03910191189C100D82877 /* UserCategoryChooserViewController.m in Sources */,
+				4984227C1A1D351E00C6D55A /* WSCoachMarksView.m in Sources */,
 				49AD794319AFAE6E009996D5 /* CustomTabBar.m in Sources */,
 				4939233E1960BD290024FA5F /* WebViewController.m in Sources */,
 				493B58EC192AEFEC006C895C /* ImageViewController.m in Sources */,
