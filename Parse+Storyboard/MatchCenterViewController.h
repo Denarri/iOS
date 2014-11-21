@@ -32,10 +32,9 @@
 @property (strong, nonatomic) NSString *searchTerm;
 @property (strong, nonatomic) NSString *itemURL;
 @property (assign) NSInteger expandedSection;
-@property (assign) BOOL results;
 @property (assign) NSInteger rowCount;
-//@property (nonatomic, assign) int didAddNewItem;
 @property (assign) BOOL didAddNewItem;
+@property (assign) BOOL results;
 
 @property (strong, nonatomic) IBOutlet UIButton *editButton;
 

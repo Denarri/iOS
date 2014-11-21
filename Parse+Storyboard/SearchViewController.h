@@ -12,6 +12,7 @@
 #import "WSCoachMarksView.h"
 
 
+
 @interface SearchViewController : UIViewController
 
 @property (weak, nonatomic) IBOutlet UIButton *nextButtonOutlet;
@@ -21,6 +22,7 @@
 @property (nonatomic, copy) NSNumber *topCategoryId2;
 @property (strong, nonatomic) IBOutlet UITextField *itemSearch;
 @property (strong, nonatomic) IBOutlet UISegmentedControl *itemPrioritySegment;
+@property (nonatomic, strong) WSCoachMarksView *coachMarksView;
 
 
 // Item Criteria

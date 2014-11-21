@@ -9,7 +9,7 @@
 #import "MatchCenterViewController.h"
 #import "SearchCategoryChooserViewController.h"
 #import "UserCategoryChooserViewController.h"
-
+#import "WSCoachMarksView.h"
 
 
 @interface SearchViewController ()
@@ -42,12 +42,11 @@
                                 },
                             ];
     
-    WSCoachMarksView *coachMarksView = [[WSCoachMarksView alloc] initWithFrame:self.navigationController.view.bounds coachMarks:coachMarks];
-    [self.navigationController.view addSubview:coachMarksView];
-    coachMarksView.animationDuration = 0.5f;
-    coachMarksView.enableContinueLabel = NO;
-    [coachMarksView start];
-    
+    self.coachMarksView = [[WSCoachMarksView alloc] initWithFrame:self.tabBarController.view.bounds coachMarks:coachMarks];
+    [self.tabBarController.view addSubview:self.coachMarksView];
+    self.coachMarksView.animationDuration = 0.5f;
+    self.coachMarksView.enableContinueLabel = YES;
+    [self.coachMarksView start];
   
     _nextButtonOutlet.userInteractionEnabled = YES;
     
@@ -88,9 +87,26 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {
+    
+    // Show coach marks
+    BOOL coachMarksShown = [[NSUserDefaults standardUserDefaults] boolForKey:@"WSCoachMarksShown"];
+    if (coachMarksShown == NO) {
+        // Don't show again
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"WSCoachMarksShown"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        
+        // Show coach marks
+        [self.coachMarksView start];
+        
+        // Or show coach marks after a second delay
+        // [coachMarksView performSelector:@selector(start) withObject:nil afterDelay:1.0f];
+    }
+    
+    
     _nextButtonOutlet.userInteractionEnabled = YES;
     self.itemPriority = @"Low";
     self.itemLocation = @"WorldWide";
+    
     
 }
 

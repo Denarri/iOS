@@ -15,13 +15,11 @@
 @property (nonatomic, strong) UITableView *matchCenter;
 @property (nonatomic, assign) BOOL matchCenterDone;
 @property (nonatomic, assign) BOOL hasPressedShowMoreButton;
+@property (nonatomic, assign) BOOL visibleCell;
 
 @end
 
-
-
 @implementation MatchCenterViewController
-
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -36,25 +34,7 @@
 {
     [super viewDidLoad];
     
-    
-    
-//    // Setup coach marks
-//    NSArray *coachMarks = @[
-//                            @{
-//                                @"rect": [NSValue valueWithCGRect:(CGRect){{0,0},{45,45}}],
-//                                @"caption": @"Just browsing? We'll only notify you periodically of new matches. Need it soon? We'll notify you more frequently, and match you with items that are closer to you."
-//                                },
-//                            ];
-//    
-//    WSCoachMarksView *coachMarksView = [[WSCoachMarksView alloc] initWithFrame:self.navigationController.view.bounds coachMarks:coachMarks];
-//    [self.view addSubview:coachMarksView];
-//    coachMarksView.animationDuration = 0.5f;
-//    coachMarksView.enableContinueLabel = NO;
-//    [coachMarksView start];
-    
-    
-    
-    
+    self.expandedSection = -1;
     _matchCenterDone = NO;
     _hasPressedShowMoreButton = NO;
     
@@ -66,8 +46,6 @@
     _matchCenter.dataSource = self;
     _matchCenter.delegate = self;
     [self.view addSubview:self.matchCenter];
-    
-    self.expandedSection = -1;
     
     _matchCenterArray = [[NSArray alloc] init];
     
@@ -233,32 +211,9 @@
     return 40;
 }
 
-
-- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
-    UIView *view = [[UIView alloc] initWithFrame:CGRectZero];
-    view.backgroundColor = [UIColor whiteColor];
-    
-    
-    MoreButton *moreButton = [MoreButton buttonWithType:UIButtonTypeCustom];
-    moreButton.frame = CGRectMake(0, 0, 320, 35);
-    moreButton.sectionIndex = section;
-    [moreButton setImage:[UIImage imageNamed:@"downarrow.png"] forState:UIControlStateNormal];
-    [moreButton addTarget:self action:@selector(moreButtonSelected:) forControlEvents:UIControlEventTouchUpInside];
-    [view addSubview:moreButton];
-    
-    return view;
-}
-
-
-- (void)moreButtonSelected:(MoreButton *)button {
-    self.expandedSection = button.sectionIndex;
-    [self.matchCenter reloadData];
-}
-
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 21)];
     headerView.backgroundColor = [UIColor colorWithRed:0.949 green:0.949 blue:0.949 alpha:1];
-    
     
     _searchTerm = [[[[_matchCenterArray  objectAtIndex:section] objectForKey:@"Top 3"] objectAtIndex:0]objectForKey:@"Search Term"];
     
@@ -279,13 +234,50 @@
     
 }
 
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
+    UIView *view = [[UIView alloc] initWithFrame:CGRectZero];
+    view.backgroundColor = [UIColor whiteColor];
+    
+    MoreButton *moreButton = [MoreButton buttonWithType:UIButtonTypeCustom];
+    moreButton.frame = CGRectMake(0, 0, 320, 35);
+    moreButton.sectionIndex = section;
+    [moreButton setImage:[UIImage imageNamed:@"downarrow.png"] forState:UIControlStateNormal];
+    [moreButton addTarget:self action:@selector(moreButtonSelected:) forControlEvents:UIControlEventTouchUpInside];
+    [view addSubview:moreButton];
+    
+    return view;
+}
+
+- (void)moreButtonSelected:(MoreButton *)button {
+    if (self.expandedSection == -1) {
+        self.expandedSection = button.sectionIndex;
+    }
+    
+    else {
+        self.expandedSection = -1;
+    }
+    
+    [_matchCenter reloadData];
+}
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     NSDictionary *currentSectionDictionary = _matchCenterArray[section];
     NSArray *top3ArrayForSection = currentSectionDictionary[@"Top 3"];
     
-    return (top3ArrayForSection.count-1 < 1) ? 1 : top3ArrayForSection.count-1;
+    if (top3ArrayForSection.count-1 < 1){
+        return 1;
+    }
+    
+    else if (section == self.expandedSection) {
+        return top3ArrayForSection.count-1;
+    }
+    
+    else {
+        return 4;
+    }
+    
+    
 }
 
 
@@ -376,10 +368,7 @@
 
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.section == self.expandedSection || indexPath.row <= 3) {
         return 65;
-    }
-    return 0;
 }
 
 

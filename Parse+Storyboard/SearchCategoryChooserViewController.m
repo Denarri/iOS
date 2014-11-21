@@ -8,6 +8,7 @@
 #import "SearchCategoryChooserViewController.h"
 #import "SearchViewController.h"
 #import "CriteriaViewController.h"
+#import "WSCoachMarksView.h"
 
 @interface SearchCategoryChooserViewController ()
 
@@ -46,11 +47,12 @@
     [category2 addTarget:self action:@selector(category2ButtonClick:)    forControlEvents:UIControlEventTouchUpInside];
     category1.tag = 2;
     [self.view addSubview: category2];
-    
-    
 }
 
-
+- (void)viewDidAppear:(BOOL)animated
+{
+    
+}
 
 - (IBAction)category1ButtonClick:(id)sender
 
