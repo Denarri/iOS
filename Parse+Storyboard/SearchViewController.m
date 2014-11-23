@@ -9,11 +9,8 @@
 #import "MatchCenterViewController.h"
 #import "SearchCategoryChooserViewController.h"
 #import "UserCategoryChooserViewController.h"
-#import "WSCoachMarksView.h"
-
 
 @interface SearchViewController ()
-
 
 @property (weak, nonatomic) IBOutlet UIButton *nextButton;
 
@@ -46,12 +43,12 @@
     [self.tabBarController.view addSubview:self.coachMarksView];
     self.coachMarksView.animationDuration = 0.5f;
     self.coachMarksView.enableContinueLabel = YES;
-    [self.coachMarksView start];
-  
+    
+
     _nextButtonOutlet.userInteractionEnabled = YES;
     
     // Navbar Title
-    CGRect frame = CGRectMake(0, 0, 400, 44);
+    CGRect frame = CGRectMake(0, 0, 100, 44);
     UILabel *label = [[UILabel alloc] initWithFrame:frame];
     label.backgroundColor = [UIColor clearColor];
     label.font = [UIFont systemFontOfSize:20.0];
@@ -59,18 +56,8 @@
     label.textColor = [UIColor blackColor];
     label.text = @"Denarri";
     self.navigationItem.titleView = label;
-    //self.navigationItem.title = @"Denarri";
-
-//    UIButton *button =  [UIButton buttonWithType:UIButtonTypeCustom];
-//    [button setImage:[UIImage imageNamed:@"settingsgear.png"] forState:UIControlStateNormal];
-//    [button addTarget:self action:@selector(settingsButton:)forControlEvents:UIControlEventTouchUpInside];
-//    [button setFrame:CGRectMake(0, 0, 31, 31)];
-//    
-//    UIBarButtonItem *barButton = [[UIBarButtonItem alloc] initWithCustomView:button];
-//    self.navigationItem.rightBarButtonItem = barButton;
     
     [self.nextButtonOutlet addTarget:self action:@selector(nextButton:) forControlEvents:UIControlEventTouchUpInside];
-    // Do any additional setup after loading the view.
 }
 
 
@@ -82,33 +69,22 @@
     }
 }
 
-
-
-
-- (void)viewDidAppear:(BOOL)animated
-{
+- (void)viewDidAppear:(BOOL)animated {
     
     // Show coach marks
     BOOL coachMarksShown = [[NSUserDefaults standardUserDefaults] boolForKey:@"WSCoachMarksShown"];
     if (coachMarksShown == NO) {
-        // Don't show again
-        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"WSCoachMarksShown"];
-        [[NSUserDefaults standardUserDefaults] synchronize];
         
         // Show coach marks
         [self.coachMarksView start];
-        
-        // Or show coach marks after a second delay
-        // [coachMarksView performSelector:@selector(start) withObject:nil afterDelay:1.0f];
     }
-    
-    
+
+
     _nextButtonOutlet.userInteractionEnabled = YES;
     self.itemPriority = @"Low";
     self.itemLocation = @"WorldWide";
-    
-    
 }
+
 
 
 - (void)didReceiveMemoryWarning
@@ -321,26 +297,6 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([segue.identifier isEqualToString:@"ShowMatchCenterSegue"]) {
-        
-//        MatchCenterViewController *controller = (MatchCenterViewController *) segue.destinationViewController;
-//        
-//        self.didAddNewItem = 1;
-//        controller.didAddNewItem = self.didAddNewItem;
-//        
-//        NSLog(@"we're about to set controller values before segueing to MC");
-//        // Send over the matching item criteria
-//        controller.itemSearch = self.itemSearch.text;
-//        controller.matchingCategoryId = self.matchingCategoryId1;
-//        controller.matchingCategoryMinPrice = self.matchingCategoryMinPrice1;
-//        controller.matchingCategoryMaxPrice = self.matchingCategoryMaxPrice1;
-//        controller.matchingCategoryCondition = self.matchingCategoryCondition1;
-//        controller.matchingCategoryLocation = self.matchingCategoryLocation1;
-//        controller.itemPriority = self.itemPriority;
-//        
-//        NSLog(@"alright they're set, time to switch");
-//        
-//        [NSThread sleepForTimeInterval:1];
-//        [self.tabBarController setSelectedIndex:1];
     }
     
     else if([segue.identifier isEqualToString:@"ShowSearchCategoryChooserSegue"]){

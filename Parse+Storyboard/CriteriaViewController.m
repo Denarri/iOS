@@ -30,15 +30,14 @@
     NSArray *coachMarks = @[
                             @{
                                 @"rect": [NSValue valueWithCGRect:(CGRect){{25,90},{270,190}}],
-                                @"caption": @"Denarri learns your preferences as you use it, so the next time you search this kind of item, you can skip this step! Awesome, right?"
+                                @"caption": @"Denarri learns your preferences, so you never have to repeat yourself. The next time you shop for this type of item, it'll remember your criteria, so you can skip this step!"
                                 },
                             ];
     
-    WSCoachMarksView *coachMarksView = [[WSCoachMarksView alloc] initWithFrame:self.navigationController.view.bounds coachMarks:coachMarks];
-    [self.navigationController.view addSubview:coachMarksView];
-    coachMarksView.animationDuration = 0.5f;
-    coachMarksView.enableContinueLabel = NO;
-    [coachMarksView start];
+    self.coachMarksView = [[WSCoachMarksView alloc] initWithFrame:self.tabBarController.view.bounds coachMarks:coachMarks];
+    [self.tabBarController.view addSubview:self.coachMarksView];
+    self.coachMarksView.animationDuration = 0.5f;
+    self.coachMarksView.enableContinueLabel = YES;
     
     self.navigationItem.title = @"Criteria";
     
@@ -53,26 +52,28 @@
     [conditionSegmentedControl addTarget:self action:@selector(conditionValueChanged:) forControlEvents: UIControlEventValueChanged];
     [self.view addSubview:conditionSegmentedControl];
     
-//    UISegmentedControl *locationSegmentedControl = [[UISegmentedControl alloc] initWithItems:[NSArray arrayWithObjects:@"Faster Shipping", @"Larger Selection", nil]];
-//    locationSegmentedControl.frame = CGRectMake(35, 290, 250, 35);
-//    locationSegmentedControl.selectedSegmentIndex = 0;
-//    locationSegmentedControl.tintColor = [UIColor blueColor];
-//    [locationSegmentedControl addTarget:self action:@selector(locationValueChanged:) forControlEvents: UIControlEventValueChanged];
-//    [self.view addSubview:locationSegmentedControl];
-    
     // Submit button
     self.submitButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     self.submitButton.frame = CGRectMake(110, 300, 100, 100);
     [self.submitButton setTitle:@"Submit" forState:UIControlStateNormal];
     [self.submitButton addTarget:self action:@selector(submitButton:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.submitButton];
-    
-    
-    
+
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
+    // Show coach marks
+    BOOL coachMarksShown = [[NSUserDefaults standardUserDefaults] boolForKey:@"WSCoachMarksShown"];
+    if (coachMarksShown == NO) {
+        // Don't show again
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"WSCoachMarksShown"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        
+        // Show coach marks
+        [self.coachMarksView start];
+    }
+    
     NSLog(@"'%@'", self.itemLocation);
     self.submitButton.userInteractionEnabled = YES;
     

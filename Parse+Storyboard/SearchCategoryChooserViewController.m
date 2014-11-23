@@ -6,9 +6,6 @@
 //
 
 #import "SearchCategoryChooserViewController.h"
-#import "SearchViewController.h"
-#import "CriteriaViewController.h"
-#import "WSCoachMarksView.h"
 
 @interface SearchCategoryChooserViewController ()
 
@@ -31,7 +28,17 @@
     
     NSLog(@"'%@'", self.itemLocation);
     
-    self.navigationItem.title = @"Categories";
+    // Navbar Title
+    CGRect frame = CGRectMake(0, 0, 100, 44);
+    UILabel *label = [[UILabel alloc] initWithFrame:frame];
+    label.backgroundColor = [UIColor clearColor];
+    label.font = [UIFont systemFontOfSize:20.0];
+    label.textAlignment = NSTextAlignmentCenter;
+    label.textColor = [UIColor blackColor];
+    label.text = @"Categories";
+    self.navigationItem.titleView = label;
+    
+    //self.navigationItem.title = @"Categories";
     
     UIButton *category1 = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     category1.frame = CGRectMake(10, 120, 300, 35);
@@ -47,6 +54,7 @@
     [category2 addTarget:self action:@selector(category2ButtonClick:)    forControlEvents:UIControlEventTouchUpInside];
     category1.tag = 2;
     [self.view addSubview: category2];
+    
 }
 
 - (void)viewDidAppear:(BOOL)animated

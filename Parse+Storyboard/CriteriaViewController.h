@@ -9,6 +9,7 @@
 #import <Parse/Parse.h>
 #import "SearchViewController.h"
 #import "MatchCenterViewController.h"
+#import "WSCoachMarksView.h"
 
 @interface CriteriaViewController : UIViewController
 
@@ -24,5 +25,7 @@
 @property (strong, nonatomic) NSString *itemLocation;
 @property (strong, nonatomic) NSString *itemPriority;
 @property (strong, nonatomic) NSString *itemSearch;
+
+@property (nonatomic, strong) WSCoachMarksView *coachMarksView;
 
 @end
