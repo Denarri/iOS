@@ -21,5 +21,6 @@
 
 @property (strong, nonatomic) IBOutlet UITextField *tf;
 @property (strong, nonatomic) IBOutlet UITextField *tf1;
+@property (strong, nonatomic) IBOutlet UITextField *tf2;
 
 @end

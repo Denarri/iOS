@@ -272,6 +272,18 @@
         return top3ArrayForSection.count-1;
     }
     
+    else if (top3ArrayForSection.count-1 == 1){
+        return 1;
+    }
+    
+    else if (top3ArrayForSection.count-1 == 2){
+        return 2;
+    }
+    
+    else if (top3ArrayForSection.count-1 == 3){
+        return 3;
+    }
+    
     else {
         return 4;
     }

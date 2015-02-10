@@ -53,7 +53,7 @@
     label.backgroundColor = [UIColor clearColor];
     label.font = [UIFont systemFontOfSize:20.0];
     label.textAlignment = NSTextAlignmentCenter;
-    label.textColor = [UIColor blackColor];
+    label.textColor = [UIColor whiteColor];
     label.text = @"Denarri";
     self.navigationItem.titleView = label;
     

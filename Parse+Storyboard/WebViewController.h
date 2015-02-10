@@ -14,8 +14,11 @@
 @interface WebViewController : UIViewController <UIWebViewDelegate, UIActionSheetDelegate>
 
 @property (strong, nonatomic) NSString *itemURL;
-@property (weak, nonatomic) IBOutlet UIWebView *myWebView;
+@property (nonatomic, retain) IBOutlet UIWebView *myWebView;
 @property (weak, nonatomic) IBOutlet UIButton *webViewDone;
 @property (strong, nonatomic) IBOutlet UIButton *shareButton;
+@property (nonatomic, retain) UIBarButtonItem *backButton;
+@property (nonatomic, retain) IBOutlet UITabBar *webViewTabBar;
+@property (nonatomic, retain) IBOutlet UIToolbar *webViewToolBar;
 
 @end

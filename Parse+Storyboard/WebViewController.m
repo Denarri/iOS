@@ -23,19 +23,39 @@
 }
 
 
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
+    NSLog(@"The url dude is: '%@'", _itemURL);
+    
+    // Initialize UIWebView
+    self.myWebView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 60, self.view.frame.size.width,
+                                                                 self.view.frame.size.height)];;
+    self.myWebView.delegate = self;
+    [self.view addSubview:self.myWebView];
+    
+//    // Bottom Tab Bar (with back button)
+//    self.webViewToolBar = [[UIToolbar alloc] init];
+//     CGRect toolBarFrame = CGRectMake(0, [[UIScreen mainScreen] bounds].size.height - 44, [[UIScreen mainScreen] bounds].size.width, 44);
+//    self.webViewToolBar.frame = toolBarFrame;
+//    NSMutableArray *barItems = [[NSMutableArray alloc] init];
+//    UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"downarrow.png"]
+//                                                                   style:UIBarButtonItemStyleBordered
+//                                                                  target:self
+//                                                                  action:@selector(webViewBackAction)];
+//    [barItems addObject:backButton];
+//    
+//    [self.webViewToolBar setItems:barItems animated:YES];
+//    [self.view addSubview:self.webViewToolBar];
+    
+    
+    // Activity indicator
     UIActivityIndicatorView *activityIndicator = [[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
     activityIndicator.center = CGPointMake(self.view.frame.size.width / 2.0, self.view.frame.size.height / 2.0);
     [self.view addSubview: activityIndicator];
-    
     [activityIndicator startAnimating];
-    
-    NSLog(@"The url dude is: '%@'", _itemURL);
-    
-    self.myWebView.delegate = self;
     
     // set the url
     NSURL *url = [NSURL URLWithString:_itemURL];
@@ -55,6 +75,19 @@
     [self.myWebView setScalesPageToFit:YES];
     
 }
+
+//- (void)webViewDidFinishLoad:(UIWebView *)webView
+//{
+//    // snip ...
+//    _backButton.enabled = (self.myWebView.canGoBack);
+//    //forwardButton.enabled = (self.myWebView.canGoForward);
+//}
+
+//- (void)webViewBackAction:(id)sender {
+//    [self.myWebView goBack];
+//}
+
+
 
 - (IBAction)webViewDone:(id)sender {
     NSLog(@"YALA KHALAS");
@@ -91,7 +124,7 @@
                     if ([MFMessageComposeViewController canSendText]) {
                         MFMessageComposeViewController *messageController = [[MFMessageComposeViewController alloc] init];
                         [messageController setMessageComposeDelegate:self];
-                        [messageController setBody: [NSString stringWithFormat: @"Check out this awesome deal I found on the Denarri app!: '%@'", _itemURL]];
+                        [messageController setBody: [NSString stringWithFormat: @"Check out this awesome deal I found on the Denarri app: '%@'", _itemURL]];
                         
 //                        [NSString stringWithFormat: @"Check out this awesome deal I found on the Denarri app!: '%@'", _itemURL];
                         [self presentViewController:messageController animated:NO completion:nil];
