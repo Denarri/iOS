@@ -54,12 +54,16 @@
     
     // Submit button
     self.submitButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    self.submitButton.frame = CGRectMake(110, 300, 100, 100);
+    self.submitButton.frame = CGRectMake(110, 260, 100, 100);
     [self.submitButton setTitle:@"Submit" forState:UIControlStateNormal];
     [self.submitButton addTarget:self action:@selector(submitButton:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.submitButton];
+    
+    
 
 }
+
+
 
 - (void)viewDidAppear:(BOOL)animated
 {
