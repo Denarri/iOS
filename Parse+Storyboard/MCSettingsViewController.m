@@ -50,7 +50,16 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {
-//    self.mcSettingsArray = [[NSArray alloc] init];
+ 
+    MatchCenterViewController *matchCenterVC = [[MatchCenterViewController alloc] init];
+    if (matchCenterVC.didAddNewItem == YES){
+        NSLog(@"The didAddNewItem value is yes");
+    }
+    
+    else if (matchCenterVC.didAddNewItem == NO){
+        NSLog(@"The didAddNewItem value is no");
+    }
+    //    self.mcSettingsArray = [[NSArray alloc] init];
     
     // Disable ability to scroll until table is MatchCenter table is done loading
 //    self.mcSettingsTable.scrollEnabled = NO;

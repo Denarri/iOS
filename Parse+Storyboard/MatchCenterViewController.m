@@ -240,7 +240,20 @@
     MoreButton *moreButton = [MoreButton buttonWithType:UIButtonTypeCustom];
     moreButton.frame = CGRectMake(0, 0, 320, 35);
     moreButton.sectionIndex = section;
-    [moreButton setImage:[UIImage imageNamed:@"downarrow.png"] forState:UIControlStateNormal];
+    
+    if (self.expandedSection == -1){
+        [moreButton setImage:[UIImage imageNamed:@"downarrow.png"] forState:UIControlStateNormal];
+    }
+    else {
+        if (self.expandedSection == section) {
+            [moreButton setImage:[UIImage imageNamed:@"uparrow.png"] forState:UIControlStateNormal];
+        }
+        else {
+            [moreButton setImage:[UIImage imageNamed:@"downarrow.png"] forState:UIControlStateNormal];
+        }
+        
+    }
+    
     [moreButton addTarget:self action:@selector(moreButtonSelected:) forControlEvents:UIControlEventTouchUpInside];
     [view addSubview:moreButton];
     
@@ -248,10 +261,14 @@
 }
 
 - (void)moreButtonSelected:(MoreButton *)button {
+    
+    // Indicates which section is the expanded one //
+    
+    // If none are expanded, set it as the section that you just tapped to expand
     if (self.expandedSection == -1) {
         self.expandedSection = button.sectionIndex;
     }
-    
+    // If more button is tapped on already expanded section, set expanded section to null, and contract it
     else {
         self.expandedSection = -1;
     }
@@ -344,7 +361,7 @@
         cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ - %@", price, condition];
         cell.detailTextLabel.textColor = [UIColor colorWithRed:0.384 green:0.722 blue:0.384 alpha:1];
         
-        // Best Match label, appplied to top result
+        // Best Match label, applied to top result
         if (indexPath.row == 0) {
             cell.bestMatchLabel.text = @"Best Match";
             cell.bestMatchLabel.font = [UIFont systemFontOfSize:12];

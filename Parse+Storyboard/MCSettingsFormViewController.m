@@ -184,6 +184,10 @@
                                             [activityIndicator startAnimating];
                                             
                                             [self dismissViewControllerAnimated:YES completion:nil];
+                                            
+                                            MatchCenterViewController *matchCenterVC = [[MatchCenterViewController alloc] init];
+                                            matchCenterVC.didAddNewItem = YES;
+                                        
                                         }
                                     }];
     }
