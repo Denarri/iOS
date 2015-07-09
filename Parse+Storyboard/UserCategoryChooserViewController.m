@@ -48,10 +48,13 @@
 - (IBAction)category1ButtonClick:(id)sender
 
 {
+    UINavigationController *navVC = (UINavigationController *)[self.tabBarController viewControllers][1];
+    MatchCenterViewController *matchCenter = (MatchCenterViewController *)navVC.topViewController;
     
-    UIViewController *toViewController = [self.tabBarController viewControllers][1];
-    if ([toViewController isKindOfClass:[MatchCenterViewController class]]) {
-        MatchCenterViewController *matchViewController = (MatchCenterViewController *)toViewController;
+//    UIViewController *toViewController = [self.tabBarController viewControllers][1];
+        
+    if ([matchCenter isKindOfClass:[MatchCenterViewController class]]) {
+        MatchCenterViewController *matchViewController = (MatchCenterViewController *)matchCenter;
         
         matchViewController.didAddNewItem = YES;
         
@@ -73,9 +76,13 @@
 - (IBAction)category2ButtonClick:(id)sender
 
 {
-    UIViewController *toViewController = [self.tabBarController viewControllers][1];
-    if ([toViewController isKindOfClass:[MatchCenterViewController class]]) {
-        MatchCenterViewController *matchViewController = (MatchCenterViewController *)toViewController;
+    UINavigationController *navVC = (UINavigationController *)[self.tabBarController viewControllers][1];
+    MatchCenterViewController *matchCenter = (MatchCenterViewController *)navVC.topViewController;
+    
+    //    UIViewController *toViewController = [self.tabBarController viewControllers][1];
+    
+    if ([matchCenter isKindOfClass:[MatchCenterViewController class]]) {
+        MatchCenterViewController *matchViewController = (MatchCenterViewController *)matchCenter;
         
         matchViewController.didAddNewItem = YES;
         

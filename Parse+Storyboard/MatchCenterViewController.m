@@ -135,6 +135,10 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {
+    if (self.didAddNewItem == NO) {
+        NSLog(@"KHARA!");
+    }
+    
     if (self.didAddNewItem == YES) {
         NSLog(@"well then lets refresh the MC");
         
@@ -349,7 +353,7 @@
         }
         
         tableView.separatorColor = [UIColor clearColor];
-
+        
         // title of the item
         cell.textLabel.text = _matchCenterArray[indexPath.section][@"Top 3"][indexPath.row+1][@"Title"];
         cell.textLabel.font = [UIFont systemFontOfSize:14];
@@ -396,7 +400,7 @@
 
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-        return 65;
+    return 65;
 }
 
 
@@ -463,7 +467,7 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if ([segue.identifier isEqualToString:@"WebViewSegue"]){
+    if ([segue.identifier isEqualToString:@"WebViewS egue"]){
         // Opens item in browser
         WebViewController *controller = (WebViewController *) segue.destinationViewController;
         controller.itemURL = self.itemURL;

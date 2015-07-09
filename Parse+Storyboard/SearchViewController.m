@@ -30,7 +30,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
+    
     // Setup coach marks
     NSArray *coachMarks = @[
                             @{
@@ -44,7 +44,7 @@
     self.coachMarksView.animationDuration = 0.5f;
     self.coachMarksView.enableContinueLabel = YES;
     
-
+    
     _nextButtonOutlet.userInteractionEnabled = YES;
     
     // Navbar Title
@@ -78,8 +78,8 @@
         // Show coach marks
         [self.coachMarksView start];
     }
-
-
+    
+    
     _nextButtonOutlet.userInteractionEnabled = YES;
     self.itemPriority = @"Low";
     self.itemLocation = @"WorldWide";
@@ -153,8 +153,6 @@
                                         NSDictionary *dictionary3 = [resultArray objectAtIndex:3];
                                         NSNumber *numberOfMatches = [dictionary3 objectForKey:@"Number of matches"];
                                         
-                                        
-                                        
                                         // Condition of Matching Categories
                                         NSDictionary *dictionary5 = [resultArray objectAtIndex:5];
                                         _matchingCategoryCondition1 = [dictionary5 objectForKey:@"Matching Category Condition 1"];
@@ -217,9 +215,20 @@
                                             // if 1 match found
                                             if ([numberOfMatches intValue] == 1 ){
                                                 
-                                                UIViewController *toViewController = [self.tabBarController viewControllers][1];
-                                                if ([toViewController isKindOfClass:[MatchCenterViewController class]]) {
-                                                    MatchCenterViewController *matchViewController = (MatchCenterViewController *)toViewController;
+                                                NSLog(@"numberOfMatches is 1");
+                                                
+                                                UINavigationController *navVC = (UINavigationController *)[self.tabBarController viewControllers][1];
+                                                
+                                                MatchCenterViewController *matchCenter = (MatchCenterViewController *)navVC.topViewController;
+                                                
+                                                NSLog(@"toViewController: %@", matchCenter);
+                                                NSLog(@"NSString from Class:%@", NSStringFromClass([[self.tabBarController viewControllers][1] class]));
+                                                NSLog(@"toViewController is of class: %@", NSStringFromClass([matchCenter class]));
+                                                
+                                                if ([matchCenter isKindOfClass:[MatchCenterViewController class]]) {
+                                                    
+                                                    NSLog(@"2nd matchcenter if statement works");
+                                                    MatchCenterViewController *matchViewController = (MatchCenterViewController *)matchCenter;
                                                     
                                                     matchViewController.didAddNewItem = YES;
                                                     
@@ -233,7 +242,10 @@
                                                     matchViewController.itemPriority = self.itemPriority;
                                                     
                                                     NSLog(@"alright they're set, time to switch");
-
+                                                    
+                                                }
+                                                else {
+                                                    NSLog(@"toViewController is not MatchCenterViewController");
                                                 }
                                                 [self.tabBarController setSelectedIndex:1];
                                                 
@@ -282,7 +294,7 @@
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Empty fields!" message:@"Make sure all fields are filled in before submitting!" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
             [alert show];
         }
-
+        
     }
 }
 
@@ -315,7 +327,7 @@
     }
     
     else if([segue.identifier isEqualToString:@"ShowCriteriaSegue"]){
-    
+        
         CriteriaViewController *controller = (CriteriaViewController *) segue.destinationViewController;
         
         // Send over the search query as well as the specific category to CriteriaVC to use
@@ -353,7 +365,7 @@
         
         controller.itemLocation = self.itemLocation;
     }
-
+    
 }
 
 

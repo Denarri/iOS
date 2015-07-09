@@ -120,11 +120,11 @@
 //                    }
 //                    break;
                 case 0:
-                    NSLog(@"lets share on iMessage");
+                    NSLog(@"Check out this awesome deal on a '%@' I found on the Denarri app: '%@'", _searchTerm, _itemURL);
                     if ([MFMessageComposeViewController canSendText]) {
                         MFMessageComposeViewController *messageController = [[MFMessageComposeViewController alloc] init];
                         [messageController setMessageComposeDelegate:self];
-                        [messageController setBody: [NSString stringWithFormat: @"Check out this awesome deal I found on the Denarri app: '%@'", _itemURL]];
+                        [messageController setBody: [NSString stringWithFormat: @"Check out this deal on a '%@' I found on the Denarri app: '%@'", _searchTerm, _itemURL]];
                         
 //                        [NSString stringWithFormat: @"Check out this awesome deal I found on the Denarri app!: '%@'", _itemURL];
                         [self presentViewController:messageController animated:NO completion:nil];

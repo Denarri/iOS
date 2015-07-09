@@ -8,6 +8,10 @@
 #import "AppDelegate.h"
 #import <Parse/Parse.h>
 #import "DefaultSettingsViewController.h"
+#import <ParseFacebookUtils/PFFacebookUtils.h>
+#import <FBSDKCoreKit/FBSDKCoreKit.h>
+#import <FBSDKLoginKit/FBSDKLoginKit.h>
+#import "Branch.h"
 
 
 @implementation AppDelegate
@@ -18,6 +22,12 @@
     // [Parse setApplicationId:@"APPLICATION_ID" clientKey:@"CLIENT_KEY"];
     [Parse setApplicationId:@"VWUSifMqZ7BHMfHo3XqG3C47Uo8Jl88aLa1aKocs" clientKey:@"N57phGN9jrqkdUifkyiZxvDOeMlRHVaeIgdZT6Tp"];
     // ****************************************************************************
+    
+    // Track opens
+    [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
+    
+    // Initialize Parse's Facebook Utilities singleton. This uses the FacebookAppID we specified in our App bundle's plist.
+    [PFFacebookUtils initializeFacebook];
     
     // Override point for customization after application launch.
     
@@ -55,19 +65,43 @@
     // Navbar to blue
     [[UINavigationBar appearance] setBarTintColor:[UIColor colorWithRed:40/255.0f green:167/255.0f blue:255/255.0f alpha:1.0f]];
     
+//    return [[FBSDKApplicationDelegate sharedInstance] application:application
+//                                    didFinishLaunchingWithOptions:launchOptions];
+    [FBSDKLoginButton class];
+    
     return YES;
+    
+    
+
 }
 
+
+/////Facebook stuff
+//
 //- (BOOL)application:(UIApplication *)application
 //            openURL:(NSURL *)url
 //  sourceApplication:(NSString *)sourceApplication
 //         annotation:(id)annotation {
-//    return [FBAppCall handleOpenURL:url
-//                  sourceApplication:sourceApplication
-//                        withSession:[PFFacebookUtils session]];
+//    return [[FBSDKApplicationDelegate sharedInstance] application:application
+//                                                          openURL:url
+//                                                sourceApplication:sourceApplication
+//                                                       annotation:annotation];
 //}
 
 
+
+
+
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
+    return [[FBSDKApplicationDelegate sharedInstance] application:application
+                                                          openURL:url
+                                                sourceApplication:sourceApplication
+                                                       annotation:annotation];
+}
+
+
+
+///////
 
 - (void)application:(UIApplication *)application
 didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
@@ -117,8 +151,7 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo
         [currentInstallation saveEventually];
     }
     
-    
-    //[FBAppCall handleDidBecomeActiveWithSession:[PFFacebookUtils session]];
+    [FBSDKAppEvents activateApp];
     
 }
 
@@ -140,5 +173,7 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo
     
     //[[PFFacebookUtils session] close];
 }
+
+
 
 @end

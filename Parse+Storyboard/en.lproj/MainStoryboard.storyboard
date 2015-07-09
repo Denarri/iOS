@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14A379b" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="2">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14A379b" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="2">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
     </dependencies>
     <scenes>
         <!--Subclass Config View Controller-->
@@ -101,13 +101,13 @@
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="$" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OJG-IH-Wjw">
                                 <rect key="frame" x="53" y="156" width="17" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="$" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ny8-zB-yfU">
                                 <rect key="frame" x="175" y="157" width="17" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="How important is this item?" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="syL-zC-DE4">
@@ -183,7 +183,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="Xrj-Mu-RTN"/>
                     <connections>
-                        <segue destination="DNb-te-ggn" kind="push" identifier="UserCategoryChooserToMatchCenterSegue" id="KIO-an-GYK"/>
+                        <segue destination="OCt-LQ-N1S" kind="push" identifier="UserCategoryChooserToMatchCenterSegue" id="KIO-an-GYK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6Jv-yg-5pD" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -231,7 +231,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mVa-H4-2oU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4796" y="82.833333333333329"/>
+            <point key="canvasLocation" x="5328" y="82"/>
         </scene>
         <!--Match Center View Controller-->
         <scene sceneID="xLZ-Hg-zp9">
@@ -290,9 +290,8 @@
                                 <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             </imageView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="" id="tnK-mJ-1Xd"/>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="Guy-S1-MCK">
                         <barButtonItem key="rightBarButtonItem" id="lfv-b5-UmL"/>
@@ -307,7 +306,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="g6R-A0-hP2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4175" y="66.266666666666666"/>
+            <point key="canvasLocation" x="4707" y="66"/>
         </scene>
         <!--Search View Controller-->
         <scene sceneID="NWw-CT-AgB">
@@ -363,7 +362,7 @@
                         <outlet property="nextButton" destination="bIT-gz-gT8" id="sVR-JP-bV9"/>
                         <outlet property="nextButtonOutlet" destination="bIT-gz-gT8" id="vQI-cd-3C7"/>
                         <segue destination="NyJ-xs-7Ut" kind="push" identifier="ShowCriteriaSegue" id="31y-Ae-iMh"/>
-                        <segue destination="DNb-te-ggn" kind="push" identifier="ShowMatchCenterSegue" id="f7J-JZ-mSA"/>
+                        <segue destination="OCt-LQ-N1S" kind="push" identifier="ShowMatchCenterSegue" id="f7J-JZ-mSA"/>
                         <segue destination="VVp-gr-Il1" kind="push" identifier="ShowSearchCategoryChooserSegue" id="2iw-RD-0Ug"/>
                         <segue destination="EJR-8m-fBh" kind="push" identifier="ShowUserCategoryChooserSegue" id="LSE-SS-YPH"/>
                     </connections>
@@ -402,7 +401,7 @@
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="$" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9fi-5l-Pwd">
                                 <rect key="frame" x="51" y="140" width="17" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="XX" textAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="2EO-64-fth">
@@ -413,7 +412,7 @@
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="$" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="COl-6d-joB">
                                 <rect key="frame" x="173" y="141" width="17" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="In what condition?" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="avn-LA-7Ps">
@@ -428,7 +427,7 @@
                     <connections>
                         <outlet property="maxPrice" destination="2EO-64-fth" id="rvb-JV-fVx"/>
                         <outlet property="minPrice" destination="3Ja-5C-5Cc" id="rFp-Fp-x8O"/>
-                        <segue destination="DNb-te-ggn" kind="push" identifier="SearchCategoryChooserToMatchCenterSegue" id="AYe-ID-Kyc"/>
+                        <segue destination="OCt-LQ-N1S" kind="push" identifier="SearchCategoryChooserToMatchCenterSegue" id="AYe-ID-Kyc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jOI-QL-Ko7" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -447,7 +446,7 @@
                     </tabBar>
                     <connections>
                         <segue destination="xVT-9M-6JJ" kind="relationship" relationship="viewControllers" id="Adh-6H-7MP"/>
-                        <segue destination="DNb-te-ggn" kind="relationship" relationship="viewControllers" id="k1G-pg-6iR"/>
+                        <segue destination="OCt-LQ-N1S" kind="relationship" relationship="viewControllers" id="k1G-pg-6iR"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OdQ-eM-G0Y" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -490,6 +489,27 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9Yy-lJ-w8A" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="412" y="331.33333333333331"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="dfe-V8-gn7">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="b41-ms-wAD" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="OCt-LQ-N1S" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="" id="tnK-mJ-1Xd"/>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="xZC-ZI-5Zm"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="lV8-Mz-PcI">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="DNb-te-ggn" kind="relationship" relationship="rootViewController" id="Qhj-aX-5Nh"/>
+                    </connections>
+                </navigationController>
+            </objects>
+            <point key="canvasLocation" x="4175" y="66"/>
         </scene>
     </scenes>
     <resources>
