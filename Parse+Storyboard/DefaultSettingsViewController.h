@@ -8,8 +8,6 @@
 #import <UIKit/UIKit.h>
 #import <Parse/Parse.h>
 #import <ParseUI/ParseUI.h>
-#import <FBSDKCoreKit/FBSDKCoreKit.h>
-#import <ParseFacebookUtils/PFFacebookUtils.h>
 
 //#import "UserDetailsViewController.h"
 

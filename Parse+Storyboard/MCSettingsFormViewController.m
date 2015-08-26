@@ -156,7 +156,7 @@
 
 - (IBAction)submitButton:(id)sender
 {
-    if (self.tf.text.length > 0 && self.tf1.text.length > 0) {
+    if (self.tf.text.length > 0 && self.tf1.text.length > 0 && self.tf2.text.length > 0) {
         
         UIActivityIndicatorView *activityIndicator = [[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
         activityIndicator.center = CGPointMake(self.view.frame.size.width / 3.0, self.view.frame.size.height / 3.0);

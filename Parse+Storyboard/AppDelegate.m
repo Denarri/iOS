@@ -8,11 +8,7 @@
 #import "AppDelegate.h"
 #import <Parse/Parse.h>
 #import "DefaultSettingsViewController.h"
-#import <ParseFacebookUtils/PFFacebookUtils.h>
-#import <FBSDKCoreKit/FBSDKCoreKit.h>
-#import <FBSDKLoginKit/FBSDKLoginKit.h>
 #import "Branch.h"
-
 
 @implementation AppDelegate
 
@@ -23,11 +19,18 @@
     [Parse setApplicationId:@"VWUSifMqZ7BHMfHo3XqG3C47Uo8Jl88aLa1aKocs" clientKey:@"N57phGN9jrqkdUifkyiZxvDOeMlRHVaeIgdZT6Tp"];
     // ****************************************************************************
     
+    
+    
+//    // Facebook login stuff
+//    [Parse setApplicationId:@"parseAppId" clientKey:@"parseClientKey"];
+//    [PFFacebookUtils initializeFacebookWithApplicationLaunchOptions:launchOptions];
+    
+    
+    
+    
+    
     // Track opens
     [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
-    
-    // Initialize Parse's Facebook Utilities singleton. This uses the FacebookAppID we specified in our App bundle's plist.
-    [PFFacebookUtils initializeFacebook];
     
     // Override point for customization after application launch.
     
@@ -60,44 +63,25 @@
         }
     }
     
-    
-    
     // Navbar to blue
     [[UINavigationBar appearance] setBarTintColor:[UIColor colorWithRed:40/255.0f green:167/255.0f blue:255/255.0f alpha:1.0f]];
-    
-//    return [[FBSDKApplicationDelegate sharedInstance] application:application
-//                                    didFinishLaunchingWithOptions:launchOptions];
-    [FBSDKLoginButton class];
     
     return YES;
     
     
-
+//    // Facebook Login stuff
+//    return [[FBSDKApplicationDelegate sharedInstance] application:application
+//                                    didFinishLaunchingWithOptions:launchOptions];
 }
 
 
-/////Facebook stuff
-//
-//- (BOOL)application:(UIApplication *)application
-//            openURL:(NSURL *)url
-//  sourceApplication:(NSString *)sourceApplication
-//         annotation:(id)annotation {
+
+//- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
 //    return [[FBSDKApplicationDelegate sharedInstance] application:application
 //                                                          openURL:url
 //                                                sourceApplication:sourceApplication
 //                                                       annotation:annotation];
 //}
-
-
-
-
-
-- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
-    return [[FBSDKApplicationDelegate sharedInstance] application:application
-                                                          openURL:url
-                                                sourceApplication:sourceApplication
-                                                       annotation:annotation];
-}
 
 
 
@@ -137,6 +121,11 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
+    
+    //Facebook login stuff
+//    [FBSDKAppEvents activateApp];
+    
+    
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
     
     // Start updating locations when the app returns to the foreground.
@@ -150,8 +139,6 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo
         currentInstallation.badge = 0;
         [currentInstallation saveEventually];
     }
-    
-    [FBSDKAppEvents activateApp];
     
 }
 

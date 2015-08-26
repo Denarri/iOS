@@ -28,7 +28,7 @@
 {
     [super viewDidLoad];
     
-    NSLog(@"The url dude is: '%@'", _itemURL);
+    NSLog(@"The url in webview is: '%@'", self.itemURL);
     
     // Initialize UIWebView
     self.myWebView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 60, self.view.frame.size.width,
@@ -58,7 +58,7 @@
     [activityIndicator startAnimating];
     
     // set the url
-    NSURL *url = [NSURL URLWithString:_itemURL];
+    NSURL *url = [NSURL URLWithString:self.itemURL];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     NSOperationQueue *queue = [[NSOperationQueue alloc] init];
     

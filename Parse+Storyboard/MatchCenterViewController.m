@@ -49,7 +49,7 @@
     
     _matchCenterArray = [[NSArray alloc] init];
     
-    // Refresh button
+    // Refreshing
     UIImageView *refreshImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"refresh.png"]];
     refreshImageView.frame = CGRectMake(280, 30, 30, 30);
     refreshImageView.userInteractionEnabled = YES;
@@ -60,11 +60,9 @@
     
     // Preparing for MC and indicating loading
     self.matchCenterArray = [[NSArray alloc] init];
-    
     UIActivityIndicatorView *activityIndicator = [[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
     activityIndicator.center = CGPointMake(self.view.frame.size.width / 2.0, self.view.frame.size.height / 2.0);
     [self.view addSubview: activityIndicator];
-    
     [activityIndicator startAnimating];
     
     _matchCenterDone = NO;
@@ -316,7 +314,7 @@
 // Cell layout
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    //load top 3 data
+    //load top 3 data 
     NSDictionary *currentSectionDictionary = _matchCenterArray[indexPath.section];
     NSArray *top3ArrayForSection = currentSectionDictionary[@"Top 3"];
     
@@ -403,11 +401,11 @@
     return 65;
 }
 
-
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (_matchCenterDone == YES) {
         self.itemURL = _matchCenterArray[indexPath.section][@"Top 3"][indexPath.row+1][@"Item URL"];
+        NSLog(@"The URL IS:'%@", self.itemURL);
         [self performSegueWithIdentifier:@"WebViewSegue" sender:self];
     }
 }
@@ -467,7 +465,7 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if ([segue.identifier isEqualToString:@"WebViewS egue"]){
+    if ([segue.identifier isEqualToString:@"WebViewSegue"]){
         // Opens item in browser
         WebViewController *controller = (WebViewController *) segue.destinationViewController;
         controller.itemURL = self.itemURL;

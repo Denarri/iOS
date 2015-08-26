@@ -30,17 +30,14 @@
 @property (assign, nonatomic) BOOL isDebug;
 @property (assign, nonatomic) BOOL isConnectedToRemoteDebug;
 @property (assign, nonatomic) NSInteger retryCount;
-@property (assign, nonatomic) NSInteger retryInterval;
-@property (assign, nonatomic) NSInteger timeout;
+@property (assign, nonatomic) NSTimeInterval retryInterval;
+@property (assign, nonatomic) NSTimeInterval timeout;
 
 + (BNCPreferenceHelper *)preferenceHelper;
 
 - (NSString *)getAPIBaseURL;
 - (NSString *)getAPIURL:(NSString *)endpoint;
 - (NSString *)getBranchKey:(BOOL)isLive;
-
-- (void)setAppListCheckDone;
-- (BOOL)getNeedAppListCheck;
 
 - (void)clearUserCreditsAndCounts;
 

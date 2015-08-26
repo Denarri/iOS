@@ -8,24 +8,20 @@
 
 #import "BranchCloseRequest.h"
 #import "BNCPreferenceHelper.h"
+#import "BranchConstants.h"
 
 @implementation BranchCloseRequest
 
 - (void)makeRequest:(BNCServerInterface *)serverInterface key:(NSString *)key callback:(BNCServerCallback)callback {
     BNCPreferenceHelper *preferenceHelper = [BNCPreferenceHelper preferenceHelper];
 
-    // TODO remove this hack.
-    id identityId = preferenceHelper.identityID ?: [NSNull null];
-    id sessionId = preferenceHelper.sessionID ?: [NSNull null];
-    id fingerprintId = preferenceHelper.deviceFingerprintID ?: [NSNull null];
-
     NSDictionary *params = @{
-        @"identity_id": identityId,
-        @"session_id": sessionId,
-        @"device_fingerprint_id": fingerprintId
+        BRANCH_REQUEST_KEY_BRANCH_IDENTITY: preferenceHelper.identityID,
+        BRANCH_REQUEST_KEY_SESSION_ID: preferenceHelper.sessionID,
+        BRANCH_REQUEST_KEY_DEVICE_FINGERPRINT_ID: preferenceHelper.deviceFingerprintID
     };
     
-    [serverInterface postRequest:params url:[preferenceHelper getAPIURL:@"close"] key:key callback:callback];
+    [serverInterface postRequest:params url:[preferenceHelper getAPIURL:BRANCH_REQUEST_ENDPOINT_CLOSE] key:key callback:callback];
 }
 
 - (void)processResponse:(BNCServerResponse *)response error:(NSError *)error {
