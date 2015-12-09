@@ -21,7 +21,7 @@
     [super viewDidLoad];
     
     [self.signUpView setLogo:[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Denarri-Login-Signup-Logo.png"]]];
-    [self.signUpView.additionalField setPlaceholder:@"Promo Code (optional)"];
+//    [self.signUpView.additionalField setPlaceholder:@"Promo Code (optional)"];
 }
 
 - (void)viewDidLayoutSubviews {
