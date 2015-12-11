@@ -13,6 +13,11 @@
 {
     [super viewDidLoad];
     
+    FBSDKLoginButton *loginButton = [[FBSDKLoginButton alloc] init];
+    // Optional: Place the button in the center of your view.
+    loginButton.center = self.view.center;
+    [self.view addSubview:loginButton];
+    
     // Do any additional setup after loading the view.
 }
 
@@ -21,6 +26,7 @@
     [super viewDidUnload];
     // Release any retained subviews of the main view.
 }
+
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewDidLoad];
