@@ -68,6 +68,7 @@
 		49EE475818E11DFC00DFFA24 /* denarri_ios_settings@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49EE475618E11DFC00DFFA24 /* denarri_ios_settings@2x.png */; };
 		49F8DEA71C191C1C006F057C /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49F8DEA61C191C1C006F057C /* FBSDKCoreKit.framework */; };
 		49F8DEA91C1953D3006F057C /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49F8DEA81C1953D3006F057C /* FBSDKLoginKit.framework */; };
+		49F8DEAC1C1B5B47006F057C /* MCExpandedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49F8DEAB1C1B5B47006F057C /* MCExpandedViewController.m */; };
 		49FA17471B858C3900543451 /* BNCDebugRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 49FA17051B858C3900543451 /* BNCDebugRequest.m */; };
 		49FA17481B858C3900543451 /* BNCEncodingUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 49FA17071B858C3900543451 /* BNCEncodingUtils.m */; };
 		49FA17491B858C3900543451 /* BNCError.m in Sources */ = {isa = PBXBuildFile; fileRef = 49FA17091B858C3900543451 /* BNCError.m */; };
@@ -182,6 +183,8 @@
 		49EE475618E11DFC00DFFA24 /* denarri_ios_settings@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "denarri_ios_settings@2x.png"; sourceTree = "<group>"; };
 		49F8DEA61C191C1C006F057C /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = ../../../../Documents/FacebookSDK/FBSDKCoreKit.framework; sourceTree = "<group>"; };
 		49F8DEA81C1953D3006F057C /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKLoginKit.framework; path = ../../../../Documents/FacebookSDK/FBSDKLoginKit.framework; sourceTree = "<group>"; };
+		49F8DEAA1C1B5B47006F057C /* MCExpandedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCExpandedViewController.h; sourceTree = "<group>"; };
+		49F8DEAB1C1B5B47006F057C /* MCExpandedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCExpandedViewController.m; sourceTree = "<group>"; };
 		49FA17031B858C3900543451 /* BNCConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNCConfig.h; sourceTree = "<group>"; };
 		49FA17041B858C3900543451 /* BNCDebugRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNCDebugRequest.h; sourceTree = "<group>"; };
 		49FA17051B858C3900543451 /* BNCDebugRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNCDebugRequest.m; sourceTree = "<group>"; };
@@ -500,6 +503,8 @@
 				49593EB018DCDD0E004CA20C /* CriteriaViewController.m */,
 				49593EB218DCDD5A004CA20C /* MatchCenterViewController.h */,
 				49593EB318DCDD5A004CA20C /* MatchCenterViewController.m */,
+				49F8DEAA1C1B5B47006F057C /* MCExpandedViewController.h */,
+				49F8DEAB1C1B5B47006F057C /* MCExpandedViewController.m */,
 				49C53ECC1A12D36A00D60D0C /* MatchCenterCell.h */,
 				49C53ECD1A12D36A00D60D0C /* MatchCenterCell.m */,
 				49AEC22E1A1953E400798C04 /* EmptyTableViewCell.h */,
@@ -685,6 +690,7 @@
 				49FA175A1B858C3900543451 /* BranchGetPromoCodeRequest.m in Sources */,
 				49BF474719D33C9D00C9925F /* MCSettingsFormViewController.m in Sources */,
 				4AC78028160FA9B10024E877 /* DefaultSettingsViewController.m in Sources */,
+				49F8DEAC1C1B5B47006F057C /* MCExpandedViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

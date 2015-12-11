@@ -1,24 +1,25 @@
 //
-//  Denarri iOS App
+//  MCExpandedViewController.m
+//  Denarri
 //
-//  Created by Andrew Ghobrial.
-//  Copyright (c) 2014 Denarri. All rights reserved.
+//  Created by Andrew Ghobrial on 12/11/15.
 //
 
-#import "MatchCenterViewController.h"
+#import "MCExpandedViewController.h"
 #import <UIKit/UIKit.h>
 #import "MatchCenterCell.h"
 #import "EmptyTableViewCell.h"
 
-@interface MatchCenterViewController () <UITableViewDataSource, UITableViewDelegate>
+@interface MCExpandedViewController () <UITableViewDataSource, UITableViewDelegate>
 
 @property (nonatomic, strong) UITableView *matchCenter;
 @property (nonatomic, assign) BOOL matchCenterDone;
+@property (nonatomic, assign) BOOL hasPressedShowMoreButton;
 @property (nonatomic, assign) BOOL visibleCell;
 
 @end
 
-@implementation MatchCenterViewController
+@implementation MCExpandedViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -32,7 +33,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.expandedSection = -1;
     _matchCenterDone = NO;
+    _hasPressedShowMoreButton = NO;
     
     // Set up MatchCenter table
     self.matchCenter = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewCellStyleSubtitle];
@@ -42,6 +46,8 @@
     _matchCenter.dataSource = self;
     _matchCenter.delegate = self;
     [self.view addSubview:self.matchCenter];
+    
+    _matchCenterArray = [[NSArray alloc] init];
     
     // Refreshing
     UIImageView *refreshImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"refresh.png"]];
@@ -53,11 +59,12 @@
     
     
     // Preparing for MC and indicating loading
-    _matchCenterData = [[NSArray alloc] init];
+    self.matchCenterArray = [[NSArray alloc] init];
     UIActivityIndicatorView *activityIndicator = [[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
     activityIndicator.center = CGPointMake(self.view.frame.size.width / 2.0, self.view.frame.size.height / 2.0);
     [self.view addSubview: activityIndicator];
     [activityIndicator startAnimating];
+    
     _matchCenterDone = NO;
     
     // Disable ability to scroll until table is MatchCenter table is done loading
@@ -68,9 +75,12 @@
                                 block:^(NSArray *result, NSError *error) {
                                     
                                     if (!error) {
-                                        _matchCenterData = result;
+                                        _matchCenterArray = result;
+                                        
                                         [activityIndicator stopAnimating];
+                                        
                                         [_matchCenter reloadData];
+                                        
                                         _matchCenterDone = YES;
                                         self.matchCenter.scrollEnabled = YES;
                                         NSLog(@"Result: '%@'", result);
@@ -81,18 +91,20 @@
 
 - (IBAction)editButtonAction:(id)sender {
     [self performSegueWithIdentifier:@"CriteriaSettingsSegue" sender:self];
-    NSLog(@"Edit button tapped");
+    NSLog(@"OH YEAAAAA");
 }
 
 
 - (void)refreshPressed:(id)sender
 {
-    NSLog(@"Refresh button tapped");
+    NSLog(@"OOOH BOY THAT TICKLEz");
     
-    // Start loading animation
+    self.matchCenterArray = [[NSArray alloc] init];
+    
     UIActivityIndicatorView *activityIndicator = [[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
     activityIndicator.center = CGPointMake(self.view.frame.size.width / 2.0, self.view.frame.size.height / 2.0);
     [self.view addSubview: activityIndicator];
+    
     [activityIndicator startAnimating];
     
     _matchCenterDone = NO;
@@ -105,9 +117,12 @@
                                 block:^(NSArray *result, NSError *error) {
                                     
                                     if (!error) {
-                                        _matchCenterData = result;
+                                        _matchCenterArray = result;
+                                        
                                         [activityIndicator stopAnimating];
+                                        
                                         [_matchCenter reloadData];
+                                        
                                         _matchCenterDone = YES;
                                         self.matchCenter.scrollEnabled = YES;
                                         NSLog(@"Result: '%@'", result);
@@ -119,11 +134,11 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     if (self.didAddNewItem == NO) {
-        NSLog(@"They didn't add a new item, no need to refresh");
+        NSLog(@"KHARA!");
     }
     
     if (self.didAddNewItem == YES) {
-        NSLog(@"new item? well then lets refresh the MC!");
+        NSLog(@"well then lets refresh the MC");
         
         // Start loading indicator
         UIActivityIndicatorView *activityIndicator = [[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
@@ -150,14 +165,14 @@
                                         
                                         if (!error) {
                                             NSLog(@"'%@'", result);
-                                            _matchCenterData = [[NSArray alloc] init];
+                                            self.matchCenterArray = [[NSArray alloc] init];
                                             
                                             [PFCloud callFunctionInBackground:@"MatchCenter3"
                                                                withParameters:@{}
                                                                         block:^(NSArray *result, NSError *error) {
                                                                             
                                                                             if (!error) {
-                                                                                _matchCenterData = result;
+                                                                                _matchCenterArray = result;
                                                                                 [_matchCenter reloadData];
                                                                                 [activityIndicator stopAnimating];
                                                                                 
@@ -184,115 +199,139 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return _matchCenterData.count;
+    return _matchCenterArray.count;
 }
 
-//invisible headers and footers
+//the part where i setup sections and the deleting of said sections
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return 0;
+    return 21.0f;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
-    return 0;
+    return 40;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-//    UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 21)];
-//    headerView.backgroundColor = [UIColor colorWithRed:0.949 green:0.949 blue:0.949 alpha:1];
-//    
-//    _searchTerm = [[[[_matchCenterArray  objectAtIndex:section] objectForKey:@"Top 3"] objectAtIndex:0]objectForKey:@"Search Term"];
-//    
-//    UILabel *headerLabel = [[UILabel alloc] initWithFrame:CGRectMake(8, 0, 250, 21)];
-//    headerLabel.text = [NSString stringWithFormat:@"%@", _searchTerm];
-//    headerLabel.font = [UIFont systemFontOfSize:[UIFont systemFontSize]];
-//    headerLabel.textColor = [UIColor blackColor];
-//    headerLabel.backgroundColor = [UIColor colorWithRed:0.949 green:0.949 blue:0.949 alpha:1];
-//    [headerView addSubview:headerLabel];
-//    
-//    UIButton *deleteButton = [UIButton buttonWithType:UIButtonTypeCustom];
-//    deleteButton.tag = section;
-//    deleteButton.frame = CGRectMake(300, 2, 17, 17);
-//    [deleteButton setImage:[UIImage imageNamed:@"xbutton.png"] forState:UIControlStateNormal];
-//    [deleteButton addTarget:self action:@selector(deleteButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
-//    [headerView addSubview:deleteButton];
-//    return headerView;
+    UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 21)];
+    headerView.backgroundColor = [UIColor colorWithRed:0.949 green:0.949 blue:0.949 alpha:1];
+    
+    _searchTerm = [[[[_matchCenterArray  objectAtIndex:section] objectForKey:@"Top 3"] objectAtIndex:0]objectForKey:@"Search Term"];
+    
+    UILabel *headerLabel = [[UILabel alloc] initWithFrame:CGRectMake(8, 0, 250, 21)];
+    headerLabel.text = [NSString stringWithFormat:@"%@", _searchTerm];
+    headerLabel.font = [UIFont systemFontOfSize:[UIFont systemFontSize]];
+    headerLabel.textColor = [UIColor blackColor];
+    headerLabel.backgroundColor = [UIColor colorWithRed:0.949 green:0.949 blue:0.949 alpha:1];
+    [headerView addSubview:headerLabel];
+    
+    UIButton *deleteButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    deleteButton.tag = section;
+    deleteButton.frame = CGRectMake(300, 2, 17, 17);
+    [deleteButton setImage:[UIImage imageNamed:@"xbutton.png"] forState:UIControlStateNormal];
+    [deleteButton addTarget:self action:@selector(deleteButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+    [headerView addSubview:deleteButton];
+    return headerView;
     
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
-//    UIView *view = [[UIView alloc] initWithFrame:CGRectZero];
-//    view.backgroundColor = [UIColor whiteColor];
-//    
-//    MoreButton *moreButton = [MoreButton buttonWithType:UIButtonTypeCustom];
-//    moreButton.frame = CGRectMake(0, 0, 320, 35);
-//    moreButton.sectionIndex = section;
-//    
-//    if (self.expandedSection == -1){
-//        [moreButton setImage:[UIImage imageNamed:@"downarrow.png"] forState:UIControlStateNormal];
-//    }
-//    else {
-//        if (self.expandedSection == section) {
-//            [moreButton setImage:[UIImage imageNamed:@"uparrow.png"] forState:UIControlStateNormal];
-//        }
-//        else {
-//            [moreButton setImage:[UIImage imageNamed:@"downarrow.png"] forState:UIControlStateNormal];
-//        }
-//        
-//    }
-//    
-//    [moreButton addTarget:self action:@selector(moreButtonSelected:) forControlEvents:UIControlEventTouchUpInside];
-//    [view addSubview:moreButton];
-//    
-//    return view;
+    UIView *view = [[UIView alloc] initWithFrame:CGRectZero];
+    view.backgroundColor = [UIColor whiteColor];
+    
+    MoreButton *moreButton = [MoreButton buttonWithType:UIButtonTypeCustom];
+    moreButton.frame = CGRectMake(0, 0, 320, 35);
+    moreButton.sectionIndex = section;
+    
+    if (self.expandedSection == -1){
+        [moreButton setImage:[UIImage imageNamed:@"downarrow.png"] forState:UIControlStateNormal];
+    }
+    else {
+        if (self.expandedSection == section) {
+            [moreButton setImage:[UIImage imageNamed:@"uparrow.png"] forState:UIControlStateNormal];
+        }
+        else {
+            [moreButton setImage:[UIImage imageNamed:@"downarrow.png"] forState:UIControlStateNormal];
+        }
+        
+    }
+    
+    [moreButton addTarget:self action:@selector(moreButtonSelected:) forControlEvents:UIControlEventTouchUpInside];
+    [view addSubview:moreButton];
+    
+    return view;
 }
 
-//- (void)moreButtonSelected:(MoreButton *)button {
-//    
-//    // Indicates which section is the expanded one //
-//    
-//    // If none are expanded, set it as the section that you just tapped to expand
-//    if (self.expandedSection == -1) {
-//        self.expandedSection = button.sectionIndex;
-//    }
-//    // If more button is tapped on already expanded section, set expanded section to null, and contract it
-//    else {
-//        self.expandedSection = -1;
-//    }
-//    
-//    [_matchCenter reloadData];
-//}
+- (void)moreButtonSelected:(MoreButton *)button {
+    
+    // Indicates which section is the expanded one //
+    
+    // If none are expanded, set it as the section that you just tapped to expand
+    if (self.expandedSection == -1) {
+        self.expandedSection = button.sectionIndex;
+    }
+    // If more button is tapped on already expanded section, set expanded section to null, and contract it
+    else {
+        self.expandedSection = -1;
+    }
+    
+    [_matchCenter reloadData];
+}
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    // Only showing one cell per item b/c it's grouped
-    return 1;
+    NSDictionary *currentSectionDictionary = _matchCenterArray[section];
+    NSArray *top3ArrayForSection = currentSectionDictionary[@"Top 3"];
+    
+    if (top3ArrayForSection.count-1 < 1){
+        return 1;
+    }
+    
+    else if (section == self.expandedSection) {
+        return top3ArrayForSection.count-1;
+    }
+    
+    else if (top3ArrayForSection.count-1 == 1){
+        return 1;
+    }
+    
+    else if (top3ArrayForSection.count-1 == 2){
+        return 2;
+    }
+    
+    else if (top3ArrayForSection.count-1 == 3){
+        return 3;
+    }
+    
+    else {
+        return 4;
+    }
+    
+    
 }
 
 
 // Cell layout
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // parse data for the respective section's items
-    NSDictionary *currentSectionDictionary = _matchCenterData[indexPath.section];
+    //load top 3 data
+    NSDictionary *currentSectionDictionary = _matchCenterArray[indexPath.section];
     NSArray *top3ArrayForSection = currentSectionDictionary[@"Top 3"];
-    
-    
-    // Cell defaults
-    static NSString *CellIdentifier = @"MatchCenterCell";
-    MatchCenterCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (!cell) {
-        // if no cell could be dequeued create a new one
-        cell = [[MatchCenterCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
-    }
-    
-    cell.textLabel.text = _matchCenterArray[indexPath.section][@"Top 3"][indexPath.row+1][@"Title"];
-    cell.textLabel.font = [UIFont systemFontOfSize:14];
-    tableView.separatorColor = [UIColor clearColor];
-
     
     // if no results for that item
     if (top3ArrayForSection.count-1 < 1) {
+        
+        // Initialize cell
+        static NSString *CellIdentifier = @"MatchCenterCell";
+        EmptyTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        if (!cell) {
+            // if no cell could be dequeued create a new one
+            cell = [[EmptyTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+        }
+        
+        // title of the item
+        cell.textLabel.text = @"No items found, but we'll keep a lookout for you!";
+        cell.textLabel.font = [UIFont systemFontOfSize:12];
         
         cell.detailTextLabel.text = [NSString stringWithFormat:@""];
         [cell.imageView setImage:[UIImage imageNamed:@""]];
@@ -303,11 +342,38 @@
     // if results for that item found
     else {
         
-        // lowest price
-        NSString *price = [NSString stringWithFormat:@"$%@", _matchCenterArray[indexPath.section][@"Top 3"][indexPath.row+1][@"Price"]];
+        // Change this [1]
+        static NSString *SecondCellIdentifier = @"SecondMatchCenterCell";
+        MatchCenterCell *cell = [tableView dequeueReusableCellWithIdentifier:SecondCellIdentifier];
+        if (!cell) {
+            // if no cell could be dequeued create a new one
+            cell = [[MatchCenterCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:SecondCellIdentifier];
+        }
         
-        cell.detailTextLabel.text = [NSString stringWithFormat:@"Lowest price: %@", price];
+        tableView.separatorColor = [UIColor clearColor];
+        
+        // title of the item
+        cell.textLabel.text = _matchCenterArray[indexPath.section][@"Top 3"][indexPath.row+1][@"Title"];
+        cell.textLabel.font = [UIFont systemFontOfSize:14];
+        
+        // price + condition of the item
+        NSString *price = [NSString stringWithFormat:@"$%@", _matchCenterArray[indexPath.section][@"Top 3"][indexPath.row+1][@"Price"]];
+        NSString *condition = [NSString stringWithFormat:@"%@", _matchCenterArray[indexPath.section][@"Top 3"][indexPath.row+1][@"Item Condition"]];
+        
+        cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ - %@", price, condition];
         cell.detailTextLabel.textColor = [UIColor colorWithRed:0.384 green:0.722 blue:0.384 alpha:1];
+        
+        // Best Match label, applied to top result
+        if (indexPath.row == 0) {
+            cell.bestMatchLabel.text = @"Best Match";
+            cell.bestMatchLabel.font = [UIFont systemFontOfSize:12];
+            cell.bestMatchLabel.textColor = [UIColor colorWithRed:0.18 green:0.541 blue:0.902 alpha:1];
+            
+            [cell.contentView addSubview:cell.bestMatchLabel];
+            [cell.bestMatchLabel setHidden:NO];
+        } else {
+            [cell.bestMatchLabel setHidden:YES];
+        }
         
         // Load images using background thread to avoid the laggy tableView
         [cell.imageView setImage:[UIImage imageNamed:@"Placeholder.png"]];
@@ -332,57 +398,57 @@
 
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 75;
+    return 65;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (_matchCenterDone == YES) {
-        //Segue to MCExpandedViewController and pass along all the matchCenterData, while indicating which item was selected
+        self.itemURL = _matchCenterArray[indexPath.section][@"Top 3"][indexPath.row+1][@"Item URL"];
+        NSLog(@"The URL IS:'%@", self.itemURL);
+        [self performSegueWithIdentifier:@"WebViewSegue" sender:self];
     }
 }
 
 
 - (void)deleteButtonPressed:(id)sender
 {
-    //I'm going to make this a "swipe to delete" function that runs the below instead
+    UIActivityIndicatorView *activityIndicator = [[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    activityIndicator.center = CGPointMake(self.view.frame.size.width / 2.0, self.view.frame.size.height / 2.0);
+    [self.view addSubview: activityIndicator];
     
-//    UIActivityIndicatorView *activityIndicator = [[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-//    activityIndicator.center = CGPointMake(self.view.frame.size.width / 2.0, self.view.frame.size.height / 2.0);
-//    [self.view addSubview: activityIndicator];
-//    
-//    [activityIndicator startAnimating];
-//    
-//    // links button
-//    UIButton *deleteButton = (UIButton *)sender;
-//    
-//    // Define the sections title
-//    NSString *sectionName = _searchTerm = [[[[_matchCenterArray  objectAtIndex:deleteButton.tag] objectForKey:@"Top 3"] objectAtIndex:0]objectForKey:@"Search Term"];
-//    
-//    // Run delete function with respective section header as parameter
-//    [PFCloud callFunctionInBackground:@"deleteFromMatchCenter"
-//                       withParameters:
-//     @{@"searchTerm": sectionName,}
-//                                block:^(NSDictionary *result, NSError *error) {
-//                                    if (!error) {
-//                                        [NSThread sleepForTimeInterval: 1];
-//                                        [PFCloud callFunctionInBackground:@"MatchCenter3"
-//                                                           withParameters:@{}
-//                                                                    block:^(NSArray *result, NSError *error) {
-//                                                                        
-//                                                                        if (!error) {
-//                                                                            _matchCenterArray = result;
-//                                                                            
-//                                                                            [activityIndicator stopAnimating];
-//                                                                            
-//                                                                            [_matchCenter reloadData];
-//                                                                            
-//                                                                            NSLog(@"Result: '%@'", result);
-//                                                                        }
-//                                                                    }];
-//                                        
-//                                    }
-//                                }];
+    [activityIndicator startAnimating];
+    
+    // links button
+    UIButton *deleteButton = (UIButton *)sender;
+    
+    // Define the sections title
+    NSString *sectionName = _searchTerm = [[[[_matchCenterArray  objectAtIndex:deleteButton.tag] objectForKey:@"Top 3"] objectAtIndex:0]objectForKey:@"Search Term"];
+    
+    // Run delete function with respective section header as parameter
+    [PFCloud callFunctionInBackground:@"deleteFromMatchCenter"
+                       withParameters:
+     @{@"searchTerm": sectionName,}
+                                block:^(NSDictionary *result, NSError *error) {
+                                    if (!error) {
+                                        [NSThread sleepForTimeInterval: 1];
+                                        [PFCloud callFunctionInBackground:@"MatchCenter3"
+                                                           withParameters:@{}
+                                                                    block:^(NSArray *result, NSError *error) {
+                                                                        
+                                                                        if (!error) {
+                                                                            _matchCenterArray = result;
+                                                                            
+                                                                            [activityIndicator stopAnimating];
+                                                                            
+                                                                            [_matchCenter reloadData];
+                                                                            
+                                                                            NSLog(@"Result: '%@'", result);
+                                                                        }
+                                                                    }];
+                                        
+                                    }
+                                }];
 }
 
 
