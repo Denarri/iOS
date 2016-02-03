@@ -1,5 +1,5 @@
 //
-//  MatchCenterCell.h
+//  MCExpandedCell.h
 //  Denarri
 //
 //  Created by Andrew Ghobrial on 11/11/14.
@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 
-@interface MatchCenterCell : UITableViewCell
+@interface MCExpandedCell : UITableViewCell
 
 @property (strong, nonatomic) IBOutlet UILabel *titleLabel;
 @property (strong, nonatomic) IBOutlet UILabel *bestMatchLabel;

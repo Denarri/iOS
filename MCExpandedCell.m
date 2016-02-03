@@ -1,14 +1,14 @@
 //
-//  MatchCenterCell.m
+//  MCExpandedCell.m
 //  Denarri
 //
 //  Created by Andrew Ghobrial on 11/11/14.
 //  Copyright (c) 2014 Juan Figuera. All rights reserved.
 //
 
-#import "MatchCenterCell.h"
+#import "MCExpandedCell.h"
 
-@implementation MatchCenterCell
+@implementation MCExpandedCell
 
 - (void)awakeFromNib {
     // Initialization code

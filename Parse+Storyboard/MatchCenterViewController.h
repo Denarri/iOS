@@ -9,8 +9,10 @@
 #import <Parse/Parse.h>
 #import "AsyncImageView.h"
 #import "SearchViewController.h"
-#import "WebViewController.h"
+#import "MCExpandedViewController.h"
 #import "WSCoachMarksView.h"
+#import "MatchCenterCell.h"
+#import "UIImage+StackBlur.h"
 
 #import "SLExpandableTableView.h"
 
@@ -35,6 +37,10 @@
 @property (assign) NSInteger rowCount;
 @property (assign) BOOL didAddNewItem;
 @property (assign) BOOL results;
+
+@property (assign, nonatomic) NSInteger sectionSelected;
+@property (strong, nonatomic) NSString *sectionSelectedSearchTerm;
+
 
 @property (strong, nonatomic) IBOutlet UIButton *editButton;
 

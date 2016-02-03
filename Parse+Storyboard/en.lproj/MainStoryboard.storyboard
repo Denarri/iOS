@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14A379b" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="2">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="2">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
     </dependencies>
     <scenes>
         <!--Subclass Config View Controller-->
@@ -59,7 +59,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xeN-zW-10r" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4175" y="818.86666666666667"/>
+            <point key="canvasLocation" x="4707" y="782"/>
         </scene>
         <!--MC Settings Form View Controller-->
         <scene sceneID="iO8-UT-pLe">
@@ -130,7 +130,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XWy-Oo-oQt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4175" y="1579.75"/>
+            <point key="canvasLocation" x="4707" y="1487"/>
         </scene>
         <!--Search Category Chooser View Controller-->
         <scene sceneID="YZB-0d-ZNX">
@@ -231,7 +231,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mVa-H4-2oU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5328" y="82"/>
+            <point key="canvasLocation" x="5622" y="66"/>
         </scene>
         <!--Match Center View Controller-->
         <scene sceneID="xLZ-Hg-zp9">
@@ -269,22 +269,6 @@
                                 <color key="textColor" red="0.79448784722222221" green="0.79448784722222221" blue="0.79448784722222221" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="MatchCenter" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="106" translatesAutoresizingMaskIntoConstraints="NO" id="ZxP-si-6Ok">
-                                <rect key="frame" x="104" y="20" width="113" height="46"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="19"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C5h-i2-fQ9">
-                                <rect key="frame" x="6" y="28" width="30" height="30"/>
-                                <state key="normal" title="Edit">
-                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="editButtonAction:" destination="DNb-te-ggn" eventType="touchUpInside" id="gNf-Sq-4Yc"/>
-                                </connections>
-                            </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="ZombieFrogGray.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="3yb-Ch-GRI">
                                 <rect key="frame" x="232" y="71" width="83" height="122"/>
                                 <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
@@ -299,14 +283,35 @@
                     <nil key="simulatedTopBarMetrics"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="editButton" destination="C5h-i2-fQ9" id="OqZ-yG-EwR"/>
-                        <segue destination="GIv-xY-O7U" kind="modal" identifier="WebViewSegue" id="fJI-x7-7rw"/>
                         <segue destination="lXu-f0-LVu" kind="modal" identifier="CriteriaSettingsSegue" id="6f4-6U-Fi3"/>
+                        <segue destination="Mko-Fe-coh" kind="push" identifier="MCExpandedSegue" id="T6g-yq-TL6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="g6R-A0-hP2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4707" y="66"/>
+        </scene>
+        <!--Expanded View Controller-->
+        <scene sceneID="x0Z-W0-0SG">
+            <objects>
+                <viewController id="Mko-Fe-coh" customClass="MCExpandedViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="B3C-KI-IxS"/>
+                        <viewControllerLayoutGuide type="bottom" id="ID8-yn-ezr"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="QTN-OK-QnR">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="xqj-dG-DJs"/>
+                    <connections>
+                        <segue destination="GIv-xY-O7U" kind="modal" identifier="WebViewSegue" id="kRo-gH-Bj3"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="txo-HB-T1a" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5217" y="66"/>
         </scene>
         <!--Search View Controller-->
         <scene sceneID="NWw-CT-AgB">
@@ -343,7 +348,7 @@
                             <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="lof-cQ-cem">
                                 <rect key="frame" x="60" y="175" width="201" height="29"/>
                                 <segments>
-                                    <segment title="Just Browsing"/>
+                                    <segment title="No Rush"/>
                                     <segment title="Need It Soon"/>
                                 </segments>
                                 <color key="tintColor" red="0.030032413787952628" green="0.71014861155918663" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -493,7 +498,6 @@
         <!--Navigation Controller-->
         <scene sceneID="dfe-V8-gn7">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="b41-ms-wAD" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="OCt-LQ-N1S" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="" id="tnK-mJ-1Xd"/>
                     <toolbarItems/>
@@ -508,6 +512,7 @@
                         <segue destination="DNb-te-ggn" kind="relationship" relationship="rootViewController" id="Qhj-aX-5Nh"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="b41-ms-wAD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4175" y="66"/>
         </scene>
@@ -515,13 +520,8 @@
     <resources>
         <image name="ZombieFrogGray.jpg" width="268" height="360"/>
     </resources>
-    <simulatedMetricsContainer key="defaultSimulatedMetrics">
-        <simulatedStatusBarMetrics key="statusBar"/>
-        <simulatedOrientationMetrics key="orientation"/>
-        <simulatedScreenMetrics key="destination" type="retina4"/>
-    </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="bso-zB-LfR"/>
-        <segue reference="AYe-ID-Kyc"/>
+        <segue reference="f7J-JZ-mSA"/>
+        <segue reference="31y-Ae-iMh"/>
     </inferredMetricsTieBreakers>
 </document>
